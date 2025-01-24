@@ -1,2 +1,5 @@
-Possible classes are:
-driver and passenger. changing this file...
+My possible classes include:
+    driver
+    passenger
+    employee
+    admin
