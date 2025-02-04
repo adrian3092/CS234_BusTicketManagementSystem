@@ -1,4 +1,4 @@
-My possible classes include:
+My classes are:
     driver
     passenger
     employee
