@@ -1,0 +1,2 @@
+I was team leader for Stage 2. I created the Route, Schedule, Expenses, Login,
+and BusStop classes on the UML diagram.
