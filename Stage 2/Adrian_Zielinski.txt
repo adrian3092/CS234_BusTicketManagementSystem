@@ -1,0 +1,2 @@
+For this stage, I created the Bus, Payment, Ticket and Depot classes
+in the UML diagram. 
