@@ -11,6 +11,8 @@ public class Login {
 
     public Login(Employee employee) {
         this.employee = employee;
+        this.username = employee.getEmail();
+        this.password = "password";               
     }
 
     public String getUsername() {

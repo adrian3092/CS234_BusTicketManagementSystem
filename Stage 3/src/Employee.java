@@ -9,9 +9,10 @@ public class Employee {
     private String jobTitle; // Job title of the employee
     private String accessLevel; // Access level of the employee
     private float salary; // Salary of the employee
-
+   
     /**
      * Constructor to create an Employee with a name and job title.
+     * Creates email from employee name
      * @param name Name of the employee.
      * @param jobTitle Job title of the employee.
      */
@@ -19,6 +20,7 @@ public class Employee {
         this.name = name;
         this.jobTitle = jobTitle;
         this.employeeID = generateEmployeeID();
+        this.email = name + "@buscompany.com"; //creates email for employee
     }
 
     /**
