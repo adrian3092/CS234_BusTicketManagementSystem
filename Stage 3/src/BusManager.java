@@ -6,11 +6,12 @@ import java.util.ArrayList;
  * @author Adrian Zielinski
  */
 public class BusManager {
+
     private final ArrayList<Bus> allBuses;
     private final DepotManager depotManager;
 
     /**
-     * 
+     * default constructor
      * @param depotManager
      */
     public BusManager(DepotManager depotManager) {
