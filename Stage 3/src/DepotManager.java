@@ -6,8 +6,12 @@ import java.util.ArrayList;
  * @author Adrian Zielinski
  */
 public class DepotManager {
+
     private final ArrayList<Depot> depots;
 
+    /**
+     * default constructor
+     */
     public DepotManager() {
         depots = new ArrayList<>();
     }
