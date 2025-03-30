@@ -13,10 +13,10 @@ public class LoginMenu {
 
     public LoginMenu(Scanner in) {
         this.in = in;
-        System.out.print("Username: ");
-        username = in.nextLine();
-        System.out.print("Password: ");
-        password = in.nextLine();
+        System.out.println("Username: ");
+        username = in.next();
+        System.out.println("Password: ");
+        password = in.next();
         
     }
 
