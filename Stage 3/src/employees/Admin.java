@@ -1,4 +1,4 @@
-package Employee;
+package employees;
 
 /**
  * The Admin class represents an administrator who can manage employees

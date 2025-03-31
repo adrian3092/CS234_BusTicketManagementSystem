@@ -1,5 +1,5 @@
 
-import Employee.Admin;
+import employees.Admin;
 import login.LoginManager;
 import login.Login;
 import java.util.Scanner;

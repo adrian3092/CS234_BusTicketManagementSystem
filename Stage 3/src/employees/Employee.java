@@ -1,4 +1,4 @@
-package Employee;
+package employees;
 
 /**
  * Represents an Employee with details such as ID, name, email, phone number, job title, access level, and salary.

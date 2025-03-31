@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 import login.Login;
-import Employee.Employee;
+import employees.Employee;
 import login.LoginManager;
 
 /**
@@ -13,10 +13,12 @@ public class Main {
     public static Scanner in = new Scanner(System.in);
     
     public static void main(String[] args) {
+        //create login database
+        LoginManager loginManager = new LoginManager(in);
         
         // create employees
         Employee employee1 = new Employee("John Doe", "Office Manager");
-        Login login1 = new Login(employee1);
+        Login login1 = new Login(employee1, loginManager);
 
         // create initial depot
         Depot depot1 = new Depot(12345, "1862 Aviation Way, Los Angeles, CA 90071");
@@ -78,7 +80,7 @@ public class Main {
                 }
                 case 3 -> {
                     // employee login
-                    LoginManager loginManager = new LoginManager(in);
+                    
                     if (loginManager.checkCredentials() == true) {
                         // call employee menu
                     }
