@@ -11,6 +11,7 @@ public class EmployeeMenu {
 
     private Scanner in;
     private int menuOption;
+    BusMenu busMenu;
 
     /**
      * default constructor
@@ -21,7 +22,8 @@ public class EmployeeMenu {
 
         this.in = in;
         menuOption = 0;
-        
+        busMenu = new BusMenu(in);
+
     }
 
     /**
@@ -47,7 +49,6 @@ public class EmployeeMenu {
 
             switch (menuOption) {
                 case 1 -> {
-                    BusMenu busMenu = new BusMenu(in);
                     busMenu.displayMenu();
                 }
                 case 2 -> {

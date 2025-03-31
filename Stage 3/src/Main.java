@@ -2,7 +2,9 @@
 import java.util.Scanner;
 
 import bus.Bus;
+import bus.BusManager;
 import depot.Depot;
+import depot.DepotManager;
 import login.Login;
 import employees.Employee;
 import expenses.Accounting;
@@ -30,6 +32,7 @@ public class Main {
         Login login1 = new Login(employee1, loginManager);
 
         // create initial depot
+        DepotManager depotManager = new DepotManager();
         Depot depot1 = new Depot(12345, "1862 Aviation Way, Los Angeles, CA 90071");
 
         // create initial route and bus stops, add bus stops to route
@@ -59,9 +62,13 @@ public class Main {
         schedule1.getDepartureTimes().add(10.30);
 
         // create three initial buses
+        BusManager busManager = new BusManager(depotManager);
         Bus bus1 = new Bus(2024, "Volvo", "7900", 3786, 40);
         Bus bus2 = new Bus(2013, "Volvo", "8900", 154965, 60);
         
+        busManager.addBus(bus1);
+        busManager.addBus(bus2);
+
         // Assign buses to the depot
         depot1.assignBus(bus1);
         depot1.assignBus(bus2);
