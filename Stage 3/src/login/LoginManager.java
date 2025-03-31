@@ -54,4 +54,14 @@ public class LoginManager {
         System.out.println("Password: ");
         enteredPassword = in.next();
     }
+    
+    /**
+     * Getter for the logins array list
+     * @return logins, the array list that acts as a database of logins
+     */
+    public ArrayList<Login> getLogins() {
+        return logins;
+    }
+    
+    
 }
