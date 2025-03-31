@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class EmployeeMenu {
 
     private Scanner in;
+    private int menuOption;
 
     /**
      * default constructor
@@ -17,7 +18,10 @@ public class EmployeeMenu {
      * @param in, scanner
      */
     public EmployeeMenu(Scanner in) {
+
         this.in = in;
+        menuOption = 0;
+        
     }
 
     /**

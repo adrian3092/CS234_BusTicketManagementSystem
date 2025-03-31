@@ -11,7 +11,10 @@ public class BusMenu {
     private Scanner in;
     private int menuOption;
 
-    // default constructor
+    /**
+     * default constructor
+     * @param in, scanner
+     */
     public BusMenu(Scanner in) {
 
         this.in = in;
