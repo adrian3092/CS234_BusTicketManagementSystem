@@ -1,5 +1,6 @@
 package expenses;
 
+import bus.Bus;
 /**
  *
  * @author George Candal

@@ -1,5 +1,7 @@
 package expenses;
 
+import depot.Depot;
+
 /**
  *
  * @author George Candal
