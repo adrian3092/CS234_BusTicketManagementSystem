@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 import login.Login;
 import Employee.Employee;
@@ -49,10 +50,6 @@ public class Main {
         // create three initial buses
         Bus bus1 = new Bus(2024, "Volvo", "7900", 3786, 40);
         Bus bus2 = new Bus(2013, "Volvo", "8900", 154965, 60);
- 
-        // create initial buses
-        bus1 = new Bus(2024, "Volvo", "7900", 3786, 40);
-        bus2 = new Bus(2013, "Volvo", "8900", 154965, 60);
         
         // Assign buses to the depot
         depot1.assignBus(bus1);
