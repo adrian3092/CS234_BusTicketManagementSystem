@@ -6,11 +6,12 @@ import bus.Bus;
 import bus.BusManager;
 import depot.Depot;
 import depot.DepotManager;
-import login.Login;
 import employees.Employee;
 import expenses.Accounting;
+import login.Login;
 import login.LoginManager;
 import menu.EmployeeMenu;
+import menu.TicketMenu;
 
 /**
  *
@@ -34,7 +35,7 @@ public class Main {
 
         // create initial depot
         DepotManager depotManager = new DepotManager();
-        Depot depot1 = new Depot(12345, "1862 Aviation Way, Los Angeles, CA 90071");
+        Depot depot1 = new Depot("1862 Aviation Way, Los Angeles, CA 90071");
 
         // create initial route and bus stops, add bus stops to route
         Route route1 = new Route("Downtown");
@@ -56,11 +57,11 @@ public class Main {
         Schedule schedule1 = new Schedule(route1, depot1, 08.30);
         scheduleManager.addSchedule(schedule1);
 
-        schedule1.getDepartureTimes().add(8.30);
+        schedule1.getDepartureTimes().add(8.50);
         schedule1.getDepartureTimes().add(9.00);
-        schedule1.getDepartureTimes().add(9.30);
+        schedule1.getDepartureTimes().add(9.50);
         schedule1.getDepartureTimes().add(10.00);
-        schedule1.getDepartureTimes().add(10.30);
+        schedule1.getDepartureTimes().add(10.50);
 
         // create three initial buses
         BusManager busManager = new BusManager(depotManager);
@@ -73,7 +74,7 @@ public class Main {
         // Assign buses to the depot
         depot1.assignBus(bus1);
         depot1.assignBus(bus2);
-
+        
         // logic for the main menu
         int menuOption = 0;
         
@@ -90,7 +91,10 @@ public class Main {
 
             switch (menuOption) {
                 case 1 -> {
-                    // book ticket 
+                    // book ticket
+                    in.nextLine(); // consume the leftover new line character
+                    TicketMenu ticketMenu = new TicketMenu(in, scheduleManager);
+                    ticketMenu.displayMenu();
                 }
                 case 2 -> {
                     // view schedule 

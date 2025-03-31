@@ -1,4 +1,8 @@
-package main;
+
+package payment;
+
+import main.Passenger;
+
 /**
  *
  * @author Adrian Zielinski

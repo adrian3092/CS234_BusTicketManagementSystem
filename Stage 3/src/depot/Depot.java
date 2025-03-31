@@ -13,14 +13,15 @@ public class Depot {
     private String address;
     private final ArrayList<Bus> buses;
     private final int depotId;
+    private static int nextDepotId = 1000;
 
     /**
      * constructor that initializes the address
      * @param depotId, the id of the depot
      * @param address, the address of the depot
      */
-    public Depot(int depotId, String address) {
-        this.depotId = depotId;
+    public Depot(String address) {
+        depotId = nextDepotId++;
         this.address = address;
         this.buses = new ArrayList<>();
     }

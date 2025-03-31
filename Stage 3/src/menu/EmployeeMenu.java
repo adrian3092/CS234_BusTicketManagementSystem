@@ -12,6 +12,7 @@ public class EmployeeMenu {
     private Scanner in;
     private int menuOption;
     BusMenu busMenu;
+    DepotMenu depotMenu;
 
     /**
      * default constructor
@@ -23,6 +24,7 @@ public class EmployeeMenu {
         this.in = in;
         menuOption = 0;
         busMenu = new BusMenu(in);
+        depotMenu = new DepotMenu(in);
 
     }
 
@@ -58,7 +60,7 @@ public class EmployeeMenu {
                     // route management
                 }
                 case 4 -> {
-                    // depot management
+                    depotMenu.displayMenu();
                 }
                 case 5 -> {
                     // employee management

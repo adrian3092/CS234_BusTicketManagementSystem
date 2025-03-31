@@ -1,3 +1,4 @@
+
 package main;
 
 import java.util.ArrayList;
@@ -14,7 +15,17 @@ public class ScheduleManager {
      * default constructor
      */
     public ScheduleManager() {
+
         this.schedules = new ArrayList<>();
+        
+    }
+
+    /**
+     * get the list of schedules
+     * @return the list of schedules
+     */
+    public ArrayList<Schedule> getSchedules() {
+        return schedules;
     }
 
     /**
@@ -34,11 +45,7 @@ public class ScheduleManager {
         String result = "Available Schedules:\n";
         for (int i = 0; i < schedules.size(); i++) {
             Schedule schedule = schedules.get(i);
-            result += (i + 1) + ". ";
-            // add schedule name if available
-            if (schedule.getName() != null && !schedule.getName().isEmpty()) {
-                result += "Name: " + schedule.getName() + "\n";
-            }
+            result += "#" + (i + 1) + "\n";
             
             // add route information
             if (schedule.getRoute() != null) {
@@ -47,19 +54,36 @@ public class ScheduleManager {
                 result += "Route: Not assigned, ";
             }
 
-            
-
             // add start time
-            result += "Start Time: " + schedule.getStartTime() + "\n";
+            result += "Start Time: " + formatTime(schedule.getStartTime()) + "\n";
             
             // add departure times if available
             if (schedule.getDepartureTimes() != null && !schedule.getDepartureTimes().isEmpty()) {
-                result += "Departure Times: " + schedule.getDepartureTimes().toString();
+                result += "Departure Times: ";
+                for (int j = 0; j < schedule.getDepartureTimes().size(); j++) {
+                    double time = schedule.getDepartureTimes().get(j);
+                    result += formatTime(time);
+                    if (j < schedule.getDepartureTimes().size() - 1) {
+                        result += ", ";
+                    }
+                }
             }
             
             result += "\n";
         }
         
         return result;
+    }
+    
+    /**
+     * formats a double time value to a string in the format HH:MM
+     * @param time, the time as a double
+     * @return the formatted time string
+     */
+    private String formatTime(double time) {
+        int hours = (int) time;
+        int minutes = (int) ((time - hours) * 60);
+        
+        return String.format("%02d:%02d", hours, minutes);
     }
 }

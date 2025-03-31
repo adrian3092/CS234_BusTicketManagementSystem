@@ -3,6 +3,7 @@ package main;
 
 import java.util.ArrayList;
 
+import payment.Payment;
 import ticket.Ticket;
 
 /**

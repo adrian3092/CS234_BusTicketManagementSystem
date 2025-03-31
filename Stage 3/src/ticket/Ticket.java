@@ -1,3 +1,4 @@
+
 package ticket;
 
 import main.Schedule;
@@ -13,6 +14,14 @@ public class Ticket {
     private String status;
     private Passenger passenger;
     private int ticketNumber;
+    
+    /**
+     * get the ticket number
+     * @return the ticket number
+     */
+    public int getTicketNumber() {
+        return ticketNumber;
+    }
 
     public Ticket(Schedule schedule, Passenger passenger, int ticketNumber) {
         this.schedule = schedule;
