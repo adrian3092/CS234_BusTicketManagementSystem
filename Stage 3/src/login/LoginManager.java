@@ -49,9 +49,9 @@ public class LoginManager {
      * by the user.
      */
     public void loginMenu() {
-        System.out.println("Username: ");
+        System.out.print("Username: ");
         enteredUsername = in.next();
-        System.out.println("Password: ");
+        System.out.print("Password: ");
         enteredPassword = in.next();
     }
     

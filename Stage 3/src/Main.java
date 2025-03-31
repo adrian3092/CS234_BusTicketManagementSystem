@@ -2,6 +2,7 @@
 import java.util.Scanner;
 import login.Login;
 import employees.Employee;
+import expenses.Accounting;
 import login.LoginManager;
 
 /**
@@ -16,8 +17,11 @@ public class Main {
         //create login database
         LoginManager loginManager = new LoginManager(in);
         
+        //create accounting database
+        Accounting accounting = new Accounting();
+        
         // create employees
-        Employee employee1 = new Employee("John Doe", "Office Manager");
+        Employee employee1 = new Employee("John", "Office Manager");
         Login login1 = new Login(employee1, loginManager);
 
         // create initial depot
@@ -80,9 +84,9 @@ public class Main {
                 }
                 case 3 -> {
                     // employee login
-                    
+                    loginManager.loginMenu();
                     if (loginManager.checkCredentials() == true) {
-                        // call employee menu
+                        System.out.println("Access Granted"); //employee menu, this is just a test print to see if its working
                     }
                 }
                 case 4 -> {
