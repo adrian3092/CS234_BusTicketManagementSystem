@@ -7,6 +7,7 @@ import login.Login;
 import employees.Employee;
 import expenses.Accounting;
 import login.LoginManager;
+import menu.EmployeeMenu;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Main {
     public static Scanner in = new Scanner(System.in);
     
     public static void main(String[] args) {
+
         //create login database
         LoginManager loginManager = new LoginManager(in);
         
@@ -64,6 +66,7 @@ public class Main {
         depot1.assignBus(bus1);
         depot1.assignBus(bus2);
 
+        // logic for the main menu
         int menuOption = 0;
         
         while (menuOption != 4) {
@@ -90,6 +93,8 @@ public class Main {
                     loginManager.loginMenu();
                     if (loginManager.checkCredentials() == true) {
                         System.out.println("Access Granted"); //employee menu, this is just a test print to see if its working
+                        EmployeeMenu employeeMenu = new EmployeeMenu(in);
+                        employeeMenu.displayMenu();
                     }
                 }
                 case 4 -> {
