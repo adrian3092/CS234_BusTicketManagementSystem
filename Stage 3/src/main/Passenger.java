@@ -1,4 +1,9 @@
+
+package main;
+
 import java.util.ArrayList;
+
+import ticket.Ticket;
 
 /**
  * Represents a passenger in the bus ticket management system.
@@ -105,6 +110,7 @@ public class Passenger {
         this.travelHistory = null;
     }
 
+    
     /**
      * Books a ticket for the passenger.
      * @param schedule The schedule for which the ticket is booked

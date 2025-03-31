@@ -1,3 +1,7 @@
+package ticket;
+
+import main.Schedule;
+import main.Passenger;
 
 /**
  *
@@ -10,11 +14,11 @@ public class Ticket {
     private Passenger passenger;
     private int ticketNumber;
 
-    public Ticket(Schedule schedule, String status, Passenger passenger, int ticketNumber) {
+    public Ticket(Schedule schedule, Passenger passenger, int ticketNumber) {
         this.schedule = schedule;
-        this.status = status;
         this.passenger = passenger;
         this.ticketNumber = ticketNumber;
+        status = "Active";
     }
     
     /**

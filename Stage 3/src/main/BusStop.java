@@ -1,3 +1,4 @@
+package main;
 /**
  * This class represents a bus stop. It contains a variable for the name and 
  * one for the distance to the next stop. Used in the route class.
