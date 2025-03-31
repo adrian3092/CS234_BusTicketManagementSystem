@@ -1,5 +1,8 @@
+package depot;
 
 import java.util.ArrayList;
+
+import bus.Bus;
 
 /**
  *

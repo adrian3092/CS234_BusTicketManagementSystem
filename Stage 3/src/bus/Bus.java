@@ -1,3 +1,4 @@
+package bus;
 
 /**
  * @author Adrian Zielinski
