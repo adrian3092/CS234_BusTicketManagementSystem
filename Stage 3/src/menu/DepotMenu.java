@@ -55,6 +55,8 @@ public class DepotMenu {
                     System.out.println(depotManager.getAllDepots());
                 }
                 case 4 -> {
+                    System.out.println("Returning to Employee Menu...");
+                    menuOption = 0; // reset menuOption before returning
                     return;
                 }
                 default -> {
@@ -73,15 +75,17 @@ public class DepotMenu {
         String address = in.nextLine();
         Depot newDepot = new Depot(address);
         depotManager.addDepot(newDepot);
+        System.out.println("A new depot has been added with ID: " + newDepot.getDepotId());
     }
 
     /**
      * display options for managing an existing depot
      */
     public void deleteDepot() {
-        System.out.println("Please enter the ID of the depot to be deleted: ");
+        System.out.print("Please enter the ID of the depot to be deleted: ");
         int depotId = in.nextInt();
         Depot depot = depotManager.findDepotById(depotId);
         depotManager.removeDepot(depot);
+        System.out.println("The depot with ID " + depotId + " has been deleted.");
     }
 }

@@ -70,7 +70,8 @@ public class EmployeeMenu {
                 }
                 case 7 -> {
                     System.out.println("Returning to Main Menu...");
-                    return; // This will exit the displayMenu method and return to Main.java
+                    menuOption = 0; // reset menuOption before returning
+                    return; 
                 }
                 default -> {
                     System.out.println("Invalid option. Please try again.");

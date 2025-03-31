@@ -59,6 +59,8 @@ public class BusMenu {
                 }
                 
                 case 4 -> {
+                    System.out.println("Returning to Employee Menu...");
+                    menuOption = 0; // reset menuOption before returning
                     return;
                 }
                 default -> {
