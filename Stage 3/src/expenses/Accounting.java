@@ -1,3 +1,5 @@
+package expenses;
+
 
 import java.util.ArrayList;
 

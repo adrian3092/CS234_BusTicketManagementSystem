@@ -1,11 +1,13 @@
+package expenses;
+
 /**
  *
  * @author George Candal
  */
-public class MaintenanceCost extends Expense {
+public class FuelCost extends Expense {
     private Bus bus;
 
-    public MaintenanceCost(Bus bus) {
+    public FuelCost(Bus bus) {
         this.bus = bus;
     }
 
@@ -15,5 +17,5 @@ public class MaintenanceCost extends Expense {
 
     public void setBus(Bus bus) {
         this.bus = bus;
-    }   
+    }    
 }

@@ -1,3 +1,5 @@
+package expenses;
+
 /**
  *
  * @author George Candal
