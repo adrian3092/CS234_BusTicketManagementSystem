@@ -22,12 +22,12 @@ public class DepotMenu {
      * default constructor
      * @param in, scanner
      */
-    public DepotMenu(Scanner in) {
+    public DepotMenu(Scanner in, BusManager busManager, DepotManager depotManager) {
         
         this.in = in;
         menuOption = 0;
-        depotManager = new DepotManager();
-        busManager = new BusManager(depotManager);
+        this.depotManager = depotManager;
+        this.busManager = busManager;
     }
 
     /**

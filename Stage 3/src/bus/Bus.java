@@ -1,6 +1,8 @@
+
 package bus;
 
 /**
+ * 
  * @author Adrian Zielinski
  */
 public class Bus {
@@ -113,16 +115,5 @@ public class Bus {
      */
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Bus ID: " + busId +
-                ", Year: " + year +
-                ", Make: " + make +
-                ", Model: " + model +
-                ", Mileage: " + mileage +
-                ", Capacity: " + capacity +
-                ", Status: " + status;
     }
 }

@@ -10,10 +10,8 @@ import employees.Employee;
 import expenses.Accounting;
 import login.Login;
 import login.LoginManager;
-import menu.EmployeeMenu;
+import menu.AdminMenu;
 import menu.TicketMenu;
-import ticket.Ticket;
-import ticket.TicketManager;
 
 /**
  *
@@ -66,7 +64,7 @@ public class Main {
         schedule1.getDepartureTimes().add(10.00);
         schedule1.getDepartureTimes().add(10.50);
 
-        // create three initial buses
+        // create two initial buses
         BusManager busManager = new BusManager(depotManager);
         Bus bus1 = new Bus(2024, "Volvo", "7900", 3786, 40);
         Bus bus2 = new Bus(2013, "Volvo", "8900", 154965, 60);
@@ -105,13 +103,13 @@ public class Main {
                 }
                 case 3 -> {
                     // employee login
-                    loginManager.loginMenu();
-                    if (loginManager.checkCredentials() == true) {
-                        System.out.println("Access Granted"); //employee menu, this is just a test print to see if its working
-                        EmployeeMenu employeeMenu = new EmployeeMenu(in);
-                        employeeMenu.displayMenu();
+                    //loginManager.loginMenu();
+                    //if (loginManager.checkCredentials() == true) {
+                     //   System.out.println("Access Granted"); //employee menu, this is just a test print to see if its working
+                    AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager);
+                    employeeMenu.displayMenu();
                     }
-                }
+                //ß}
                 case 4 -> {
                     System.out.println("Exiting the program. Goodbye!");
                     in.close(); // close scanner when exiting

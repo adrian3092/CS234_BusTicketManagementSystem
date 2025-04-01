@@ -24,20 +24,6 @@ public class BusManager {
     }
 
     /**
-     * find which depot a specific bus is assigned to
-     * @param busId, the id of the bus
-     * @return, the depot where the bus is located
-     */
-    public Depot findDepotByBusId(int busId) {
-        for (Depot d : depotManager.getAllDepots()) {
-            if (d.findBusById(busId) != null) {
-                return d;
-            }
-        }
-        return null;
-    }
-
-    /**
      * add a bus to list of buses
      * @param bus, the bus to be added
      */
@@ -70,6 +56,20 @@ public class BusManager {
         for (Bus bus : allBuses) {
             if (bus.getBusId() == busId)
                 return bus;
+        }
+        return null;
+    }
+
+    /**
+     * find which depot a specific bus is assigned to
+     * @param busId, the id of the bus
+     * @return, the depot where the bus is located
+     */
+    public Depot findDepotByBusId(int busId) {
+        for (Depot d : depotManager.getAllDepots()) {
+            if (d.findBusById(busId) != null) {
+                return d;
+            }
         }
         return null;
     }

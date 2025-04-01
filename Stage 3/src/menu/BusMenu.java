@@ -1,5 +1,6 @@
 
 package menu;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import bus.Bus;
@@ -20,14 +21,13 @@ public class BusMenu {
     /**
      * default constructor
      * @param in, scanner
+     * @param busManager, the bus manager to use
      */
-    public BusMenu(Scanner in) {
-
+    public BusMenu(Scanner in, BusManager busManager, DepotManager depotManager) {
         this.in = in;
         menuOption = 0;
-        depotManager = new DepotManager();
-        busManager = new BusManager(depotManager);
-
+        this.busManager = busManager;
+        this.depotManager = depotManager;
     }
 
     /**
@@ -54,8 +54,22 @@ public class BusMenu {
                 }
                 case 3 -> {
                     // display all buses
-                    System.out.println("All Buses:");
-                    System.out.println(busManager.getAllBuses());
+                    System.out.println("\n      All Buses      ");
+                    ArrayList<Bus> buses = busManager.getAllBuses();
+                    if (buses.isEmpty()) {
+                        System.out.println("There are no buses available in the system.");
+                    } else {
+                        for (Bus bus : buses) {
+                            System.out.println("\n      Bus Details      ");
+                            System.out.println("ID: " + bus.getBusId());
+                            System.out.println("Year/Make/Model: " + bus.getYear() + " " + bus.getMake() + " " + bus.getModel());
+                            System.out.println("Mileage: " + bus.getMileage());
+                            System.out.println("Seating Capacity: " + bus.getCapacity());
+                            System.out.println("Status: " + bus.getStatus());
+                            System.out.println("-----------------------");
+                        }
+                        System.out.println("\nTotal buses: " + buses.size());
+                    }
                 }
                 
                 case 4 -> {

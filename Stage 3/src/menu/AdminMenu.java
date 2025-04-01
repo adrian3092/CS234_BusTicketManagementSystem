@@ -2,30 +2,34 @@
 package menu;
 
 import java.util.Scanner;
+import bus.BusManager;
+import depot.DepotManager;
+import main.ScheduleManager;
 
 /**
  * 
  * @author Adrian Zielinski
  */
-public class EmployeeMenu {
+public class AdminMenu {
 
     private Scanner in;
     private int menuOption;
     private BusMenu busMenu;
     private DepotMenu depotMenu;
+    private ScheduleManager scheduleManager;
 
     /**
      * default constructor
      * 
      * @param in, scanner
+     * @param busManager, the bus manager to use
      */
-    public EmployeeMenu(Scanner in) {
-
+    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager) {
         this.in = in;
         menuOption = 0;
-        busMenu = new BusMenu(in);
-        depotMenu = new DepotMenu(in);
-
+        busMenu = new BusMenu(in, busManager, depotManager);
+        depotMenu = new DepotMenu(in, busManager, depotManager);
+        this.scheduleManager = scheduleManager;
     }
 
     /**
@@ -37,7 +41,7 @@ public class EmployeeMenu {
         
         while (menuOption != 7) {
             System.out.println("~~~~~~~~~~~~");
-            System.out.println("Employee Menu");
+            System.out.println("Admin Menu");
             System.out.println("1. Bus Management");
             System.out.println("2. Schedule Management");
             System.out.println("3. Route Management");
