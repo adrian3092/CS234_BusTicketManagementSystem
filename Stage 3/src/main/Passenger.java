@@ -1,152 +1,82 @@
-
 package main;
-
+/**
+ *
+ * @author Owner
+ */
 import java.util.ArrayList;
-
+import IdGenerator.IdGenerator;
 import payment.Payment;
+import ticket.TicketManager;
+import ticket.TicketIssuer;
 import ticket.Ticket;
 
-/**
- * Represents a passenger in the bus ticket management system.
- */
 public class Passenger {
-    private String passengerID; // Unique ID for the passenger
-    private String name; // Passenger's name
-    private String email; // Passenger's email
-    private String phoneNumber; // Passenger's phone number
-    private ArrayList travelHistory; // List of tickets booked by the passenger
-    private Ticket ticket; // Current ticket of the passenger
-    private ArrayList<Payment> paymentHistory; // List of payments made by the passenger
-
-    /**
-     * Constructor to initialize a passenger with name, email, and phone number.
-     * @param name Passenger's name
-     * @param email Passenger's email
-     * @param phoneNumber Passenger's phone number
-     */
-    public Passenger(String name, String email, String phoneNumber) {
+    // define attributes
+    private String passengerID;
+    private String name;
+    private String email;
+    private String phoneNumber;
+    private TicketManager travelHistory;
+    private ArrayList<Payment> paymentHistory;
+    
+    // instantiate constructor
+    public Passenger(String name, String email, String phone) {
+        // initialize variables
         this.name = name;
         this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.passengerID = generatePassengerID();
-        this.travelHistory = new ArrayList();
+        this.phoneNumber = phone;
+        this.passengerID = IdGenerator.generatePassengerId();
+        this.travelHistory = new TicketManager();
+        this.paymentHistory = new ArrayList<>();
+              
     }
-
-    /**
-     * @return Passenger's unique ID
-     */
+    
     public String getPassengerID() {
-        return passengerID;
+        return this.passengerID;
     }
-
-    /**
-     * @return Passenger's name
-     */
+    
     public String getPassengerName() {
-        return name;
+        return this.name;
     }
 
-    /**
-     * @return Passenger's email
-     */
-    public String getPassengerEmail() {
-        return email;
-    }
-
-    /**
-     * @return Passenger's phone number
-     */
-    public String getPassengerPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    /**
-     * @return List of tickets booked by the passenger
-     */
-    public ArrayList getTravelHistory() {
+    public TicketManager getTravelHistory() {
         return travelHistory;
     }
 
-    /**
-     * Generates a unique passenger ID.
-     */
-    public String generatePassengerID() {
-        // Generate a unique passenger ID
-        this.passengerID = "P" + (int)(Math.random() * 10000);
-        return this.passengerID;
-    }
-
-    /**
-     * Sets the passenger's name.
-     * @param name New name of the passenger
-     */
-    public void setPassengerName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * Sets the passenger's email.
-     * @param email New email of the passenger
-     */
-    public void setPassengerEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     * Sets the passenger's phone number.
-     * @param phoneNumber New phone number of the passenger
-     */
-    public void setPassengerPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    /**
-     * Deletes the passenger's information.
-     */
+    
     public void deletePassenger() {
-        this.passengerID = null;
+        // Clearing the passenger's details (simulate deletion)
         this.name = null;
         this.email = null;
         this.phoneNumber = null;
         this.travelHistory = null;
+        this.paymentHistory = null;
+        this.passengerID = null;
+        System.out.println("Passenger data deleted.");
     }
-
     
-    /**
-     * Books a ticket for the passenger.
-     * @param schedule The schedule for which the ticket is booked
-     * @return The booked ticket
-     */
-    public Ticket bookTicket(Schedule schedule) {
-        Ticket ticket = new Ticket(schedule, "Booked", this, generateTicketNumber()); // Suggest generateTicketNumber() method
-        travelHistory.add(ticket);
-        return ticket;
+    public void bookTicket(Schedule schedule) {
+        TicketIssuer newTicket = new TicketIssuer();
+        Ticket newBooking = newTicket.bookTicket(this, schedule);
+        this.travelHistory.addSchedule(newBooking);
+        makePayment();
+        
+        System.out.println("Ticket booked for Passenger ID: " + this.passengerID);
     }
-
-    /**
-     * Cancels a ticket for the passenger.
-     * @param ticket The ticket to be canceled
-     */
-    public void cancelTicket(Ticket ticket) {
-        this.ticket.setTicketStatus(this.ticket.getTicketNumber(), "Cancelled"); // Suggest creating a cancelTicket method in Ticket class
-        travelHistory.remove(ticket);
-    }
-
-    /**
-     * Processes a payment for the passenger.
-     * @param payment The payment to be processed
-     */
-    public void makePayment(Payment payment) {
-        payment.processPayment();
-        paymentHistory.add(payment);
-    }
-
-    /**
-     * Displays the payment history of the passenger.
-     */
-    public void viewPaymentHistory() {
-        for (Payment payment : paymentHistory) {
-            System.out.println(payment);
-        }
-    }
+    
 }
