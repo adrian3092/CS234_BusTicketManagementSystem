@@ -16,29 +16,4 @@ public class Admin extends Employee {
         super(firstName, lastName, jobTitle);
     }
 
-    /**
-     * Deletes an employee from the system.
-     *
-     * @param employee The employee to be deleted.
-     */
-    public void deleteEmployee(Employee employee) {
-        employee.deleteEmployee();
-    }
-
-    /**
-     * Reassigns a new job title to an employee.
-     *
-     * @param employee    The employee whose job title is to be reassigned.
-     * @param newJobTitle The new job title for the employee.
-     */
-    public void reasignJobTitle(Employee employee, String newJobTitle) {
-        employee.setJobTitle(newJobTitle);
-    }
-
-    /**
-     * Generates a report of the system.
-     */
-    public void generateReport() {
-        // Generate a report of the system
-    }
 }
