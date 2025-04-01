@@ -5,7 +5,8 @@ package employees;
  */
 public class Employee {
     private String employeeID; // Unique identifier for the employee
-    private String name; // Name of the employee
+    private String lastName;
+    private String firstName; // Name of the employee
     private String email; // Email address of the employee
     private String phoneNumber; // Phone number of the employee
     private String jobTitle; // Job title of the employee
@@ -18,8 +19,9 @@ public class Employee {
      * @param name Name of the employee.
      * @param jobTitle Job title of the employee.
      */
-    public Employee(String name, String jobTitle) {
-        this.name = name;
+    public Employee(String fitstName, String lastName, String jobTitle) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.jobTitle = jobTitle;
         this.employeeID = generateEmployeeID();
         this.email = name + "@buscompany.com"; //creates email for employee
