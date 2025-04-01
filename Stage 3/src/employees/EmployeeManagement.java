@@ -32,4 +32,3 @@ public class EmployeeManagement {
         employee.setSalary(salary);
     }
 }
-

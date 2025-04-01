@@ -12,32 +12,11 @@ public class Employee {
     private String phoneNumber; // Phone number of the employee
     private String jobTitle; // Job title of the employee
     private float salary; // Salary of the employee
-   
-    /**
-     * Constructor to create an Employee with a name and job title.
-     * Creates email from employee name
-     * @param name Name of the employee.
-     * @param jobTitle Job title of the employee.
-     */
 
     public Employee(String firstName, String lastName, String jobTitle) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
-        //this.employeeID = generateEmployeeID();
-        this.email = firstName + lastName + "@buscompany.com"; //creates email for employee
-    }
-
-    /**
-     * Constructor to create an Employee with all details.
-     * @param name Name of the employee.
-     * @param email Email address of the employee.
-     * @param phoneNumber Phone number of the employee.
-     * @param jobTitle Job title of the employee.
-     * @param accessLevel Access level of the employee.
-     * @param salary Salary of the employee.
-     */
-    public Employee(String firstName, String lastName, String email, String phoneNumber, String jobTitle, String accessLevel, float salary) {
         this.email = firstName + lastName + "@buscompany.com"; //creates email for employee
 
         if (jobTitle.equalsIgnoreCase("Admin")) {
