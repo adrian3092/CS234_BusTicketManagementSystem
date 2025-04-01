@@ -22,14 +22,18 @@ public class TicketManager {
      * @return the list of tickets
      */
     public ArrayList<Ticket> getTickets() {
+
         return allTickets;
+
     }
 
     /**
      * add ticket to list of tickets
      * @param ticket, the ticket to be added
      */
-    public void addSchedule(Ticket ticket) {
+    public void addTicket(Ticket ticket) {
+
         allTickets.add(ticket);
+        
     }
 }

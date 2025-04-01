@@ -26,7 +26,7 @@ public class TicketMenu {
      */
     public TicketMenu(Scanner in, ScheduleManager scheduleManager) {
         this.in = in;
-        this.ticketIssuer = new TicketIssuer();
+        ticketIssuer = new TicketIssuer();
         this.scheduleManager = scheduleManager;
     }
 
@@ -49,7 +49,7 @@ public class TicketMenu {
             return;
         }
         
-        // get the selected schedule (adjusting for 0-based index)
+        // get the selected schedule
         Schedule selectedSchedule = scheduleManager.getSchedules().get(scheduleChoice - 1);
         
         // get passenger information

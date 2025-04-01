@@ -14,8 +14,8 @@ public class BusMenu {
     
     private Scanner in;
     private int menuOption;
-    DepotManager depotManager;
-    BusManager busManager;
+    private DepotManager depotManager;
+    private BusManager busManager;
 
     /**
      * default constructor

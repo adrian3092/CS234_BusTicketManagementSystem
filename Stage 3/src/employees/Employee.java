@@ -19,12 +19,12 @@ public class Employee {
      * @param name Name of the employee.
      * @param jobTitle Job title of the employee.
      */
-    public Employee(String fitstName, String lastName, String jobTitle) {
+    public Employee(String firstName, String lastName, String jobTitle) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
         this.employeeID = generateEmployeeID();
-        this.email = name + "@buscompany.com"; //creates email for employee
+        this.email = firstName + lastName + "@buscompany.com"; //creates email for employee
     }
 
     /**
@@ -36,8 +36,9 @@ public class Employee {
      * @param accessLevel Access level of the employee.
      * @param salary Salary of the employee.
      */
-    public Employee(String name, String email, String phoneNumber, String jobTitle, String accessLevel, float salary) {
-        this.name = name;
+    public Employee(String firstName, String lastName, String email, String phoneNumber, String jobTitle, String accessLevel, float salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.jobTitle = jobTitle;
@@ -61,7 +62,7 @@ public class Employee {
     }
 
     public String getName() {
-        return name;
+        return firstName + " " + lastName;
     }
 
     public String getEmail() {
@@ -85,8 +86,9 @@ public class Employee {
     }
 
     // Setters
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public void setEmail(String email) {
@@ -114,7 +116,8 @@ public class Employee {
      */
     public void deleteEmployee() {
         this.employeeID = null;
-        this.name = null;
+        this.firstName = null;
+        this.lastName = null;
         this.email = null;
         this.phoneNumber = null;
         this.jobTitle = null;

@@ -12,6 +12,8 @@ import login.Login;
 import login.LoginManager;
 import menu.EmployeeMenu;
 import menu.TicketMenu;
+import ticket.Ticket;
+import ticket.TicketManager;
 
 /**
  *
@@ -30,7 +32,7 @@ public class Main {
         Accounting accounting = new Accounting();
         
         // create employees
-        Employee employee1 = new Employee("John", "Office Manager");
+        Employee employee1 = new Employee("John", "Doe", "Office Manager");
         Login login1 = new Login(employee1, loginManager);
 
         // create initial depot
@@ -56,6 +58,7 @@ public class Main {
         ScheduleManager scheduleManager = new ScheduleManager();
         Schedule schedule1 = new Schedule(route1, depot1, 08.30);
         scheduleManager.addSchedule(schedule1);
+        schedule1.setName("Morning");
 
         schedule1.getDepartureTimes().add(8.50);
         schedule1.getDepartureTimes().add(9.00);
@@ -74,6 +77,20 @@ public class Main {
         // Assign buses to the depot
         depot1.assignBus(bus1);
         depot1.assignBus(bus2);
+
+        // add passenger and ticket
+        Passenger passenger1 = new Passenger("Michelle Williams", "michelle.w@yahoo.com", "1112223333");
+        Ticket ticket1 = new Ticket(schedule1, passenger1, 12345);
+        TicketManager ticketManager = new TicketManager();
+        ticketManager.addTicket(ticket1);
+
+        int ticketNumber = 12345;
+         
+        for (Ticket x : ticketManager.getTickets()) {
+            if (ticketNumber == 12345) {
+                System.out.println(x.toString());
+            }
+        }
         
         // logic for the main menu
         int menuOption = 0;

@@ -11,8 +11,8 @@ public class EmployeeMenu {
 
     private Scanner in;
     private int menuOption;
-    BusMenu busMenu;
-    DepotMenu depotMenu;
+    private BusMenu busMenu;
+    private DepotMenu depotMenu;
 
     /**
      * default constructor

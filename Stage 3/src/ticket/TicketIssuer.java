@@ -11,6 +11,7 @@ import main.Schedule;
 public class TicketIssuer {
     
     private static int lastTicketNumber = 1000;
+    private TicketManager ticketManager;
     
     /**
      * books a ticket for a passenger for a specific schedule
@@ -27,7 +28,9 @@ public class TicketIssuer {
         Ticket ticket = new Ticket(schedule, passenger, ticketNumber);
         
         System.out.println("Ticket #" + ticketNumber + " booked successfully for " + passenger.getPassengerName());
-        
+
+        ticketManager.addTicket(ticket);
+
         return ticket;
     }
     
@@ -36,7 +39,9 @@ public class TicketIssuer {
      * @return a unique ticket number
      */
     private int generateTicketNumber() {
+
         lastTicketNumber++;
         return lastTicketNumber;
+
     }
 }

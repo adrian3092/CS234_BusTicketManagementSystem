@@ -20,14 +20,17 @@ public class Ticket {
      * @return the ticket number
      */
     public int getTicketNumber() {
+
         return ticketNumber;
     }
 
     public Ticket(Schedule schedule, Passenger passenger, int ticketNumber) {
+
         this.schedule = schedule;
         this.passenger = passenger;
         this.ticketNumber = ticketNumber;
         status = "Active";
+
     }
     
     /**
@@ -59,5 +62,15 @@ public class Ticket {
         return null;
         //
     }
-    
+
+    @Override
+    public String toString() {
+
+        return "~~~~~~~~~~~~" +
+                "\nTicket Number: " + ticketNumber +
+                "\nPassenger Name: " + passenger +
+                "\nSchedule: " + schedule +
+                "\nStatus: " + status;
+                
+    }
 }
