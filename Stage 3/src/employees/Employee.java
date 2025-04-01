@@ -1,5 +1,6 @@
 package employees;
 
+import IdGenerator.IdGenerator;
 /**
  * Represents an Employee with details such as ID, name, email, phone number, job title, access level, and salary.
  */
@@ -10,50 +11,44 @@ public class Employee {
     private String email; // Email address of the employee
     private String phoneNumber; // Phone number of the employee
     private String jobTitle; // Job title of the employee
-    private String accessLevel; // Access level of the employee
     private float salary; // Salary of the employee
-   
-    /**
-     * Constructor to create an Employee with a name and job title.
-     * Creates email from employee name
-     * @param name Name of the employee.
-     * @param jobTitle Job title of the employee.
-     */
-    public Employee(String fitstName, String lastName, String jobTitle) {
+
+    public Employee(String firstName, String lastName, String jobTitle) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
-        this.employeeID = generateEmployeeID();
-        this.email = name + "@buscompany.com"; //creates email for employee
+        this.email = firstName + lastName + "@buscompany.com"; //creates email for employee
+
+        if (jobTitle.equalsIgnoreCase("Admin")) {
+            this.employeeID = IdGenerator.generateAdminId(); // Generates a unique ID for Admin
+        } else if (jobTitle.equalsIgnoreCase("Driver")) {
+            this.employeeID = IdGenerator.generateDriverId(); // Generates a unique ID for Driver
+        }
+        else {
+            System.out.println("Invalid job title. Employee ID not generated.");
+        }
+        
     }
 
-    /**
-     * Constructor to create an Employee with all details.
-     * @param name Name of the employee.
-     * @param email Email address of the employee.
-     * @param phoneNumber Phone number of the employee.
-     * @param jobTitle Job title of the employee.
-     * @param accessLevel Access level of the employee.
-     * @param salary Salary of the employee.
-     */
-    public Employee(String name, String email, String phoneNumber, String jobTitle, String accessLevel, float salary) {
-        this.name = name;
+
+    public Employee(String firstName, String lastName, String email, String phoneNumber, String jobTitle, float salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.jobTitle = jobTitle;
-        this.accessLevel = accessLevel;
         this.salary = salary;
-        this.employeeID = generateEmployeeID();
+        
+        if (jobTitle.equalsIgnoreCase("Admin")) {
+            this.employeeID = IdGenerator.generateAdminId(); // Generates a unique ID for Admin
+        } else if (jobTitle.equalsIgnoreCase("Driver")) {
+            this.employeeID = IdGenerator.generateDriverId(); // Generates a unique ID for Driver
+        }
+        else {
+            System.out.println("Invalid job title. Employee ID not generated.");
+        }
     }
 
-    /**
-     * Generates a unique employee ID.
-     * @return The generated employee ID.
-     */
-    public String generateEmployeeID() {
-        this.employeeID = "E" + (int)(Math.random() * 10000);
-        return this.employeeID;
-    }
 
     // Getters
     public String getEmployeeID() {
@@ -61,7 +56,7 @@ public class Employee {
     }
 
     public String getName() {
-        return name;
+        return firstName + " " + lastName;
     }
 
     public String getEmail() {
@@ -76,21 +71,18 @@ public class Employee {
         return jobTitle;
     }
 
-    public String getAccessLevel() {
-        return accessLevel;
-    }
-
     public float getSalary() {
         return salary;
     }
 
     // Setters
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String name) {
+        this.email = name + "@buscompany.com"; //creates email for employee
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -99,10 +91,6 @@ public class Employee {
 
     public void setJobTitle(String jobTitle) {
         this.jobTitle = jobTitle;
-    }
-
-    public void setAccessLevel(String accessLevel) {
-        this.accessLevel = accessLevel;
     }
 
     public void setSalary(float salary) {
@@ -114,11 +102,11 @@ public class Employee {
      */
     public void deleteEmployee() {
         this.employeeID = null;
-        this.name = null;
+        this.firstName = null;
+        this.lastName = null;
         this.email = null;
         this.phoneNumber = null;
         this.jobTitle = null;
-        this.accessLevel = null;
         this.salary = 0;
     }
 }
