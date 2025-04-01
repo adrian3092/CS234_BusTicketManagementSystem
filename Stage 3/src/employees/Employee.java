@@ -12,7 +12,6 @@ public class Employee {
     private String phoneNumber; // Phone number of the employee
     private String jobTitle; // Job title of the employee
     private float salary; // Salary of the employee
-<<<<<<< HEAD
    
     /**
      * Constructor to create an Employee with a name and job title.
@@ -20,15 +19,12 @@ public class Employee {
      * @param name Name of the employee.
      * @param jobTitle Job title of the employee.
      */
-=======
 
->>>>>>> 323d91560e88d17f535c0278d27cb5e0af746ab0
     public Employee(String firstName, String lastName, String jobTitle) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
-<<<<<<< HEAD
-        this.employeeID = generateEmployeeID();
+        //this.employeeID = generateEmployeeID();
         this.email = firstName + lastName + "@buscompany.com"; //creates email for employee
     }
 
@@ -42,7 +38,6 @@ public class Employee {
      * @param salary Salary of the employee.
      */
     public Employee(String firstName, String lastName, String email, String phoneNumber, String jobTitle, String accessLevel, float salary) {
-=======
         this.email = firstName + lastName + "@buscompany.com"; //creates email for employee
 
         if (jobTitle.equalsIgnoreCase("Admin")) {
@@ -58,7 +53,6 @@ public class Employee {
 
 
     public Employee(String firstName, String lastName, String email, String phoneNumber, String jobTitle, float salary) {
->>>>>>> 323d91560e88d17f535c0278d27cb5e0af746ab0
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
