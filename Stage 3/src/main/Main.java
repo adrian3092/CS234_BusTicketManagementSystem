@@ -77,20 +77,6 @@ public class Main {
         // Assign buses to the depot
         depot1.assignBus(bus1);
         depot1.assignBus(bus2);
-
-        // add passenger and ticket
-        Passenger passenger1 = new Passenger("Michelle Williams", "michelle.w@yahoo.com", "1112223333");
-        Ticket ticket1 = new Ticket(schedule1, passenger1, 12345);
-        TicketManager ticketManager = new TicketManager();
-        ticketManager.addTicket(ticket1);
-
-        int ticketNumber = 12345;
-         
-        for (Ticket x : ticketManager.getTickets()) {
-            if (ticketNumber == 12345) {
-                System.out.println(x.toString());
-            }
-        }
         
         // logic for the main menu
         int menuOption = 0;

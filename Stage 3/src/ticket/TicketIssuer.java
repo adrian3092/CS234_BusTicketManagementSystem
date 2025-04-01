@@ -14,6 +14,14 @@ public class TicketIssuer {
     private TicketManager ticketManager;
     
     /**
+     * default constructor
+     * initializes the ticket manager
+     */
+    public TicketIssuer() {
+        this.ticketManager = new TicketManager();
+    }
+    
+    /**
      * books a ticket for a passenger for a specific schedule
      * @param passenger, the passenger booking the ticket
      * @param schedule, the schedule for which the ticket is being booked
@@ -26,8 +34,6 @@ public class TicketIssuer {
         
         // create a new ticket
         Ticket ticket = new Ticket(schedule, passenger, ticketNumber);
-        
-        System.out.println("Ticket #" + ticketNumber + " booked successfully for " + passenger.getPassengerName());
 
         ticketManager.addTicket(ticket);
 
