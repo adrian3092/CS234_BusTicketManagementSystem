@@ -12,8 +12,8 @@ public class Admin extends Employee {
      * @param name     The name of the admin.
      * @param jobTitle The job title of the admin.
      */
-    public Admin(String name, String jobTitle) {
-        super(name, jobTitle);
+    public Admin(String firstName, String lastName, String jobTitle) {
+        super(firstName, lastName, jobTitle);
     }
 
     /**
