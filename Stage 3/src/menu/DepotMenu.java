@@ -91,7 +91,7 @@ public class DepotMenu {
      */
     public void addDepot() {
         in.nextLine(); // consume the leftover new line character
-        System.out.print("Please enter the address of the depot: ");
+        System.out.print("Enter the address of the depot: ");
         String address = in.nextLine();
         Depot newDepot = new Depot(address);
         depotManager.addDepot(newDepot);
@@ -102,7 +102,7 @@ public class DepotMenu {
      * display options for managing an existing depot
      */
     public void deleteDepot() {
-        System.out.print("Please enter the ID of the depot to be deleted: ");
+        System.out.print("Enter the ID of the depot to be deleted: ");
         int depotId = in.nextInt();
         Depot depot = depotManager.findDepotById(depotId);
         depotManager.removeDepot(depot);
@@ -113,10 +113,10 @@ public class DepotMenu {
      * display options for assigning a bus to a depot
      */
     public void assignDepot() {
-        System.out.print("Please enter the ID of the bus to be assigned: ");
+        System.out.print("Enter the ID of the bus to be assigned: ");
         int busId = in.nextInt();
         Bus bus = busManager.findBusById(busId);
-        System.out.print("Please enter the ID of the depot you would like to assign the bus to: ");
+        System.out.print("Enter the ID of the depot you would like to assign the bus to: ");
         int depotId = in.nextInt();
         Depot depot = depotManager.findDepotById(depotId);
         depotManager.assignBusToDepot(depotId, bus);
@@ -127,10 +127,10 @@ public class DepotMenu {
      * display options for unassigning a bus from a depot
      */
     public void unassignDepot() {
-        System.out.print("Please enter the ID of the bus to be unassigned: ");
+        System.out.print("Enter the ID of the bus to be unassigned: ");
         int busId = in.nextInt();
         Bus bus = busManager.findBusById(busId);
-        System.out.print("Please enter the ID of the depot you would like to unassign the bus from: ");
+        System.out.print("Enter the ID of the depot you would like to unassign the bus from: ");
         int depotId = in.nextInt();
         Depot depot = depotManager.findDepotById(depotId);
         depotManager.removeBusFromDepot(depotId, bus);

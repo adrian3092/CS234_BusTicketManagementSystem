@@ -103,13 +103,13 @@ public class Main {
                 }
                 case 3 -> {
                     // employee login
-                    //loginManager.loginMenu();
-                    //if (loginManager.checkCredentials() == true) {
-                     //   System.out.println("Access Granted"); //employee menu, this is just a test print to see if its working
-                    AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager);
-                    employeeMenu.displayMenu();
+                    loginManager.loginMenu();
+                    if (loginManager.checkCredentials() == true) {
+                        System.out.println("Access Granted"); //employee menu, this is just a test print to see if its working
+                        AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager);
+                        employeeMenu.displayMenu();
                     }
-                //ß}
+                }
                 case 4 -> {
                     System.out.println("Exiting the program. Goodbye!");
                     in.close(); // close scanner when exiting
