@@ -25,36 +25,39 @@ public class LoginManager {
     }
     
     /**
-     * This checks the credentials by searching the login database for a
-     * matching username and password.
-     * @return True if username and password match
+     * This asks the user to enter a username and password. Then checks the 
+     * credentials by searching the login database for a matching username and 
+     * password. If a match is found the user's job title will be returned. The
+     * job title will be used to validate what part of the system the user can 
+     * access. If no matching password is found, "not found" will be returned.
+     * @return The job title of the user
      */
-    public boolean checkCredentials() {
-        for (Login login : logins) {
-            if (login.getUsername().equals(enteredUsername)) {
-                if (login.getPassword().equals(enteredPassword)) {
-                    return true;
-                } else {
-                    System.out.println("Invalid password");
-                    return false;
-                }
-            }
-        }
-    System.out.println("Username not found");
-    return false;
-    }
-    
-    /**
-     * This displays the login menu and saves the username and password entered
-     * by the user.
-     */
-    public void loginMenu() {
+    public String checkCredentials() {
         System.out.print("Username: ");
         enteredUsername = in.next();
         System.out.print("Password: ");
         enteredPassword = in.next();
+        
+        String accessLevel = "not found";
+        
+        for (Login login : logins) {
+            if (login.getUsername().equals(enteredUsername)) {
+                if (login.getPassword().equals(enteredPassword)) {
+                    accessLevel = login.getEmployee().getJobTitle();
+                } else {
+                    System.out.println("Invalid password");
+                    break;
+                }
+            }
+        }
+        
+        if (accessLevel.equals("not found")) {
+            System.out.println("Username not found");
+        }
+        
+        return accessLevel;
     }
-    
+        
     /**
      * Getter for the logins array list
      * @return logins, the array list that acts as a database of logins

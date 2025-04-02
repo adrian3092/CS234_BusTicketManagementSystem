@@ -106,8 +106,7 @@ public class Main {
                 }
                 case 3 -> {
                     // employee login
-                    loginManager.loginMenu();
-                    if (loginManager.checkCredentials() == true) {
+                    if (loginManager.checkCredentials().equals("Admin")) {
                         System.out.println("Access Granted"); //employee menu, this is just a test print to see if its working
                         employeeMenu.displayMenu();
                     }
