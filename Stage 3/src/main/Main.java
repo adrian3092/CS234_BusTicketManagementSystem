@@ -76,6 +76,9 @@ public class Main {
         depot1.assignBus(bus1);
         depot1.assignBus(bus2);
         
+        //create employee menu
+        AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager);
+        
         // logic for the main menu
         int menuOption = 0;
         
@@ -106,7 +109,6 @@ public class Main {
                     loginManager.loginMenu();
                     if (loginManager.checkCredentials() == true) {
                         System.out.println("Access Granted"); //employee menu, this is just a test print to see if its working
-                        AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager);
                         employeeMenu.displayMenu();
                     }
                 }
