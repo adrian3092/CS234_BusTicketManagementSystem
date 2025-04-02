@@ -30,7 +30,7 @@ public class Main {
         Accounting accounting = new Accounting();
         
         // create employees
-        Employee employee1 = new Employee("John", "Doe", "Office Manager");
+        Employee employee1 = new Employee("John", "Doe", "Admin");
         Login login1 = new Login(employee1, loginManager);
 
         // create initial depot
@@ -99,24 +99,33 @@ public class Main {
                     in.nextLine(); // consume the leftover new line character
                     TicketMenu ticketMenu = new TicketMenu(in, scheduleManager);
                     ticketMenu.displayMenu();
+                    break;
                 }
                 case 2 -> {
                     // view schedule 
                     System.out.println(scheduleManager);
+                    break;
                 }
                 case 3 -> {
                     // employee login
-                    if (loginManager.checkCredentials().equals("Admin")) {
-                        System.out.println("Access Granted"); //employee menu, this is just a test print to see if its working
+                    String accessLevel = loginManager.checkCredentials();
+                    if (accessLevel.equals("Admin")) {
+                        System.out.println("Access Granted"); 
                         employeeMenu.displayMenu();
-                    }
+                    } else if (accessLevel.equals("Driver")) {
+                        System.out.println("Access Granted");
+                        //insert driver menu here
+                    } 
+                    break;
                 }
                 case 4 -> {
                     System.out.println("Exiting the program. Goodbye!");
                     in.close(); // close scanner when exiting
+                    break;
                 }
                 default -> {
                     System.out.println("Invalid option. Please try again.");
+                    break;
                 }
             }
         }
