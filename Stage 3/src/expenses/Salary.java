@@ -10,7 +10,8 @@ import employees.Employee;
 public class Salary extends Expense {
     private Employee employee;
 
-    public Salary(Employee employee) {
+    public Salary(Accounting accounting, float cost, Employee employee) {
+        super(accounting, cost);
         this.employee = employee;
     }
 
@@ -20,5 +21,11 @@ public class Salary extends Expense {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
-    } 
+    }
+    
+    @Override
+    public String toString() {
+        return "Salary: " + employee.getName() + " $" + this.getCost();
+    }
+    
 }

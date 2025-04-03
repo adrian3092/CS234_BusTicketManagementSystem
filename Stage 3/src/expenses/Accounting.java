@@ -18,12 +18,10 @@ public class Accounting {
         expenses.add(expense);
     }
     
-    /**
-     * Need to add a way to print name and fix output
-     */
     public void getReport() {
         for(Expense expense : expenses) {
-            System.out.println(expense.getCost());
-        }
-    }    
+            System.out.println(expense);
+        }             
+    }  
+    
 }

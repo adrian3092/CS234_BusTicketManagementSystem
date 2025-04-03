@@ -2,14 +2,11 @@ package main;
 
 import java.util.Scanner;
 
-import bus.Bus;
-import bus.BusManager;
-import depot.Depot;
-import depot.DepotManager;
+import bus.*;
+import depot.*;
 import employees.Employee;
-import expenses.Accounting;
-import login.Login;
-import login.LoginManager;
+import expenses.*;
+import login.*;
 import menu.AdminMenu;
 import menu.TicketMenu;
 
@@ -79,6 +76,11 @@ public class Main {
         //create employee menu
         AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager);
         
+        //create expenses
+        Salary employee1Salary = new Salary(accounting, 2000, employee1);
+        FuelCost bus1Fuel = new FuelCost(accounting, 500, bus1);
+        MaintenanceCost bus1Maintenance = new MaintenanceCost(accounting, 650, bus1);   
+          
         // logic for the main menu
         int menuOption = 0;
         

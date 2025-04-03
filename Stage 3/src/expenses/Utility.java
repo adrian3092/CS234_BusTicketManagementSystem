@@ -9,7 +9,8 @@ import depot.Depot;
 public class Utility extends Expense {
     private Depot depot;
 
-    public Utility(Depot depot) {
+    public Utility(Accounting accounting, float cost, Depot depot) {
+        super(accounting, cost);
         this.depot = depot;
     }
 
@@ -20,4 +21,9 @@ public class Utility extends Expense {
     public void setDepot(Depot depot) {
         this.depot = depot;
     }   
+    
+    @Override
+    public String toString() {
+        return "Utilities: Depot " + depot.getDepotId() + " $" + this.getCost();
+    }
 }
