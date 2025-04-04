@@ -4,7 +4,9 @@ package menu;
 import java.util.Scanner;
 import bus.BusManager;
 import depot.DepotManager;
+import expenses.Accounting;
 import main.ScheduleManager;
+import expenses.Accounting;
 
 /**
  * 
@@ -16,6 +18,8 @@ public class AdminMenu {
     private int menuOption;
     private BusMenu busMenu;
     private DepotMenu depotMenu;
+    private AccountingMenu accountingMenu;
+    private Accounting accounting;
     private ScheduleManager scheduleManager;
 
     /**
@@ -29,6 +33,8 @@ public class AdminMenu {
         menuOption = 0;
         busMenu = new BusMenu(in, busManager, depotManager);
         depotMenu = new DepotMenu(in, busManager, depotManager);
+        accountingMenu = new AccountingMenu(in, accounting);
+
         this.scheduleManager = scheduleManager;
     }
 
@@ -70,7 +76,7 @@ public class AdminMenu {
                     // employee management
                 }
                 case 6 -> {
-                    // expense management
+                    accountingMenu.displayMenu();
                 }
                 case 7 -> {
                     System.out.println("Returning to Main Menu...");
