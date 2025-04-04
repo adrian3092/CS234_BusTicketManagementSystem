@@ -108,8 +108,13 @@ public class DepotMenu {
         System.out.print("Enter the ID of the depot to be deleted: ");
         int depotId = in.nextInt();
         Depot depot = depotManager.findDepotById(depotId);
-        depotManager.removeDepot(depot);
-        System.out.println("The depot with ID " + depotId + " has been deleted.");
+        if (depot == null) {
+            System.out.println("A depot with ID " + depotId + " does not exist.");
+        }
+        else {
+            depotManager.removeDepot(depot);
+            System.out.println("The depot with ID " + depotId + " has been deleted.");
+        }
     }
 
     /**
