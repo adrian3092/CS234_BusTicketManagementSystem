@@ -3,11 +3,9 @@ package menu;
 
 import java.util.Scanner;
 
-import ticket.Ticket;
-import ticket.TicketIssuer;
-import main.Passenger;
-import main.Schedule;
-import main.ScheduleManager;
+import ticket.*;
+import main.*;
+import payment.*;
 
 /**
  *
@@ -18,6 +16,7 @@ public class TicketMenu {
     private Scanner in;
     private TicketIssuer ticketIssuer;
     private ScheduleManager scheduleManager;
+    private PaymentManager paymentManager;
 
     /**
      * default constructor
@@ -28,6 +27,7 @@ public class TicketMenu {
         this.in = in;
         ticketIssuer = new TicketIssuer();
         this.scheduleManager = scheduleManager;
+        this.paymentManager = new PaymentManager();
     }
 
     /**
@@ -66,13 +66,32 @@ public class TicketMenu {
         // book the ticket
         Ticket ticket = ticketIssuer.bookTicket(passenger, selectedSchedule);
         
-        // display ticket confirmation
-        System.out.println("Your ticket has been booked successfully!");
+        // set ticket price 
+        double ticketPrice = 3.00;
+        
+        // collect payment information
+        System.out.println("\nPayment Information:");
+        System.out.println("Ticket Price: $" + String.format("%.2f", ticketPrice));
+        System.out.print("Please enter your credit card number: ");
+        String cardNumber = in.nextLine();
+        System.out.print("Please enter your credit card expiration date (MM/YY): ");
+        String expirationDate = in.nextLine();
+        
+        // process payment
+        Payment payment = paymentManager.processPayment(passenger, ticketPrice, cardNumber, expirationDate);
+        
+        // display ticket and payment confirmation
+        System.out.println("\nYour ticket has been booked and payment processed successfully!");
         System.out.println("Ticket Number: " + ticket.getTicketNumber());
         System.out.println("Schedule: " + selectedSchedule.getName());
         System.out.println("Route: " + selectedSchedule.getRoute().getName());
         System.out.println("Start Time: " + formatTime(selectedSchedule.getStartTime()));
         System.out.println("Passenger: " + passenger.getPassengerName());
+        System.out.println("-----------------------");
+        System.out.println("\nPayment Information:");
+        System.out.println("Payment ID: " + payment.getPaymentId());
+        System.out.println("Amount: $" + String.format("%.2f", payment.getPaymentAmount()));
+        System.out.println("Credit Card: " + payment.getCardNumber());
     }
     
     /**

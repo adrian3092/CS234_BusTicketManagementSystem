@@ -13,24 +13,42 @@ public class Payment {
     private static int nextPaymentId = 1000;
     private String paymentType;
     private double paymentAmount;
-    private String paymentDate;
     private String paymentStatus;
     private Passenger passenger;
+    private String cardNumber;
+    private String expirationDate;
 
     /**
-     *
-     * @param paymentType, the type of payment being used
+     * default constructor
+     * @param paymentType, the type of payment being used (only "Credit Card" is accepted)
      * @param paymentAmount, the amount to be charged
      * @param paymentDate, the date of the payment
      * @param passenger, the passenger making the payment
+     * @param cardNumber, the credit card number
+     * @param expirationDate, the credit card expiration date
      */
-    public Payment(String paymentType, double paymentAmount, String paymentDate, Passenger passenger) {
-        paymentId = nextPaymentId++;
-        this.paymentType = paymentType;
+    public Payment(String paymentType, double paymentAmount, Passenger passenger, String cardNumber, String expirationDate) {
+        paymentId = nextPaymentId++;      
         this.paymentAmount = paymentAmount;
-        this.paymentDate = paymentDate;
         this.passenger = passenger;
+        this.cardNumber = maskCardNumber(cardNumber);
+        this.expirationDate = expirationDate;
         paymentStatus = "Paid";
+    }
+    
+    /**
+     * masks the credit card number
+     * @param cardNumber, the full credit card number
+     * @return the masked credit card number (XXXX-XXXX-XXXX-1234)
+     */
+    private String maskCardNumber(String cardNumber) {
+        if (cardNumber == null || cardNumber.length() < 4) {
+            return "Invalid";
+        }
+        
+        // keep only the last 4 digits visible
+        String lastFourDigits = cardNumber.substring(cardNumber.length() - 4);
+        return "XXXX-XXXX-XXXX-" + lastFourDigits;
     }
 
     /**
@@ -58,14 +76,6 @@ public class Payment {
     }
 
     /**
-     * get the payment date
-     * @return the payment date
-     */
-    public String getPaymentDate() {
-        return paymentDate;
-    }
-
-    /**
      * get the status of the payment
      * @return the payment status
      */
@@ -89,12 +99,20 @@ public class Payment {
         return passenger;
     }
 
-    @Override
-    public String toString() {
-        return "Payment ID: " + paymentId +
-                ", Type: " + paymentType +
-                ", Amount: $" + paymentAmount +
-                ", Date: " + paymentDate +
-                ", Status: " + paymentStatus;
+    /**
+     * get the card number used for payment
+     * @return the masked card number
+     */
+    public String getCardNumber() {
+        return maskCardNumber(cardNumber);
+    }
+
+    /**
+     * get the expiration date associated with 
+     * the credit card used for payment
+     * @return the expiration date
+     */
+    public String getExpirationDate() {
+        return expirationDate;
     }
 }
