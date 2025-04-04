@@ -6,7 +6,6 @@ import bus.BusManager;
 import depot.DepotManager;
 import expenses.Accounting;
 import main.ScheduleManager;
-import expenses.Accounting;
 
 /**
  * 
@@ -34,7 +33,6 @@ public class AdminMenu {
         busMenu = new BusMenu(in, busManager, depotManager);
         depotMenu = new DepotMenu(in, busManager, depotManager);
         accountingMenu = new AccountingMenu(in, accounting);
-
         this.scheduleManager = scheduleManager;
     }
 
@@ -42,8 +40,6 @@ public class AdminMenu {
      * display the employee menu
      */
     public void displayMenu() {
-
-        int menuOption = 0;
         
         while (menuOption != 7) {
             System.out.println("~~~~~~~~~~~~");
