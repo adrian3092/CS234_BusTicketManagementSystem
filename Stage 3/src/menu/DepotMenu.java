@@ -71,7 +71,10 @@ public class DepotMenu {
                         System.out.println("No depots found...");
                     }
                     else {
-                        System.out.println(depotManager.getAllDepots());
+                        for (Depot depot: depotManager.getAllDepots()) {
+                            System.out.println("Depot ID: " + depot.getDepotId());
+                            System.out.println("Address: " + depot.getDepotAddress());
+                        }
                     }
                 }
                 case 6 -> {
