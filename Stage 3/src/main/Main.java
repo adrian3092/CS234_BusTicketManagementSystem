@@ -9,6 +9,8 @@ import expenses.*;
 import login.*;
 import menu.AdminMenu;
 import menu.TicketMenu;
+import payment.*;
+import ticket.*;
 
 /**
  *
@@ -79,8 +81,16 @@ public class Main {
         //create expenses
         Salary employee1Salary = new Salary(accounting, 2000, employee1);
         FuelCost bus1Fuel = new FuelCost(accounting, 500, bus1);
-        MaintenanceCost bus1Maintenance = new MaintenanceCost(accounting, 650, bus1);   
-          
+        MaintenanceCost bus1Maintenance = new MaintenanceCost(accounting, 650, bus1);  
+        
+        // create ticket, passenger and payment
+        Passenger passenger1 = new Passenger("Robert Smith", "robert.smith@gmail.com", "1112223333");
+        Payment payment1 = new Payment("Credit Card", 3, passenger1, "1111222233334444", "12/26");
+        PaymentManager paymentManager = new PaymentManager();
+        paymentManager.addPayment(payment1);
+        TicketIssuer ticketIssuer = new TicketIssuer();
+        ticketIssuer.bookTicket(passenger1, schedule1);
+
         // logic for the main menu
         int menuOption = 0;
         

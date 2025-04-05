@@ -14,16 +14,10 @@ public class Ticket {
     private String status;
     private Passenger passenger;
     private int ticketNumber;
-    
+
     /**
-     * get the ticket number
-     * @return the ticket number
+     * default constructor
      */
-    public int getTicketNumber() {
-
-        return ticketNumber;
-    }
-
     public Ticket(Schedule schedule, Passenger passenger, int ticketNumber) {
 
         this.schedule = schedule;
@@ -32,35 +26,30 @@ public class Ticket {
         status = "Active";
 
     }
-    
+
     /**
-     * 
-     * @param ticketNumber
-     * @return 
+     * get the ticket number
+     * @return the ticket number
      */
-    public String getTicketDetails(int ticketNumber) {
-        //
-        return null;
-        //
+    public int getTicketNumber() {
+
+        return ticketNumber;
     }
     
     /**
      * 
-     * @param ticketNumber
-     * @param status 
+     * @return the schedule associated with the ticket
      */
-    public void setTicketStatus(int ticketNumber, String status) {
-        //
+    public Schedule getSchedule() {
+        return schedule;
     }
-    
+
     /**
      * 
-     * @return 
+     * @return
      */
-    public String getPassengerInfo() {
-        //
-        return null;
-        //
+    public Passenger getPassenger() {
+        return passenger;
     }
 
     @Override

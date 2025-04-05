@@ -60,6 +60,9 @@ public class TicketMenu {
         System.out.print("Please enter your phone number: ");
         String phoneNumber = in.nextLine();
         
+        // check is passenger already exists
+
+        
         // create passenger object
         Passenger passenger = new Passenger(name, email, phoneNumber);
         

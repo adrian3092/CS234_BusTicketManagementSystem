@@ -36,4 +36,11 @@ public class TicketManager {
         allTickets.add(ticket);
         
     }
+
+    /**
+     * 
+     */
+    public void cancelTicket (Ticket ticket) {
+        //
+    }
 }
