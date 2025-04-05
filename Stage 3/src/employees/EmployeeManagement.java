@@ -1,10 +1,28 @@
 package employees;
+import java.util.ArrayList;
+
 
 public class EmployeeManagement {
+    private ArrayList<Employee> employees;
     
+
+    public EmployeeManagement() {
+        // Initialize the employee list
+        employees = new ArrayList<>();
+    }
+
+    public void addEmployee(Employee employee) {
+        // Add a new employee to the list
+        employees.add(employee);
+    }
+
     public void deleteEmployee(Employee employee) {
         employee.deleteEmployee();
+        // Remove the employee from the list
+        employees.remove(employee);
     }
+
+
 
     /**
      * Reassigns a new job title to an employee.
@@ -20,15 +38,33 @@ public class EmployeeManagement {
         employee.setName(firstName, lastName);
     }
 
-    public void updateEmail(Employee employee, String email) {
+    public static void updateEmail(Employee employee, String email) {
         employee.setEmail(email);
     }
 
-    public void updatePhoneNumber(Employee employee, String phoneNumber) {
+    public static void updatePhoneNumber(Employee employee, String phoneNumber) {
         employee.setPhoneNumber(phoneNumber);
     }
 
-    public void updateSalary(Employee employee, float salary) {
+    public static void updateSalary(Employee employee, float salary) {
         employee.setSalary(salary);
     }
+
+    public ArrayList<Employee> getAllEmployees() {
+        System.out.println("List of all employees:");
+        for (Employee employee : employees) {
+            System.out.println(employee.getName() + " - " + employee.getEmployeeID() + " - " + employee.getJobTitle() + " - " + employee.getEmail() + " - " + employee.getPhoneNumber() + " - " + employee.getSalary());
+        }
+        return employees; 
+    }
+
+    public Employee getEmployeeById(String employeeId) {
+        for (Employee employee : employees) {
+            if (employee.getEmployeeID().equals(employeeId)) {
+                return employee;
+            }
+        }
+        return null; // Employee not found
+    }
 }
+
