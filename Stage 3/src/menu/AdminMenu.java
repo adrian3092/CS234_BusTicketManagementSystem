@@ -27,12 +27,12 @@ public class AdminMenu {
      * @param in, scanner
      * @param busManager, the bus manager to use
      */
-    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager) {
+    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting) {
         this.in = in;
         menuOption = 0;
         busMenu = new BusMenu(in, busManager, depotManager);
         depotMenu = new DepotMenu(in, busManager, depotManager);
-        accountingMenu = new AccountingMenu(in, accounting);
+        accountingMenu = new AccountingMenu(in, accounting, busManager);
         this.scheduleManager = scheduleManager;
     }
 

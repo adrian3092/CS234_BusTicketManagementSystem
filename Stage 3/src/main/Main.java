@@ -24,10 +24,7 @@ public class Main {
 
         //create login database
         LoginManager loginManager = new LoginManager(in);
-        
-        //create accounting database
-        Accounting accounting = new Accounting(in);
-        
+                
         // create employees
         Employee employee1 = new Employee("John", "Doe", "Admin");
         Login login1 = new Login(employee1, loginManager);
@@ -75,8 +72,11 @@ public class Main {
         depot1.assignBus(bus1);
         depot1.assignBus(bus2);
         
+        //create accounting database
+        Accounting accounting = new Accounting(in, busManager);
+        
         //create employee menu
-        AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager);
+        AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting);
         
         //create expenses
         Salary employee1Salary = new Salary(accounting, 2000, employee1);

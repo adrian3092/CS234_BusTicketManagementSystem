@@ -12,12 +12,14 @@ import java.util.Scanner;
 public class Accounting {
     private ArrayList<Expense> expenses;
     private Scanner in;
-    private int expenseID;
+    private BusManager busManager;
+    
 
-    public Accounting(Scanner in) {
+    public Accounting(Scanner in, BusManager busManager) {
         this.in = in;
         expenses = new ArrayList<>();
-        expenseID = 1;
+        this.busManager = busManager;
+        
     }   
     
     public void addExpense(Expense expense) {
@@ -43,10 +45,7 @@ public class Accounting {
         System.out.print("Enter the amount: ");
         float cost = in.nextFloat();
         
-        FuelCost expenseID = new FuelCost(this, cost, selectedBus);
-        
-        
-        
+        new FuelCost(this, cost, selectedBus);      
     }
     
 }

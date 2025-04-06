@@ -1,5 +1,6 @@
 
 package menu;
+import bus.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,10 +15,12 @@ public class AccountingMenu {
     private Scanner in;
     private int menuOption;
     private Accounting accounting;
-
+    private BusManager busManager;
     
-    public AccountingMenu(Scanner in, Accounting accounting) {
+    public AccountingMenu(Scanner in, Accounting accounting, BusManager busManager) {
         this.in = in;
+        this.accounting = accounting;
+        this.busManager = busManager;
         menuOption = 0;
     }
 
@@ -75,7 +78,7 @@ public class AccountingMenu {
 
             switch (menuOption) {
                 case 1 -> {
-                    //fuel
+                    accounting.addFuelCost(busManager);
                 }
                 case 2 -> {
                     //maintenance
