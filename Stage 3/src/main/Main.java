@@ -36,6 +36,7 @@ public class Main {
         // create initial depot
         DepotManager depotManager = new DepotManager();
         Depot depot1 = new Depot("1862 Aviation Way, Los Angeles, CA 90071");
+        depotManager.addDepot(depot1);
 
         // create initial route and bus stops, add bus stops to route
         Route route1 = new Route("Downtown");
