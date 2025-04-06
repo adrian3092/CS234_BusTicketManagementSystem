@@ -5,6 +5,7 @@ import java.util.Scanner;
 import bus.*;
 import depot.*;
 import employees.Employee;
+import employees.EmployeeManagement;
 import expenses.*;
 import login.*;
 import menu.AdminMenu;
@@ -24,9 +25,12 @@ public class Main {
 
         //create login database
         LoginManager loginManager = new LoginManager(in);
+        
+        //create employee database
+        EmployeeManagement employeeManagement = new EmployeeManagement();
                 
         // create employees
-        Employee employee1 = new Employee("John", "Doe", "Admin");
+        Employee employee1 = new Employee("John", "Doe", "Admin", employeeManagement);
         Login login1 = new Login(employee1, loginManager);
 
         // create initial depot
@@ -73,10 +77,10 @@ public class Main {
         depot1.assignBus(bus2);
         
         //create accounting database
-        Accounting accounting = new Accounting(in, busManager);
+        Accounting accounting = new Accounting(in, busManager, depotManager, employeeManagement);
         
         //create employee menu
-        AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting);
+        AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement);
         
         //create expenses
         Salary employee1Salary = new Salary(accounting, 2000, employee1);
@@ -90,6 +94,8 @@ public class Main {
         paymentManager.addPayment(payment1);
         TicketIssuer ticketIssuer = new TicketIssuer();
         ticketIssuer.bookTicket(passenger1, schedule1);
+        
+        
 
         // logic for the main menu
         int menuOption = 0;

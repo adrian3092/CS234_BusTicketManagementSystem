@@ -32,7 +32,7 @@ public class EmployeeManagementMenu {
 
             switch (menuOption) {
                 case 1 -> {
-                    addEmployee();
+//                    addEmployee(); I commented out this line because its breaking the code (George)
                 }
                 case 2 -> {
                     deleteEmployee();
@@ -156,12 +156,17 @@ public class EmployeeManagementMenu {
         System.out.print("Please enter the salary of the employee: ");
         float salary = in.nextFloat();
         in.nextLine(); // consume leftover new line
-
-
-        Employee newEmployee = new Employee(firstName, lastName, email, phoneNumber, jobTitle, salary);
-        employeeManager.addEmployee(newEmployee);
-         // consume leftover new line
-        System.out.println("A new employee has been added with ID: " + newEmployee.getEmployeeID());
+/*
+          I am commenting out these lines because it breaks the code (George) 
+          I believe the logic for creating a new employee should be and already
+          is in the EmployeeManagement class. This class should just call the
+          methods in that class.
+*/
+          
+//        Employee newEmployee = new Employee(firstName, lastName, email, phoneNumber, jobTitle, salary);
+//        employeeManager.addEmployee(newEmployee);
+//         // consume leftover new line
+//        System.out.println("A new employee has been added with ID: " + newEmployee.getEmployeeID());
     }    
         
     

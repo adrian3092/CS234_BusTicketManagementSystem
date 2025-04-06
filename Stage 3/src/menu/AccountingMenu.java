@@ -1,6 +1,8 @@
 
 package menu;
-import bus.*;
+import bus.BusManager;
+import depot.DepotManager;
+import employees.EmployeeManagement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,11 +18,15 @@ public class AccountingMenu {
     private int menuOption;
     private Accounting accounting;
     private BusManager busManager;
+    private DepotManager depotManager;
+    private EmployeeManagement employeeManagement;
     
-    public AccountingMenu(Scanner in, Accounting accounting, BusManager busManager) {
+    public AccountingMenu(Scanner in, Accounting accounting, BusManager busManager, DepotManager depotManager, EmployeeManagement employeeManagement) {
         this.in = in;
         this.accounting = accounting;
         this.busManager = busManager;
+        this.depotManager = depotManager;
+        this.employeeManagement = employeeManagement;
         menuOption = 0;
     }
 
@@ -34,7 +40,7 @@ public class AccountingMenu {
             System.out.println("Accounting Menu");
             System.out.println("1. Generate Report");
             System.out.println("2. Add a new expense");
-            System.out.println("3. Manage an existing expense");
+            System.out.println("3. Remove an existing expense");
             System.out.println("4. Return to previous menu");
 
             menuOption = in.nextInt();
@@ -84,10 +90,10 @@ public class AccountingMenu {
                     accounting.addBusCost(busManager, "maintenance");
                 }
                 case 3 -> {
-                    //salary
+                    accounting.addSalary(employeeManagement);
                 }
                 case 4 -> {
-                    //utility
+                    accounting.addUtilityCost(depotManager);
                 }
                 case 5 -> {
                     System.out.println("Returning to previous menu...");

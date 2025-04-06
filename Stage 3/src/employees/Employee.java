@@ -12,12 +12,14 @@ public class Employee {
     private String phoneNumber; // Phone number of the employee
     private String jobTitle; // Job title of the employee
     private float salary; // Salary of the employee
+    private EmployeeManagement employeeManagement;
 
-    public Employee(String firstName, String lastName, String jobTitle) {
+    public Employee(String firstName, String lastName, String jobTitle, EmployeeManagement employeeManagement) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
         this.email = firstName + lastName + "@buscompany.com"; //creates email for employee
+        
 
         if (jobTitle.equalsIgnoreCase("Admin")) {
             this.employeeID = IdGenerator.generateAdminId(); // Generates a unique ID for Admin
@@ -28,10 +30,12 @@ public class Employee {
             System.out.println("Invalid job title. Employee ID not generated.");
         }
         
+        this.employeeManagement = employeeManagement;
+        employeeManagement.addEmployee(this);
     }
 
 
-    public Employee(String firstName, String lastName, String email, String phoneNumber, String jobTitle, float salary) {
+    public Employee(String firstName, String lastName, String email, String phoneNumber, String jobTitle, float salary, EmployeeManagement employeeManagement) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -47,6 +51,9 @@ public class Employee {
         else {
             System.out.println("Invalid job title. Employee ID not generated.");
         }
+        
+        this.employeeManagement = employeeManagement;
+        employeeManagement.addEmployee(this);
     }
 
 

@@ -4,6 +4,7 @@ package menu;
 import java.util.Scanner;
 import bus.BusManager;
 import depot.DepotManager;
+import employees.EmployeeManagement;
 import expenses.Accounting;
 import main.ScheduleManager;
 
@@ -27,12 +28,12 @@ public class AdminMenu {
      * @param in, scanner
      * @param busManager, the bus manager to use
      */
-    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting) {
+    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting, EmployeeManagement employeeManagement) {
         this.in = in;
         menuOption = 0;
         busMenu = new BusMenu(in, busManager, depotManager);
         depotMenu = new DepotMenu(in, busManager, depotManager);
-        accountingMenu = new AccountingMenu(in, accounting, busManager);
+        accountingMenu = new AccountingMenu(in, accounting, busManager, depotManager, employeeManagement);
         this.scheduleManager = scheduleManager;
     }
 
