@@ -78,10 +78,10 @@ public class AccountingMenu {
 
             switch (menuOption) {
                 case 1 -> {
-                    accounting.addFuelCost(busManager);
+                    accounting.addBusCost(busManager, "fuel");
                 }
                 case 2 -> {
-                    //maintenance
+                    accounting.addBusCost(busManager, "maintenance");
                 }
                 case 3 -> {
                     //salary

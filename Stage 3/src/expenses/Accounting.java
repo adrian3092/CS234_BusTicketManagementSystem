@@ -32,7 +32,7 @@ public class Accounting {
         }             
     }
     
-    public void addFuelCost(BusManager busManager) {
+    public void addBusCost(BusManager busManager, String type) {
         System.out.print("Enter the ID of the bus associated with this cost: ");
         int busId = in.nextInt();
         Bus selectedBus = busManager.findBusById(busId);
@@ -45,7 +45,13 @@ public class Accounting {
         System.out.print("Enter the amount: ");
         float cost = in.nextFloat();
         
-        new FuelCost(this, cost, selectedBus);      
+        if (type.equals("fuel")) {
+            new FuelCost(this, cost, selectedBus);  
+        } else if (type.equals("maintenance")) {
+            new MaintenanceCost(this, cost, selectedBus);  
+        }
     }
+    
+    
     
 }
