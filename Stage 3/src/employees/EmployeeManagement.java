@@ -45,7 +45,7 @@ public class EmployeeManagement {
     public static ArrayList<Employee> getAllEmployees() {
         System.out.println("List of all employees:");
         for (Employee employee : employees) {
-            System.out.println(employee.getName() + " - " + employee.getEmployeeID() + " - " + employee.getJobTitle() + " - " + employee.getEmail() + " - " + employee.getPhoneNumber() + " - " + employee.getSalary());
+            System.out.println(employee.getName() + " - " + employee.getEmployeeID() + " - " + employee.getJobTitle() + " - " + employee.getEmail() + " - " + employee.getPhoneNumber() + " - " + "$" + String.format("%.2f", employee.getSalary()));
         }
         return employees; 
     }

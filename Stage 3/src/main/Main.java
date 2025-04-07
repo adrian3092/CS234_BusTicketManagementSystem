@@ -31,9 +31,9 @@ public class Main {
         EmployeeManagement employeeManagement = new EmployeeManagement();
                 
         // create employees
-        Employee employee1 = new Employee("John", "Doe", "Admin");
+        Employee employee1 = new Employee("John", "Doe", "Admin", "5286857246", 40500);
         Login login1 = new Login(employee1, loginManager);
-        Employee employee2 = new Employee("Lauren", "Smith", "Driver");
+        Employee employee2 = new Employee("Lauren", "Smith", "Driver", "8518534605", 51800);
         Login login2 = new Login(employee2, loginManager);
 
         // create initial depot

@@ -3,6 +3,7 @@ package employees;
 import IdGenerator.IdGenerator;
 /**
  * Represents an Employee with details such as ID, name, email, phone number, job title, access level, and salary.
+ * @author Handsome Onojerame
  */
 public class Employee {
     private String employeeID; // Unique identifier for the employee
@@ -13,34 +14,22 @@ public class Employee {
     private String jobTitle; // Job title of the employee
     private float salary; // Salary of the employee
  
-
-    public Employee(String firstName, String lastName, String jobTitle) {
+    /**
+     * 
+     * @param firstName, the first name of the employee
+     * @param lastName, the last name of the employee
+     * @param email, the email address of the employee
+     * @param phoneNumber, the phone number of the employee
+     * @param jobTitle, the job title of the employee (Driver or Admin)
+     * @param salary, the salary of the employee
+     */
+    public Employee(String firstName, String lastName, String jobTitle, String phoneNumber, float salary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
-        this.email = firstName + lastName + "@buscompany.com"; //creates email for employee
-        EmployeeManagement.addEmployee(this);
-
-        if (jobTitle.equalsIgnoreCase("Admin")) {
-            this.employeeID = IdGenerator.generateAdminId(); // Generates a unique ID for Admin
-        } else if (jobTitle.equalsIgnoreCase("Driver")) {
-            this.employeeID = IdGenerator.generateDriverId(); // Generates a unique ID for Driver
-        }
-        else {
-            System.out.println("Invalid job title. Employee ID not generated.");
-        }
-        
-        
-    }
-
-
-    public Employee(String firstName, String lastName, String email, String phoneNumber, String jobTitle, float salary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
         this.phoneNumber = phoneNumber;
-        this.jobTitle = jobTitle;
         this.salary = salary;
+        this.email = firstName + lastName + "@buscompany.com"; //creates email for employee
         
         if (jobTitle.equalsIgnoreCase("Admin")) {
             this.employeeID = IdGenerator.generateAdminId(); // Generates a unique ID for Admin
@@ -50,7 +39,6 @@ public class Employee {
         else {
             System.out.println("Invalid job title. Employee ID not generated.");
         }
-        
         EmployeeManagement.addEmployee(this);
     }
 
