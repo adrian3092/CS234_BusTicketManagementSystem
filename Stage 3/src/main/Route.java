@@ -1,5 +1,5 @@
 package main;
-import idGenerator.IdGenerator;
+import IdGenerator.IdGenerator;
 import java.util.ArrayList;
 
 

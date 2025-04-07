@@ -1,4 +1,4 @@
-package idGenerator;
+package IdGenerator;
 /**
  *
  * @author Owner
