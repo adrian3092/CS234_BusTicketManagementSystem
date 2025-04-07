@@ -19,7 +19,7 @@ public class Dispatcher {
     
     /**
      * default constructor
-     * @param busManager, the bus manager to use
+     * @param busManager the bus manager to use
      */
     public Dispatcher(BusManager busManager) {
         this.routeAssignments = new ArrayList<>();
@@ -29,8 +29,8 @@ public class Dispatcher {
     
     /**
      * assigns a bus to a route
-     * @param bus, the bus to assign
-     * @param route, the route to assign the bus to
+     * @param bus the bus to assign
+     * @param route the route to assign the bus to
      * @return true if the assignment was successful, otherwise false
      */
     public boolean assignBusToRoute(Bus bus, Route route) {
@@ -56,8 +56,8 @@ public class Dispatcher {
     
     /**
      * assigns a driver to a bus
-     * @param driver, the driver to assign
-     * @param bus, the bus to assign the driver to
+     * @param driver the driver to assign
+     * @param bus the bus to assign the driver to
      * @return true if the assignment was successful, otherwise false
      */
     public boolean assignDriverToBus(Driver driver, Bus bus) {
@@ -84,7 +84,7 @@ public class Dispatcher {
     
     /**
      * gets the bus assigned to a route
-     * @param route, the route to check
+     * @param route the route to check
      * @return the bus assigned to the route, or null if no bus is assigned to the route
      */
     public Bus getBusForRoute(Route route) {
@@ -94,7 +94,7 @@ public class Dispatcher {
     
     /**
      * gets the route assigned to a bus
-     * @param bus, the bus to check
+     * @param bus the bus to check
      * @return the route assigned to the bus, or null if the bus is not assigned to a route
      */
     public Route getRouteForBus(Bus bus) {
@@ -104,7 +104,7 @@ public class Dispatcher {
     
     /**
      * Gets the driver assigned to a bus
-     * @param bus, the bus to check
+     * @param bus the bus to check
      * @return The driver assigned to the bus, or null if no driver is assigned
      */
     public Driver getDriverForBus(Bus bus) {
@@ -114,7 +114,7 @@ public class Dispatcher {
     
     /**
      * removes the assignment of a bus from a route
-     * @param route, the route to remove the bus from
+     * @param route the route to remove the bus from
      * @return true if the assignment was removed, false if there was no assignment
      */
     public boolean removeBusFromRoute(Route route) {
@@ -134,7 +134,7 @@ public class Dispatcher {
     
     /**
      * removes the assignment of a driver from a bus
-     * @param bus, the bus to remove the driver from
+     * @param bus the bus to remove the driver from
      * @return true if the assignment was removed, false if there was no assignment
      */
     public boolean removeDriverFromBus(Bus bus) {
@@ -172,7 +172,7 @@ public class Dispatcher {
     
     /**
      * find a route assignment for a given bus
-     * @param bus, the bus to find an assignment for
+     * @param bus the bus to find an assignment for
      * @return the route assignment, or null if not found
      */
     private RouteAssignment getBusRouteAssignment(Bus bus) {
@@ -186,7 +186,7 @@ public class Dispatcher {
     
     /**
      * find a route assignment for a given route.
-     * @param route, the route to find an assignment for
+     * @param route the route to find an assignment for
      * @return the route assignment, or null if not found
      */
     private RouteAssignment getRouteBusAssignment(Route route) {
@@ -200,7 +200,7 @@ public class Dispatcher {
     
     /**
      * find a driver assignment for a given bus.
-     * @param bus, the bus to find an assignment for
+     * @param bus the bus to find an assignment for
      * @return the driver assignment, or null if not found
      */
     private DriverAssignment getBusDriverAssignment(Bus bus) {
