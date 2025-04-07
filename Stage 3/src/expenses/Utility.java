@@ -24,6 +24,6 @@ public class Utility extends Expense {
     
     @Override
     public String toString() {
-        return "Utilities: Depot " + depot.getDepotId() + " $" + this.getCost();
+        return super.getExpenseId() + " Utilities: Depot " + depot.getDepotId() + " $" + this.getCost();
     }
 }

@@ -23,6 +23,6 @@ public class FuelCost extends Expense {
     
     @Override
     public String toString() {
-        return "Fuel: Bus " + bus.getBusId() + " $" + this.getCost();
+        return super.getExpenseId() + " Fuel: Bus " + bus.getBusId() + " $" + this.getCost();
     }
 }

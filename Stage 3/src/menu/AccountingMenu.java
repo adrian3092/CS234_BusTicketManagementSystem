@@ -50,10 +50,10 @@ public class AccountingMenu {
                     accounting.getReport();
                 }
                 case 2 -> {
-                    addExpenseMenu();
+                    expenseSubMenu();
                 }
                 case 3 -> {
-                    // manage an expense
+                    accounting.removeExpense();
                 }
                 case 4 -> {
                     System.out.println("Returning to previous menu...");
@@ -68,7 +68,7 @@ public class AccountingMenu {
     }
 
     
-    public void addExpenseMenu() {
+    public void expenseSubMenu() {
         int menuOption = 0;
         
         while (menuOption != 5) {
@@ -88,6 +88,7 @@ public class AccountingMenu {
                 }
                 case 2 -> {
                     accounting.addBusCost(busManager, "maintenance");
+
                 }
                 case 3 -> {
                     accounting.addSalary(employeeManagement);
@@ -104,5 +105,5 @@ public class AccountingMenu {
                 }
             }
         }
-    }      
+    }     
 }

@@ -93,6 +93,21 @@ public class Accounting {
         new Salary(this, cost, selectedEmployee);
     }
     
+    public Expense findExpenseById(int expenseId) {
+        for (Expense e : expenses) {
+            if (e.getExpenseId() == expenseId)
+                return e;
+        }
+        return null;
+    }
+     
+    public void removeExpense() {
+        System.out.print("Enter the ID of the expense you want to remove: ");
+        int expenseId = in.nextInt();
+        Expense expenseToRemove = findExpenseById(expenseId);
+        expenses.remove(expenseToRemove);        
+    }
+    
     
     
 }

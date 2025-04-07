@@ -25,7 +25,7 @@ public class Salary extends Expense {
     
     @Override
     public String toString() {
-        return "Salary: " + employee.getName() + " $" + this.getCost();
+        return super.getExpenseId() + " Salary: " + employee.getName() + " $" + this.getCost();
     }
     
 }
