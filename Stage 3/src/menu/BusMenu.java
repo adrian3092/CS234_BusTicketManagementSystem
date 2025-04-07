@@ -43,7 +43,13 @@ public class BusMenu {
             System.out.println("3. Display all buses");
             System.out.println("4. Return to Employee Menu");
 
-            menuOption = in.nextInt();
+            if (in.hasNextInt()) {
+                menuOption = in.nextInt();
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                in.next(); // consume the invalid input
+                continue;
+            }
 
             switch (menuOption) {
                 case 1 -> {
@@ -88,15 +94,41 @@ public class BusMenu {
      */
     public void addBus() {
         System.out.print("Enter the year of the bus: ");
-        int year = in.nextInt();
+        int year;
+        if (in.hasNextInt()) {
+            year = in.nextInt();
+        } else {
+            System.out.println("Invalid input. Please enter a number for year.");
+            in.next(); // consume the invalid input
+            return;
+        }
+        
         System.out.print("Enter the make of the bus: ");
         String make = in.next();
+        
         System.out.print("Enter the model of the bus: ");
         String model = in.next();
+        
         System.out.print("Enter the mileage of the bus: ");
-        int mileage = in.nextInt();
+        int mileage;
+        if (in.hasNextInt()) {
+            mileage = in.nextInt();
+        } else {
+            System.out.println("Invalid input. Please enter a number for mileage.");
+            in.next(); // consume the invalid input
+            return;
+        }
+        
         System.out.print("Enter the seating capacity of the bus: ");
-        int seatingCapacity = in.nextInt();
+        int seatingCapacity;
+        if (in.hasNextInt()) {
+            seatingCapacity = in.nextInt();
+        } else {
+            System.out.println("Invalid input. Please enter a number for seating capacity.");
+            in.next(); // consume the invalid input
+            return;
+        }
+        
         Bus newBus = new Bus(year, make, model, mileage, seatingCapacity);
         busManager.addBus(newBus);
         System.out.println("A new bus has been added with ID: " + newBus.getBusId());
@@ -107,7 +139,14 @@ public class BusMenu {
      */
     public void manageBus() {
         System.out.print("Enter the ID of the bus you would like to manage: ");
-        int busId = in.nextInt();
+        int busId;
+        if (in.hasNextInt()) {
+            busId = in.nextInt();
+        } else {
+            System.out.println("Invalid input. Please enter a number.");
+            in.next(); // consume the invalid input
+            return;
+        }
         Bus selectedBus = busManager.findBusById(busId);
         
         if (selectedBus == null) {
@@ -126,7 +165,13 @@ public class BusMenu {
             System.out.println("5. Delete an existing bus");
             System.out.println("6. Return to Bus Menu");
             
-            subMenuOption = in.nextInt();
+            if (in.hasNextInt()) {
+                subMenuOption = in.nextInt();
+            } else {
+                System.out.println("Invalid input. Please enter a number.");
+                in.next(); // consume the invalid input
+                continue;
+            }
         
             switch (subMenuOption) {
                 case 1 -> {
@@ -134,9 +179,15 @@ public class BusMenu {
                 }
                 case 2 -> {
                     System.out.print("Enter new mileage: ");
-                    int newMileage = in.nextInt();
-                    selectedBus.setMileage(newMileage);
-                    System.out.println("The mileage has been updated successfully.");
+                    int newMileage;
+                    if (in.hasNextInt()) {
+                        newMileage = in.nextInt();
+                        selectedBus.setMileage(newMileage);
+                        System.out.println("The mileage has been updated successfully.");
+                    } else {
+                        System.out.println("Invalid input. Please enter a number for mileage.");
+                        in.next(); // consume the invalid input
+                    }
                 }
                 case 3 -> {
                     System.out.println("The current status is: " + selectedBus.getStatus());

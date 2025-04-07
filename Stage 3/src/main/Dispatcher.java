@@ -49,7 +49,7 @@ public class Dispatcher {
         routeAssignments.add(assignment);
         
         // update the bus status
-        bus.setStatus("Assigned to Route: " + route.getName());
+        bus.setStatus("In Use");
         
         return true;
     }
