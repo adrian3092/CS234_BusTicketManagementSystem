@@ -1,14 +1,13 @@
+
 package main;
 
+import java.util.Scanner;
 import bus.*;
 import depot.*;
-import employees.Employee;
-import employees.EmployeeManagement;
+import employees.*;
 import expenses.*;
-import java.util.Scanner;
 import login.*;
-import menu.AdminMenu;
-import menu.TicketMenu;
+import menu.*;
 import payment.*;
 import ticket.*;
 
@@ -82,8 +81,11 @@ public class Main {
         //create accounting database
         Accounting accounting = new Accounting(in, busManager, depotManager, employeeManagement);
         
-        //create employee menu
-        AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement, routeManager);
+        //create admin menu
+        AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement, routeManager);
+
+        // create driver menu
+        DriverMenu driverMenu = new DriverMenu(in);
         
         //create expenses
         Salary employee1Salary = new Salary(accounting, 2000, employee1);
@@ -130,10 +132,10 @@ public class Main {
                     String accessLevel = loginManager.checkCredentials();
                     if (accessLevel.equals("Admin")) {
                         System.out.println("Access Granted"); 
-                        employeeMenu.displayMenu();
+                        adminMenu.displayMenu();
                     } else if (accessLevel.equals("Driver")) {
                         System.out.println("Access Granted");
-                        //insert driver menu here
+                        driverMenu.displayMenu();
                     } 
                 }
                 case 4 -> {
