@@ -163,10 +163,8 @@ public class EmployeeManagementMenu {
           methods in that class.
 */
           
-//        Employee newEmployee = new Employee(firstName, lastName, email, phoneNumber, jobTitle, salary);
-//        employeeManager.addEmployee(newEmployee);
-//         // consume leftover new line
-//        System.out.println("A new employee has been added with ID: " + newEmployee.getEmployeeID());
+        Employee newEmployee = new Employee(firstName, lastName, email, phoneNumber, jobTitle, salary);
+        System.out.println("A new employee has been added with ID: " + newEmployee.getEmployeeID());
     }    
         
     
