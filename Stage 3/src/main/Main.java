@@ -31,10 +31,10 @@ public class Main {
         EmployeeManagement employeeManagement = new EmployeeManagement();
                 
         // create employees
-        Employee employee1 = new Employee("John", "Doe", "Admin", "5286857246", 40500);
-        Login login1 = new Login(employee1, loginManager);
-        Employee employee2 = new Employee("Lauren", "Smith", "Driver", "8518534605", 51800);
-        Login login2 = new Login(employee2, loginManager);
+        Admin admin1 = new Admin("John", "Doe", "Admin", "5286857246", 40500);
+        Login login1 = new Login(admin1, loginManager);
+        Driver driver1 = new Driver("Lauren", "Smith", "Driver", "8518534605", 51800);
+        Login login2 = new Login(driver1, loginManager);
 
         // create initial depot
         DepotManager depotManager = new DepotManager();
@@ -83,14 +83,19 @@ public class Main {
         //create accounting database
         Accounting accounting = new Accounting(in, busManager, depotManager, employeeManagement);
         
+        // create dispatcher
+        Dispatcher dispatcher = new Dispatcher(busManager);
+        dispatcher.assignBusToRoute(bus2, route1);
+        dispatcher.assignDriverToBus(driver1, bus2);
+
         //create admin menu
         AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement, routeManager);
 
         // create driver menu
-        DriverMenu driverMenu = new DriverMenu(in);
+        DriverMenu driverMenu = new DriverMenu(in, dispatcher, scheduleManager);
         
         //create expenses
-        Salary employee1Salary = new Salary(accounting, 2000, employee1);
+        Salary employee1Salary = new Salary(accounting, 2000, admin1);
         FuelCost bus1Fuel = new FuelCost(accounting, 500, bus1);
         MaintenanceCost bus1Maintenance = new MaintenanceCost(accounting, 650, bus1);  
         
@@ -125,7 +130,7 @@ public class Main {
                 }
                 case 2 -> {
                     // view schedule 
-                    System.out.println(scheduleManager); // Uncomment this line to view the schedule
+                    System.out.println(scheduleManager);
                 }
                 case 3 -> {
                     // employee login
@@ -135,7 +140,7 @@ public class Main {
                         adminMenu.displayMenu();
                     } else if (accessLevel.equals("Driver")) {
                         System.out.println("Access Granted");
-                        driverMenu.displayMenu();
+                        driverMenu.run();
                     } 
                 }
                 case 4 -> {
