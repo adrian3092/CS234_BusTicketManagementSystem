@@ -17,9 +17,10 @@ public class Driver extends Employee {
      * @param name     The name of the driver
      * @param jobTitle The job title of the driver
      */
-    public Driver(String firstName, String lastName, String jobTitle, EmployeeManagement employeeManagement) {
-        super(firstName, lastName, jobTitle, employeeManagement);
+    public Driver(String firstName, String lastName, String jobTitle) {
+        super(firstName, lastName, jobTitle);
         this.availability = true;
+        EmployeeManagement.addEmployee(this);
     }
 
     /**

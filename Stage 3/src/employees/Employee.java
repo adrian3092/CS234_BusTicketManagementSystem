@@ -1,6 +1,6 @@
 package employees;
 
-import IdGenerator.IdGenerator;
+import idGenerator.IdGenerator;
 /**
  * Represents an Employee with details such as ID, name, email, phone number, job title, access level, and salary.
  */
@@ -12,14 +12,14 @@ public class Employee {
     private String phoneNumber; // Phone number of the employee
     private String jobTitle; // Job title of the employee
     private float salary; // Salary of the employee
-    private EmployeeManagement employeeManagement;
+ 
 
-    public Employee(String firstName, String lastName, String jobTitle, EmployeeManagement employeeManagement) {
+    public Employee(String firstName, String lastName, String jobTitle) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
         this.email = firstName + lastName + "@buscompany.com"; //creates email for employee
-        
+        EmployeeManagement.addEmployee(this);
 
         if (jobTitle.equalsIgnoreCase("Admin")) {
             this.employeeID = IdGenerator.generateAdminId(); // Generates a unique ID for Admin
@@ -30,12 +30,11 @@ public class Employee {
             System.out.println("Invalid job title. Employee ID not generated.");
         }
         
-        this.employeeManagement = employeeManagement;
-        employeeManagement.addEmployee(this);
+        
     }
 
 
-    public Employee(String firstName, String lastName, String email, String phoneNumber, String jobTitle, float salary, EmployeeManagement employeeManagement) {
+    public Employee(String firstName, String lastName, String email, String phoneNumber, String jobTitle, float salary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -52,8 +51,7 @@ public class Employee {
             System.out.println("Invalid job title. Employee ID not generated.");
         }
         
-        this.employeeManagement = employeeManagement;
-        employeeManagement.addEmployee(this);
+        EmployeeManagement.addEmployee(this);
     }
 
 

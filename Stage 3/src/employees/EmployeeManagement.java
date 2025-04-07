@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 public class EmployeeManagement {
-    private ArrayList<Employee> employees;
+    private static ArrayList<Employee> employees;
     
 
     public EmployeeManagement() {
@@ -11,12 +11,12 @@ public class EmployeeManagement {
         employees = new ArrayList<>();
     }
 
-    public void addEmployee(Employee employee) {
+    public static void addEmployee(Employee employee) {
         // Add a new employee to the list
         employees.add(employee);
     }
 
-    public void deleteEmployee(Employee employee) {
+    public static void deleteEmployee(Employee employee) {
         employee.deleteEmployee();
         // Remove the employee from the list
         employees.remove(employee);
@@ -30,11 +30,11 @@ public class EmployeeManagement {
      * @param employee    The employee whose job title is to be reassigned.
      * @param newJobTitle The new job title for the employee.
      */
-    public void setJobTitle(Employee employee, String newJobTitle) {
+    public static void setJobTitle(Employee employee, String newJobTitle) {
         employee.setJobTitle(newJobTitle);
     }
 
-    public void updateName(Employee employee, String firstName, String lastName) {
+    public static void updateName(Employee employee, String firstName, String lastName) {
         employee.setName(firstName, lastName);
     }
 
@@ -50,7 +50,7 @@ public class EmployeeManagement {
         employee.setSalary(salary);
     }
 
-    public ArrayList<Employee> getAllEmployees() {
+    public static ArrayList<Employee> getAllEmployees() {
         System.out.println("List of all employees:");
         for (Employee employee : employees) {
             System.out.println(employee.getName() + " - " + employee.getEmployeeID() + " - " + employee.getJobTitle() + " - " + employee.getEmail() + " - " + employee.getPhoneNumber() + " - " + employee.getSalary());
@@ -58,7 +58,7 @@ public class EmployeeManagement {
         return employees; 
     }
 
-    public Employee getEmployeeById(String employeeId) {
+    public static Employee getEmployeeById(String employeeId) {
         for (Employee employee : employees) {
             if (employee.getEmployeeID().equals(employeeId)) {
                 return employee;
