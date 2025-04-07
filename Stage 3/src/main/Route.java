@@ -65,5 +65,13 @@ public class Route {
     public void removeStop(BusStop busStop) {
         stops.remove(busStop);
     }   
+    
+    /**
+     * getter for the stops ArrayList
+     * @return list of all bus stops
+     */
+    public ArrayList<BusStop> getStops() {
+        return stops;
+    }
         
 }

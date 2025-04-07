@@ -89,9 +89,20 @@ public class ScheduleManager {
                         result += ", ";
                     }
                 }
+                result += "\n";
+            } else {
+                result += "\n";
             }
             
-            result += "\n";
+            // add bus stops if available
+            if (schedule.getRoute() != null && schedule.getRoute().getStops() != null && !schedule.getRoute().getStops().isEmpty()) {
+                result += "Stops: \n";
+                for (int counter = 0; counter < schedule.getRoute().getStops().size(); counter++) {
+                    BusStop stop = schedule.getRoute().getStops().get(counter);
+                    result += "  - " + stop.getName();
+                    result += "\n";
+                }
+            }
         }
         
         return result;
