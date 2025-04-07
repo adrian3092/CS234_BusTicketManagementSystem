@@ -6,6 +6,8 @@ import depot.DepotManager;
 import employees.EmployeeManagement;
 import expenses.Accounting;
 import java.util.Scanner;
+import main.Route;
+import main.RouteManager;
 import main.ScheduleManager;
 
 /**
@@ -20,7 +22,8 @@ public class AdminMenu {
     private DepotMenu depotMenu;
     private AccountingMenu accountingMenu;
     private Accounting accounting;
-    private ScheduleManager scheduleManager;
+    private EmployeeManagementMenu employeeManagementMenu;
+    private ScheduleMenu scheduleMenu;
 
     /**
      * default constructor
@@ -28,13 +31,15 @@ public class AdminMenu {
      * @param in, scanner
      * @param busManager, the bus manager to use
      */
-    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting, EmployeeManagement employeeManagement) {
+    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting, EmployeeManagement employeeManagement, RouteManager routeManager) {
         this.in = in;
         menuOption = 0;
         busMenu = new BusMenu(in, busManager, depotManager);
         depotMenu = new DepotMenu(in, busManager, depotManager);
         accountingMenu = new AccountingMenu(in, accounting, busManager, depotManager, employeeManagement);
-        this.scheduleManager = scheduleManager;
+        employeeManagementMenu = new EmployeeManagementMenu(in);
+        scheduleMenu = new ScheduleMenu(in, scheduleManager, routeManager);
+
     }
 
     /**
@@ -61,7 +66,7 @@ public class AdminMenu {
                     busMenu.displayMenu();
                 }
                 case 2 -> {
-                    // schedule management
+                    scheduleMenu.displayMenu(); 
                 }
                 case 3 -> {
                     // route management
@@ -70,7 +75,6 @@ public class AdminMenu {
                     depotMenu.displayMenu();
                 }
                 case 5 -> {
-                    EmployeeManagementMenu employeeManagementMenu = new EmployeeManagementMenu(in);
                     employeeManagementMenu.displayMenu(); 
                 }
                 case 6 -> {

@@ -1,8 +1,10 @@
 package menu;
 
 import depot.Depot;
+import depot.DepotManager;
 import java.util.Scanner;
 import main.Route;
+import main.RouteManager;
 import main.Schedule;
 import main.ScheduleManager;
 
@@ -14,13 +16,15 @@ import main.ScheduleManager;
 public class ScheduleMenu {
     //this menu needs to add a new schedule, remove an existing schedule and, manage an existing schedule
     private ScheduleManager scheduleManager;
+    private RouteManager routeManager; // not used in this class, but needed for the constructor
     private int menuOption; 
     private Scanner in;
 
-    public ScheduleMenu(Scanner in, ScheduleManager scheduleManager) {
+    public ScheduleMenu(Scanner in, ScheduleManager scheduleManager, RouteManager routeManager) {
         this.in = in;
         this.scheduleManager = scheduleManager;
-        menuOption = 0;
+        this.routeManager = routeManager; // not used in this class, but needed for the constructor
+        this.menuOption = 0;
     }
     public void displayMenu() {
         while (menuOption != 4) {
@@ -57,17 +61,31 @@ public class ScheduleMenu {
 
         System.out.print("Enter schedule name: ");
         String nameOfSchedule = in.next();
-        System.out.print("Enter route name: ");
-        String routeName = in.next();
-        System.out.print("Enter depot name: ");
-        String depotName = in.next();
+        System.out.print("Enter route ID: ");
+        String routeID = in.next();
+        Route route = RouteManager.getRouteById(routeID);
+        boolean routeFound = false;
+
+        while (!routeFound) {
+            if (route != null) {
+                routeFound = true;
+                System.out.println("Route found: " + route.getName());
+            } else {
+                System.out.println("Route not found. Please try again.");
+                System.out.print("Enter route ID: ");
+                routeID = in.next();
+                route = RouteManager.getRouteById(routeID);
+            }
+        }
+
+        System.out.print("Enter depot ID: ");
+        Integer depotID = in.nextInt();
+        DepotManager depotManager = new DepotManager(); // create an instance of DepotManager - but this will cause issues. need to make depot methods static
+        Depot depot = depotManager.findDepotById(depotID); // static method error
+
         System.out.print("Enter start time: ");
         double startTime = in.nextDouble();
-
-        //create new Route and Depot objects based on the input
-        Route route = new Route(routeName);
-        Depot depot = new Depot(depotName);
-
+    
         //create a new schedule object
         Schedule newSchedule = new Schedule(route, depot, startTime);
 
@@ -76,6 +94,7 @@ public class ScheduleMenu {
 
         //add the new schedule to the schedule manager
         scheduleManager.addSchedule(newSchedule);
+        System.out.println("Schedule added successfully.");
     }
 
     private void removeSchedule() {
@@ -100,46 +119,68 @@ public class ScheduleMenu {
         Schedule scheduleToManage = scheduleManager.getScheduleByName(scheduleName);
         if (scheduleToManage != null) {
             // Implement management options here (e.g., update schedule details)
+            Integer updateOption = 0;
+            
 
-            System.out.println("Managing schedule: " + scheduleToManage.getName());
-            System.out.println("What would you like to update?");
-            System.out.println("1. Update route");
-            System.out.println("2. Update depot");
-            System.out.println("3. Update start time");
-            System.out.println("4. Update schedule name");
-            int updateOption = in.nextInt();
-            in.nextLine(); // consume newline
+            while (updateOption != 5) {
+                System.out.println("Managing schedule: " + scheduleToManage.getName());
+                System.out.println("What would you like to update?");
+                System.out.println("1. Update route");
+                System.out.println("2. Update depot");
+                System.out.println("3. Update start time");
+                System.out.println("4. Update schedule name");
+                System.out.println("5. Return to Schedule Management Menu");
+                updateOption = in.nextInt();
+                in.nextLine(); // consume newline
+                
+                switch (updateOption) {
+                    case 1 -> {
+                        System.out.print("Enter the route ID: ");
+                        String newRouteId = in.nextLine();
+                        Route newRoute = RouteManager.getRouteById(newRouteId);
+                        if (newRoute != null) {
+                            scheduleToManage.setRoute(newRoute);
+                            System.out.println("Route updated successfully.");
+                        } else {
+                            System.out.println("Route not found. Please try again.");
+                        }
+                    }
+                    case 2 -> {
+                        System.out.print("Enter new depot ID: ");
+                        Integer newDepotId = in.nextInt();
+                        DepotManager depotManager = new DepotManager(); // create an instance of DepotManager - but this will cause issues. need to make depot methods static
+                        Depot newDepot = depotManager.findDepotById(newDepotId); // static method error
+                        if (newDepot != null) {
+                            scheduleToManage.setDepot(newDepot);
+                            System.out.println("Depot updated successfully.");
+                        } else {
+                            System.out.println("Depot not found. Please try again.");
+                        }
+                    }
+                    case 3 -> {
+                        System.out.print("Enter new start time: ");
+                        double newStartTime = in.nextDouble();
+                        scheduleToManage.setStartTime(newStartTime);
+                        System.out.println("Start time updated successfully.");
+                    }
+                    case 4 -> {
+                        System.out.print("Enter new schedule name: ");
+                        String newScheduleName = in.nextLine();
+                        scheduleToManage.setName(newScheduleName);
+                        System.out.println("Schedule name updated successfully.");
+                    }
+                    case 5 -> {
+                        System.out.println("Returning to Schedule Management Menu...");
+                        return;
+                    }
+                    default -> System.out.println("Invalid option. Please try again.");
+                }
+                
 
-            switch (updateOption) {
-                case 1 -> {
-                    System.out.print("Enter new route name: ");
-                    String newRouteName = in.nextLine();
-                    Route newRoute = new Route(newRouteName);
-                    scheduleToManage.setRoute(newRoute);
-                }
-                case 2 -> {
-                    System.out.print("Enter new depot name: ");
-                    String newDepotName = in.nextLine();
-                    Depot newDepot = new Depot(newDepotName);
-                    scheduleToManage.setDepot(newDepot);
-                }
-                case 3 -> {
-                    System.out.print("Enter new start time: ");
-                    double newStartTime = in.nextDouble();
-                    scheduleToManage.setStartTime(newStartTime);
-                }
-                case 4 -> {
-                    System.out.print("Enter new schedule name: ");
-                    String newScheduleName = in.nextLine();
-                    scheduleToManage.setName(newScheduleName);
-                }
-                default -> System.out.println("Invalid option. Please try again.");
             }
         } else {
             System.out.println("Schedule not found.");
         }
-        System.out.println("Managing an existing schedule...");
-        // Example: scheduleManager.manageSchedule(scheduleId);
     }
 
 }

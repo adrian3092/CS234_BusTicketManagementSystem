@@ -24,6 +24,9 @@ public class Main {
 
         //create login database
         LoginManager loginManager = new LoginManager(in);
+
+        //create Route database
+        RouteManager routeManager = new RouteManager();
         
         //create employee database
         EmployeeManagement employeeManagement = new EmployeeManagement();
@@ -80,7 +83,7 @@ public class Main {
         Accounting accounting = new Accounting(in, busManager, depotManager, employeeManagement);
         
         //create employee menu
-        AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement);
+        AdminMenu employeeMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement, routeManager);
         
         //create expenses
         Salary employee1Salary = new Salary(accounting, 2000, employee1);
@@ -121,7 +124,7 @@ public class Main {
                 case 2 -> {
                     // view schedule 
                     //System.out.println(scheduleManager); // Uncomment this line to view the schedule
-                    AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement);
+                    AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement, routeManager);
                     adminMenu.displayMenu();
                 }
                 case 3 -> {

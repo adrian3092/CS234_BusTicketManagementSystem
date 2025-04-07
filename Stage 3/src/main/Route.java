@@ -23,6 +23,7 @@ public class Route {
         this.name = name;
         this.stops = new ArrayList<>();
         this.routeID = IdGenerator.generateRouteId(); //@Handsome Onojerame -- added route ID generation
+        RouteManager.addRoute(this); //@Handsome Onojerame -- added route to RouteManager
     }
 
     /**

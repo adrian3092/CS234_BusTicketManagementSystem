@@ -1,8 +1,7 @@
 package main;
 
-import java.util.ArrayList;
-
 import depot.Depot;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,7 +16,7 @@ public class Schedule {
     private ArrayList<Double> departureTimes;
 
     public Schedule(Route route, Depot depot, double startTime) {
-        name = "";
+        this.name = "";
         this.route = route;
         this.depot = depot;
         this.startTime = startTime;

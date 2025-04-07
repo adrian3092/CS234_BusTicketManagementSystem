@@ -3,14 +3,8 @@ import java.util.ArrayList;
 
 
 public class EmployeeManagement {
-    private static ArrayList<Employee> employees;
+    private static ArrayList<Employee> employees = new ArrayList<>(); // List to store employees
     
-
-    public EmployeeManagement() {
-        // Initialize the employee list
-        employees = new ArrayList<>();
-    }
-
     public static void addEmployee(Employee employee) {
         // Add a new employee to the list
         employees.add(employee);
@@ -21,9 +15,7 @@ public class EmployeeManagement {
         // Remove the employee from the list
         employees.remove(employee);
     }
-
-
-
+    
     /**
      * Reassigns a new job title to an employee.
      *
