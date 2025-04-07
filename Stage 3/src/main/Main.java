@@ -95,8 +95,8 @@ public class Main {
         MaintenanceCost bus1Maintenance = new MaintenanceCost(accounting, 650, bus1);  
         
         // create ticket, passenger and payment
-        Passenger passenger1 = new Passenger("Robert Smith", "robert.smith@gmail.com", "1112223333");
-        Payment payment1 = new Payment("Credit Card", 3, passenger1, "1111222233334444", "12/26");
+        Passenger passenger1 = new Passenger("Robert Smith", "robert.smith@gmail.com", "2824782957");
+        Payment payment1 = new Payment("Credit Card", 3, passenger1, "5105105105105100", "12/26");
         PaymentManager paymentManager = new PaymentManager();
         paymentManager.addPayment(payment1);
         TicketIssuer ticketIssuer = new TicketIssuer();
