@@ -33,6 +33,8 @@ public class Main {
         // create employees
         Employee employee1 = new Employee("John", "Doe", "Admin");
         Login login1 = new Login(employee1, loginManager);
+        Employee employee2 = new Employee("Lauren", "Smith", "Driver");
+        Login login2 = new Login(employee2, loginManager);
 
         // create initial depot
         DepotManager depotManager = new DepotManager();
