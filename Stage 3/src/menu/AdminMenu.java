@@ -6,9 +6,7 @@ import depot.DepotManager;
 import employees.EmployeeManagement;
 import expenses.Accounting;
 import java.util.Scanner;
-import main.Route;
-import main.RouteManager;
-import main.ScheduleManager;
+import main.*;
 
 /**
  * 
@@ -27,9 +25,13 @@ public class AdminMenu {
 
     /**
      * default constructor
-     * 
-     * @param in, scanner
-     * @param busManager, the bus manager to use
+     * @param in
+     * @param busManager
+     * @param depotManager
+     * @param scheduleManager
+     * @param accounting
+     * @param employeeManagement
+     * @param routeManager
      */
     public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting, EmployeeManagement employeeManagement, RouteManager routeManager) {
         this.in = in;
@@ -39,24 +41,23 @@ public class AdminMenu {
         accountingMenu = new AccountingMenu(in, accounting, busManager, depotManager, employeeManagement);
         employeeManagementMenu = new EmployeeManagementMenu(in);
         scheduleMenu = new ScheduleMenu(in, scheduleManager, routeManager);
-
     }
 
     /**
      * display the employee menu
      */
     public void displayMenu() {
-        
-        while (menuOption != 7) {
+        while (menuOption != 8) {
             System.out.println("~~~~~~~~~~~~");
             System.out.println("Admin Menu");
             System.out.println("1. Bus Management");
             System.out.println("2. Schedule Management");
             System.out.println("3. Route Management");
             System.out.println("4. Depot Management");
-            System.out.println("5. Employee Management");
-            System.out.println("6. Expense Management");
-            System.out.println("7. Return to Main Menu");
+            System.out.println("5. Driver Management");
+            System.out.println("6. Employee Management");
+            System.out.println("7. Expense Management");
+            System.out.println("8. Return to Main Menu");
             System.out.println("~~~~~~~~~~~~");
             
             menuOption = in.nextInt();
@@ -75,12 +76,15 @@ public class AdminMenu {
                     depotMenu.displayMenu();
                 }
                 case 5 -> {
-                    employeeManagementMenu.displayMenu(); 
+                    // driver management
                 }
                 case 6 -> {
-                    accountingMenu.displayMenu();
+                    employeeManagementMenu.displayMenu(); 
                 }
                 case 7 -> {
+                    accountingMenu.displayMenu();
+                }
+                case 8 -> {
                     System.out.println("Returning to Main Menu...");
                     menuOption = 0; // reset menuOption before returning
                     return; 

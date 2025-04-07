@@ -20,12 +20,12 @@ public class Payment {
 
     /**
      * default constructor
-     * @param paymentType, the type of payment being used (only "Credit Card" is accepted)
-     * @param paymentAmount, the amount to be charged
-     * @param paymentDate, the date of the payment
-     * @param passenger, the passenger making the payment
-     * @param cardNumber, the credit card number
-     * @param expirationDate, the credit card expiration date
+     * @param paymentType the type of payment being used (only "Credit Card" is accepted)
+     * @param paymentAmount the amount to be charged
+     * @param paymentDate the date of the payment
+     * @param passenger the passenger making the payment
+     * @param cardNumber the credit card number
+     * @param expirationDate the credit card expiration date
      */
     public Payment(String paymentType, double paymentAmount, Passenger passenger, String cardNumber, String expirationDate) {
         paymentId = nextPaymentId++;      
@@ -38,7 +38,7 @@ public class Payment {
     
     /**
      * masks the credit card number
-     * @param cardNumber, the full credit card number
+     * @param cardNumber the full credit card number
      * @return the masked credit card number (XXXX-XXXX-XXXX-1234)
      */
     private String maskCardNumber(String cardNumber) {

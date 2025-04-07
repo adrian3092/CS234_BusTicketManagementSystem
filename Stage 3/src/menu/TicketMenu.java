@@ -20,8 +20,8 @@ public class TicketMenu {
 
     /**
      * default constructor
-     * @param in, scanner
-     * @param scheduleManager, the schedule manager containing available schedules
+     * @param in scanner
+     * @param scheduleManager the schedule manager containing available schedules
      */
     public TicketMenu(Scanner in, ScheduleManager scheduleManager) {
         this.in = in;
@@ -100,7 +100,7 @@ public class TicketMenu {
     
     /**
      * formats a double time value to a string in the format HH:MM
-     * @param time, the time as a double
+     * @param time the time as a double
      * @return the formatted time string
      */
     private String formatTime(double time) {

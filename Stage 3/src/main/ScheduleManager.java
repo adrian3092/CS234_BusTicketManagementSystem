@@ -15,9 +15,7 @@ public class ScheduleManager {
      * default constructor
      */
     public ScheduleManager() {
-
         this.schedules = new ArrayList<>();
-        
     }
 
     /**
@@ -30,7 +28,7 @@ public class ScheduleManager {
 
     /**
      * add schedule to list of schedules
-     * @param schedule, the schedule to be added
+     * @param schedule the schedule to be added
      */
     public void addSchedule(Schedule schedule) {
         schedules.add(schedule);
@@ -38,7 +36,7 @@ public class ScheduleManager {
 
     /** @author Handsome Onojerame
      * remove schedule from list of schedules
-     * @param schedule, the schedule to be removed
+     * @param schedule the schedule to be removed
      */
     public void removeSchedule(Schedule schedule) {
         schedules.remove(schedule);
@@ -46,7 +44,7 @@ public class ScheduleManager {
 
     /**@author Handsome Onojerame
      * get schedule by name
-     * @param name, the name of the schedule to be retrieved
+     * @param name the name of the schedule to be retrieved
      * @return the schedule at the specified name
      */
     public Schedule getScheduleByName(String name) {
@@ -110,7 +108,7 @@ public class ScheduleManager {
     
     /**
      * formats a double time value to a string in the format HH:MM
-     * @param time, the time as a double
+     * @param time the time as a double
      * @return the formatted time string
      */
     private String formatTime(double time) {

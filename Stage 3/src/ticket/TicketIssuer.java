@@ -23,8 +23,8 @@ public class TicketIssuer {
     
     /**
      * books a ticket for a passenger for a specific schedule
-     * @param passenger, the passenger booking the ticket
-     * @param schedule, the schedule for which the ticket is being booked
+     * @param passenger the passenger booking the ticket
+     * @param schedule the schedule for which the ticket is being booked
      * @return the newly created ticket
      */
     public Ticket bookTicket(Passenger passenger, Schedule schedule) {

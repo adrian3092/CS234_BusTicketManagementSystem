@@ -20,9 +20,9 @@ public class DepotMenu {
     
     /**
      * default constructor
-     * @param in, scanner
-     * @param busManager, the bus manager to use
-     * @param depotManager, the depot manager to use
+     * @param in scanner
+     * @param busManager the bus manager to use
+     * @param depotManager the depot manager to use
      */
     public DepotMenu(Scanner in, BusManager busManager, DepotManager depotManager) {
         this.in = in;

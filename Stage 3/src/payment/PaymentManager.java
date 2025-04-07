@@ -37,10 +37,10 @@ public class PaymentManager {
     
     /**
      * process a payment for a ticket
-     * @param passenger, the passenger making the payment
-     * @param paymentAmount, the amount to be charged
-     * @param cardNumber, the credit card number
-     * @param expirationDate, the credit card expiration date
+     * @param passenger the passenger making the payment
+     * @param paymentAmount the amount to be charged
+     * @param cardNumber the credit card number
+     * @param expirationDate the credit card expiration date
      * @return the payment
      */
     public Payment processPayment(Passenger passenger, double paymentAmount, String cardNumber, String expirationDate) {
@@ -56,7 +56,7 @@ public class PaymentManager {
     
     /**
      * find a payment by its ID
-     * @param paymentId, the payment ID to search for
+     * @param paymentId the payment ID to search for
      * @return the payment if found
      */
     public Payment findPaymentById(int paymentId) {
@@ -70,7 +70,7 @@ public class PaymentManager {
     
     /**
      * get all payments for a specific passenger
-     * @param passenger, the passenger to find payments for
+     * @param passenger the passenger to find payments for
      * @return ArrayList of payments for the passenger
      */
     public ArrayList<Payment> getPaymentsByPassenger(Passenger passenger) {
@@ -87,7 +87,7 @@ public class PaymentManager {
     
     /**
      * cancel a payment
-     * @param paymentId, the ID of the payment to cancel
+     * @param paymentId the ID of the payment to cancel
      * @return true if the payment was found and canceled, false otherwise
      */
     public boolean cancelPayment(int paymentId) {

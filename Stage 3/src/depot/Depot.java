@@ -17,8 +17,7 @@ public class Depot {
 
     /**
      * constructor that initializes the address
-     * @param depotId, the id of the depot
-     * @param address, the address of the depot
+     * @param address the address of the depot
      */
     public Depot(String address) {
         depotId = nextDepotId++;
@@ -48,7 +47,7 @@ public class Depot {
 
     /**
      * assigns a bus to a depot
-     * @param bus, the bus to be assigned
+     * @param bus the bus to be assigned
      */
     public void assignBus(Bus bus) {
         // check if bus already exists by ID
@@ -67,7 +66,7 @@ public class Depot {
 
     /**
      * unassign a bus from a depot
-     * @param bus, the bus to be unassigned
+     * @param bus the bus to be unassigned
      */
     public void removeBus(Bus bus) {
         // find the bus by ID and remove it
@@ -89,8 +88,8 @@ public class Depot {
 
     /**
      * get the bus associated with the bus id
-     * @param busId, the id of the bus
-     * @return, the bus associated with busId
+     * @param busId the id of the bus
+     * @return the bus associated with busId
      */
     public Bus findBusById(int busId) {
         for (Bus b : buses) {

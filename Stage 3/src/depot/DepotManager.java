@@ -21,7 +21,7 @@ public class DepotManager {
 
     /**
      * add bus depot to list of depots
-     * @param depot, the bus depot to be added
+     * @param depot the bus depot to be added
      */
     public void addDepot(Depot depot) {
         depots.add(depot);
@@ -29,7 +29,7 @@ public class DepotManager {
 
     /**
      * remove bus depot from list of depots
-     * @param depot, the depot to be removed
+     * @param depot the depot to be removed
      */
     public void removeDepot(Depot depot) {
         depots.remove(depot);
@@ -37,7 +37,7 @@ public class DepotManager {
 
     /**
      * get all depots
-     * @return, list of all depots
+     * @return list of all depots
      */
     public ArrayList<Depot> getAllDepots() {
         return depots;
@@ -45,8 +45,8 @@ public class DepotManager {
 
     /**
      * get the depot associated with the depot it
-     * @param depotId, the id of the depot
-     * @return, the depot associated with depotId
+     * @param depotId the id of the depot
+     * @return the depot associated with depotId
      */
     public Depot findDepotById(int depotId) {
         for (Depot d : depots) {
@@ -59,8 +59,8 @@ public class DepotManager {
 
     /**
      * assign a bus to a depot
-     * @param depotId, the id of the depot
-     * @param bus, the bus to be assigned
+     * @param depotId the id of the depot
+     * @param bus the bus to be assigned
      * @return
      */
     public boolean assignBusToDepot(int depotId, Bus bus) {
@@ -74,8 +74,8 @@ public class DepotManager {
 
     /**
      * unassign a bus from a depot
-     * @param depotId, the id of the depot
-     * @param bus, the bus to be assigned
+     * @param depotId the id of the depot
+     * @param bus the bus to be assigned
      * @return
      */
     public boolean removeBusFromDepot(int depotId, Bus bus) {

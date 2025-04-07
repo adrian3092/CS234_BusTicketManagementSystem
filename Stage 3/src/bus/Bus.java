@@ -20,11 +20,11 @@ public class Bus {
     /**
      * constructor that initializes the
      * year, make, model, and mileage
-     * @param year, the year of the bus
-     * @param make, the make of the bus
-     * @param model, the model of the bus
-     * @param mileage, the mileage of the bus
-     * @param capacity, the capacity of the bus
+     * @param year the year of the bus
+     * @param make the make of the bus
+     * @param model the model of the bus
+     * @param mileage the mileage of the bus
+     * @param capacity the capacity of the bus
      */
     public Bus(int year, String make, String model, int mileage, int capacity) {
         this.busId = nextBusId++;
@@ -79,7 +79,7 @@ public class Bus {
 
     /**
      * set the mileage for a bus
-     * @param mileage, the mileage of the bus
+     * @param mileage the mileage of the bus
      */
     public void setMileage(int mileage) {
         this.mileage = mileage;
@@ -95,7 +95,7 @@ public class Bus {
 
     /**
      * sets the seating capacity of a bus
-     * @param capacity, the capacity of the bus
+     * @param capacity the capacity of the bus
      */
     public void setCapacity(int capacity) {
         this.capacity = capacity;

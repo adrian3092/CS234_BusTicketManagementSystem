@@ -25,7 +25,7 @@ public class BusManager {
 
     /**
      * add a bus to list of buses
-     * @param bus, the bus to be added
+     * @param bus the bus to be added
      */
     public void addBus(Bus bus) {
         allBuses.add(bus);
@@ -33,7 +33,7 @@ public class BusManager {
 
     /**
      * remove a bus from list of buses
-     * @param bus, the bus to be removed
+     * @param bus the bus to be removed
      */
     public void removeBus (Bus bus) {
         allBuses.remove(bus);
@@ -41,7 +41,7 @@ public class BusManager {
 
     /**
      * get all buses in the fleet
-     * @return, a list of all buses
+     * @return a list of all buses
      */
     public ArrayList<Bus> getAllBuses() {
         return new ArrayList<>(allBuses);
@@ -49,8 +49,8 @@ public class BusManager {
 
     /**
      * get the bus associated with the bus id
-     * @param busId, the id of the bus
-     * @return, the bus associated with busId
+     * @param busId the id of the bus
+     * @return the bus associated with busId
      */
     public Bus findBusById(int busId) {
         for (Bus bus : allBuses) {
@@ -62,8 +62,8 @@ public class BusManager {
 
     /**
      * find which depot a specific bus is assigned to
-     * @param busId, the id of the bus
-     * @return, the depot where the bus is located
+     * @param busId the id of the bus
+     * @return the depot where the bus is located
      */
     public Depot findDepotByBusId(int busId) {
         for (Depot d : depotManager.getAllDepots()) {
