@@ -3,6 +3,7 @@ package employees;
 /**
  * The Admin class represents an administrator who can manage employees
  * and perform administrative tasks in the system.
+ * @author Handsome Onojerame
  */
 public class Admin extends Employee {
 
@@ -11,9 +12,11 @@ public class Admin extends Employee {
      *
      * @param name     The name of the admin.
      * @param jobTitle The job title of the admin.
+     * @param phoneNumber The phone number of the admin.
+     * @param salary The salary of the admin.
      */
-    public Admin(String firstName, String lastName, String jobTitle) {
-        super(firstName, lastName, jobTitle);
+    public Admin(String firstName, String lastName, String jobTitle, String phoneNumber, float salary) {
+        super(firstName, lastName, jobTitle, phoneNumber, salary);
         EmployeeManagement.addEmployee(this);
     }
 

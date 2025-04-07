@@ -162,7 +162,7 @@ public class EmployeeManagementMenu {
           methods in that class.
 */
           
-        Employee newEmployee = new Employee(firstName, lastName, email, phoneNumber, jobTitle, salary);
+        Employee newEmployee = new Employee(firstName, lastName, jobTitle, phoneNumber, salary);
         System.out.println("A new employee has been added with ID: " + newEmployee.getEmployeeID());
     }    
         

@@ -5,6 +5,7 @@ import bus.Bus;
 /**
  * The Driver class represents a bus driver who is an employee.
  * It includes information about the driver's assigned bus and availability.
+ * @author Handsome Onojerame
  */
 public class Driver extends Employee {
     private Bus bus; // The bus assigned to the driver
@@ -13,12 +14,13 @@ public class Driver extends Employee {
     /**
      * Constructor to initialize a Driver object with a name and job title.
      * The driver is set to available by default.
-     *
      * @param name     The name of the driver
      * @param jobTitle The job title of the driver
+     * @param phoneNumber The phone number of the driver
+     * @param salary The salary of the driver
      */
-    public Driver(String firstName, String lastName, String jobTitle) {
-        super(firstName, lastName, jobTitle);
+    public Driver(String firstName, String lastName, String jobTitle, String phoneNumber, float salary) {
+        super(firstName, lastName, jobTitle, phoneNumber, salary);
         this.availability = true;
         EmployeeManagement.addEmployee(this);
     }
