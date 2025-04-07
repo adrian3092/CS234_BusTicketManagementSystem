@@ -34,7 +34,7 @@ public class DriverMenu {
             "View Schedule",
             "View Bus Information",
             "View Route Information",
-            "Exit"
+            "Return to Main Menu"
         };
         this.menuPrompt = "Please select an option: ";
         this.menuExit = "Exiting Driver Menu...";
