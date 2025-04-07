@@ -1,5 +1,7 @@
 package main;
+import idGenerator.IdGenerator;
 import java.util.ArrayList;
+
 
 /**
  * This class represents a bus route. It contains a name for the route and an
@@ -8,6 +10,7 @@ import java.util.ArrayList;
  */
 public class Route {
     
+    private String routeID;
     private String name;
     private ArrayList<BusStop> stops;
 
@@ -19,6 +22,7 @@ public class Route {
     public Route(String name) {
         this.name = name;
         this.stops = new ArrayList<>();
+        this.routeID = IdGenerator.generateRouteId(); //@Handsome Onojerame -- added route ID generation
     }
 
     /**
@@ -35,6 +39,14 @@ public class Route {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * Getter for the routeID variable
+     * @return routeID the ID of the route
+     */
+    public String getRouteID() {
+        return routeID;
     }
     
     /**

@@ -7,6 +7,7 @@ public class IdGenerator {
     private static Integer pID = 1000;
     private static Integer aID = 1000;
     private static Integer dID = 1000;
+    private static Integer rID = 1000;
     
     /**
      * 
@@ -44,6 +45,18 @@ public class IdGenerator {
     public static String generateDriverId() {
         String newID =  "D-" + dID.toString();
         dID++;
+        return newID;
+    }
+
+    /**
+     * Generates a random Route ID.
+     * The ID starts with "R-" followed by 8 characters from a UUID.
+     *
+     * @return A unique route ID string.
+     */
+    public static String generateRouteId() {
+        String newID =  "R-" + rID.toString();
+        rID++;
         return newID;
     }
 

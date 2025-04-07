@@ -95,6 +95,49 @@ public class ScheduleMenu {
 
     private void manageSchedule() {
         // Add code to manage an existing schedule
+        System.out.println("Enter the name of the schedule to manage:");
+        String scheduleName = in.next();
+        Schedule scheduleToManage = scheduleManager.getScheduleByName(scheduleName);
+        if (scheduleToManage != null) {
+            // Implement management options here (e.g., update schedule details)
+
+            System.out.println("Managing schedule: " + scheduleToManage.getName());
+            System.out.println("What would you like to update?");
+            System.out.println("1. Update route");
+            System.out.println("2. Update depot");
+            System.out.println("3. Update start time");
+            System.out.println("4. Update schedule name");
+            int updateOption = in.nextInt();
+            in.nextLine(); // consume newline
+
+            switch (updateOption) {
+                case 1 -> {
+                    System.out.print("Enter new route name: ");
+                    String newRouteName = in.nextLine();
+                    Route newRoute = new Route(newRouteName);
+                    scheduleToManage.setRoute(newRoute);
+                }
+                case 2 -> {
+                    System.out.print("Enter new depot name: ");
+                    String newDepotName = in.nextLine();
+                    Depot newDepot = new Depot(newDepotName);
+                    scheduleToManage.setDepot(newDepot);
+                }
+                case 3 -> {
+                    System.out.print("Enter new start time: ");
+                    double newStartTime = in.nextDouble();
+                    scheduleToManage.setStartTime(newStartTime);
+                }
+                case 4 -> {
+                    System.out.print("Enter new schedule name: ");
+                    String newScheduleName = in.nextLine();
+                    scheduleToManage.setName(newScheduleName);
+                }
+                default -> System.out.println("Invalid option. Please try again.");
+            }
+        } else {
+            System.out.println("Schedule not found.");
+        }
         System.out.println("Managing an existing schedule...");
         // Example: scheduleManager.manageSchedule(scheduleId);
     }
