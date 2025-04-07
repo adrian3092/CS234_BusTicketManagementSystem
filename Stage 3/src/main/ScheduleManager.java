@@ -36,6 +36,28 @@ public class ScheduleManager {
         schedules.add(schedule);
     }
 
+    /** @author Handsome Onojerame
+     * remove schedule from list of schedules
+     * @param schedule, the schedule to be removed
+     */
+    public void removeSchedule(Schedule schedule) {
+        schedules.remove(schedule);
+    }
+
+    /**@author Handsome Onojerame
+     * get schedule by name
+     * @param name, the name of the schedule to be retrieved
+     * @return the schedule at the specified name
+     */
+    public Schedule getScheduleByName(String name) {
+        for (Schedule schedule : schedules) {
+            if (schedule.getName().equals(name)) {
+                return schedule;
+            }
+        }
+        return null; // or throw an exception if not found
+    }
+
     @Override
     public String toString() {
         if (schedules.isEmpty()) {

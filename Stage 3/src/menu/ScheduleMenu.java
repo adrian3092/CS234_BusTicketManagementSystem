@@ -71,12 +71,24 @@ public class ScheduleMenu {
         //create a new schedule object
         Schedule newSchedule = new Schedule(route, depot, startTime);
 
-        //ADD the new schedule to the schedule manager
+        //set the name of the schedule 
         newSchedule.setName(nameOfSchedule);
+
+        //add the new schedule to the schedule manager
+        scheduleManager.addSchedule(newSchedule);
     }
 
     private void removeSchedule() {
         // Add code to remove an existing schedule
+        System.out.println("Enter the name of the schedule to remove:");
+        String scheduleName = in.next();
+        Schedule scheduleToRemove = scheduleManager.getScheduleByName(scheduleName);
+        if (scheduleToRemove != null) {
+            scheduleManager.removeSchedule(scheduleToRemove);
+            System.out.println("Schedule removed successfully.");
+        } else {
+            System.out.println("Schedule not found.");
+        }
         System.out.println("Removing an existing schedule...");
         // Example: scheduleManager.removeSchedule(scheduleId);
     }
