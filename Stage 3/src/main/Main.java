@@ -123,9 +123,7 @@ public class Main {
                 }
                 case 2 -> {
                     // view schedule 
-                    //System.out.println(scheduleManager); // Uncomment this line to view the schedule
-                    AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement, routeManager);
-                    adminMenu.displayMenu();
+                    System.out.println(scheduleManager); // Uncomment this line to view the schedule
                 }
                 case 3 -> {
                     // employee login
