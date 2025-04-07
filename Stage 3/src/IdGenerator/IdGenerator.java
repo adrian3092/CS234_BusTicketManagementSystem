@@ -1,24 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package IdGenerator;
-
-import java.util.UUID;
+package idGenerator;
 /**
  *
  * @author Owner
  */
 public class IdGenerator {
+    private static Integer pID = 1000;
+    private static Integer aID = 1000;
+    private static Integer dID = 1000;
+    
     /**
+     * 
      * Generates a random Passenger ID.
      * The ID starts with "P-" followed by 8 characters from a UUID.
      *
      * @return A unique passenger ID string.
      */
     public static String generatePassengerId() {
-        String uniquePart = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        return "P-" + uniquePart;
+        
+        String newID =  "P-" + pID.toString();
+        pID++;
+        return newID;
+
     }
 
     /**
@@ -28,8 +30,9 @@ public class IdGenerator {
      * @return A unique admin ID string.
      */
     public static String generateAdminId() {
-        String uniquePart = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        return "A-" + uniquePart;
+        String newID =  "A-" + aID.toString();
+        aID++;
+        return newID;
     }
 
     /**
@@ -39,8 +42,9 @@ public class IdGenerator {
      * @return A unique driver ID string.
      */
     public static String generateDriverId() {
-        String uniquePart = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-        return "D-" + uniquePart;
+        String newID =  "D-" + dID.toString();
+        dID++;
+        return newID;
     }
 
 }
