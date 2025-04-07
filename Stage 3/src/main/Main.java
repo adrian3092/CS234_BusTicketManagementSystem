@@ -99,8 +99,6 @@ public class Main {
         paymentManager.addPayment(payment1);
         TicketIssuer ticketIssuer = new TicketIssuer();
         ticketIssuer.bookTicket(passenger1, schedule1);
-        
-        
 
         // logic for the main menu
         int menuOption = 0;

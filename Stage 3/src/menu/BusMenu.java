@@ -22,6 +22,7 @@ public class BusMenu {
      * default constructor
      * @param in, scanner
      * @param busManager, the bus manager to use
+     * @param depotManager, the depot manager to use
      */
     public BusMenu(Scanner in, BusManager busManager, DepotManager depotManager) {
         this.in = in;
@@ -34,7 +35,6 @@ public class BusMenu {
      * display the main bus menu
      */
     public void displayMenu() {
-        
         while (menuOption != 4) {
             System.out.println("~~~~~~~~~~~~");
             System.out.println("Bus Management Menu");
@@ -87,7 +87,6 @@ public class BusMenu {
      * display options for adding a new bus
      */
     public void addBus() {
-        
         System.out.print("Enter the year of the bus: ");
         int year = in.nextInt();
         System.out.print("Enter the make of the bus: ");
@@ -101,14 +100,12 @@ public class BusMenu {
         Bus newBus = new Bus(year, make, model, mileage, seatingCapacity);
         busManager.addBus(newBus);
         System.out.println("A new bus has been added with ID: " + newBus.getBusId());
-
     }
 
     /**
      * display options for managing an existing bus
      */
     public void manageBus() {
-
         System.out.print("Enter the ID of the bus you would like to manage: ");
         int busId = in.nextInt();
         Bus selectedBus = busManager.findBusById(busId);
