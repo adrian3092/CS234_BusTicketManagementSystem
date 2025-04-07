@@ -1,6 +1,6 @@
 package main;
 
-import IdGenerator.IdGenerator;
+import idGenerator.IdGenerator;
 
 public class Passenger {
     // define attributes

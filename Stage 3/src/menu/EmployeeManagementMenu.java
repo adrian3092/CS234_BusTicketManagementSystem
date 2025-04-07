@@ -10,12 +10,11 @@ import java.util.Scanner;
 public class EmployeeManagementMenu {
     private Scanner in;
     private int menuOption;
-    EmployeeManagement employeeManager;
+    
 
-    public EmployeeManagementMenu(Scanner in, EmployeeManagement _employeeManager) {
+    public EmployeeManagementMenu(Scanner in) {
         this.in = in;
         menuOption = 0;
-        employeeManager = _employeeManager;
     }
 
     public void displayMenu() {
@@ -32,14 +31,14 @@ public class EmployeeManagementMenu {
 
             switch (menuOption) {
                 case 1 -> {
-//                    addEmployee(); I commented out this line because its breaking the code (George)
+                    addEmployee(); // I commented out this line because its breaking the code (George)
                 }
                 case 2 -> {
                     deleteEmployee();
                 }
                 case 3 -> {
                     // display all employees
-                    employeeManager.getAllEmployees();
+                    EmployeeManagement.getAllEmployees();
                 }
                 case 4 -> {
                     updateEmployee();
@@ -57,7 +56,7 @@ public class EmployeeManagementMenu {
     private void updateEmployee() {
         System.out.println("Enter the ID of the employee to update:");
         String employeeId = in.next();
-        Employee employee = employeeManager.getEmployeeById(employeeId);
+        Employee employee = EmployeeManagement.getEmployeeById(employeeId);
         if (employee == null) {
             System.out.println("Employee not found. Update failed.");
             return;
@@ -80,13 +79,13 @@ public class EmployeeManagementMenu {
                 String newName = in.nextLine();
                 System.out.println("Enter the new last name of the employee: ");
                 String newLastName = in.nextLine();
-                employeeManager.updateName(employee, newName, newLastName); 
+                EmployeeManagement.updateName(employee, newName, newLastName); 
                 System.out.println("Employee name updated successfully.");
             }
             case 2 -> {
                 System.out.println("Enter the new job title of the employee:");
                 String newJobTitle = in.nextLine();
-                employeeManager.setJobTitle(employee, newJobTitle);
+                EmployeeManagement.setJobTitle(employee, newJobTitle);
                 System.out.println("Employee job title updated successfully.");
             }
             case 3 -> {
@@ -118,18 +117,18 @@ public class EmployeeManagementMenu {
     private void deleteEmployee() {
         System.out.println("Enter the ID of the employee to delete:");
         String employeeId = in.next();
-        Employee employee = employeeManager.getEmployeeById(employeeId);
+        Employee employee = EmployeeManagement.getEmployeeById(employeeId);
         if (employee == null) {
             System.out.println("Employee not found. Deletion failed.");
             return;
         }
-        employeeManager.deleteEmployee(employee);
+        EmployeeManagement.deleteEmployee(employee);
         System.out.println("Employee deleted successfully.");
     }
 
 
     private void addEmployee() {
-      
+
         in.nextLine(); // consume leftover new line
         System.out.print("Please enter the first name of the employee: ");
         String firstName = in.nextLine();

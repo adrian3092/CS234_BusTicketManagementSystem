@@ -1,12 +1,11 @@
 package main;
 
-import java.util.Scanner;
-
 import bus.*;
 import depot.*;
 import employees.Employee;
 import employees.EmployeeManagement;
 import expenses.*;
+import java.util.Scanner;
 import login.*;
 import menu.AdminMenu;
 import menu.TicketMenu;
@@ -30,7 +29,7 @@ public class Main {
         EmployeeManagement employeeManagement = new EmployeeManagement();
                 
         // create employees
-        Employee employee1 = new Employee("John", "Doe", "Admin", employeeManagement);
+        Employee employee1 = new Employee("John", "Doe", "Admin");
         Login login1 = new Login(employee1, loginManager);
 
         // create initial depot
@@ -121,7 +120,9 @@ public class Main {
                 }
                 case 2 -> {
                     // view schedule 
-                    System.out.println(scheduleManager);
+                    //System.out.println(scheduleManager); // Uncomment this line to view the schedule
+                    AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement);
+                    adminMenu.displayMenu();
                 }
                 case 3 -> {
                     // employee login

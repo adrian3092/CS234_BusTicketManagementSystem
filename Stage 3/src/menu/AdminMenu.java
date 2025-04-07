@@ -1,11 +1,11 @@
 
 package menu;
 
-import java.util.Scanner;
 import bus.BusManager;
 import depot.DepotManager;
 import employees.EmployeeManagement;
 import expenses.Accounting;
+import java.util.Scanner;
 import main.ScheduleManager;
 
 /**
@@ -70,7 +70,8 @@ public class AdminMenu {
                     depotMenu.displayMenu();
                 }
                 case 5 -> {
-                    // employee management
+                    EmployeeManagementMenu employeeManagementMenu = new EmployeeManagementMenu(in);
+                    employeeManagementMenu.displayMenu(); 
                 }
                 case 6 -> {
                     accountingMenu.displayMenu();
