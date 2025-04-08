@@ -111,15 +111,21 @@ public class Main {
         int menuOption = 0;
         
         while (menuOption != 4) {
-            System.out.println("~~~~~~~~~~~~");
-            System.out.println("Main Menu");
-            System.out.println("1. Book Ticket");
-            System.out.println("2. View Schedule");
-            System.out.println("3. Employee Login");
-            System.out.println("4. Quit");
-            System.out.println("~~~~~~~~~~~~");
-            
+            System.out.println("========================================");
+            System.out.println("         WELCOME TO BUS COMPANY         ");
+            System.out.println("========================================");
+            System.out.println("|              MAIN MENU               |");
+            System.out.println("========================================");
+            System.out.println("|  1. Book Ticket                      |");
+            System.out.println("|  2. View Schedule                    |");
+            System.out.println("|  3. Employee Login                   |");
+            System.out.println("|  4. Quit                             |");
+            System.out.println("========================================");
+            System.out.print("Please select an option (1-4): ");
+
             menuOption = in.nextInt();
+
+            System.out.println("========================================");
 
             switch (menuOption) {
                 case 1 -> {
@@ -129,28 +135,34 @@ public class Main {
                     ticketMenu.displayMenu();
                 }
                 case 2 -> {
-                    // view schedule 
+                    // view schedule
+                    System.out.println("Current Bus Schedules:");
                     System.out.println(scheduleManager);
                 }
                 case 3 -> {
                     // employee login
+                    System.out.println("Employee Login");
                     String accessLevel = loginManager.checkCredentials();
                     if (accessLevel.equals("Admin")) {
-                        System.out.println("Access Granted"); 
+                        System.out.println("Access Granted: Admin Menu");
                         adminMenu.displayMenu();
                     } else if (accessLevel.equals("Driver")) {
-                        System.out.println("Access Granted");
+                        System.out.println("Access Granted: Driver Menu");
                         driverMenu.run();
-                    } 
+                    } else {
+                        System.out.println("Access Denied: Invalid Credentials");
+                    }
                 }
                 case 4 -> {
+                    System.out.println("Thank you for using the Bus Company App!");
                     System.out.println("Exiting the program. Goodbye!");
                     in.close(); // close scanner when exiting
                 }
                 default -> {
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println("Invalid option. Please enter a number between 1 and 4.");
                 }
             }
+            System.out.println();
         }
     }
 }
