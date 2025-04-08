@@ -16,8 +16,8 @@ import main.ScheduleManager;
 public class ScheduleMenu {
     //this menu needs to add a new schedule, remove an existing schedule and, manage an existing schedule
     private ScheduleManager scheduleManager;
-    private RouteManager routeManager; // not used in this class, but needed for the constructor
-    private DepotManager depotManager; // not used in this class, but needed for the constructor
+    private RouteManager routeManager; 
+    private DepotManager depotManager; 
     private int menuOption; 
     private Scanner in;
 
@@ -84,12 +84,24 @@ public class ScheduleMenu {
             }
         }
 
+        boolean depotFound = false;
         System.out.print("Enter depot ID: ");
-        Integer depotID = in.nextInt();
+        Integer depotId = in.nextInt();
+        Depot depot = depotManager.findDepotById(depotId); 
+        
+        while(!depotFound) {
+            if (depot != null) {
+                depotFound = true;
+                System.out.println("Depot found: " + depot.getDepotAddress());
+            } else {
+                System.out.println("Depot not found. Please try again.");
+                System.out.print("Enter depot ID: ");
+                depotId = in.nextInt();
+                depot = depotManager.findDepotById(depotId);
+            }
+        }
 
-        Depot depot = depotManager.findDepotById(depotID); 
-
-        System.out.print("Enter start time: ");
+        System.out.print("Enter start time (HH.MM): ");
         double startTime = in.nextDouble();
     
         //create a new schedule object
@@ -164,8 +176,13 @@ public class ScheduleMenu {
                         }
                     }
                     case 3 -> {
-                        System.out.print("Enter new start time: ");
+                        System.out.print("Enter new start time (HH.MM): ");
                         double newStartTime = in.nextDouble();
+                        if (newStartTime < 0 || newStartTime > 24) {
+                            System.out.println("Invalid time. Please enter a valid time between 0 and 24.");
+                            continue;
+                        }
+                        
                         scheduleToManage.setStartTime(newStartTime);
                         System.out.println("Start time updated successfully.");
                     }
