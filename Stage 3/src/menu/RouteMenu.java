@@ -26,13 +26,14 @@ public class RouteMenu {
      */
     public void displayMenu() {
         
-        while (menuOption != 4) {
+        while (menuOption != 5) {
             System.out.println("~~~~~~~~~~~~");
             System.out.println("Route Management Menu");
             System.out.println("1. Add a new route");
             System.out.println("2. Manage an existing route");
             System.out.println("3. Display all Routes");
-            System.out.println("4. Return to previous menu");
+            System.out.println("4. Manage route assignment");
+            System.out.println("5. Return to previous menu");
 
             menuOption = in.nextInt();
 
@@ -47,6 +48,9 @@ public class RouteMenu {
                     routeManager.displayRoutes();
                 }
                 case 4 -> {
+                    // route assignment
+                }
+                case 5 -> {
                     System.out.println("Returning to previous menu...");
                     menuOption = 0; // reset menuOption before returning
                     return;
@@ -122,7 +126,39 @@ public class RouteMenu {
             }
         }
     }
-}
     
-    
+    public void routeAssignment() {
+        int option = 0;
+        while (option != 4) {            
+            System.out.println("1. Assign bus to route");
+            System.out.println("2. Unassign bus from route");
+            System.out.println("3. Assign driver to route");
+            System.out.println("4. Unassign driver from route");
+            System.out.println("5. Previous Menu");
+            
+            menuOption = in.nextInt();
 
+            switch (option) {
+                case 1 -> {
+                    //
+                }
+                case 2 -> {
+                    //
+                }
+                case 3 -> {
+                    //
+                }
+                case 4 -> {
+                    //
+                }
+                case 5 -> {
+                    System.out.println("Returning to previous menu...");
+                    return;
+                }
+                default -> {
+                    System.out.println("Invalid option. Please try again.");
+                }
+            }
+        }
+    }
+}
