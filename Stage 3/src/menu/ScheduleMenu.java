@@ -17,23 +17,26 @@ public class ScheduleMenu {
     //this menu needs to add a new schedule, remove an existing schedule and, manage an existing schedule
     private ScheduleManager scheduleManager;
     private RouteManager routeManager; // not used in this class, but needed for the constructor
+    private DepotManager depotManager; // not used in this class, but needed for the constructor
     private int menuOption; 
     private Scanner in;
 
-    public ScheduleMenu(Scanner in, ScheduleManager scheduleManager, RouteManager routeManager) {
+    public ScheduleMenu(Scanner in, ScheduleManager scheduleManager, RouteManager routeManager, DepotManager depotManager) {
         this.in = in;
         this.scheduleManager = scheduleManager;
-        this.routeManager = routeManager; // not used in this class, but needed for the constructor
+        this.routeManager = routeManager; 
+        this.depotManager = depotManager; 
         this.menuOption = 0;
     }
     public void displayMenu() {
-        while (menuOption != 4) {
+        while (menuOption != 5) {
             System.out.println("~~~~~~~~~~~~");
             System.out.println("Schedule Management Menu");
             System.out.println("1. Add a new schedule");
             System.out.println("2. Remove an existing schedule");
             System.out.println("3. Manage an existing schedule");
-            System.out.println("4. Return to Main Menu");
+            System.out.println("4. Display all schedules");
+            System.out.println("5. Return to Main Menu");
 
             menuOption = in.nextInt();
 
@@ -48,9 +51,12 @@ public class ScheduleMenu {
                     manageSchedule();
                 }
                 case 4 -> {
+                    System.out.println("Displaying all schedules...");
+                    System.out.println(scheduleManager); 
+                }
+                case 5 -> {
                     System.out.println("Returning to Main Menu...");
-                    menuOption = 0; // reset menuOption before returning
-                    return;
+                    return; // Exit the menu
                 }
                 default -> System.out.println("Invalid option. Please try again.");
             }
@@ -80,8 +86,8 @@ public class ScheduleMenu {
 
         System.out.print("Enter depot ID: ");
         Integer depotID = in.nextInt();
-        DepotManager depotManager = new DepotManager(); // create an instance of DepotManager - but this will cause issues. need to make depot methods static
-        Depot depot = depotManager.findDepotById(depotID); // static method error
+
+        Depot depot = depotManager.findDepotById(depotID); 
 
         System.out.print("Enter start time: ");
         double startTime = in.nextDouble();
@@ -148,8 +154,8 @@ public class ScheduleMenu {
                     case 2 -> {
                         System.out.print("Enter new depot ID: ");
                         Integer newDepotId = in.nextInt();
-                        DepotManager depotManager = new DepotManager(); // create an instance of DepotManager - but this will cause issues. need to make depot methods static
-                        Depot newDepot = depotManager.findDepotById(newDepotId); // static method error
+                
+                        Depot newDepot = depotManager.findDepotById(newDepotId); 
                         if (newDepot != null) {
                             scheduleToManage.setDepot(newDepot);
                             System.out.println("Depot updated successfully.");
@@ -179,7 +185,16 @@ public class ScheduleMenu {
 
             }
         } else {
-            System.out.println("Schedule not found.");
+            System.out.println("oops! Schedule not found.");
+            System.out.println("Would you like to create a new schedule? (yes/no)");
+            String response = in.next();
+            if (response.equalsIgnoreCase("yes")) {
+                addSchedule();
+            } else {
+                System.out.println("Returning to Schedule Management Menu...");
+                return;
+            }
+            
         }
     }
 
