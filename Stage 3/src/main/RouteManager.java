@@ -8,17 +8,20 @@ import java.util.ArrayList;
  */
 public class RouteManager {
     
-    private static ArrayList<Route> routes = new ArrayList<>(); // List of routes
+    private ArrayList<Route> routes;// List of routes
     
     /**
      * Constructor for the class. Initializes the array list of routes.
      */
+    public RouteManager() {
+        this.routes = new ArrayList<>();
+    }
     
     /**
      * Adds a new route to the array list of routes.
      * @param route a Route object
      */
-    public static void addRoute(Route route) {
+    public void addRoute(Route route) {
         routes.add(route);
     }
     
@@ -26,7 +29,7 @@ public class RouteManager {
      * Returns the array list of routes.
      * @return routes the array list of routes
      */
-    public static ArrayList<Route> getRoutes() {
+    public ArrayList<Route> getRoutes() {
         return routes;
     }
 
@@ -35,7 +38,7 @@ public class RouteManager {
      * @param routeID the ID of the route
      * @return the Route object with the specified ID, or null if not found
      */
-    public static Route getRouteById(String routeID) {
+    public Route getRouteById(String routeID) {
         for (Route route : routes) {
             if (route.getRouteID().equals(routeID)) {
                 return route;

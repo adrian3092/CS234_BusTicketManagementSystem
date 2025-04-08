@@ -13,17 +13,18 @@ public class Route {
     private String routeID;
     private String name;
     private ArrayList<BusStop> stops;
+    private RouteManager routeManager;
 
     /**
      * Constructor for the class. Requires a name for the route and it 
      * initializes the array list of stops.
      * @param name 
      */
-    public Route(String name) {
+    public Route(String name, RouteManager routeManager) {
         this.name = name;
         this.stops = new ArrayList<>();
         this.routeID = IdGenerator.generateRouteId(); //@Handsome Onojerame -- added route ID generation
-        RouteManager.addRoute(this); //@Handsome Onojerame -- added route to RouteManager
+        routeManager.addRoute(this); //@Handsome Onojerame -- added route to RouteManager
     }
 
     /**

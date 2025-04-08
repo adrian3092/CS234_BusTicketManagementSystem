@@ -29,7 +29,7 @@ public class Main {
         
         //create employee database
         EmployeeManagement employeeManagement = new EmployeeManagement();
-                
+        
         // create employees
         Admin admin1 = new Admin("John", "Doe", "Admin", "5286857246", 40500);
         Login login1 = new Login(admin1, loginManager);
@@ -42,7 +42,7 @@ public class Main {
         depotManager.addDepot(depot1);
 
         // create initial route and bus stops, add bus stops to route
-        Route route1 = new Route("Downtown");
+        Route route1 = new Route("Downtown", routeManager);
 
         BusStop busStop1 = new BusStop("Main St & 6th St", 0.3);
         BusStop busStop2 = new BusStop("Broadway & 6th St", 0.2);

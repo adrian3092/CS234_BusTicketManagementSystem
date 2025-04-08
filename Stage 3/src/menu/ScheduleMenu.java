@@ -63,7 +63,7 @@ public class ScheduleMenu {
         String nameOfSchedule = in.next();
         System.out.print("Enter route ID: ");
         String routeID = in.next();
-        Route route = RouteManager.getRouteById(routeID);
+        Route route = routeManager.getRouteById(routeID);
         boolean routeFound = false;
 
         while (!routeFound) {
@@ -74,7 +74,7 @@ public class ScheduleMenu {
                 System.out.println("Route not found. Please try again.");
                 System.out.print("Enter route ID: ");
                 routeID = in.next();
-                route = RouteManager.getRouteById(routeID);
+                route = routeManager.getRouteById(routeID);
             }
         }
 
@@ -137,7 +137,7 @@ public class ScheduleMenu {
                     case 1 -> {
                         System.out.print("Enter the route ID: ");
                         String newRouteId = in.nextLine();
-                        Route newRoute = RouteManager.getRouteById(newRouteId);
+                        Route newRoute = routeManager.getRouteById(newRouteId);
                         if (newRoute != null) {
                             scheduleToManage.setRoute(newRoute);
                             System.out.println("Route updated successfully.");
