@@ -22,7 +22,7 @@ public class EmployeeManagementMenu {
     public void displayMenu() {
         while (menuOption != 5) {
             System.out.println("╔════════════════════════════════════════════════╗");
-            System.out.println("║              EMPLOYEE MANAGEMENT MENU          ║");
+            System.out.println("║            EMPLOYEE MANAGEMENT MENU            ║");
             System.out.println("╠════════════════════════════════════════════════╣");
             System.out.println("║  1. Add a New Employee                         ║");
             System.out.println("║  2. Delete an Existing Employee                ║");
