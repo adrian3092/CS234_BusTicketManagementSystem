@@ -49,17 +49,16 @@ public class AdminMenu {
      * display the employee menu
      */
     public void displayMenu() {
-        while (menuOption != 8) {
+        while (menuOption != 7) {
             System.out.println("~~~~~~~~~~~~");
             System.out.println("Admin Menu");
             System.out.println("1. Bus Management");
             System.out.println("2. Schedule Management");
             System.out.println("3. Route Management");
             System.out.println("4. Depot Management");
-            System.out.println("5. Driver Management");
-            System.out.println("6. Employee Management");
-            System.out.println("7. Expense Management");
-            System.out.println("8. Return to Main Menu");
+            System.out.println("5. Employee Management");
+            System.out.println("6. Expense Management");
+            System.out.println("7. Return to Main Menu");
             System.out.println("~~~~~~~~~~~~");
             
             menuOption = in.nextInt();
@@ -78,15 +77,12 @@ public class AdminMenu {
                     depotMenu.displayMenu();
                 }
                 case 5 -> {
-                    // driver management
-                }
-                case 6 -> {
                     employeeManagementMenu.displayMenu(); 
                 }
-                case 7 -> {
+                case 6 -> {
                     accountingMenu.displayMenu();
                 }
-                case 8 -> {
+                case 7 -> {
                     System.out.println("Returning to Main Menu...");
                     menuOption = 0; // reset menuOption before returning
                     return; 

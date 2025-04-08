@@ -208,6 +208,7 @@ public class BusMenu {
                 case 5 -> {
                     busManager.removeBus(selectedBus);
                     System.out.println("The bus with ID " + busId + " has been deleted.");
+                    return;
                 }
                 case 6 -> {
                     return;
