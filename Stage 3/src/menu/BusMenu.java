@@ -3,8 +3,7 @@ package menu;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import bus.Bus;
-import bus.BusManager;
+import bus.*;
 import depot.DepotManager;
 
 /**
@@ -45,7 +44,8 @@ public class BusMenu {
 
             if (in.hasNextInt()) {
                 menuOption = in.nextInt();
-            } else {
+            } 
+            else {
                 System.out.println("Invalid input. Please enter a number.");
                 in.next(); // consume the invalid input
                 continue;
@@ -64,7 +64,8 @@ public class BusMenu {
                     ArrayList<Bus> buses = busManager.getAllBuses();
                     if (buses.isEmpty()) {
                         System.out.println("There are no buses available in the system.");
-                    } else {
+                    } 
+                    else {
                         for (Bus bus : buses) {
                             System.out.println("ID: " + bus.getBusId());
                             System.out.println("Year/Make/Model: " + bus.getYear() + " " + bus.getMake() + " " + bus.getModel());
@@ -97,7 +98,8 @@ public class BusMenu {
         int year;
         if (in.hasNextInt()) {
             year = in.nextInt();
-        } else {
+        } 
+        else {
             System.out.println("Invalid input. Please enter a number for year.");
             in.next(); // consume the invalid input
             return;
@@ -113,7 +115,8 @@ public class BusMenu {
         int mileage;
         if (in.hasNextInt()) {
             mileage = in.nextInt();
-        } else {
+        } 
+        else {
             System.out.println("Invalid input. Please enter a number for mileage.");
             in.next(); // consume the invalid input
             return;
@@ -123,7 +126,8 @@ public class BusMenu {
         int seatingCapacity;
         if (in.hasNextInt()) {
             seatingCapacity = in.nextInt();
-        } else {
+        } 
+        else {
             System.out.println("Invalid input. Please enter a number for seating capacity.");
             in.next(); // consume the invalid input
             return;
@@ -142,7 +146,8 @@ public class BusMenu {
         int busId;
         if (in.hasNextInt()) {
             busId = in.nextInt();
-        } else {
+        } 
+        else {
             System.out.println("Invalid input. Please enter a number.");
             in.next(); // consume the invalid input
             return;
@@ -167,7 +172,8 @@ public class BusMenu {
             
             if (in.hasNextInt()) {
                 subMenuOption = in.nextInt();
-            } else {
+            } 
+            else {
                 System.out.println("Invalid input. Please enter a number.");
                 in.next(); // consume the invalid input
                 continue;
@@ -184,7 +190,8 @@ public class BusMenu {
                         newMileage = in.nextInt();
                         selectedBus.setMileage(newMileage);
                         System.out.println("The mileage has been updated successfully.");
-                    } else {
+                    } 
+                    else {
                         System.out.println("Invalid input. Please enter a number for mileage.");
                         in.next(); // consume the invalid input
                     }
