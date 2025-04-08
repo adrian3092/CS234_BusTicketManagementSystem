@@ -21,16 +21,16 @@ public class EmployeeManagementMenu {
 
     public void displayMenu() {
         while (menuOption != 5) {
-            System.out.println("=======================================");
-            System.out.println("|         Employee Management         |");
-            System.out.println("=======================================");
-            System.out.println("| 1. Add a New Employee               |");
-            System.out.println("| 2. Delete an Existing Employee      |");
-            System.out.println("| 3. Display All Employees            |");
-            System.out.println("| 4. Update Employee Information      |");
-            System.out.println("| 5. Return to Main Menu              |");
-            System.out.println("=======================================");
-            System.out.print("Please select an option (1-5): ");
+            System.out.println("╔════════════════════════════════════════════════╗");
+            System.out.println("║              EMPLOYEE MANAGEMENT MENU          ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║  1. Add a New Employee                         ║");
+            System.out.println("║  2. Delete an Existing Employee                ║");
+            System.out.println("║  3. Display All Employees                      ║");
+            System.out.println("║  4. Update Employee Information                ║");
+            System.out.println("║  5. Return to Main Menu                        ║");
+            System.out.println("╚════════════════════════════════════════════════╝");
+            System.out.print(" Please select an option (1-5): ");
 
             menuOption = in.nextInt();
 
