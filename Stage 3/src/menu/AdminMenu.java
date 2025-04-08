@@ -22,6 +22,7 @@ public class AdminMenu {
     private Accounting accounting;
     private EmployeeManagementMenu employeeManagementMenu;
     private ScheduleMenu scheduleMenu;
+    private RouteMenu routeMenu;
 
     /**
      * default constructor
@@ -41,6 +42,7 @@ public class AdminMenu {
         accountingMenu = new AccountingMenu(in, accounting, busManager, depotManager, employeeManagement);
         employeeManagementMenu = new EmployeeManagementMenu(in);
         scheduleMenu = new ScheduleMenu(in, scheduleManager, routeManager);
+        routeMenu = new RouteMenu(in, routeManager);
     }
 
     /**
@@ -70,7 +72,7 @@ public class AdminMenu {
                     scheduleMenu.displayMenu(); 
                 }
                 case 3 -> {
-                    // route management
+                    routeMenu.displayMenu();
                 }
                 case 4 -> {
                     depotMenu.displayMenu();

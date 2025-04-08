@@ -5,6 +5,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Handsome Onojerame
+ * @author George Candal
  */
 public class RouteManager {
     
@@ -23,6 +24,10 @@ public class RouteManager {
      */
     public void addRoute(Route route) {
         routes.add(route);
+    }
+    
+    public void removeRoute(Route route) {
+        routes.remove(route);
     }
     
     /**
@@ -45,5 +50,11 @@ public class RouteManager {
             }
         }
         return null; // Return null if the route is not found   
+    }
+    
+    public void displayRoutes() {
+        for (Route r : routes) {
+            System.out.println(r);
+        }
     }
 }

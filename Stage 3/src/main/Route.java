@@ -75,4 +75,13 @@ public class Route {
         return stops;
     }
         
+    @Override
+    public String toString() {
+        return "ID: " + routeID + " Name: " + name;
+    }
+    
+    public void displayStops() {
+        for (BusStop stop : stops)
+            System.out.println(stop.getName());
+    }
 }
