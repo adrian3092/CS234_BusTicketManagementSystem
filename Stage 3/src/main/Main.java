@@ -92,7 +92,7 @@ public class Main {
         AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement, routeManager);
 
         // create driver menu
-        DriverMenu driverMenu = new DriverMenu(in, dispatcher, scheduleManager);
+        DriverMenu driverMenu = new DriverMenu(in, dispatcher, scheduleManager, busManager);
         
         //create expenses
         Salary employee1Salary = new Salary(accounting, 2000, admin1);

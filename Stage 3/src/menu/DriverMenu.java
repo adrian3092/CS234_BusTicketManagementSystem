@@ -5,7 +5,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import main.*;
 import employees.Driver;
-import bus.Bus;
+import bus.*;
+import depot.Depot;
 
 /**
  *
@@ -20,14 +21,16 @@ public class DriverMenu {
     private String menuExit;
     private Dispatcher dispatcher;
     private ScheduleManager scheduleManager;
+    private BusManager busManager;
 
     /**
      * 
      * @param in
      * @param dispatcher
      * @param scheduleManager
+     * @param depotManager
      */
-    public DriverMenu(Scanner in, Dispatcher dispatcher, ScheduleManager scheduleManager) {
+    public DriverMenu(Scanner in, Dispatcher dispatcher, ScheduleManager scheduleManager, BusManager busManager) {
         this.in = in;
         this.menuTitle = "Driver Menu";
         this.menuOptions = new String[] {
@@ -40,6 +43,7 @@ public class DriverMenu {
         this.menuExit = "Exiting Driver Menu...";
         this.dispatcher = dispatcher;
         this.scheduleManager = scheduleManager;
+        this.busManager = busManager;
     }
     public void displayMenu() {
         System.out.println(menuTitle);
@@ -94,12 +98,12 @@ public class DriverMenu {
         for (DriverAssignment assignment : assignments) {
             Driver driver = assignment.getDriver();
             Bus bus = assignment.getBus();
+            Depot depot = busManager.findDepotByBusId(bus.getBusId());
             
             System.out.println("-----------------------");
             System.out.println("Bus Assignment for " + driver.getName());
             System.out.println("Bus ID: " + bus.getBusId());
-            System.out.println("Make: " + bus.getMake());
-            System.out.println("Model: " + bus.getModel());
+            System.out.println("Bus Location: " + depot.getDepotAddress());
             System.out.println("-----------------------\n");
         }
     }
