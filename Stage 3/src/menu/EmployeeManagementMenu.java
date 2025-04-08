@@ -34,6 +34,8 @@ public class EmployeeManagementMenu {
 
             menuOption = in.nextInt();
 
+            System.out.println("========================================");
+
             switch (menuOption) {
                 case 1 -> {
                     addEmployee(); // I commented out this line because its breaking the code (George)
