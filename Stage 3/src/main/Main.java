@@ -31,9 +31,9 @@ public class Main {
         EmployeeManagement employeeManagement = new EmployeeManagement();
         
         // create employees
-        Admin admin1 = new Admin("John", "Doe", "Admin", "5286857246", 40500);
+        Admin admin1 = new Admin("John", "Doe", "Admin", "5286857246", 40500, employeeManagement);
         Login login1 = new Login(admin1, loginManager);
-        Driver driver1 = new Driver("Lauren", "Smith", "Driver", "8518534605", 51800);
+        Driver driver1 = new Driver("Lauren", "Smith", "Driver", "8518534605", 51800, employeeManagement);
         Login login2 = new Login(driver1, loginManager);
 
         // create initial depot

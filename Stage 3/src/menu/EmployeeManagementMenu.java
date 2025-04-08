@@ -10,10 +10,12 @@ import java.util.Scanner;
 public class EmployeeManagementMenu {
     private Scanner in;
     private int menuOption;
+    private EmployeeManagement employeeManagement;
     
 
-    public EmployeeManagementMenu(Scanner in) {
+    public EmployeeManagementMenu(Scanner in, EmployeeManagement employeeManagement) {
         this.in = in;
+        this.employeeManagement = employeeManagement;
         menuOption = 0;
     }
 
@@ -38,7 +40,7 @@ public class EmployeeManagementMenu {
                 }
                 case 3 -> {
                     // display all employees
-                    EmployeeManagement.getAllEmployees();
+                    this.employeeManagement.getAllEmployees();
                 }
                 case 4 -> {
                     updateEmployee();
@@ -56,7 +58,7 @@ public class EmployeeManagementMenu {
     private void updateEmployee() {
         System.out.println("Enter the ID of the employee to update:");
         String employeeId = in.next();
-        Employee employee = EmployeeManagement.getEmployeeById(employeeId);
+        Employee employee = this.employeeManagement.getEmployeeById(employeeId);
         if (employee == null) {
             System.out.println("Employee not found. Update failed.");
             return;
@@ -79,31 +81,31 @@ public class EmployeeManagementMenu {
                 String newName = in.nextLine();
                 System.out.println("Enter the new last name of the employee: ");
                 String newLastName = in.nextLine();
-                EmployeeManagement.updateName(employee, newName, newLastName); 
+                this.employeeManagement.updateName(employee, newName, newLastName); 
                 System.out.println("Employee name updated successfully.");
             }
             case 2 -> {
                 System.out.println("Enter the new job title of the employee:");
                 String newJobTitle = in.nextLine();
-                EmployeeManagement.setJobTitle(employee, newJobTitle);
+                this.employeeManagement.setJobTitle(employee, newJobTitle);
                 System.out.println("Employee job title updated successfully.");
             }
             case 3 -> {
                 System.out.println("Enter the new email of the employee:");
                 String newEmail = in.nextLine();
-                EmployeeManagement.updateEmail(employee, newEmail);
+                this.employeeManagement.updateEmail(employee, newEmail);
                 System.out.println("Employee email updated successfully.");
             }
             case 4 -> {
                 System.out.println("Enter the new phone number of the employee:");
                 String newPhoneNumber = in.nextLine();
-                EmployeeManagement.updatePhoneNumber(employee, newPhoneNumber);
+                this.employeeManagement.updatePhoneNumber(employee, newPhoneNumber);
                 System.out.println("Employee phone number updated successfully.");
             }
             case 5 -> {
                 System.out.println("Enter the new salary of the employee:");
                 float newSalary = in.nextFloat();
-                EmployeeManagement.updateSalary(employee, newSalary);
+                this.employeeManagement.updateSalary(employee, newSalary);
                 System.out.println("Salary has been updated successfully.");
             }
             default -> {
@@ -117,12 +119,12 @@ public class EmployeeManagementMenu {
     private void deleteEmployee() {
         System.out.println("Enter the ID of the employee to delete:");
         String employeeId = in.next();
-        Employee employee = EmployeeManagement.getEmployeeById(employeeId);
+        Employee employee = this.employeeManagement.getEmployeeById(employeeId);
         if (employee == null) {
             System.out.println("Employee not found. Deletion failed.");
             return;
         }
-        EmployeeManagement.deleteEmployee(employee);
+        this.employeeManagement.deleteEmployee(employee);
         System.out.println("Employee deleted successfully.");
     }
 
@@ -155,17 +157,10 @@ public class EmployeeManagementMenu {
         System.out.print("Please enter the salary of the employee: ");
         float salary = in.nextFloat();
         in.nextLine(); // consume leftover new line
-/*
-          I am commenting out these lines because it breaks the code (George) 
-          I believe the logic for creating a new employee should be and already
-          is in the EmployeeManagement class. This class should just call the
-          methods in that class.
-*/
-          
-        Employee newEmployee = new Employee(firstName, lastName, jobTitle, phoneNumber, salary);
+
+        Employee newEmployee = new Employee(firstName, lastName, jobTitle, phoneNumber, salary, this.employeeManagement);
         System.out.println("A new employee has been added with ID: " + newEmployee.getEmployeeID());
     }    
-        
     
     }
 

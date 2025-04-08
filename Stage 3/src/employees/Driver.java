@@ -19,10 +19,9 @@ public class Driver extends Employee {
      * @param phoneNumber The phone number of the driver
      * @param salary The salary of the driver
      */
-    public Driver(String firstName, String lastName, String jobTitle, String phoneNumber, float salary) {
-        super(firstName, lastName, jobTitle, phoneNumber, salary);
+    public Driver(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement) {
+        super(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement);
         this.availability = true;
-        EmployeeManagement.addEmployee(this);
     }
 
     /**

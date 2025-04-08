@@ -15,9 +15,8 @@ public class Admin extends Employee {
      * @param phoneNumber The phone number of the admin.
      * @param salary The salary of the admin.
      */
-    public Admin(String firstName, String lastName, String jobTitle, String phoneNumber, float salary) {
-        super(firstName, lastName, jobTitle, phoneNumber, salary);
-        EmployeeManagement.addEmployee(this);
+    public Admin(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement) {
+        super(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement);
     }
 
 }

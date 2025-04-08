@@ -13,7 +13,8 @@ public class Employee {
     private String phoneNumber; // Phone number of the employee
     private String jobTitle; // Job title of the employee
     private float salary; // Salary of the employee
- 
+    private EmployeeManagement employeeManagement; // Reference to EmployeeManagement class
+
     /**
      * 
      * @param firstName, the first name of the employee
@@ -23,7 +24,7 @@ public class Employee {
      * @param jobTitle, the job title of the employee (Driver or Admin)
      * @param salary, the salary of the employee
      */
-    public Employee(String firstName, String lastName, String jobTitle, String phoneNumber, float salary) {
+    public Employee(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
@@ -39,7 +40,7 @@ public class Employee {
         else {
             System.out.println("Invalid job title. Employee ID not generated.");
         }
-        EmployeeManagement.addEmployee(this);
+        employeeManagement.addEmployee(this);
     }
 
 

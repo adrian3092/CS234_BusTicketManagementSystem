@@ -40,7 +40,7 @@ public class AdminMenu {
         busMenu = new BusMenu(in, busManager, depotManager);
         depotMenu = new DepotMenu(in, busManager, depotManager);
         accountingMenu = new AccountingMenu(in, accounting, busManager, depotManager, employeeManagement);
-        employeeManagementMenu = new EmployeeManagementMenu(in);
+        employeeManagementMenu = new EmployeeManagementMenu(in, employeeManagement);
         scheduleMenu = new ScheduleMenu(in, scheduleManager, routeManager, depotManager);
         routeMenu = new RouteMenu(in, routeManager);
     }
