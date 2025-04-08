@@ -31,36 +31,63 @@ public class ScheduleMenu {
     // Displays the main menu and handles user input
     public void displayMenu() {
         while (menuOption != 5) {
-            System.out.println("~~~~~~~~~~~~");
-            System.out.println("Schedule Management Menu");
-            System.out.println("1. Add a new schedule");
-            System.out.println("2. Remove an existing schedule");
-            System.out.println("3. Manage an existing schedule");
-            System.out.println("4. Display all schedules");
-            System.out.println("5. Return to Main Menu");
+            System.out.println("========================================");
+            System.out.println("|         Schedule Management Menu     |");
+            System.out.println("========================================");
+            System.out.println("|  1. Add a new schedule               |");
+            System.out.println("|  2. Remove an existing schedule      |");
+            System.out.println("|  3. Manage an existing schedule      |");
+            System.out.println("|  4. Display all schedules            |");
+            System.out.println("|  5. Return to Main Menu              |");
+            System.out.println("========================================");
+            System.out.print("Please select an option (1-5): ");
+            System.out.println();
 
             menuOption = in.nextInt();
 
             switch (menuOption) {
-                case 1 -> addSchedule();
-                case 2 -> removeSchedule();
-                case 3 -> manageSchedule();
+                case 1 -> {
+                    System.out.println("========================================");
+                    System.out.println("|          Add a New Schedule          |");
+                    System.out.println("========================================");
+                    addSchedule();
+                }
+                case 2 -> {
+                    System.out.println("========================================");
+                    System.out.println("|       Remove an Existing Schedule    |");
+                    System.out.println("========================================");
+                    removeSchedule();
+                }
+                case 3 -> {
+                    System.out.println("========================================");
+                    System.out.println("|      Manage an Existing Schedule     |");
+                    System.out.println("========================================");
+                    manageSchedule();
+                }
                 case 4 -> {
-                    System.out.println("Displaying all schedules...");
+                    System.out.println("==========================================");
+                    System.out.println("|         Displaying All Schedules        |");
+                    System.out.println("==========================================");
                     System.out.println(scheduleManager);
                 }
                 case 5 -> {
-                    System.out.println("Returning to Main Menu...");
+                    System.out.println("========================================");
+                    System.out.println("|        Returning to Main Menu        |");
+                    System.out.println("========================================");
                     return;
                 }
-                default -> System.out.println("Invalid option. Please try again.");
+                default -> {
+                    System.out.println("========================================");
+                    System.out.println("|          Invalid Option!             |");
+                    System.out.println("|       Please try again (1-5).        |");
+                    System.out.println("========================================");
+                }
             }
         }
     }
 
     // Adds a new schedule
     private void addSchedule() {
-        System.out.println("Adding a new schedule...");
 
         System.out.print("Enter schedule name: ");
         String nameOfSchedule = in.next();
@@ -93,7 +120,7 @@ public class ScheduleMenu {
         System.out.println("Depot found: " + depot.getDepotAddress());
 
         System.out.print("Enter start time (HH.MM): ");
-        double startTime = in.nextDouble();
+        double startTime = validateStartTimeInput();
 
         // Create and add the new schedule
         Schedule newSchedule = new Schedule(route, depot, startTime);
@@ -119,7 +146,8 @@ public class ScheduleMenu {
 
     // Manages an existing schedule
     private void manageSchedule() {
-        System.out.println("Enter the name of the schedule to manage:");
+        System.out.println("Enter the name of the schedule to manage below (Case sensitive).");
+        System.out.print("Schedule name: ");
         String scheduleName = in.next();
         Schedule scheduleToManage = scheduleManager.getScheduleByName(scheduleName);
 
@@ -127,13 +155,18 @@ public class ScheduleMenu {
             Integer updateOption = 0;
 
             while (updateOption != 5) {
-                System.out.println("Managing schedule: " + scheduleToManage.getName());
-                System.out.println("What would you like to update?");
-                System.out.println("1. Update route");
-                System.out.println("2. Update depot");
-                System.out.println("3. Update start time");
-                System.out.println("4. Update schedule name");
-                System.out.println("5. Return to Schedule Management Menu");
+                System.out.println("========================================");
+                System.out.println("|         Manage Schedule Menu         |");
+                System.out.println("========================================");
+                System.out.println("| Managing: " + scheduleToManage.getName());
+                System.out.println("========================================");
+                System.out.println("|  1. Update route                     |");
+                System.out.println("|  2. Update depot                     |");
+                System.out.println("|  3. Update start time                |");
+                System.out.println("|  4. Update schedule name             |");
+                System.out.println("|  5. Return to Schedule Management    |");
+                System.out.println("========================================");
+                System.out.print("Please select an option (1-5): ");
 
                 updateOption = in.nextInt();
                 in.nextLine(); // Consume newline
@@ -187,17 +220,25 @@ public class ScheduleMenu {
         }
     }
 
+    private double validateStartTimeInput() {
+        double startTime = in.nextDouble();
+        while (startTime < 0 || startTime > 24) {
+            System.out.println("Invalid time. Please enter a valid time between 0 and 24:");
+            startTime = in.nextDouble();
+        }
+        return startTime;
+    }
     // Helper method to update the start time of a schedule
     private void updateStartTime(Schedule schedule) {
         System.out.print("Enter new start time (HH.MM): ");
         double newStartTime = in.nextDouble();
 
-        if (newStartTime >= 0 && newStartTime <= 24) {
-            schedule.setStartTime(newStartTime);
-            System.out.println("Start time updated successfully.");
-        } else {
-            System.out.println("Invalid time. Please enter a valid time between 0 and 24.");
+        while (newStartTime < 0 || newStartTime > 24) {
+            System.out.println("Invalid time. Please enter a valid time between 0 and 24:");
+            newStartTime = validateStartTimeInput();
         }
+        schedule.setStartTime(newStartTime);
+        System.out.println("Start time updated successfully.");
     }
 
     // Helper method to update the name of a schedule
