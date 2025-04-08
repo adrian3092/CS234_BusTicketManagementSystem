@@ -48,8 +48,17 @@ public class EmployeeManagement {
 
     public ArrayList<Employee> getAllEmployees() {
         System.out.println("List of all employees:");
+        System.out.printf("%-20s %-15s %-20s %-30s %-15s %-10s%n", 
+                  "Name", "Employee ID", "Job Title", "Email", "Phone Number", "Salary");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------");
         for (Employee employee : employees) {
-            System.out.println(employee.getName() + " - " + employee.getEmployeeID() + " - " + employee.getJobTitle() + " - " + employee.getEmail() + " - " + employee.getPhoneNumber() + " - " + "$" + String.format("%.2f", employee.getSalary()));
+            System.out.printf("%-20s %-15s %-20s %-30s %-15s $%-10.2f%n", 
+                      employee.getName(), 
+                      employee.getEmployeeID(), 
+                      employee.getJobTitle(), 
+                      employee.getEmail(), 
+                      employee.getPhoneNumber(), 
+                      employee.getSalary());
         }
         return employees; 
     }

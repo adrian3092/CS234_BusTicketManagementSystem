@@ -109,19 +109,18 @@ public class Main {
 
         // logic for the main menu
         int menuOption = 0;
-        
         while (menuOption != 4) {
-            System.out.println("========================================");
-            System.out.println("         WELCOME TO BUS COMPANY         ");
-            System.out.println("========================================");
-            System.out.println("|              MAIN MENU               |");
-            System.out.println("========================================");
-            System.out.println("|  1. Book Ticket                      |");
-            System.out.println("|  2. View Schedule                    |");
-            System.out.println("|  3. Employee Login                   |");
-            System.out.println("|  4. Quit                             |");
-            System.out.println("========================================");
-            System.out.print("Please select an option (1-4): ");
+            System.out.println("╔════════════════════════════════════════════════╗");
+            System.out.println("║              WELCOME TO BUS COMPANY            ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║                    MAIN MENU                   ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║  1. Book Ticket                                ║");
+            System.out.println("║  2. View Schedule                              ║");
+            System.out.println("║  3. Employee Login                             ║");
+            System.out.println("║  4. Quit                                       ║");
+            System.out.println("╚════════════════════════════════════════════════╝");
+            System.out.print(" Please select an option (1-4): ");
 
             menuOption = in.nextInt();
 

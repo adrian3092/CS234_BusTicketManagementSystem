@@ -49,17 +49,19 @@ public class AdminMenu {
      * display the employee menu
      */
     public void displayMenu() {
-        while (menuOption != 7) {
-            System.out.println("~~~~~~~~~~~~");
-            System.out.println("Admin Menu");
-            System.out.println("1. Bus Management");
-            System.out.println("2. Schedule Management");
-            System.out.println("3. Route Management");
-            System.out.println("4. Depot Management");
-            System.out.println("5. Employee Management");
-            System.out.println("6. Expense Management");
-            System.out.println("7. Return to Main Menu");
-            System.out.println("~~~~~~~~~~~~");
+         while (menuOption != 7) {
+                            System.out.println("╔════════════════════════════════════════════════╗");
+                            System.out.println("║              ADMINISTRATOR MENU                ║");
+                            System.out.println("╠════════════════════════════════════════════════╣");
+                            System.out.println("║  1. Bus Management                             ║");
+                            System.out.println("║  2. Schedule Management                        ║");
+                            System.out.println("║  3. Route Management                           ║");
+                            System.out.println("║  4. Depot Management                           ║");
+                            System.out.println("║  5. Employee Management                        ║");
+                            System.out.println("║  6. Expense Management                         ║");
+                            System.out.println("║  7. Return to Main Menu                        ║");
+                            System.out.println("╚════════════════════════════════════════════════╝");
+                            System.out.print(" Please select an option (1-7): ");
             
             menuOption = in.nextInt();
 
