@@ -1,48 +1,84 @@
-
 package main;
 
 import java.util.ArrayList;
 
 /**
- *
+ * Manages a list of passengers, providing methods to add, remove, update, and retrieve passengers.
+ * 
  * @author Handsome Onojerame
  */
 public class PassengerManager {
-    private ArrayList<Passenger> passengers; // list of passengers
-    private int passengerCount = 0; // number of passengers
+    private ArrayList<Passenger> passengers; // List of passengers
+    private int passengerCount = 0; // Number of passengers
 
-
+    /**
+     * Constructor to initialize the passenger manager.
+     */
     public PassengerManager() {
         this.passengers = new ArrayList<>();
     }
 
+    /**
+     * Retrieves the list of passengers.
+     * 
+     * @return ArrayList of passengers.
+     */
     public ArrayList<Passenger> getPassengers() {
         return passengers;
     }
 
+    /**
+     * Adds a new passenger to the list.
+     * 
+     * @param passenger The passenger to add.
+     */
     public void addPassenger(Passenger passenger) {
         passengers.add(passenger);
         passengerCount++;
     }
 
+    /**
+     * Removes a passenger from the list.
+     * 
+     * @param passenger The passenger to remove.
+     */
     public void removePassenger(Passenger passenger) {
         passengers.remove(passenger);
         passengerCount--;
     }
 
+    /**
+     * Retrieves the total number of passengers.
+     * 
+     * @return The number of passengers.
+     */
     public int getPassengerCount() {
         return passengerCount;
     }
 
+    /**
+     * Retrieves a passenger by their ID.
+     * 
+     * @param id The ID of the passenger.
+     * @return The passenger with the given ID, or null if not found.
+     */
     public Passenger getPassengerById(String id) {
         for (Passenger passenger : passengers) {
             if (passenger.getPassengerID().equals(id)) {
                 return passenger;
             }
         }
-        return null; // or throw an exception if not found
+        return null; // Return null if passenger not found
     }
 
+    /**
+     * Updates the details of a passenger.
+     * 
+     * @param id    The ID of the passenger to update.
+     * @param name  The new name of the passenger.
+     * @param email The new email of the passenger.
+     * @param phone The new phone number of the passenger.
+     */
     public void updatePassenger(String id, String name, String email, String phone) {
         Passenger passenger = getPassengerById(id);
         if (passenger != null) {
@@ -54,6 +90,11 @@ public class PassengerManager {
         }
     }
 
+    /**
+     * Deletes a passenger by their ID.
+     * 
+     * @param id The ID of the passenger to delete.
+     */
     public void deletePassenger(String id) {
         Passenger passenger = getPassengerById(id);
         if (passenger != null) {
@@ -63,6 +104,4 @@ public class PassengerManager {
             System.out.println("Passenger not found.");
         }
     }
-
-    
 }

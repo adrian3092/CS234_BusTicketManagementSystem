@@ -14,6 +14,8 @@ public class Admin extends Employee {
      * @param jobTitle The job title of the admin.
      * @param phoneNumber The phone number of the admin.
      * @param salary The salary of the admin.
+     * @param employeeManagement The EmployeeManagement object for managing employees.
+     * @param employeeManagement The EmployeeManagement object for managing employees.
      */
     public Admin(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement) {
         super(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement);

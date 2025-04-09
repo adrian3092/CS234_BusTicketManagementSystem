@@ -1,26 +1,38 @@
-
 package menu;
+
 import java.util.Scanner;
 import main.Passenger;
 import main.PassengerManager;
 import main.ScheduleManager;
+
 /**
- *
- * @author Owner
+ * PassengerMenu class provides a menu interface for passengers to log in, sign up, 
+ * continue as a guest, or return to the main menu.
+ * 
+ * @author Handsome Onojerame
  */
 public class PassengerMenu {
     private Scanner in;
     private PassengerManager passengerManager;
     private ScheduleManager scheduleManager;
 
+    /**
+     * Constructor to initialize PassengerMenu with required managers and input scanner.
+     * 
+     * @param in               Scanner object for user input
+     * @param passengerManager Manager to handle passenger-related operations
+     * @param scheduleManager  Manager to handle schedule-related operations
+     */
     public PassengerMenu(Scanner in, PassengerManager passengerManager, ScheduleManager scheduleManager) {
         this.passengerManager = passengerManager;
         this.scheduleManager = scheduleManager;
         this.in = in;
     }
 
+    /**
+     * Displays the passenger menu and handles user input for various options.
+     */
     public void displayMenu() {
-        
         int choice;
 
         do {
@@ -35,7 +47,7 @@ public class PassengerMenu {
             System.out.print("Please select an option (1-4): ");
 
             choice = in.nextInt();
-            System.out.println("══════════════════════════════════════════════════"); 
+            System.out.println("══════════════════════════════════════════════════");
 
             in.nextLine(); // Consume the newline character left by nextInt()
 
@@ -46,7 +58,6 @@ public class PassengerMenu {
                     break;
                 case 2:
                     System.out.println("Redirecting to sign-up...");
-                    // Add sign-up logic here
                     signUp();
                     break;
                 case 3:
@@ -61,14 +72,18 @@ public class PassengerMenu {
                     System.out.println("Invalid choice. Please try again.");
             }
         } while (choice != 4);
-
     }
 
+    /**
+     * Handles the login process for passengers.
+     */
     private void login() {
         // Logic for passenger login
-        
     }
 
+    /**
+     * Handles the sign-up process for new passengers.
+     */
     private void signUp() {
         System.out.println("Please enter your name: ");
         String name = in.nextLine();
@@ -86,6 +101,6 @@ public class PassengerMenu {
         System.out.println("Welcome " + name + "! Your account has been created successfully.");
         System.out.println("Your Passenger ID is: " + newPassenger.getPassengerID());
 
-        //need logic to send email as username and password to login manager class
+        // TODO: Add logic to send email as username and password to login manager class
     }
 }

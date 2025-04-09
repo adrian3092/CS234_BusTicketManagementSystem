@@ -1,4 +1,3 @@
-
 package menu;
 
 import bus.*;
@@ -9,7 +8,9 @@ import java.util.Scanner;
 import main.*;
 
 /**
- *
+ * DriverMenu class provides a menu interface for drivers to view schedules,
+ * bus information, and route information.
+ * 
  * @author Handsome Onojerame
  */
 public class DriverMenu {
@@ -18,6 +19,14 @@ public class DriverMenu {
     private ScheduleManager scheduleManager;
     private BusManager busManager;
 
+    /**
+     * Constructor to initialize the DriverMenu with required dependencies.
+     * 
+     * @param in              Scanner object for user input
+     * @param dispatcher      Dispatcher object for managing driver assignments
+     * @param scheduleManager ScheduleManager object for managing schedules
+     * @param busManager      BusManager object for managing buses
+     */
     public DriverMenu(Scanner in, Dispatcher dispatcher, ScheduleManager scheduleManager, BusManager busManager) {
         this.in = in;
         this.dispatcher = dispatcher;
@@ -25,6 +34,9 @@ public class DriverMenu {
         this.busManager = busManager;
     }
 
+    /**
+     * Displays the driver menu and handles user input for menu options.
+     */
     public void displayMenu() {
         int selection = 0;
         while (selection != 4) {
@@ -39,7 +51,7 @@ public class DriverMenu {
             System.out.print("Please select an option (1-4): ");
 
             selection = in.nextInt();
-            in.nextLine(); // consume the leftover new line character
+            in.nextLine(); // Consume the leftover new line character
 
             switch (selection) {
                 case 1:
@@ -69,6 +81,9 @@ public class DriverMenu {
         }
     }
 
+    /**
+     * Displays information about buses assigned to drivers.
+     */
     private void displayBusInformation() {
         ArrayList<DriverAssignment> assignments = dispatcher.getAllDriverAssignments();
 
@@ -90,6 +105,9 @@ public class DriverMenu {
         }
     }
 
+    /**
+     * Displays information about routes assigned to buses.
+     */
     private void displayRouteInformation() {
         ArrayList<DriverAssignment> driverAssignments = dispatcher.getAllDriverAssignments();
 

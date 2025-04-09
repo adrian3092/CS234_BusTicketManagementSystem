@@ -4,22 +4,33 @@ import employees.Driver;
 import employees.Employee;
 import employees.EmployeeManagement;
 import java.util.Scanner;
+
 /**
- *
- * @author Owner
+ * EmployeeManagementMenu provides a menu-driven interface for managing employees.
+ * It allows adding, deleting, updating, and displaying employee information.
+ * 
+ * @author Handsome Onojerame
  */
 public class EmployeeManagementMenu {
     private Scanner in;
     private int menuOption;
     private EmployeeManagement employeeManagement;
-    
 
+    /**
+     * Constructor to initialize the EmployeeManagementMenu.
+     * 
+     * @param in Scanner object for user input.
+     * @param employeeManagement EmployeeManagement object for managing employees.
+     */
     public EmployeeManagementMenu(Scanner in, EmployeeManagement employeeManagement) {
         this.in = in;
         this.employeeManagement = employeeManagement;
         menuOption = 0;
     }
 
+    /**
+     * Displays the employee management menu and handles user input.
+     */
     public void displayMenu() {
         while (menuOption != 5) {
             System.out.println("╔════════════════════════════════════════════════╗");
@@ -34,26 +45,16 @@ public class EmployeeManagementMenu {
             System.out.print(" Please select an option (1-5): ");
 
             menuOption = in.nextInt();
-
-            System.out.println("══════════════════════════════════════════════════"); 
+            System.out.println("══════════════════════════════════════════════════");
 
             switch (menuOption) {
-                case 1 -> {
-                    addEmployee(); // I commented out this line because its breaking the code (George)
-                }
-                case 2 -> {
-                    deleteEmployee();
-                }
-                case 3 -> {
-                    // display all employees
-                    this.employeeManagement.getAllEmployees();
-                }
-                case 4 -> {
-                    updateEmployee();
-                }
+                case 1 -> addEmployee();
+                case 2 -> deleteEmployee();
+                case 3 -> employeeManagement.getAllEmployees();
+                case 4 -> updateEmployee();
                 case 5 -> {
                     System.out.println("Returning to Employee Menu...");
-                    menuOption = 0; // reset menuOption before returning
+                    menuOption = 0; // Reset menuOption before returning
                     return;
                 }
                 default -> System.out.println("Invalid option. Please try again.");
@@ -61,15 +62,18 @@ public class EmployeeManagementMenu {
         }
     }
 
+    /**
+     * Updates the information of an existing employee.
+     */
     private void updateEmployee() {
         System.out.println("Enter the ID of the employee to update:");
         String employeeId = in.next();
-        Employee employee = this.employeeManagement.getEmployeeById(employeeId);
+        Employee employee = employeeManagement.getEmployeeById(employeeId);
         if (employee == null) {
             System.out.println("Employee not found. Update failed.");
             return;
         }
-        in.nextLine(); // consume newline
+        in.nextLine(); // Consume newline
 
         System.out.println("What would you like to update?");
         System.out.println("1. Name");
@@ -78,8 +82,7 @@ public class EmployeeManagementMenu {
         System.out.println("4. Phone Number");
         System.out.println("5. Salary");
         int updateOption = in.nextInt();
-        in.nextLine(); // consume newline
-
+        in.nextLine(); // Consume newline
 
         switch (updateOption) {
             case 1 -> {
@@ -87,57 +90,57 @@ public class EmployeeManagementMenu {
                 String newName = in.nextLine();
                 System.out.println("Enter the new last name of the employee: ");
                 String newLastName = in.nextLine();
-                this.employeeManagement.updateName(employee, newName, newLastName); 
+                employeeManagement.updateName(employee, newName, newLastName);
                 System.out.println("Employee name updated successfully.");
             }
             case 2 -> {
                 System.out.println("Enter the new job title of the employee:");
                 String newJobTitle = in.nextLine();
-                this.employeeManagement.setJobTitle(employee, newJobTitle);
+                employeeManagement.setJobTitle(employee, newJobTitle);
                 System.out.println("Employee job title updated successfully.");
             }
             case 3 -> {
                 System.out.println("Enter the new email of the employee:");
                 String newEmail = in.nextLine();
-                this.employeeManagement.updateEmail(employee, newEmail);
+                employeeManagement.updateEmail(employee, newEmail);
                 System.out.println("Employee email updated successfully.");
             }
             case 4 -> {
                 System.out.println("Enter the new phone number of the employee:");
                 String newPhoneNumber = in.nextLine();
-                this.employeeManagement.updatePhoneNumber(employee, newPhoneNumber);
+                employeeManagement.updatePhoneNumber(employee, newPhoneNumber);
                 System.out.println("Employee phone number updated successfully.");
             }
             case 5 -> {
                 System.out.println("Enter the new salary of the employee:");
                 float newSalary = in.nextFloat();
-                this.employeeManagement.updateSalary(employee, newSalary);
+                employeeManagement.updateSalary(employee, newSalary);
                 System.out.println("Salary has been updated successfully.");
             }
-            default -> {
-                System.out.println("Invalid option. Update canceled.");
-                return;
-            }
+            default -> System.out.println("Invalid option. Update canceled.");
         }
-
     }
 
+    /**
+     * Deletes an existing employee based on their ID.
+     */
     private void deleteEmployee() {
         System.out.println("Enter the ID of the employee to delete:");
         String employeeId = in.next();
-        Employee employee = this.employeeManagement.getEmployeeById(employeeId);
+        Employee employee = employeeManagement.getEmployeeById(employeeId);
         if (employee == null) {
             System.out.println("Employee not found. Deletion failed.");
             return;
         }
-        this.employeeManagement.deleteEmployee(employee);
+        employeeManagement.deleteEmployee(employee);
         System.out.println("Employee deleted successfully.");
     }
 
-
+    /**
+     * Adds a new employee to the system.
+     */
     private void addEmployee() {
-
-        in.nextLine(); // consume leftover new line
+        in.nextLine(); // Consume leftover new line
         System.out.print("Please enter the first name of the employee: ");
         String firstName = in.nextLine();
         System.out.print("Please enter the last name of the employee: ");
@@ -145,37 +148,34 @@ public class EmployeeManagementMenu {
         System.out.print("Please enter the job title of the employee: ");
         String jobTitle = in.nextLine();
         boolean jTest = true;
-        
-        while(jTest) {
-        
-        if (jobTitle.equalsIgnoreCase("Admin") || jobTitle.equalsIgnoreCase("Driver")){
-            jTest = false;
+
+        while (jTest) {
+            if (jobTitle.equalsIgnoreCase("Admin") || jobTitle.equalsIgnoreCase("Driver")) {
+                jTest = false;
+            } else {
+                System.out.println("Please enter a valid jobTitle: (Driver) or (Admin): ");
+                jobTitle = in.nextLine();
+            }
         }
-        else {
-            System.out.println("Please enter a valid jobTitle: (Driver) or (Admin): ");
-            jobTitle = in.nextLine();
-        }}
-          //change
+
         System.out.print("Please enter the email of the employee: ");
         String email = in.nextLine();
         System.out.print("Please enter the phone number of the employee: ");
         String phoneNumber = in.nextLine();
         System.out.print("Please enter the salary of the employee: ");
         float salary = in.nextFloat();
-        in.nextLine(); // consume leftover new line
+        in.nextLine(); // Consume leftover new line
 
         Employee newEmployee;
         if (jobTitle.equalsIgnoreCase("Driver")) {
             // Create a Driver object for driver employees
-            Driver newDriver = new Driver(firstName, lastName, jobTitle, phoneNumber, salary, this.employeeManagement);
-            // add the driver to the drivers list
-            this.employeeManagement.addDriver(newDriver);
+            Driver newDriver = new Driver(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement);
+            employeeManagement.addDriver(newDriver);
             newEmployee = newDriver;
         } else {
-            // create a regular Employee object for non-driver employees
-            newEmployee = new Employee(firstName, lastName, jobTitle, phoneNumber, salary, this.employeeManagement);
+            // Create a regular Employee object for non-driver employees
+            newEmployee = new Employee(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement);
         }
         System.out.println("A new employee has been added with ID: " + newEmployee.getEmployeeID());
-    }    
-    
     }
+}

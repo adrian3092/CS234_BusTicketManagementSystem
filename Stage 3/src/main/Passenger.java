@@ -2,57 +2,105 @@ package main;
 
 import IdGenerator.IdGenerator;
 
+/**
+ * Represents a Passenger in the Bus Ticket Management System.
+ * This class manages passenger details such as name, email, phone number, 
+ * and a unique passenger ID.
+ * 
+ * Author: Handsome Onojerame
+ */
 public class Passenger {
-    // define attributes
-    private String passengerID;
-    private String name;
-    private String email;
-    private String phoneNumber;
-    
-    // instantiate constructor
+    // Attributes
+    private String passengerID; // Unique ID for the passenger
+    private String name;        // Passenger's name
+    private String email;       // Passenger's email address
+    private String phoneNumber; // Passenger's phone number
+
+    /**
+     * Constructor to initialize a Passenger object.
+     * 
+     * @param name  The name of the passenger.
+     * @param email The email address of the passenger.
+     * @param phone The phone number of the passenger.
+     */
     public Passenger(String name, String email, String phone) {
-        // initialize variables
         this.name = name;
         this.email = email;
         this.phoneNumber = phone;
-        this.passengerID = IdGenerator.generatePassengerId();
-
+        this.passengerID = IdGenerator.generatePassengerId(); // Generate unique ID
     }
-    
+
+    /**
+     * Gets the passenger's unique ID.
+     * 
+     * @return The passenger's ID.
+     */
     public String getPassengerID() {
         return this.passengerID;
     }
-    
+
+    /**
+     * Gets the passenger's name.
+     * 
+     * @return The passenger's name.
+     */
     public String getPassengerName() {
         return this.name;
     }
 
+    /**
+     * Gets the passenger's phone number.
+     * 
+     * @return The passenger's phone number.
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     * Gets the passenger's email address.
+     * 
+     * @return The passenger's email address.
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Sets the passenger's name.
+     * 
+     * @param name The new name for the passenger.
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Sets the passenger's email address.
+     * 
+     * @param passenger_email The new email address for the passenger.
+     */
     public void setEmail(String passenger_email) {
         this.email = passenger_email;
     }
 
+    /**
+     * Sets the passenger's phone number.
+     * 
+     * @param phoneNumber The new phone number for the passenger.
+     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    
+
+    /**
+     * Deletes the passenger's details by clearing all attributes.
+     * Simulates the deletion of a passenger.
+     */
     public void deletePassenger() {
-        // Clearing the passenger's details (simulate deletion)
         this.name = null;
         this.email = null;
         this.phoneNumber = null;
         this.passengerID = null;
     }
-    
 }

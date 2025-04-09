@@ -14,10 +14,12 @@ public class Driver extends Employee {
     /**
      * Constructor to initialize a Driver object with a name and job title.
      * The driver is set to available by default.
-     * @param name     The name of the driver
+     * @param firstName The first name of the driver
+     * @param lastName The last name of the driver
      * @param jobTitle The job title of the driver
      * @param phoneNumber The phone number of the driver
      * @param salary The salary of the driver
+     * @param employeeManagement The EmployeeManagement object for managing employees
      */
     public Driver(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement) {
         super(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement);
