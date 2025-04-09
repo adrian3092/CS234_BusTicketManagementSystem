@@ -10,6 +10,7 @@ import java.util.Scanner;
  * This class is used for the accounting menu. It displays a menu and asks for
  * user input for managing expenses. It has 6 instance variables.
  * in: The Scanner object used for user input
+ * menuOption: Used to save the menu option input from the user
  * accounting: The Accounting object used as a database for the expenses
  * busManager: The BusManager object used as a database for buses
  * depotManager: The DepotManager object used as a database for Depots

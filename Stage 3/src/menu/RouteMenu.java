@@ -8,8 +8,18 @@ import main.*;
 import employees.*;
 
 /**
- * 
+ * This class is used for the route menu. It displays a menu and asks for
+ * user input for managing routes. It has 6 instance variables.
+ * in: The Scanner object used for user input
+ * routeManager: The RouteManager object used as a database for routes
+ * menuOption: Used to save the menu option input from the user
+ * dispatcher: The Dispatcher object used as a database for driver assignments 
+ * and route assignments
+ * busManager: The BusManager object used as a database for buses
+ * employeeManagement: The EmployeeManagement object used as a database for 
+ * employees
  * @author George Candal
+ * @author Adrian Zielinski
  */
 public class RouteMenu {
     
@@ -21,12 +31,14 @@ public class RouteMenu {
     private EmployeeManagement employeeManagement;
     
     /**
-     * 
-     * @param in
-     * @param routeManager
-     * @param dispatcher
-     * @param busManager
-     * @param employeeManagement
+     * Constructor for the class
+     * @param in The Scanner object used for user input
+     * @param routeManager The RouteManager object used as a database for routes
+     * @param dispatcher The Dispatcher object used as a database for 
+     * driver assignments and route assignments
+     * @param busManager The BusManager object used as a database for buses
+     * @param employeeManagement The EmployeeManagement object used as a 
+     * database for employees
      */
     public RouteMenu(Scanner in, RouteManager routeManager, Dispatcher dispatcher, BusManager busManager, EmployeeManagement employeeManagement) {
         this.in = in;
@@ -95,7 +107,7 @@ public class RouteMenu {
     }
     
     /**
-     * 
+     * Creates a new route object
      */
     public void addRoute() {
         System.out.println("What is the name of the route? ");
@@ -105,7 +117,8 @@ public class RouteMenu {
     }
     
     /**
-     * 
+     * Asks for the route ID from the user and calls the route management menu
+     * with options to modify that route
      */
     public void manageRoute() {
         System.out.println("Enter the ID of the route you want to manage: ");
@@ -117,8 +130,8 @@ public class RouteMenu {
     }
     
     /**
-     * 
-     * @param route
+     * A sub menu with different options to manage an existing route
+     * @param route The route object to be managed
      */
     public void subMenu(Route route) {
         int option = 0;
@@ -130,7 +143,8 @@ public class RouteMenu {
             System.out.println("║  2. Add Bus Stop                               ║");
             System.out.println("║  3. Remove Bus Stop                            ║");
             System.out.println("║  4. Delete Route                               ║");
-            System.out.println("║  5. Previous Menu                              ║");
+            System.out.println("║  5. Display Bus Stops                          ║");
+            System.out.println("║  6. Previous Menu                              ║");
             System.out.println("╚════════════════════════════════════════════════╝");
             System.out.print(" Please select an option (1-5): ");
 
@@ -176,16 +190,23 @@ public class RouteMenu {
                     
                     if (stopToRemove != null) {
                         route.removeStop(stopToRemove);
-                        System.out.println("Bus stop " + name + " has been removed from the route.");
+                        System.out.println("Bus stop " + name 
+                                + " has been removed from the route.");
                     } else {
-                        System.out.println("Bus stop " + name + " was not found on this route.");
+                        System.out.println("Bus stop " + name 
+                                + " was not found on this route.");
                     }
                 }
                 case 4 -> {
-                    System.out.println("Route " + route.getName() + " has been deleted.");
+                    System.out.println("Route " + route.getName() 
+                            + " has been deleted.");
                     routeManager.removeRoute(route);
+                    return;
                 }
                 case 5 -> {
+                    route.displayStops();
+                }
+                case 6 -> {
                     System.out.println("Returning to previous menu...");
                     return;
                 }
