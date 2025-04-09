@@ -250,6 +250,7 @@ public class RouteMenu {
                         
                         if (busRemoval) {
                             System.out.println("Bus and driver have been successfully unassigned from route " + route.getName());
+                            return;
                         } 
                         else {
                             System.out.println("Failed to unassign bus from route. There may not be a bus assigned to this route.");
