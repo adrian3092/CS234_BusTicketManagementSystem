@@ -23,6 +23,7 @@ public class AdminMenu {
     private EmployeeManagementMenu employeeManagementMenu;
     private ScheduleMenu scheduleMenu;
     private RouteMenu routeMenu;
+    private Dispatcher dispatcher;
 
     /**
      * default constructor
@@ -34,7 +35,7 @@ public class AdminMenu {
      * @param employeeManagement
      * @param routeManager
      */
-    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting, EmployeeManagement employeeManagement, RouteManager routeManager) {
+    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting, EmployeeManagement employeeManagement, RouteManager routeManager, Dispatcher dispatcher) {
         this.in = in;
         menuOption = 0;
         busMenu = new BusMenu(in, busManager, depotManager);
@@ -42,7 +43,7 @@ public class AdminMenu {
         accountingMenu = new AccountingMenu(in, accounting, busManager, depotManager, employeeManagement);
         employeeManagementMenu = new EmployeeManagementMenu(in, employeeManagement);
         scheduleMenu = new ScheduleMenu(in, scheduleManager, routeManager, depotManager);
-        routeMenu = new RouteMenu(in, routeManager);
+        routeMenu = new RouteMenu(in, routeManager, dispatcher, busManager);
     }
 
     /**

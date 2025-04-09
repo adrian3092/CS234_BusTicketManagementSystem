@@ -89,7 +89,7 @@ public class Main {
         dispatcher.assignDriverToBus(driver1, bus2);
 
         //create admin menu
-        AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement, routeManager);
+        AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement, routeManager, dispatcher);
 
         // create driver menu
         DriverMenu driverMenu = new DriverMenu(in, dispatcher, scheduleManager, busManager);
