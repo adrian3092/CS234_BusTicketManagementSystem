@@ -193,7 +193,7 @@ public class RouteMenu {
             System.out.println("╠════════════════════════════════════════════════╣");
             System.out.println("║  1. Assign bus and driver to route             ║");
             System.out.println("║  2. Unassign bus and driver from route         ║");
-            System.out.println("║  5. Previous Menu                              ║");
+            System.out.println("║  3. Previous Menu                              ║");
             System.out.println("╚════════════════════════════════════════════════╝");
             System.out.print(" Please select an option (1-5): ");
             
