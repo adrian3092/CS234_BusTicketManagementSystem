@@ -16,9 +16,11 @@ public class Route {
     private RouteManager routeManager;
 
     /**
-     * Constructor for the class. Requires a name for the route and it 
-     * initializes the array list of stops.
-     * @param name 
+     * Constructor for the class. Requires a name for the route, it 
+     * initializes the array list of stops, and adds the route to the list of
+     * routes in routeManager.
+     * @param name The name of the route
+     * @param routeManager The RouteManager object with the list of routes
      */
     public Route(String name, RouteManager routeManager) {
         this.name = name;
