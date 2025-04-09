@@ -3,9 +3,9 @@ package main;
 
 import java.util.ArrayList;
 /**
- *
+ * This class acts as a database for the routes. It has one instance variable.
+ * routes: an array list of all of the routes for the bus company.
  * @author Handsome Onojerame
- * @author George Candal
  */
 public class RouteManager {
     
@@ -52,6 +52,9 @@ public class RouteManager {
         return null; // Return null if the route is not found   
     }
     
+    /**
+     * Prints out all of the routes in the list of routes
+     */
     public void displayRoutes() {
         for (Route r : routes) {
             System.out.println(r);
