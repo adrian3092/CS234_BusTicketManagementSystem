@@ -104,12 +104,12 @@ public class DriverMenu {
             Route route = dispatcher.getRouteForBus(bus);
 
             if (route != null) {
-                System.out.println("-----------------------");
+                System.out.println("══════════════════════════════════════════════════");
                 System.out.println("Route Assignment for " + driver.getName());
                 System.out.println("Route ID: " + route.getRouteID());
                 System.out.println("Route Name: " + route.getName());
                 System.out.println("Number of Stops: " + route.getStops().size());
-                System.out.println("-----------------------\n");
+                System.out.println("══════════════════════════════════════════════════");
             } else {
                 System.out.println("A bus is not currently assigned to any route.");
             }
