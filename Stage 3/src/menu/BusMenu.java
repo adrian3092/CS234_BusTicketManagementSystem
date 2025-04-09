@@ -76,7 +76,7 @@ public class BusMenu {
                                     System.out.println("Status: " + bus.getStatus());
                                     System.out.println("══════════════════════════════════════════════════");
                                 }
-                                System.out.println("\nTotal buses: " + buses.size());
+                                System.out.println("Total buses: " + buses.size());
                             }
                         }
                         case 4 -> {
