@@ -50,7 +50,7 @@ public class AdminMenu {
      * display the employee menu
      */
     public void displayMenu() {
-         while (menuOption != 7) {
+        while (menuOption != 7) {
                             System.out.println("╔════════════════════════════════════════════════╗");
                             System.out.println("║              ADMINISTRATOR MENU                ║");
                             System.out.println("╠════════════════════════════════════════════════╣");
@@ -65,6 +65,7 @@ public class AdminMenu {
                             System.out.print(" Please select an option (1-7): ");
             
             menuOption = in.nextInt();
+            System.out.println("========================================");
 
             switch (menuOption) {
                 case 1 -> {

@@ -157,18 +157,22 @@ public class ScheduleMenu {
             while (updateOption != 5) {
                 System.out.println("========================================");
                 System.out.println("|         Manage Schedule Menu         |");
-                System.out.println("========================================");
-                System.out.println("| Managing: " + scheduleToManage.getName());
-                System.out.println("========================================");
-                System.out.println("|  1. Update route                     |");
-                System.out.println("|  2. Update depot                     |");
-                System.out.println("|  3. Update start time                |");
-                System.out.println("|  4. Update schedule name             |");
-                System.out.println("|  5. Return to Schedule Management    |");
-                System.out.println("========================================");
-                System.out.print("Please select an option (1-5): ");
+                System.out.println("╔════════════════════════════════════════════════╗");
+                System.out.println("║              MANAGE SCHEDULE MENU              ║");
+                System.out.println("╠════════════════════════════════════════════════╣");
+                System.out.println("  ║  Managing: "+ scheduleToManage.getName() +"    ║");
+                System.out.println("╠════════════════════════════════════════════════╣");
+                System.out.println("║  1. Update route                               ║");
+                System.out.println("║  2. Update depot                               ║");
+                System.out.println("║  3. Update start time                          ║");
+                System.out.println("║  4. Update schedule name                       ║");
+                System.out.println("║  5. Return to Schedule Management              ║");
+                System.out.println("╚════════════════════════════════════════════════╝");
+                System.out.print(" Please select an option (1-5): ");
 
                 updateOption = in.nextInt();
+
+                System.out.println("========================================");
                 in.nextLine(); // Consume newline
 
                 switch (updateOption) {
@@ -181,7 +185,7 @@ public class ScheduleMenu {
                 }
             }
         } else {
-            System.out.println("Schedule not found.");
+            System.out.println("Oops! Schedule not found.");
             System.out.println("Would you like to create a new schedule? (yes/no)");
             String response = in.next();
             if (response.equalsIgnoreCase("yes")) {

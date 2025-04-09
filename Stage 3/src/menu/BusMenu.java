@@ -1,10 +1,9 @@
 
 package menu;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import bus.*;
 import depot.DepotManager;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * 
@@ -35,59 +34,61 @@ public class BusMenu {
      */
     public void displayMenu() {
         while (menuOption != 4) {
-            System.out.println("~~~~~~~~~~~~");
-            System.out.println("Bus Management Menu");
-            System.out.println("1. Add a new bus");
-            System.out.println("2. Manage an existing bus");
-            System.out.println("3. Display all buses");
-            System.out.println("4. Return to Employee Menu");
+                    System.out.println("╔════════════════════════════════════════════════╗");
+                    System.out.println("║                BUS MANAGEMENT MENU             ║");
+                    System.out.println("╠════════════════════════════════════════════════╣");
+                    System.out.println("║  1. Add a new bus                              ║");
+                    System.out.println("║  2. Manage an existing bus                     ║");
+                    System.out.println("║  3. Display all buses                          ║");
+                    System.out.println("║  4. Return to Employee Menu                    ║");
+                    System.out.println("╚════════════════════════════════════════════════╝");
+                    System.out.print(" Please select an option (1-4): ");
 
-            if (in.hasNextInt()) {
-                menuOption = in.nextInt();
-            } 
-            else {
-                System.out.println("Invalid input. Please enter a number.");
-                in.next(); // consume the invalid input
-                continue;
-            }
+                    if (in.hasNextInt()) {
+                        menuOption = in.nextInt();
+                        
+                    } else {
+                        System.out.println("Invalid input. Please enter a number.");
+                        in.next(); // consume the invalid input
+                        continue;
+                    }
+                    System.out.println("========================================");
 
-            switch (menuOption) {
-                case 1 -> {
-                    addBus();
-                }
-                case 2 -> {
-                    manageBus();
-                }
-                case 3 -> {
-                    // display all buses
-                    System.out.println("      All Buses      \n");
-                    ArrayList<Bus> buses = busManager.getAllBuses();
-                    if (buses.isEmpty()) {
-                        System.out.println("There are no buses available in the system.");
-                    } 
-                    else {
-                        for (Bus bus : buses) {
-                            System.out.println("ID: " + bus.getBusId());
-                            System.out.println("Year/Make/Model: " + bus.getYear() + " " + bus.getMake() + " " + bus.getModel());
-                            System.out.println("Mileage: " + bus.getMileage());
-                            System.out.println("Seating Capacity: " + bus.getCapacity());
-                            System.out.println("Status: " + bus.getStatus());
-                            System.out.println("-----------------------");
+                    switch (menuOption) {
+                        case 1 -> {
+                            addBus();
                         }
-                        System.out.println("\nTotal buses: " + buses.size());
+                        case 2 -> {
+                            manageBus();
+                        }
+                        case 3 -> {
+                            // display all buses
+                            System.out.println("      All Buses      \n");
+                            ArrayList<Bus> buses = busManager.getAllBuses();
+                            if (buses.isEmpty()) {
+                                System.out.println("There are no buses available in the system.");
+                            } else {
+                                for (Bus bus : buses) {
+                                    System.out.println("ID: " + bus.getBusId());
+                                    System.out.println("Year/Make/Model: " + bus.getYear() + " " + bus.getMake() + " " + bus.getModel());
+                                    System.out.println("Mileage: " + bus.getMileage());
+                                    System.out.println("Seating Capacity: " + bus.getCapacity());
+                                    System.out.println("Status: " + bus.getStatus());
+                                    System.out.println("-----------------------");
+                                }
+                                System.out.println("\nTotal buses: " + buses.size());
+                            }
+                        }
+                        case 4 -> {
+                            System.out.println("Returning to Employee Menu...");
+                            menuOption = 0; // reset menuOption before returning
+                            return;
+                        }
+                        default -> {
+                            System.out.println("Invalid option. Please try again.");
+                        }
                     }
                 }
-                
-                case 4 -> {
-                    System.out.println("Returning to Employee Menu...");
-                    menuOption = 0; // reset menuOption before returning
-                    return;
-                }
-                default -> {
-                    System.out.println("Invalid option. Please try again.");
-                }
-            }
-        }
     }
 
     /**

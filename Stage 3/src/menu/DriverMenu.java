@@ -1,12 +1,12 @@
 
 package menu;
 
-import java.util.Scanner;
-import java.util.ArrayList;
-import main.*;
-import employees.Driver;
 import bus.*;
 import depot.Depot;
+import employees.Driver;
+import java.util.ArrayList;
+import java.util.Scanner;
+import main.*;
 
 /**
  *
@@ -32,13 +32,17 @@ public class DriverMenu {
      */
     public DriverMenu(Scanner in, Dispatcher dispatcher, ScheduleManager scheduleManager, BusManager busManager) {
         this.in = in;
-        this.menuTitle = "Driver Menu";
+        this.menuTitle = "╔════════════════════════════════════════════════╗\n" +
+                         "║                 DRIVER MENU                    ║\n" +
+                         "╠════════════════════════════════════════════════╣";
         this.menuOptions = new String[] {
-            "View Schedule",
-            "View Bus Information",
-            "View Route Information",
-            "Return to Main Menu"
+            "║  1. View Schedule                             ║",
+            "║  2. View Bus Information                      ║",
+            "║  3. View Route Information                    ║",
+            "║  4. Return to Main Menu                       ║"
         };
+        this.menuPrompt = "╚════════════════════════════════════════════════╝\n Please select an option (1-4): ";
+        this.menuExit = "Exiting Driver Menu...";
         this.menuPrompt = "Please select an option: ";
         this.menuExit = "Exiting Driver Menu...";
         this.dispatcher = dispatcher;

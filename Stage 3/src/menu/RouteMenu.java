@@ -1,10 +1,9 @@
 
 package menu;
 
-import java.util.Scanner;
-
 import bus.Bus;
 import bus.BusManager;
+import java.util.Scanner;
 import main.*;
 
 /**
@@ -40,15 +39,20 @@ public class RouteMenu {
     public void displayMenu() {
         
         while (menuOption != 5) {
-            System.out.println("~~~~~~~~~~~~");
-            System.out.println("Route Management Menu");
-            System.out.println("1. Add a new route");
-            System.out.println("2. Manage an existing route");
-            System.out.println("3. Display all Routes");
-            System.out.println("4. Manage route assignment");
-            System.out.println("5. Return to previous menu");
+            System.out.println("╔════════════════════════════════════════════════╗");
+            System.out.println("║              ROUTE MANAGEMENT MENU             ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║  1. Add a new route                            ║");
+            System.out.println("║  2. Manage an existing route                   ║");
+            System.out.println("║  3. Display all Routes                         ║");
+            System.out.println("║  4. Manage route assignment                    ║");
+            System.out.println("║  5. Return to previous menu                    ║");
+            System.out.println("╚════════════════════════════════════════════════╝");
+            System.out.print(" Please select an option (1-5): ");
 
             menuOption = in.nextInt();
+
+            System.out.println("========================================");
 
             switch (menuOption) {
                 case 1 -> {
@@ -64,10 +68,10 @@ public class RouteMenu {
                     System.out.print("What is the ID of the route? ");
                     in.nextLine(); // consume leftover newline character
                     String routeId = in.nextLine();
-                    
+
                     // find the route by id
                     Route targetRoute = routeManager.getRouteById(routeId);
-                    
+
                     if (targetRoute == null) {
                         System.out.println("A route with ID " + routeId + " does not exist");
                         break;
@@ -105,13 +109,20 @@ public class RouteMenu {
     public void subMenu(Route route) {
         int option = 0;
         while (option != 5) {            
-            System.out.println("1. Change Name");
-            System.out.println("2. Add Bus Stop");
-            System.out.println("3. Remove Bus Stop");
-            System.out.println("4. Delete route");
-            System.out.println("5. Previous Menu");
+            System.out.println("╔════════════════════════════════════════════════╗");
+            System.out.println("║                ROUTE MANAGEMENT MENU           ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║  1. Change Name                                ║");
+            System.out.println("║  2. Add Bus Stop                               ║");
+            System.out.println("║  3. Remove Bus Stop                            ║");
+            System.out.println("║  4. Delete Route                               ║");
+            System.out.println("║  5. Previous Menu                              ║");
+            System.out.println("╚════════════════════════════════════════════════╝");
+            System.out.print(" Please select an option (1-5): ");
 
             option = in.nextInt();
+
+            System.out.println("========================================");
 
             switch (option) {
                 case 1 -> {
@@ -159,13 +170,20 @@ public class RouteMenu {
     public void routeAssignment(Route route) {
         int option = 0;
         while (option != 5) {            
-            System.out.println("1. Assign bus to route");
-            System.out.println("2. Unassign bus from route");
-            System.out.println("3. Assign driver to route");
-            System.out.println("4. Unassign driver from route");
-            System.out.println("5. Previous Menu");
+            System.out.println("╔════════════════════════════════════════════════╗");
+            System.out.println("║              ROUTE ASSIGNMENT MENU             ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║  1. Assign bus to route                        ║");
+            System.out.println("║  2. Unassign bus from route                    ║");
+            System.out.println("║  3. Assign driver to route                     ║");
+            System.out.println("║  4. Unassign driver from route                 ║");
+            System.out.println("║  5. Previous Menu                              ║");
+            System.out.println("╚════════════════════════════════════════════════╝");
+            System.out.print(" Please select an option (1-5): ");
             
             option = in.nextInt();
+
+            System.out.println("========================================");
 
             switch (option) {
                 case 1 -> {
