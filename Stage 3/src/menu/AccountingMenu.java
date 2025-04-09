@@ -7,7 +7,14 @@ import expenses.*;
 import java.util.Scanner;
 
 /**
- * 
+ * This class is used for the accounting menu. It displays a menu and asks for
+ * user input for managing expenses. It has 6 instance variables.
+ * in: The Scanner object used for user input
+ * accounting: The Accounting object used as a database for the expenses
+ * busManager: The BusManager object used as a database for buses
+ * depotManager: The DepotManager object used as a database for Depots
+ * employeeManagement: The EmployeeManagement object used as a database for 
+ * employees
  * @author George Candal
  */
 public class AccountingMenu {
@@ -19,7 +26,19 @@ public class AccountingMenu {
     private DepotManager depotManager;
     private EmployeeManagement employeeManagement;
     
-    public AccountingMenu(Scanner in, Accounting accounting, BusManager busManager, DepotManager depotManager, EmployeeManagement employeeManagement) {
+    /**
+     * Constructor for the class. 
+     * @param in The Scanner object used for user input
+     * @param accounting The Accounting object used as a database for the 
+     * expenses
+     * @param busManager The BusManager object used as a database for buses
+     * @param depotManager The DepotManager object used as a database for Depots
+     * @param employeeManagement The EmployeeManagement object used as a 
+     * database for employees
+     */
+    public AccountingMenu(Scanner in, Accounting accounting, 
+            BusManager busManager, DepotManager depotManager, 
+            EmployeeManagement employeeManagement) {
         this.in = in;
         this.accounting = accounting;
         this.busManager = busManager;
@@ -29,7 +48,7 @@ public class AccountingMenu {
     }
 
     /**
-     * display the main accounting menu
+     * Displays the main accounting menu
      */
     public void displayMenu() {
         
@@ -70,7 +89,9 @@ public class AccountingMenu {
         }
     }
 
-    
+    /**
+     * Displays the sub menu to add a new expense
+     */
     public void expenseSubMenu() {
         int menuOption = 0;
         

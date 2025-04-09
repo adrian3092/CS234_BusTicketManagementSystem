@@ -74,12 +74,19 @@ public class Route {
     public ArrayList<BusStop> getStops() {
         return stops;
     }
-        
+    
+    /**
+     * Used to print the object
+     * @return a string with route ID and route name
+     */
     @Override
     public String toString() {
         return "ID: " + routeID + " Name: " + name;
     }
     
+    /**
+     * Prints the names of all of the bus stops in the route
+     */
     public void displayStops() {
         for (BusStop stop : stops)
             System.out.println(stop.getName());
