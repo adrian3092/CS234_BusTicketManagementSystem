@@ -128,9 +128,25 @@ public class DepotMenu {
         System.out.print("Enter the ID of the bus to be assigned: ");
         int busId = in.nextInt();
         Bus bus = busManager.findBusById(busId);
+        if (bus == null) {
+            System.out.println("A bus with ID " + busId + " does not exist.");
+            return;
+        }
+        
         System.out.print("Enter the ID of the depot you would like to assign the bus to: ");
         int depotId = in.nextInt();
         Depot depot = depotManager.findDepotById(depotId);
+        if (depot == null) {
+            System.out.println("A depot with ID " + depotId + " does not exist.");
+            return;
+        }
+        
+        // check if the bus is already assigned to this depot
+        if (depot.findBusById(busId) != null) {
+            System.out.println("The bus with ID " + busId + " is already assigned to depot " + depotId + ".");
+            return;
+        }
+        
         depotManager.assignBusToDepot(depotId, bus);
         System.out.println("The bus with ID " + busId + " has been assigned to depot " + depot.getDepotId());
     }
@@ -142,9 +158,25 @@ public class DepotMenu {
         System.out.print("Enter the ID of the bus to be unassigned: ");
         int busId = in.nextInt();
         Bus bus = busManager.findBusById(busId);
+        if (bus == null) {
+            System.out.println("A bus with ID " + busId + " does not exist.");
+            return;
+        }
+        
         System.out.print("Enter the ID of the depot you would like to unassign the bus from: ");
         int depotId = in.nextInt();
         Depot depot = depotManager.findDepotById(depotId);
+        if (depot == null) {
+            System.out.println("A depot with ID " + depotId + " does not exist.");
+            return;
+        }
+        
+        // check if the bus is actually assigned to this depot
+        if (depot.findBusById(busId) == null) {
+            System.out.println("The bus with ID " + busId + " is not assigned to depot " + depotId + ".");
+            return;
+        }
+        
         depotManager.removeBusFromDepot(depotId, bus);
         System.out.println("The bus with ID " + busId + " has been unassigned from depot " + depot.getDepotId());
     }
