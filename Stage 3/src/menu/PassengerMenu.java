@@ -24,14 +24,20 @@ public class PassengerMenu {
         int choice;
 
         do {
-            System.out.println("Passenger Login Menu:");
-            System.out.println("1. Already have an account? Login.");
-            System.out.println("2. New to bus company? Sign up.");
-            System.out.println("3. Don't need an account? Continue as guest.");
-            System.out.println("4. Return to main menu.");
+            System.out.println("╔════════════════════════════════════════════════╗");
+            System.out.println("║              PASSENGER LOGIN MENU              ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║  1. Already have an account? Login.            ║");
+            System.out.println("║  2. New to bus company? Sign up.               ║");
+            System.out.println("║  3. Don't need an account? Continue as guest.  ║");
+            System.out.println("║  4. Return to main menu.                       ║");
+            System.out.println("╚════════════════════════════════════════════════╝");
             System.out.print("Please select an option (1-4): ");
 
             choice = in.nextInt();
+            System.out.println("══════════════════════════════════════════════════"); 
+
+            in.nextLine(); // Consume the newline character left by nextInt()
 
             switch (choice) {
                 case 1:
@@ -45,7 +51,6 @@ public class PassengerMenu {
                     break;
                 case 3:
                     System.out.println("Continuing as guest...");
-                    // Add guest logic here
                     TicketMenu ticketMenu = new TicketMenu(in, scheduleManager);
                     ticketMenu.displayMenu();
                     break;

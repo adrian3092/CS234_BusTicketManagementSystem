@@ -29,6 +29,9 @@ public class Main {
         
         //create employee database
         EmployeeManagement employeeManagement = new EmployeeManagement();
+
+        //create passenger manager
+        PassengerManager passengerManager = new PassengerManager();
         
         // create employees
         Admin admin1 = new Admin("John", "Doe", "Admin", "5286857246", 40500, employeeManagement);
@@ -137,8 +140,8 @@ public class Main {
                 case 1 -> {
                     // book ticket
                     in.nextLine(); // consume the leftover new line character
-                    TicketMenu ticketMenu = new TicketMenu(in, scheduleManager);
-                    ticketMenu.displayMenu();
+                    PassengerMenu passengerMenu = new PassengerMenu(in, passengerManager, scheduleManager);
+                    passengerMenu.displayMenu();
                 }
                 case 2 -> {
                     // view schedule
