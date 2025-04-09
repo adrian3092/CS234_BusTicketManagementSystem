@@ -28,7 +28,7 @@ public class EmployeeManagementMenu {
             System.out.println("║  2. Delete an Existing Employee                ║");
             System.out.println("║  3. Display All Employees                      ║");
             System.out.println("║  4. Update Employee Information                ║");
-            System.out.println("║  5. Return to Main Menu                        ║");
+            System.out.println("║  5. Return to Administrator Menu               ║");
             System.out.println("╚════════════════════════════════════════════════╝");
             System.out.print(" Please select an option (1-5): ");
 
