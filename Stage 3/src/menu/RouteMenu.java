@@ -65,7 +65,7 @@ public class RouteMenu {
                     in.nextLine(); // consume leftover newline character
                     String routeId = in.nextLine();
                     
-                    // find the route by name
+                    // find the route by id
                     Route targetRoute = routeManager.getRouteById(routeId);
                     
                     if (targetRoute == null) {
@@ -185,7 +185,8 @@ public class RouteMenu {
                     
                     if (success) {
                         System.out.println("Bus " + busId + " has been successfully assigned to route " + route.getName());
-                    } else {
+                    } 
+                    else {
                         System.out.println("Failed to assign bus to route. The bus or route may already be assigned.");
                     }
                 }
@@ -195,7 +196,8 @@ public class RouteMenu {
                     
                     if (success) {
                         System.out.println("Bus has been successfully unassigned from route " + route.getName());
-                    } else {
+                    } 
+                    else {
                         System.out.println("Failed to unassign bus from route. There may not be a bus assigned to this route.");
                     }
                 }
