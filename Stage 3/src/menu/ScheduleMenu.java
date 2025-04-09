@@ -155,8 +155,7 @@ public class ScheduleMenu {
             Integer updateOption = 0;
 
             while (updateOption != 5) {
-                System.out.println("========================================");
-                System.out.println("|         Manage Schedule Menu         |");
+                
                 System.out.println("╔════════════════════════════════════════════════╗");
                 System.out.println("║              MANAGE SCHEDULE MENU              ║");
                 System.out.println("╠════════════════════════════════════════════════╣");
@@ -172,7 +171,7 @@ public class ScheduleMenu {
 
                 updateOption = in.nextInt();
 
-                System.out.println("════════════════════════════════════════════════"); 
+                System.out.println("══════════════════════════════════════════════════"); 
                 in.nextLine(); // Consume newline
 
                 switch (updateOption) {

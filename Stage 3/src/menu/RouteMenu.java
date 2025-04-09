@@ -52,7 +52,7 @@ public class RouteMenu {
 
             menuOption = in.nextInt();
 
-            System.out.println("========================================");
+            System.out.println("══════════════════════════════════════════════════");
 
             switch (menuOption) {
                 case 1 -> {
@@ -122,7 +122,7 @@ public class RouteMenu {
 
             option = in.nextInt();
 
-            System.out.println("========================================");
+            System.out.println("══════════════════════════════════════════════════");
 
             switch (option) {
                 case 1 -> {
@@ -183,7 +183,7 @@ public class RouteMenu {
             
             option = in.nextInt();
 
-            System.out.println("════════════════════════════════════════════════"); 
+            System.out.println("══════════════════════════════════════════════════"); 
 
             switch (option) {
                 case 1 -> {

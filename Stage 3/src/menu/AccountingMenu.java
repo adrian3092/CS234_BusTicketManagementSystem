@@ -46,7 +46,7 @@ public class AccountingMenu {
 
             menuOption = in.nextInt();
 
-            System.out.println("════════════════════════════════════════════════"); 
+            System.out.println("══════════════════════════════════════════════════"); 
 
             switch (menuOption) {
                 case 1 -> {
@@ -88,7 +88,7 @@ public class AccountingMenu {
 
             menuOption = in.nextInt();
             
-            System.out.println("════════════════════════════════════════════════"); 
+            System.out.println("══════════════════════════════════════════════════");
             switch (menuOption) {
                 case 1 -> {
                     accounting.addBusCost(busManager, "fuel");

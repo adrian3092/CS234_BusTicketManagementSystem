@@ -52,7 +52,7 @@ public class BusMenu {
                         in.next(); // consume the invalid input
                         continue;
                     }
-                    System.out.println("========================================");
+                    System.out.println("══════════════════════════════════════════════════");
 
                     switch (menuOption) {
                         case 1 -> {
@@ -74,7 +74,7 @@ public class BusMenu {
                                     System.out.println("Mileage: " + bus.getMileage());
                                     System.out.println("Seating Capacity: " + bus.getCapacity());
                                     System.out.println("Status: " + bus.getStatus());
-                                    System.out.println("=======================================");
+                                    System.out.println("══════════════════════════════════════════════════");
                                 }
                                 System.out.println("\nTotal buses: " + buses.size());
                             }

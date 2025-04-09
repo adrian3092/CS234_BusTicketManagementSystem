@@ -49,7 +49,7 @@ public class DepotMenu {
 
             menuOption = in.nextInt();
 
-            System.out.println("════════════════════════════════════════════════"); 
+            System.out.println("══════════════════════════════════════════════════"); 
 
             switch (menuOption) {
                 case 1 -> {

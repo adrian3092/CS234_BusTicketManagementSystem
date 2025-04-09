@@ -65,7 +65,7 @@ public class AdminMenu {
                             System.out.print("Please select an option (1-7): ");
             
             menuOption = in.nextInt();
-            System.out.println("════════════════════════════════════════════════"); 
+            System.out.println("══════════════════════════════════════════════════"); 
 
             switch (menuOption) {
                 case 1 -> {
