@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import main.Passenger;
 
 /**
- * 
+ * this class manages all payments
+ * at the bus company
  * @author Adrian Zielinski
  */
 public class PaymentManager {

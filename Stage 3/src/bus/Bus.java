@@ -2,7 +2,7 @@
 package bus;
 
 /**
- * 
+ * this class represents a bus for the bus company
  * @author Adrian Zielinski
  */
 public class Bus {
@@ -15,7 +15,6 @@ public class Bus {
     private int mileage;
     private int capacity;
     private String status;
-
 
     /**
      * constructor that initializes the
@@ -43,7 +42,6 @@ public class Bus {
     public int getBusId() {
         return busId;
     }
-
 
     /**
      * gets the year of a bus

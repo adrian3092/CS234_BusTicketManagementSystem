@@ -4,7 +4,8 @@ package ticket;
 import java.util.ArrayList;
 
 /**
- *
+ * this class manages all tickets
+ * at the bus company
  * @author Adrian Zielinski
  */
 public class TicketManager {
@@ -36,7 +37,8 @@ public class TicketManager {
     }
 
     /**
-     * 
+     * cancel an existing ticket
+     * @param ticket the ticket to be cancelled
      */
     public void cancelTicket (Ticket ticket) {
         //

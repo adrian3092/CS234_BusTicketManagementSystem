@@ -6,7 +6,8 @@ import depot.Depot;
 import depot.DepotManager;
 
 /**
- *
+ * this class manages all buses within the
+ * bus company
  * @author Adrian Zielinski
  */
 public class BusManager {

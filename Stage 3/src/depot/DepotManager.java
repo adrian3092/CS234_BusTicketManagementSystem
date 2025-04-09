@@ -1,3 +1,4 @@
+
 package depot;
 
 import java.util.ArrayList;
@@ -5,7 +6,8 @@ import java.util.ArrayList;
 import bus.Bus;
 
 /**
- *
+ * this class manages all depots within
+ * the bus company
  * @author Adrian Zielinski
  */
 public class DepotManager {

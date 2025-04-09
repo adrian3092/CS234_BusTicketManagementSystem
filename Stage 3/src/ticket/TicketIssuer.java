@@ -5,7 +5,8 @@ import main.Passenger;
 import main.Schedule;
 
 /**
- *
+ * this class is responsible for issuing
+ * tickets at the bus company
  * @author Adrian Zielinski
  */
 public class TicketIssuer {

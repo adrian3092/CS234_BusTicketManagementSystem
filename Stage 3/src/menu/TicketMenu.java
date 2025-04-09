@@ -8,7 +8,8 @@ import main.*;
 import payment.*;
 
 /**
- *
+ * this class represents a menu responsible
+ * for booking a ticket at the bus company
  * @author Adrian Zielinski
  */
 public class TicketMenu {

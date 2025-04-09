@@ -4,7 +4,8 @@ package payment;
 import main.Passenger;
 
 /**
- *
+ * this class represents a payment
+ * at the bus company
  * @author Adrian Zielinski
  */
 public class Payment {
@@ -20,7 +21,7 @@ public class Payment {
 
     /**
      * default constructor
-     * @param paymentType the type of payment being used (only "Credit Card" is accepted)
+     * @param paymentType the type of payment being used ( currently only "Credit Card" is accepted)
      * @param paymentAmount the amount to be charged
      * @param paymentDate the date of the payment
      * @param passenger the passenger making the payment

@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import bus.Bus;
 
 /**
- *
+ * this class represents a depot at the bus company
+ * buses are assigned to depots
  * @author Adrian Zielinski
  */
 public class Depot {
@@ -25,6 +26,10 @@ public class Depot {
         this.buses = new ArrayList<>();
     }
 
+    /**
+     * get the id of the depot
+     * @return the depot id
+     */
     public int getDepotId() {
         return depotId;
     }
@@ -80,7 +85,7 @@ public class Depot {
 
     /**
      * get all buses assigned to a specifc depot
-     * @return
+     * @return a list of buses assigned to a specific depot
      */
     public ArrayList<Bus> getBuses() {
         return new ArrayList<>(buses);

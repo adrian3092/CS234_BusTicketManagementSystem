@@ -4,7 +4,8 @@ package main;
 import java.util.ArrayList;
 
 /**
- * 
+ * this class manages all schedules
+ * at the bus company
  * @author Adrian Zielinski
  */
 public class ScheduleManager {
@@ -34,7 +35,8 @@ public class ScheduleManager {
         schedules.add(schedule);
     }
 
-    /** @author Handsome Onojerame
+    /** 
+     * @author Handsome Onojerame
      * remove schedule from list of schedules
      * @param schedule the schedule to be removed
      */
@@ -42,7 +44,8 @@ public class ScheduleManager {
         schedules.remove(schedule);
     }
 
-    /**@author Handsome Onojerame
+    /**
+     * @author Handsome Onojerame
      * get schedule by name
      * @param name the name of the schedule to be retrieved
      * @return the schedule at the specified name
@@ -59,7 +62,7 @@ public class ScheduleManager {
     @Override
     public String toString() {
         if (schedules.isEmpty()) {
-            return "No schedules available.";
+            return "There are no schedules available.";
         }
         
         String result = "Available Schedules:\n";
@@ -70,7 +73,8 @@ public class ScheduleManager {
             // add route information
             if (schedule.getRoute() != null) {
                 result += "Route: " + schedule.getRoute().getName() + "\n";
-            } else {
+            } 
+            else {
                 result += "Route: Not assigned, ";
             }
 
@@ -88,7 +92,8 @@ public class ScheduleManager {
                     }
                 }
                 result += "\n";
-            } else {
+            } 
+            else {
                 result += "\n";
             }
             
@@ -102,7 +107,6 @@ public class ScheduleManager {
                 }
             }
         }
-        
         return result;
     }
     

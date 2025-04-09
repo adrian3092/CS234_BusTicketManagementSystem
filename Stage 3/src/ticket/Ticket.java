@@ -5,7 +5,8 @@ import main.Schedule;
 import main.Passenger;
 
 /**
- *
+ * this class represents a ticket
+ * at the bus company
  * @author Adrian Zielinski
  */
 public class Ticket {
@@ -17,9 +18,9 @@ public class Ticket {
 
     /**
      * default constructor
-     * @param schedule
-     * @param passenger
-     * @param ticketNumber
+     * @param schedule the schedule associated with the ticket
+     * @param passenger the passenger associated with the ticket
+     * @param ticketNumber the ticket number of the ticket
      */
     public Ticket(Schedule schedule, Passenger passenger, int ticketNumber) {
         this.schedule = schedule;
@@ -37,7 +38,7 @@ public class Ticket {
     }
     
     /**
-     * 
+     * get the schedule associated with the ticket
      * @return the schedule associated with the ticket
      */
     public Schedule getSchedule() {
@@ -45,7 +46,7 @@ public class Ticket {
     }
 
     /**
-     * 
+     * get the passenger associated with the ticket
      * @return
      */
     public Passenger getPassenger() {
