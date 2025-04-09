@@ -45,6 +45,7 @@ public class MaintenanceCost extends Expense {
      */
     @Override
     public String toString() {
-        return super.getExpenseId() + " Maintenance: Bus " + bus.getBusId() + " $" + this.getCost();
+        return super.getExpenseId() + " Maintenance: Bus " + bus.getBusId() 
+                + " $" + this.getCost();
     }
 }

@@ -33,7 +33,8 @@ public class Accounting {
      * @param depotManager Depot database
      * @param employeeManagement Employee database
      */
-    public Accounting(Scanner in, BusManager busManager, DepotManager depotManager, EmployeeManagement employeeManagement) {
+    public Accounting(Scanner in, BusManager busManager, 
+            DepotManager depotManager, EmployeeManagement employeeManagement) {
         this.in = in;
         expenses = new ArrayList<>();
         this.busManager = busManager;
