@@ -82,11 +82,11 @@ public class DriverMenu {
             Bus bus = assignment.getBus();
             Depot depot = busManager.findDepotByBusId(bus.getBusId());
 
-            System.out.println("-----------------------");
+            System.out.println("══════════════════════════════════════════════════");
             System.out.println("Bus Assignment for " + driver.getName());
             System.out.println("Bus ID: " + bus.getBusId());
             System.out.println("Bus Location: " + depot.getDepotAddress());
-            System.out.println("-----------------------\n");
+            System.out.println("══════════════════════════════════════════════════");
         }
     }
 
