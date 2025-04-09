@@ -1,5 +1,6 @@
 package menu;
 
+import employees.Driver;
 import employees.Employee;
 import employees.EmployeeManagement;
 import java.util.Scanner;
@@ -163,10 +164,18 @@ public class EmployeeManagementMenu {
         float salary = in.nextFloat();
         in.nextLine(); // consume leftover new line
 
-        Employee newEmployee = new Employee(firstName, lastName, jobTitle, phoneNumber, salary, this.employeeManagement);
+        Employee newEmployee;
+        if (jobTitle.equalsIgnoreCase("Driver")) {
+            // Create a Driver object for driver employees
+            Driver newDriver = new Driver(firstName, lastName, jobTitle, phoneNumber, salary, this.employeeManagement);
+            // add the driver to the drivers list
+            this.employeeManagement.addDriver(newDriver);
+            newEmployee = newDriver;
+        } else {
+            // create a regular Employee object for non-driver employees
+            newEmployee = new Employee(firstName, lastName, jobTitle, phoneNumber, salary, this.employeeManagement);
+        }
         System.out.println("A new employee has been added with ID: " + newEmployee.getEmployeeID());
     }    
     
     }
-
-

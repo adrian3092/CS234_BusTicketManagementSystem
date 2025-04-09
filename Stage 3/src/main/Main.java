@@ -34,15 +34,22 @@ public class Main {
         Admin admin1 = new Admin("John", "Doe", "Admin", "5286857246", 40500, employeeManagement);
         Login login1 = new Login(admin1, loginManager);
         Driver driver1 = new Driver("Lauren", "Smith", "Driver", "8518534605", 51800, employeeManagement);
+        employeeManagement.addDriver(driver1);
         Login login2 = new Login(driver1, loginManager);
+        Driver driver2 = new Driver("Robert", "Brown", "Driver", "4586994350", 55200, employeeManagement);
+        employeeManagement.addDriver(driver2);
+        Login login3 = new Login(driver2, loginManager);
 
-        // create initial depot
+        // create initial depots
         DepotManager depotManager = new DepotManager();
         Depot depot1 = new Depot("1862 Aviation Way, Los Angeles, CA 90071");
         depotManager.addDepot(depot1);
+        Depot depot2 = new Depot("2155 Norman Street, Los Angeles, CA 90008");
+        depotManager.addDepot(depot2);
 
-        // create initial route and bus stops, add bus stops to route
+        // create initial routes and bus stops, add bus stops to routes
         Route route1 = new Route("Downtown", routeManager);
+        Route route2 = new Route("Midtown", routeManager);
 
         BusStop busStop1 = new BusStop("Main St & 6th St", 0.3);
         BusStop busStop2 = new BusStop("Broadway & 6th St", 0.2);
