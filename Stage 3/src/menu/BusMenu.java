@@ -63,7 +63,7 @@ public class BusMenu {
                         }
                         case 3 -> {
                             // display all buses
-                            System.out.println("      All Buses      \n");
+                            System.out.println("All Buses\n");
                             ArrayList<Bus> buses = busManager.getAllBuses();
                             if (buses.isEmpty()) {
                                 System.out.println("There are no buses available in the system.");
