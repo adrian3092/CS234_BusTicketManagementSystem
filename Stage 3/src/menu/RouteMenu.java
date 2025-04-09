@@ -183,7 +183,7 @@ public class RouteMenu {
             
             option = in.nextInt();
 
-            System.out.println("========================================");
+            System.out.println("════════════════════════════════════════════════"); 
 
             switch (option) {
                 case 1 -> {

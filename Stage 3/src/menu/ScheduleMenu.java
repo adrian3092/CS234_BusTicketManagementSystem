@@ -172,7 +172,7 @@ public class ScheduleMenu {
 
                 updateOption = in.nextInt();
 
-                System.out.println("========================================");
+                System.out.println("════════════════════════════════════════════════"); 
                 in.nextLine(); // Consume newline
 
                 switch (updateOption) {
