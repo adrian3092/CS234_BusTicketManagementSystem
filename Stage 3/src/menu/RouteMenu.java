@@ -26,6 +26,7 @@ public class RouteMenu {
      * @param routeManager
      * @param dispatcher
      * @param busManager
+     * @param employeeManagement
      */
     public RouteMenu(Scanner in, RouteManager routeManager, Dispatcher dispatcher, BusManager busManager, EmployeeManagement employeeManagement) {
         this.in = in;
@@ -93,6 +94,9 @@ public class RouteMenu {
         }
     }
     
+    /**
+     * 
+     */
     public void addRoute() {
         System.out.println("What is the name of the route? ");
         in.nextLine(); // consume leftover newline character
@@ -100,6 +104,9 @@ public class RouteMenu {
         new Route(name, routeManager);
     }
     
+    /**
+     * 
+     */
     public void manageRoute() {
         System.out.println("Enter the ID of the route you want to manage: ");
         in.nextLine(); // consume leftover newline character
@@ -109,6 +116,10 @@ public class RouteMenu {
         subMenu(route);
     }
     
+    /**
+     * 
+     * @param route
+     */
     public void subMenu(Route route) {
         int option = 0;
         while (option != 5) {            
@@ -185,6 +196,11 @@ public class RouteMenu {
         }
     }
     
+    /**
+     * display menu for route assignment related functions
+     * @author Adrian Zielinski
+     * @param route the route a bus/driver should be assigned to/unassigned from
+     */
     public void routeAssignment(Route route) {
         int option = 0;
         while (option != 3) {            

@@ -75,7 +75,7 @@ public class Main {
         schedule1.getDepartureTimes().add(10.00);
         schedule1.getDepartureTimes().add(10.50);
 
-        // create two initial buses
+        // create two initial buses, and add to list of all buses
         BusManager busManager = new BusManager(depotManager);
         Bus bus1 = new Bus(2024, "Volvo", "7900", 3786, 40);
         Bus bus2 = new Bus(2013, "Volvo", "8900", 154965, 60);
@@ -83,7 +83,7 @@ public class Main {
         busManager.addBus(bus1);
         busManager.addBus(bus2);
 
-        // Assign buses to the depot
+        // assign buses to the depot
         depot1.assignBus(bus1);
         depot1.assignBus(bus2);
         
