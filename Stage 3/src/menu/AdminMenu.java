@@ -62,7 +62,7 @@ public class AdminMenu {
                             System.out.println("║  6. Expense Management                         ║");
                             System.out.println("║  7. Return to Main Menu                        ║");
                             System.out.println("╚════════════════════════════════════════════════╝");
-                            System.out.print(" Please select an option (1-7): ");
+                            System.out.print("Please select an option (1-7): ");
             
             menuOption = in.nextInt();
             System.out.println("========================================");

@@ -42,7 +42,7 @@ public class BusMenu {
                     System.out.println("║  3. Display all buses                          ║");
                     System.out.println("║  4. Return to Employee Menu                    ║");
                     System.out.println("╚════════════════════════════════════════════════╝");
-                    System.out.print(" Please select an option (1-4): ");
+                    System.out.print("Please select an option (1-4): ");
 
                     if (in.hasNextInt()) {
                         menuOption = in.nextInt();
@@ -74,7 +74,7 @@ public class BusMenu {
                                     System.out.println("Mileage: " + bus.getMileage());
                                     System.out.println("Seating Capacity: " + bus.getCapacity());
                                     System.out.println("Status: " + bus.getStatus());
-                                    System.out.println("-----------------------");
+                                    System.out.println("=======================================");
                                 }
                                 System.out.println("\nTotal buses: " + buses.size());
                             }
@@ -163,13 +163,17 @@ public class BusMenu {
         int subMenuOption = 0;
 
         while (subMenuOption != 6) {
-            System.out.println("Bus Management Options for Bus ID: " + busId);
-            System.out.println("1. Get the mileage");
-            System.out.println("2. Update the mileage");
-            System.out.println("3. Get the status");
-            System.out.println("4. Update the status");
-            System.out.println("5. Delete an existing bus");
-            System.out.println("6. Return to Bus Menu");
+            System.out.println("╔════════════════════════════════════════════════╗");
+            System.out.println("║  BUS MANAGEMENT OPTIONS FOR BUS ID: " + selectedBus.getBusId() +"       ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║  1. Get the mileage                            ║");
+            System.out.println("║  2. Update the mileage                         ║");
+            System.out.println("║  3. Get the status                             ║");
+            System.out.println("║  4. Update the status                          ║");
+            System.out.println("║  5. Delete an existing bus                     ║");
+            System.out.println("║  6. Return to Bus Menu                         ║");
+            System.out.println("╚════════════════════════════════════════════════╝");
+            System.out.print("Please select an option (1-6): ");
             
             if (in.hasNextInt()) {
                 subMenuOption = in.nextInt();

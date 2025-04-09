@@ -82,7 +82,7 @@ public class AccountingMenu {
             System.out.println("║  4. Utilities                                  ║");
             System.out.println("║  5. Return to previous menu                    ║");
             System.out.println("╚════════════════════════════════════════════════╝");
-            System.out.print(" Please select an option (1-5): ");
+            System.out.print("Please select an option (1-5): ");
 
             menuOption = in.nextInt();
 

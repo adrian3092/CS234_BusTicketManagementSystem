@@ -45,7 +45,7 @@ public class DepotMenu {
             System.out.println("║  5. Display all depots                         ║");
             System.out.println("║  6. Return to Employee Menu                    ║");
             System.out.println("╚════════════════════════════════════════════════╝");
-            System.out.print(" Please select an option (1-6): ");
+            System.out.print("Please select an option (1-6): ");
 
             menuOption = in.nextInt();
 

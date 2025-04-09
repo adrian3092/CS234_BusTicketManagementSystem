@@ -120,7 +120,7 @@ public class Main {
             System.out.println("║  3. Employee Login                             ║");
             System.out.println("║  4. Quit                                       ║");
             System.out.println("╚════════════════════════════════════════════════╝");
-            System.out.print(" Please select an option (1-4): ");
+            System.out.print("Please select an option (1-4): ");
 
             menuOption = in.nextInt();
 
@@ -147,7 +147,7 @@ public class Main {
                         adminMenu.displayMenu();
                     } else if (accessLevel.equals("Driver")) {
                         System.out.println("Access Granted: Driver Menu");
-                        driverMenu.run();
+                        driverMenu.displayMenu();
                     } else {
                         System.out.println("Access Denied: Invalid Credentials");
                     }
