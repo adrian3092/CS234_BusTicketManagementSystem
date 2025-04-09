@@ -43,7 +43,7 @@ public class AdminMenu {
         accountingMenu = new AccountingMenu(in, accounting, busManager, depotManager, employeeManagement);
         employeeManagementMenu = new EmployeeManagementMenu(in, employeeManagement);
         scheduleMenu = new ScheduleMenu(in, scheduleManager, routeManager, depotManager);
-        routeMenu = new RouteMenu(in, routeManager, dispatcher, busManager);
+        routeMenu = new RouteMenu(in, routeManager, dispatcher, busManager, employeeManagement);
     }
 
     /**
