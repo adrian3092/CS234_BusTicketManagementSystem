@@ -18,6 +18,7 @@ public class PassengerMenu {
     private PassengerManager passengerManager;
     private ScheduleManager scheduleManager;
     private LoginManager loginManager;
+    private TicketMenu ticketMenu;
 
     /**
      * Constructor to initialize PassengerMenu with required managers and input scanner.
@@ -31,6 +32,7 @@ public class PassengerMenu {
         this.scheduleManager = scheduleManager;
         this.in = in;
         this.loginManager = loginManager;
+        this.ticketMenu = new TicketMenu(in, scheduleManager, passengerManager);
     }
 
     /**
@@ -58,11 +60,9 @@ public class PassengerMenu {
             switch (choice) {
                 case 1:
                     System.out.println("Redirecting to login...");
-                    String passengerLogin = loginManager.checkCredentials();
-                    if (passengerLogin.equals("Passenger")) {
-                        TicketMenu ticketMenu = new TicketMenu(in, scheduleManager);
-                        ticketMenu.displayMenu("login");
-                    }                   
+                    String passengerID = loginManager.checkCredentials();
+                    ticketMenu.displayMenu(passengerID);
+                                       
                     break;
                 case 2:
                     System.out.println("Redirecting to sign-up...");
@@ -70,7 +70,6 @@ public class PassengerMenu {
                     break;
                 case 3:
                     System.out.println("Continuing as guest...");
-                    TicketMenu ticketMenu = new TicketMenu(in, scheduleManager);
                     ticketMenu.displayMenu("guest");
                     break;
                 case 4:

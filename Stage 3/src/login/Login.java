@@ -81,5 +81,9 @@ public class Login {
      */
     public Employee getEmployee() {
         return employee;
-    }    
+    } 
+    
+    public Passenger getPassenger() {
+        return passenger;
+    }
 }

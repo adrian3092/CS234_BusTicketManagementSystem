@@ -69,7 +69,7 @@ public class PassengerManager {
             }
         }
         return null; // Return null if passenger not found
-    }
+    }   
 
     /**
      * Updates the details of a passenger.

@@ -18,54 +18,33 @@ public class TicketMenu {
     private TicketIssuer ticketIssuer;
     private ScheduleManager scheduleManager;
     private PaymentManager paymentManager;
+    private PassengerManager passengerManager;
 
     /**
      * default constructor
      * @param in scanner
      * @param scheduleManager the schedule manager containing available schedules
+     * @param passsengerManager the PassengerManager database
      */
-    public TicketMenu(Scanner in, ScheduleManager scheduleManager) {
+    public TicketMenu(Scanner in, ScheduleManager scheduleManager, PassengerManager passengerManager) {
         this.in = in;
         ticketIssuer = new TicketIssuer();
         this.scheduleManager = scheduleManager;
         this.paymentManager = new PaymentManager();
+        this.passengerManager = passengerManager;
     }
 
     /**
      * display the ticket booking menu
      */
-    public void displayMenu(String guest) {
-        // display available schedules
-        System.out.println(scheduleManager.toString());
+    public void displayMenu(String passengerID) {
+        Schedule selectedSchedule = pickSchedule();
         
-        // get user input for schedule selection
-        System.out.print("Enter the number of the schedule you would like to purchase a ticket for: ");
-        String input = in.nextLine();
-        
-        int scheduleChoice = Integer.parseInt(input);
-        
-        // validate the schedule choice
-        if (scheduleChoice < 1 || scheduleChoice > scheduleManager.getSchedules().size()) {
-            System.out.println("Invalid schedule number. Please try again.");
-            return;
-        }
-        
-        // get the selected schedule
-        Schedule selectedSchedule = scheduleManager.getSchedules().get(scheduleChoice - 1);
-        
-        if (guest.equals("guest")) {
-        // get passenger information
-        System.out.print("Please enter your first and last name: ");
-        String name = in.nextLine();
-        System.out.print("Please enter your email: ");
-        String email = in.nextLine();
-        System.out.print("Please enter your phone number: ");
-        String phoneNumber = in.nextLine();
-        
-        // check is passenger already exists
-
-        // create passenger object
-        Passenger passenger = new Passenger(name, email, phoneNumber);
+        Passenger passenger;
+        if (passengerID.equals("guest")) {
+            passenger = guestPassenger();
+        } else {
+            passenger = passengerManager.getPassengerById(passengerID);
         }
         
         // book the ticket
@@ -101,7 +80,44 @@ public class TicketMenu {
     }
     
     public Schedule pickSchedule() {
+        int scheduleChoice;
         
+        do {
+        // display available schedules
+        System.out.println(scheduleManager.toString());
+        
+        // get user input for schedule selection
+        System.out.print("Enter the number of the schedule you would like to purchase a ticket for: ");
+        scheduleChoice = in.nextInt();
+        
+//        scheduleChoice = Integer.parseInt(input);
+        
+        // validate the schedule choice
+        if (scheduleChoice < 1 || scheduleChoice > scheduleManager.getSchedules().size()) {
+            System.out.println("Invalid schedule number. Please try again.");
+        }
+        
+        } while ((scheduleChoice < 1 || scheduleChoice > scheduleManager.getSchedules().size()));
+        
+        // get the selected schedule
+        Schedule selectedSchedule = scheduleManager.getSchedules().get(scheduleChoice - 1); 
+        return selectedSchedule;
+    }
+    
+    public Passenger guestPassenger() {
+        // get passenger information
+        System.out.print("Please enter your first and last name: ");
+        String name = in.nextLine();
+        System.out.print("Please enter your email: ");
+        String email = in.nextLine();
+        System.out.print("Please enter your phone number: ");
+        String phoneNumber = in.nextLine();
+        
+        // check is passenger already exists
+
+        // create passenger object
+        Passenger passenger = new Passenger(name, email, phoneNumber);
+        return passenger;
     }
     
     /**
