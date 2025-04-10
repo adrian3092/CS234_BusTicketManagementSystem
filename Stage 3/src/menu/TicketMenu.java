@@ -80,6 +80,10 @@ public class TicketMenu {
         System.out.println("Credit Card: " + payment.getCardNumber());
     }
     
+    /**
+     * Asks for user input to pick a schedule
+     * @return The Schedule object picked by the user
+     */
     public Schedule pickSchedule() {
         int scheduleChoice;
         
@@ -90,8 +94,6 @@ public class TicketMenu {
         // get user input for schedule selection
         System.out.print("Enter the number of the schedule you would like to purchase a ticket for: ");
         scheduleChoice = in.nextInt();
-        
-//        scheduleChoice = Integer.parseInt(input);
         
         // validate the schedule choice
         if (scheduleChoice < 1 || scheduleChoice > scheduleManager.getSchedules().size()) {
@@ -105,6 +107,12 @@ public class TicketMenu {
         return selectedSchedule;
     }
     
+    /**
+     * This is used if the passenger is not already in the system. It will ask 
+     * for information from the user and use that to create a new passenger
+     * object.
+     * @return The new passenger object that was created
+     */
     public Passenger guestPassenger() {
         // get passenger information
         System.out.print("Please enter your first and last name: ");
@@ -114,8 +122,6 @@ public class TicketMenu {
         String email = in.nextLine();
         System.out.print("Please enter your phone number: ");
         String phoneNumber = in.nextLine();
-        
-        // check is passenger already exists
 
         // create passenger object
         Passenger passenger = new Passenger(name, email, phoneNumber);

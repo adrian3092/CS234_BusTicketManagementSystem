@@ -26,6 +26,7 @@ public class PassengerMenu {
      * @param in               Scanner object for user input
      * @param passengerManager Manager to handle passenger-related operations
      * @param scheduleManager  Manager to handle schedule-related operations
+     * @param loginManager     Manager to handle login-related operations
      */
     public PassengerMenu(Scanner in, PassengerManager passengerManager, ScheduleManager scheduleManager, LoginManager loginManager) {
         this.passengerManager = passengerManager;
