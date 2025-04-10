@@ -4,7 +4,7 @@ import depot.Depot;
 import java.util.ArrayList;
 
 /**
- *
+ * This class represents a schedule.
  * @author George Candal
  */
 public class Schedule {

@@ -4,7 +4,8 @@ package main;
 import bus.Bus;
 
 /**
- * 
+ * This class represents a route assignment by connecting a bus with it's
+ * assigned route.
  * @author Adrian Zielinski
  */
 public class RouteAssignment {

@@ -103,6 +103,10 @@ public class Depot {
         return null;
     }
 
+    /**
+     * Used to print the object
+     * @return a string with the depot ID and address
+     */
     @Override
     public String toString() {
         return "Depot ID: " + depotId + ", Address: " + address;

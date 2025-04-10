@@ -8,7 +8,7 @@ import bus.BusManager;
 import employees.Driver;
 
 /**
- * 
+ * This class is used to assign drivers and routes with buses.
  * @author Adrian Zielinski
  */
 public class Dispatcher {

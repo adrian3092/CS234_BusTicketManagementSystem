@@ -26,6 +26,10 @@ public class RouteManager {
         routes.add(route);
     }
     
+    /**
+     * Removes a route from the list of routes
+     * @param route The Route object to remove
+     */
     public void removeRoute(Route route) {
         routes.remove(route);
     }

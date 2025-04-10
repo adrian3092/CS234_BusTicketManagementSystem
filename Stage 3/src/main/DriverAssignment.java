@@ -5,7 +5,8 @@ import bus.Bus;
 import employees.Driver;
 
 /**
- * 
+ * This class represents a driver assignment by connecting a driver with an
+ * assigned bus
  * @author Adrian Zielinski
  */
 public class DriverAssignment {
