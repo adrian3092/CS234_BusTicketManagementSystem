@@ -162,8 +162,6 @@ public class EmployeeManagementMenu {
             }
         }
 
-        System.out.print("Please enter the email of the employee: ");
-        String email = in.nextLine();
         System.out.print("Please enter the phone number of the employee: ");
         String phoneNumber = in.nextLine();
         System.out.print("Please enter the salary of the employee: ");
