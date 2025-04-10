@@ -7,6 +7,7 @@ import employees.EmployeeManagement;
 import expenses.Accounting;
 import java.util.Scanner;
 import main.*;
+import login.LoginManager;
 
 /**
  * 
@@ -24,6 +25,7 @@ public class AdminMenu {
     private ScheduleMenu scheduleMenu;
     private RouteMenu routeMenu;
     private Dispatcher dispatcher;
+    private LoginManager loginManager;
 
     /**
      * default constructor
@@ -34,14 +36,15 @@ public class AdminMenu {
      * @param accounting
      * @param employeeManagement
      * @param routeManager
+     * @param loginManager
      */
-    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting, EmployeeManagement employeeManagement, RouteManager routeManager, Dispatcher dispatcher) {
+    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting, EmployeeManagement employeeManagement, RouteManager routeManager, Dispatcher dispatcher, LoginManager loginManager) {
         this.in = in;
         menuOption = 0;
         busMenu = new BusMenu(in, busManager, depotManager);
         depotMenu = new DepotMenu(in, busManager, depotManager);
         accountingMenu = new AccountingMenu(in, accounting, busManager, depotManager, employeeManagement);
-        employeeManagementMenu = new EmployeeManagementMenu(in, employeeManagement);
+        employeeManagementMenu = new EmployeeManagementMenu(in, employeeManagement, loginManager);
         scheduleMenu = new ScheduleMenu(in, scheduleManager, routeManager, depotManager);
         routeMenu = new RouteMenu(in, routeManager, dispatcher, busManager, employeeManagement);
     }

@@ -1,6 +1,7 @@
 package employees;
 
 import bus.Bus;
+import login.LoginManager;
 
 /**
  * The Driver class represents a bus driver who is an employee.
@@ -20,9 +21,10 @@ public class Driver extends Employee {
      * @param phoneNumber The phone number of the driver
      * @param salary The salary of the driver
      * @param employeeManagement The EmployeeManagement object for managing employees
+     * @param loginManager The LoginManager object for managing logins
      */
-    public Driver(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement) {
-        super(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement);
+    public Driver(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement, LoginManager loginManager) {
+        super(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement, loginManager);
         this.availability = true;
     }
 

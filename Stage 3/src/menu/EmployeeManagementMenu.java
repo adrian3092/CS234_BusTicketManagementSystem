@@ -4,6 +4,7 @@ import employees.Driver;
 import employees.Employee;
 import employees.EmployeeManagement;
 import java.util.Scanner;
+import login.LoginManager;
 
 /**
  * EmployeeManagementMenu provides a menu-driven interface for managing employees.
@@ -15,16 +16,19 @@ public class EmployeeManagementMenu {
     private Scanner in;
     private int menuOption;
     private EmployeeManagement employeeManagement;
+    private LoginManager loginManager;
 
     /**
      * Constructor to initialize the EmployeeManagementMenu.
      * 
      * @param in Scanner object for user input.
      * @param employeeManagement EmployeeManagement object for managing employees.
+     * @param loginManager LoginManager object to manage logins
      */
-    public EmployeeManagementMenu(Scanner in, EmployeeManagement employeeManagement) {
+    public EmployeeManagementMenu(Scanner in, EmployeeManagement employeeManagement, LoginManager loginManager) {
         this.in = in;
         this.employeeManagement = employeeManagement;
+        this.loginManager = loginManager;
         menuOption = 0;
     }
 
@@ -169,12 +173,12 @@ public class EmployeeManagementMenu {
         Employee newEmployee;
         if (jobTitle.equalsIgnoreCase("Driver")) {
             // Create a Driver object for driver employees
-            Driver newDriver = new Driver(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement);
+            Driver newDriver = new Driver(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement, loginManager);
             employeeManagement.addDriver(newDriver);
             newEmployee = newDriver;
         } else {
             // Create a regular Employee object for non-driver employees
-            newEmployee = new Employee(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement);
+            newEmployee = new Employee(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement, loginManager);
         }
         System.out.println("A new employee has been added with ID: " + newEmployee.getEmployeeID());
     }

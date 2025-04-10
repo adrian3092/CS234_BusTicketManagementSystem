@@ -1,6 +1,7 @@
 package employees;
 
 import IdGenerator.IdGenerator;
+import login.*;
 
 /**
  * Represents an Employee with details such as ID, name, email, phone number, 
@@ -17,6 +18,7 @@ public class Employee {
     private String jobTitle; // Job title of the employee
     private float salary; // Salary of the employee
     private EmployeeManagement employeeManagement; // Reference to EmployeeManagement class
+    private LoginManager loginManager;
 
     /**
      * Constructor to initialize an Employee object.
@@ -28,7 +30,7 @@ public class Employee {
      * @param salary            The salary of the employee.
      * @param employeeManagement Reference to the EmployeeManagement class.
      */
-    public Employee(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement) {
+    public Employee(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement, LoginManager loginManager) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.jobTitle = jobTitle;
@@ -44,6 +46,7 @@ public class Employee {
             System.out.println("Invalid job title. Employee ID not generated.");
         }
         employeeManagement.addEmployee(this);
+        new Login(this, loginManager); //creates new login for employee
     }
 
     // Getters

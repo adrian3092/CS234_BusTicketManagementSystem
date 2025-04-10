@@ -1,5 +1,7 @@
 package employees;
 
+import login.LoginManager;
+
 /**
  * The Admin class represents an administrator who can manage employees
  * and perform administrative tasks in the system.
@@ -15,10 +17,10 @@ public class Admin extends Employee {
      * @param phoneNumber The phone number of the admin.
      * @param salary The salary of the admin.
      * @param employeeManagement The EmployeeManagement object for managing employees.
-     * @param employeeManagement The EmployeeManagement object for managing employees.
+     * @param loginManager The LoginManager object for managing logins.
      */
-    public Admin(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement) {
-        super(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement);
+    public Admin(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement, LoginManager loginManager) {
+        super(firstName, lastName, jobTitle, phoneNumber, salary, employeeManagement, loginManager);
     }
 
 }
