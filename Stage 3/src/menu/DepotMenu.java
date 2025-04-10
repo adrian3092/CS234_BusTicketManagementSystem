@@ -163,21 +163,21 @@ public class DepotMenu {
             return;
         }
         
-        System.out.print("Enter the ID of the depot you would like to unassign the bus from: ");
-        int depotId = in.nextInt();
-        Depot depot = depotManager.findDepotById(depotId);
-        if (depot == null) {
-            System.out.println("A depot with ID " + depotId + " does not exist.");
+        // find which depot the bus is assigned to
+        Depot assignedDepot = null;
+        for (Depot depot : depotManager.getAllDepots()) {
+            if (depot.findBusById(busId) != null) {
+                assignedDepot = depot;
+                break;
+            }
+        }
+        
+        if (assignedDepot == null) {
+            System.out.println("The bus with ID " + busId + " is not assigned to any depot.");
             return;
         }
         
-        // check if the bus is actually assigned to this depot
-        if (depot.findBusById(busId) == null) {
-            System.out.println("The bus with ID " + busId + " is not assigned to depot " + depotId + ".");
-            return;
-        }
-        
-        depotManager.removeBusFromDepot(depotId, bus);
-        System.out.println("The bus with ID " + busId + " has been unassigned from depot " + depot.getDepotId());
+        depotManager.removeBusFromDepot(assignedDepot.getDepotId(), bus);
+        System.out.println("The bus with ID " + busId + " has been unassigned from depot " + assignedDepot.getDepotId());
     }
 }
