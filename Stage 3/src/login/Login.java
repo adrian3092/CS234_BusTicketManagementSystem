@@ -1,6 +1,7 @@
 package login;
 
 import employees.Employee;
+import main.Passenger;
 
 
 /**
@@ -19,6 +20,7 @@ public class Login {
     private String password;
     private Employee employee;
     private LoginManager loginManager;
+    private Passenger passenger;
 
     /**
      * Constructor for the class. Sets the username to the employee's email 
@@ -31,6 +33,13 @@ public class Login {
         this.employee = employee;
         this.username = employee.getEmail();
         this.password = "password"; //default password
+        loginManager.getLogins().add(this);
+    }
+    
+    public Login(Passenger passenger, LoginManager loginManager, String email, String password) {
+        this.passenger = passenger;
+        this.username = email;
+        this.password = password;
         loginManager.getLogins().add(this);
     }
 

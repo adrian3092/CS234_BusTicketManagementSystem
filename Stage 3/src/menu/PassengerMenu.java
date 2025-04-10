@@ -1,6 +1,8 @@
 package menu;
 
 import java.util.Scanner;
+import login.Login;
+import login.LoginManager;
 import main.Passenger;
 import main.PassengerManager;
 import main.ScheduleManager;
@@ -15,6 +17,7 @@ public class PassengerMenu {
     private Scanner in;
     private PassengerManager passengerManager;
     private ScheduleManager scheduleManager;
+    private LoginManager loginManager;
 
     /**
      * Constructor to initialize PassengerMenu with required managers and input scanner.
@@ -23,10 +26,11 @@ public class PassengerMenu {
      * @param passengerManager Manager to handle passenger-related operations
      * @param scheduleManager  Manager to handle schedule-related operations
      */
-    public PassengerMenu(Scanner in, PassengerManager passengerManager, ScheduleManager scheduleManager) {
+    public PassengerMenu(Scanner in, PassengerManager passengerManager, ScheduleManager scheduleManager, LoginManager loginManager) {
         this.passengerManager = passengerManager;
         this.scheduleManager = scheduleManager;
         this.in = in;
+        this.loginManager = loginManager;
     }
 
     /**
@@ -54,7 +58,11 @@ public class PassengerMenu {
             switch (choice) {
                 case 1:
                     System.out.println("Redirecting to login...");
-                    // Add login logic here
+                    String passengerLogin = loginManager.checkCredentials();
+                    if (passengerLogin.equals("Passenger")) {
+                        TicketMenu ticketMenu = new TicketMenu(in, scheduleManager);
+                        ticketMenu.displayMenu("login");
+                    }                   
                     break;
                 case 2:
                     System.out.println("Redirecting to sign-up...");
@@ -63,7 +71,7 @@ public class PassengerMenu {
                 case 3:
                     System.out.println("Continuing as guest...");
                     TicketMenu ticketMenu = new TicketMenu(in, scheduleManager);
-                    ticketMenu.displayMenu();
+                    ticketMenu.displayMenu("guest");
                     break;
                 case 4:
                     System.out.println("Returning to main menu...");
@@ -72,13 +80,6 @@ public class PassengerMenu {
                     System.out.println("Invalid choice. Please try again.");
             }
         } while (choice != 4);
-    }
-
-    /**
-     * Handles the login process for passengers.
-     */
-    private void login() {
-        // Logic for passenger login
     }
 
     /**
@@ -91,16 +92,24 @@ public class PassengerMenu {
         String email = in.nextLine();
         System.out.println("Please enter your phone number: ");
         String phone = in.nextLine();
+        
+        String password;
+        String confirmPassword;
+        do{
         System.out.println("Please enter your password: ");
-        String password = in.nextLine();
+        password = in.nextLine();
         System.out.println("Please confirm your password: ");
-        String confirmPassword = in.nextLine();
+        confirmPassword = in.nextLine();
+        if (!password.equals(confirmPassword)) {
+            System.out.println("Passwords do not match. Please try again.");
+        }
+        } while (!password.equals(confirmPassword)); 
 
         Passenger newPassenger = new Passenger(name, email, phone);
         passengerManager.addPassenger(newPassenger);
         System.out.println("Welcome " + name + "! Your account has been created successfully.");
         System.out.println("Your Passenger ID is: " + newPassenger.getPassengerID());
 
-        // TODO: Add logic to send email as username and password to login manager class
+        new Login(newPassenger, loginManager, email, password);
     }
 }

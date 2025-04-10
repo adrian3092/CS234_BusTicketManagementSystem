@@ -34,7 +34,7 @@ public class TicketMenu {
     /**
      * display the ticket booking menu
      */
-    public void displayMenu() {
+    public void displayMenu(String guest) {
         // display available schedules
         System.out.println(scheduleManager.toString());
         
@@ -53,6 +53,7 @@ public class TicketMenu {
         // get the selected schedule
         Schedule selectedSchedule = scheduleManager.getSchedules().get(scheduleChoice - 1);
         
+        if (guest.equals("guest")) {
         // get passenger information
         System.out.print("Please enter your first and last name: ");
         String name = in.nextLine();
@@ -63,9 +64,9 @@ public class TicketMenu {
         
         // check is passenger already exists
 
-        
         // create passenger object
         Passenger passenger = new Passenger(name, email, phoneNumber);
+        }
         
         // book the ticket
         Ticket ticket = ticketIssuer.bookTicket(passenger, selectedSchedule);
@@ -97,6 +98,10 @@ public class TicketMenu {
         System.out.println("Payment ID: " + payment.getPaymentId());
         System.out.println("Amount: $" + String.format("%.2f", payment.getPaymentAmount()));
         System.out.println("Credit Card: " + payment.getCardNumber());
+    }
+    
+    public Schedule pickSchedule() {
+        
     }
     
     /**

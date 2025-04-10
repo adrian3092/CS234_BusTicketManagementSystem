@@ -43,7 +43,11 @@ public class LoginManager {
         for (Login login : logins) {
             if (login.getUsername().equals(enteredUsername)) {
                 if (login.getPassword().equals(enteredPassword)) {
+                    if (login.getEmployee() != null) { 
                     accessLevel = login.getEmployee().getJobTitle();
+                    } else {
+                        accessLevel = "Passenger";
+                    }
                 } else {
                     System.out.println("Invalid password");
                     break;
