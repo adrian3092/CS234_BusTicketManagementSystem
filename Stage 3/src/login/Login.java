@@ -5,13 +5,14 @@ import main.Passenger;
 
 
 /**
- * This class represents a login used to log in to the employee side of the 
- * program. It has 4 instance variables.
+ * This class represents a login used to log in to the system. It has 5 instance
+ * variables.
  * username: The username used to log in
  * password: The password associated with the username
  * employee: The Employee who the login belongs to
  * loginManager: The LoginManager object used as a database to save all of the
  * login objects
+ * passenger: The Passenger who the login belongs to
  * @author George Candal
  */
 public class Login {
@@ -23,9 +24,9 @@ public class Login {
     private Passenger passenger;
 
     /**
-     * Constructor for the class. Sets the username to the employee's email 
-     * address. Sets the default password to "password". Adds the login to the 
-     * list of logins in loginManager.
+     * Constructor for the class for employee logins. Sets the username to the 
+     * employee's email address. Sets the default password to "password". Adds 
+     * the login to the list of logins in loginManager.
      * @param employee The Employee who the login belongs to
      * @param loginManager The LoginManager database
      */
@@ -36,6 +37,14 @@ public class Login {
         loginManager.getLogins().add(this);
     }
     
+    /**
+     * Constructor for the class for passenger logins. 
+     * @param passenger The passenger who the login belongs to
+     * @param loginManager The LoginManager database
+     * @param email The passenger's email address. This is the username for the
+     * login
+     * @param password The login password
+     */
     public Login(Passenger passenger, LoginManager loginManager, String email, String password) {
         this.passenger = passenger;
         this.username = email;
@@ -83,6 +92,10 @@ public class Login {
         return employee;
     } 
     
+    /**
+     * Getter for the passenger
+     * @return The passenger associated with the login
+     */
     public Passenger getPassenger() {
         return passenger;
     }
