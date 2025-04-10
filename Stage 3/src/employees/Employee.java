@@ -29,6 +29,7 @@ public class Employee {
      * @param phoneNumber       The phone number of the employee.
      * @param salary            The salary of the employee.
      * @param employeeManagement Reference to the EmployeeManagement class.
+     * @param loginManager      The LoginManager with the list of logins
      */
     public Employee(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, EmployeeManagement employeeManagement, LoginManager loginManager) {
         this.firstName = firstName;
