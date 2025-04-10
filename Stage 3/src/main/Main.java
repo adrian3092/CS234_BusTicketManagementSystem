@@ -145,7 +145,6 @@ public class Main {
                 }
                 case 2 -> {
                     // view schedule
-                    System.out.println("Current Bus Schedules:");
                     System.out.println(scheduleManager);
                 }
                 case 3 -> {

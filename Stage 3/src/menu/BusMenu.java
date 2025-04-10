@@ -170,7 +170,7 @@ public class BusMenu {
             System.out.println("║  2. Update the mileage                         ║");
             System.out.println("║  3. Get the status                             ║");
             System.out.println("║  4. Update the status                          ║");
-            System.out.println("║  5. Delete an existing bus                     ║");
+            System.out.println("║  5. Delete this bus                            ║");
             System.out.println("║  6. Return to Bus Menu                         ║");
             System.out.println("╚════════════════════════════════════════════════╝");
             System.out.print("Please select an option (1-6): ");
