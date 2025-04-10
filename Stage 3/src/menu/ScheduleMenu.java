@@ -47,40 +47,40 @@ public class ScheduleMenu {
 
             switch (menuOption) {
                 case 1 -> {
-                    System.out.println("═════════════════════════════════════════");
-                    System.out.println("         Adding a New Schedule          ");
-                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("══════════════════════════════════════════════════"); 
+                    System.out.println("                 Adding a New Schedule            ");
+                    System.out.println("══════════════════════════════════════════════════"); 
                     addSchedule();
                 }
                 case 2 -> {
-                    System.out.println("═════════════════════════════════════════");
-                    System.out.println("     Removing an Existing Schedule      ");
-                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("══════════════════════════════════════════════════"); 
+                    System.out.println("             Removing an Existing Schedule        ");
+                    System.out.println("══════════════════════════════════════════════════"); 
                     removeSchedule();
                 }
                 case 3 -> {
-                    System.out.println("═════════════════════════════════════════");
-                    System.out.println("      Managing an Existing Schedule      ");
-                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("══════════════════════════════════════════════════"); 
+                    System.out.println("             Managing an Existing Schedule        ");
+                    System.out.println("══════════════════════════════════════════════════"); 
                     manageSchedule();
                 }
                 case 4 -> {
-                    System.out.println("═════════════════════════════════════════");
-                    System.out.println("         Displaying All Schedules        ");
-                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("══════════════════════════════════════════════════"); 
+                    System.out.println("                Displaying All Schedules          ");
+                    System.out.println("══════════════════════════════════════════════════"); 
                     System.out.println(scheduleManager);
                 }
                 case 5 -> {
-                    System.out.println("═════════════════════════════════════════");
-                    System.out.println("         Returning to Main Menu          ");
-                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("══════════════════════════════════════════════════"); 
+                    System.out.println("                Returning to Main Menu            ");
+                    System.out.println("══════════════════════════════════════════════════"); 
                     return;
                 }
                 default -> {
-                    System.out.println("═════════════════════════════════════════");
-                    System.out.println("             Invalid Option!             ");
-                    System.out.println("        Please try again (1-5).          ");
-                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("══════════════════════════════════════════════════"); 
+                    System.out.println("                   Invalid Option!                ");
+                    System.out.println("               Please try again (1-5).            ");
+                    System.out.println("══════════════════════════════════════════════════"); 
                 }
             }
         }
