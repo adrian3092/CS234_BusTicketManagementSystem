@@ -61,7 +61,28 @@ public class PassengerMenu {
                 case 1:
                     System.out.println("Redirecting to login...");
                     String passengerID = loginManager.checkCredentials();
-                    ticketMenu.displayMenu(passengerID);
+                    in.nextLine(); // Consume the newline character left by nextInt()
+                    if (passengerID.equals("not found")) {
+                        System.out.println("Passenger ID not found. Please try again.");
+                    } else if (passengerID.equals("invalid")) {
+                        System.out.println("Invalid credentials. Please try again.");
+                    } else if (passengerID.equals("error")) {
+                        System.out.println("An error occurred during login. Please try again later.");
+                    } else if (passengerID.equals("empty")) {
+                        System.out.println("No passengers found. Please sign up first.");
+                    }
+                    if (passengerID.equals("not found")) {
+                        System.out.println("Want to continue as guest? (yes/no)");
+                        String response = in.nextLine();
+                        if (response.equalsIgnoreCase("yes")) {
+                            ticketMenu.displayMenu("guest");
+                        } else {
+                            System.out.println("Returning to main menu...");
+                            choice = 4; // Set choice to 4 to exit the loop
+                        }
+                    }
+                    else
+                    {ticketMenu.displayMenu(passengerID);}
                     break;
                 case 2:
                     System.out.println("Redirecting to sign-up...");
