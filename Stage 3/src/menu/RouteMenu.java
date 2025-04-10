@@ -135,7 +135,7 @@ public class RouteMenu {
      */
     public void subMenu(Route route) {
         int option = 0;
-        while (option != 5) {            
+        while (option != 6) {            
             System.out.println("╔════════════════════════════════════════════════╗");
             System.out.println("║                ROUTE MANAGEMENT MENU           ║");
             System.out.println("╠════════════════════════════════════════════════╣");
@@ -146,7 +146,7 @@ public class RouteMenu {
             System.out.println("║  5. Display Bus Stops                          ║");
             System.out.println("║  6. Previous Menu                              ║");
             System.out.println("╚════════════════════════════════════════════════╝");
-            System.out.print(" Please select an option (1-5): ");
+            System.out.print(" Please select an option (1-6): ");
 
             option = in.nextInt();
 

@@ -68,7 +68,7 @@ public class ScheduleManager {
         String result = "Available Schedules:\n";
         for (int i = 0; i < schedules.size(); i++) {
             Schedule schedule = schedules.get(i);
-            result += "#" + (i + 1) + "\n";
+            result += "#" + (i + 1) + " - " + schedule.getName() + "\n";
             
             // add route information
             if (schedule.getRoute() != null) {
@@ -117,7 +117,7 @@ public class ScheduleManager {
      */
     private String formatTime(double time) {
         int hours = (int) time;
-        int minutes = (int) ((time - hours) * 60);
+        int minutes = (int) (((time - hours) * 100) + 0.5);
         
         return String.format("%02d:%02d", hours, minutes);
     }
