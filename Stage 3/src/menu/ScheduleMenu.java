@@ -31,15 +31,15 @@ public class ScheduleMenu {
     // Displays the main menu and handles user input
     public void displayMenu() {
         while (menuOption != 5) {
-            System.out.println("========================================");
-            System.out.println("|         Schedule Management Menu     |");
-            System.out.println("========================================");
-            System.out.println("|  1. Add a new schedule               |");
-            System.out.println("|  2. Remove an existing schedule      |");
-            System.out.println("|  3. Manage an existing schedule      |");
-            System.out.println("|  4. Display all schedules            |");
-            System.out.println("|  5. Return to Main Menu              |");
-            System.out.println("========================================");
+            System.out.println("╔════════════════════════════════════════════════╗");
+            System.out.println("║              SCHEDULE MANAGEMENT MENU          ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║  1. Add a new schedule                         ║");
+            System.out.println("║  2. Remove an existing schedule                ║");
+            System.out.println("║  3. Manage an existing schedule                ║");
+            System.out.println("║  4. Display all schedules                      ║");
+            System.out.println("║  5. Return to Main Menu                        ║");
+            System.out.println("╚════════════════════════════════════════════════╝");
             System.out.print("Please select an option (1-5): ");
             System.out.println();
 
@@ -47,40 +47,40 @@ public class ScheduleMenu {
 
             switch (menuOption) {
                 case 1 -> {
-                    System.out.println("========================================");
-                    System.out.println("|          Add a New Schedule          |");
-                    System.out.println("========================================");
+                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("         Adding a New Schedule          ");
+                    System.out.println("═════════════════════════════════════════");
                     addSchedule();
                 }
                 case 2 -> {
-                    System.out.println("========================================");
-                    System.out.println("|       Remove an Existing Schedule    |");
-                    System.out.println("========================================");
+                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("     Removing an Existing Schedule      ");
+                    System.out.println("═════════════════════════════════════════");
                     removeSchedule();
                 }
                 case 3 -> {
-                    System.out.println("========================================");
-                    System.out.println("|      Manage an Existing Schedule     |");
-                    System.out.println("========================================");
+                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("      Managing an Existing Schedule      ");
+                    System.out.println("═════════════════════════════════════════");
                     manageSchedule();
                 }
                 case 4 -> {
-                    System.out.println("==========================================");
-                    System.out.println("|         Displaying All Schedules        |");
-                    System.out.println("==========================================");
+                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("         Displaying All Schedules        ");
+                    System.out.println("═════════════════════════════════════════");
                     System.out.println(scheduleManager);
                 }
                 case 5 -> {
-                    System.out.println("========================================");
-                    System.out.println("|        Returning to Main Menu        |");
-                    System.out.println("========================================");
+                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("         Returning to Main Menu          ");
+                    System.out.println("═════════════════════════════════════════");
                     return;
                 }
                 default -> {
-                    System.out.println("========================================");
-                    System.out.println("|          Invalid Option!             |");
-                    System.out.println("|       Please try again (1-5).        |");
-                    System.out.println("========================================");
+                    System.out.println("═════════════════════════════════════════");
+                    System.out.println("             Invalid Option!             ");
+                    System.out.println("        Please try again (1-5).          ");
+                    System.out.println("═════════════════════════════════════════");
                 }
             }
         }

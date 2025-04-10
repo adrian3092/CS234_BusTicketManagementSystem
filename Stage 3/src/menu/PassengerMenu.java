@@ -62,7 +62,6 @@ public class PassengerMenu {
                     System.out.println("Redirecting to login...");
                     String passengerID = loginManager.checkCredentials();
                     ticketMenu.displayMenu(passengerID);
-                                       
                     break;
                 case 2:
                     System.out.println("Redirecting to sign-up...");
