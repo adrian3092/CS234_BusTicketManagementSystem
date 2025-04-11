@@ -41,13 +41,11 @@ public class Main {
         
         // create employees
         Admin admin1 = new Admin("John", "Doe", "Admin", "5286857246", 40500, employeeManagement, loginManager);
-        Login login1 = new Login(admin1, loginManager);
         Driver driver1 = new Driver("Lauren", "Smith", "Driver", "8518534605", 51800, employeeManagement, loginManager);
         employeeManagement.addDriver(driver1);
-        Login login2 = new Login(driver1, loginManager);
+        
         Driver driver2 = new Driver("Robert", "Brown", "Driver", "4586994350", 55200, employeeManagement, loginManager);
         employeeManagement.addDriver(driver2);
-        Login login3 = new Login(driver2, loginManager);
 
         // create initial depots
         DepotManager depotManager = new DepotManager();
