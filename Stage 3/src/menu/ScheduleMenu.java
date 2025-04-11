@@ -19,7 +19,13 @@ public class ScheduleMenu {
     private int menuOption;
     private Scanner in;
 
-    // Constructor to initialize the menu with required managers and scanner
+    /**
+     * Constructor for the class
+     * @param in The Scanner object to be used for input
+     * @param scheduleManager
+     * @param routeManager
+     * @param depotManager 
+     */
     public ScheduleMenu(Scanner in, ScheduleManager scheduleManager, RouteManager routeManager, DepotManager depotManager) {
         this.in = in;
         this.scheduleManager = scheduleManager;

@@ -10,7 +10,9 @@ import main.*;
 import login.LoginManager;
 
 /**
- * 
+ * This class represents the menu that is shown after an admin logins to the 
+ * system. It has all of the options for tasks that the admin can perform. It 
+ * also creates all of the sub menus in the admin section of the program.
  * @author Adrian Zielinski
  */
 public class AdminMenu {
@@ -29,14 +31,15 @@ public class AdminMenu {
 
     /**
      * default constructor
-     * @param in
-     * @param busManager
-     * @param depotManager
-     * @param scheduleManager
-     * @param accounting
-     * @param employeeManagement
-     * @param routeManager
-     * @param loginManager
+     * @param in The scanner used for input
+     * @param busManager The BusManager object for managing buses
+     * @param depotManager The DepotManager object for managing depots
+     * @param scheduleManager The ScheduleManager object for managing schedules
+     * @param accounting The Accounting object for managing expenses
+     * @param employeeManagement The EmployeeManagement object for managing 
+     * employees
+     * @param routeManager The RouteManager object for managing routes
+     * @param loginManager The LoginManager object for managing logins
      */
     public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting, EmployeeManagement employeeManagement, RouteManager routeManager, Dispatcher dispatcher, LoginManager loginManager) {
         this.in = in;

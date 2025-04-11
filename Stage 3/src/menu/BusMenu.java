@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * 
+ * This represents the menu for managing buses. It is a sub menu of the Admin 
+ * menu found when an admin logs in to the system.
  * @author Adrian Zielinski
  */
 public class BusMenu {

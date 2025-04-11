@@ -59,6 +59,11 @@ public class ScheduleManager {
         return null; // or throw an exception if not found
     }
 
+    /**
+     * Used for printing the object
+     * @return A string with schedule information or a string stating "there are
+     * no schedules available"
+     */
     @Override
     public String toString() {
         if (schedules.isEmpty()) {
