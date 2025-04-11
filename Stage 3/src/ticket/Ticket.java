@@ -53,6 +53,11 @@ public class Ticket {
         return passenger;
     }
 
+    /**
+     * Used for printing a ticket
+     * @return A String consisting of a ticket number, the passenger, the 
+     * schedule, and the status of the ticket.
+     */
     @Override
     public String toString() {
         return "~~~~~~~~~~~~" +

@@ -11,6 +11,7 @@ import main.ScheduleManager;
 /**
  * ScheduleMenu class provides options to manage schedules, including adding,
  * removing, and updating schedules.
+ * @author Handsome Onojerame
  */
 public class ScheduleMenu {
     private ScheduleManager scheduleManager;
@@ -22,9 +23,9 @@ public class ScheduleMenu {
     /**
      * Constructor for the class
      * @param in The Scanner object to be used for input
-     * @param scheduleManager
-     * @param routeManager
-     * @param depotManager 
+     * @param scheduleManager The ScheduleManager object for managing schedules
+     * @param routeManager The RouteManager object for managing routes
+     * @param depotManager The DepotManager object for managing depots
      */
     public ScheduleMenu(Scanner in, ScheduleManager scheduleManager, RouteManager routeManager, DepotManager depotManager) {
         this.in = in;
@@ -34,7 +35,9 @@ public class ScheduleMenu {
         this.menuOption = 0;
     }
 
-    // Displays the main menu and handles user input
+    /**
+     * Displays the main menu and handles user input
+     */
     public void displayMenu() {
         while (menuOption != 5) {
             System.out.println("╔════════════════════════════════════════════════╗");
@@ -92,7 +95,9 @@ public class ScheduleMenu {
         }
     }
 
-    // Adds a new schedule
+    /**
+     * Adds a new schedule
+     */
     private void addSchedule() {
 
         System.out.print("Enter schedule name: ");
@@ -136,7 +141,9 @@ public class ScheduleMenu {
         System.out.println("Schedule added successfully.");
     }
 
-    // Removes an existing schedule
+    /**
+     * Removes an existing schedule
+     */
     private void removeSchedule() {
         System.out.println("Enter the name of the schedule to remove:");
         String scheduleName = in.next();
@@ -150,7 +157,9 @@ public class ScheduleMenu {
         }
     }
 
-    // Manages an existing schedule
+    /**
+     * Manages an existing schedule
+     */
     private void manageSchedule() {
         System.out.println("Enter the name of the schedule to manage below (Case sensitive).");
         System.out.print("Schedule name: ");
@@ -201,7 +210,10 @@ public class ScheduleMenu {
         }
     }
 
-    // Helper method to update the route of a schedule
+    /**
+     * Helper method to update the route of a schedule
+     * @param schedule The Schedule object that the route is updated for
+     */
     private void updateRoute(Schedule schedule) {
         System.out.print("Enter the route ID: ");
         String newRouteId = in.nextLine();
@@ -215,7 +227,10 @@ public class ScheduleMenu {
         }
     }
 
-    // Helper method to update the depot of a schedule
+    /**
+     * Helper method to update the depot of a schedule
+     * @param schedule The Schedule object that the depot is updated for 
+     */
     private void updateDepot(Schedule schedule) {
         System.out.print("Enter new depot ID: ");
         Integer newDepotId = validateIntegerInput();
@@ -229,6 +244,11 @@ public class ScheduleMenu {
         }
     }
 
+    /**
+     * Gets a start time from the user and checks if that time is between 0 and 
+     * 24
+     * @return The start time from the user's input
+     */
     private double validateStartTimeInput() {
         double startTime = in.nextDouble();
         while (startTime < 0 || startTime > 24) {
@@ -237,7 +257,11 @@ public class ScheduleMenu {
         }
         return startTime;
     }
-    // Helper method to update the start time of a schedule
+    
+    /**
+     * Helper method to update the start time of a schedule
+     * @param schedule The schedule object that the start time is updated for
+     */
     private void updateStartTime(Schedule schedule) {
         System.out.print("Enter new start time (HH.MM): ");
         double newStartTime = in.nextDouble();
@@ -250,7 +274,10 @@ public class ScheduleMenu {
         System.out.println("Start time updated successfully.");
     }
 
-    // Helper method to update the name of a schedule
+    /**
+     * Helper method to update the name of a schedule
+     * @param schedule The schedule object that the name is updated for
+     */
     private void updateScheduleName(Schedule schedule) {
         System.out.print("Enter new schedule name: ");
         String newScheduleName = in.nextLine();
@@ -258,7 +285,10 @@ public class ScheduleMenu {
         System.out.println("Schedule name updated successfully.");
     }
 
-    // Validates integer input from the user
+    /**
+     * Validates integer input from the user
+     * @return The integer entered by the user
+     */
     private Integer validateIntegerInput() {
         while (!in.hasNextInt()) {
             System.out.println("Invalid input. Please enter a valid integer:");

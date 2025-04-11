@@ -14,7 +14,7 @@ public class TicketManager {
 
     /**
      * default constructor
-     * @param allTickets 
+     * @param allTickets The list of all tickets 
      */
     public TicketManager() {
         allTickets = new ArrayList<>();
