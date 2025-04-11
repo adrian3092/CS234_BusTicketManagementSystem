@@ -12,13 +12,19 @@ import payment.*;
 import ticket.*;
 
 /**
- *
+ * This is the main file to run the program. Has a static scanner object that is
+ * used by the other classes for user input
  * @author George Candal
  */
 public class Main {
     
     public static Scanner in = new Scanner(System.in);
     
+    /**
+     * This is the main method. It creates initial data for the program and 
+     * displays the main menu.
+     * @param args Possible command line arguments
+     */
     public static void main(String[] args) {
 
         //create login database
