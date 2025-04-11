@@ -232,7 +232,7 @@ public class RouteMenu {
             System.out.println("║  2. Unassign bus and driver from route         ║");
             System.out.println("║  3. Previous Menu                              ║");
             System.out.println("╚════════════════════════════════════════════════╝");
-            System.out.print(" Please select an option (1-5): ");
+            System.out.print(" Please select an option (1-3): ");
             
             option = in.nextInt();
 
