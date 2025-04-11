@@ -67,6 +67,7 @@ public class PassengerMenu {
                         System.out.println("Passenger ID not found. Please try again.");
                     } else if (passengerID.equals("invalid")) {
                         System.out.println("Invalid credentials. Please try again.");
+                        break;
                     } else if (passengerID.equals("error")) {
                         System.out.println("An error occurred during login. Please try again later.");
                     } else if (passengerID.equals("empty")) {
