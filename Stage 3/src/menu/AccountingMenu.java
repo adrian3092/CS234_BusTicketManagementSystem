@@ -104,7 +104,7 @@ public class AccountingMenu {
             System.out.println("║  2. Maintenance                                ║");
             System.out.println("║  3. Salary                                     ║");
             System.out.println("║  4. Utilities                                  ║");
-            System.out.println("║  5. Return to previous menu                    ║");
+            System.out.println("║  5. Return to Administrator Menu               ║");
             System.out.println("╚════════════════════════════════════════════════╝");
             System.out.print("Please select an option (1-5): ");
 

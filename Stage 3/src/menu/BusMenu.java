@@ -41,7 +41,7 @@ public class BusMenu {
                     System.out.println("║  1. Add a new bus                              ║");
                     System.out.println("║  2. Manage an existing bus                     ║");
                     System.out.println("║  3. Display all buses                          ║");
-                    System.out.println("║  4. Return to Employee Menu                    ║");
+                    System.out.println("║  4. Return to Administrator Menu               ║");
                     System.out.println("╚════════════════════════════════════════════════╝");
                     System.out.print("Please select an option (1-4): ");
 

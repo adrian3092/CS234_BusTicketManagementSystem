@@ -47,7 +47,7 @@ public class ScheduleMenu {
             System.out.println("║  2. Remove an existing schedule                ║");
             System.out.println("║  3. Manage an existing schedule                ║");
             System.out.println("║  4. Display all schedules                      ║");
-            System.out.println("║  5. Return to Main Menu                        ║");
+            System.out.println("║  5. Return to Administrator Menu               ║");
             System.out.println("╚════════════════════════════════════════════════╝");
             System.out.print("Please select an option (1-5): ");
             System.out.println();

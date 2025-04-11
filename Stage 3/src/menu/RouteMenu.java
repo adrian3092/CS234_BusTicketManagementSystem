@@ -62,7 +62,7 @@ public class RouteMenu {
             System.out.println("║  2. Manage an existing route                   ║");
             System.out.println("║  3. Display all Routes                         ║");
             System.out.println("║  4. Manage route assignment                    ║");
-            System.out.println("║  5. Return to previous menu                    ║");
+            System.out.println("║  5. Return to Administrator Menu               ║");
             System.out.println("╚════════════════════════════════════════════════╝");
             System.out.print(" Please select an option (1-5): ");
 

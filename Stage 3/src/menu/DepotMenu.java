@@ -44,7 +44,7 @@ public class DepotMenu {
             System.out.println("║  3. Assign a bus to a depot                    ║");
             System.out.println("║  4. Unassign a bus from a depot                ║");
             System.out.println("║  5. Display all depots                         ║");
-            System.out.println("║  6. Return to Employee Menu                    ║");
+            System.out.println("║  6. Return to Administrator Menu               ║");
             System.out.println("╚════════════════════════════════════════════════╝");
             System.out.print("Please select an option (1-6): ");
 
