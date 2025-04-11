@@ -14,7 +14,7 @@ import ticket.*;
 /**
  * This is the main file to run the program. Has a static scanner object that is
  * used by the other classes for user input
- * @author George Candal
+ * @author Adrian Zielinski
  */
 public class Main {
     
