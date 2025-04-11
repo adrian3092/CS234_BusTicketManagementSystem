@@ -25,7 +25,7 @@ public class Schedule {
     private ArrayList<Double> departureTimes;
 
     /**
-     * Constructor for the class. Intantiates the array list of departure times
+     * Constructor for the class. Instantiates the array list of departure times
      * @param route The associated Route 
      * @param depot The associated Depot
      * @param startTime The time the bus leaves the depot
