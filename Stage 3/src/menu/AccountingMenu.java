@@ -5,6 +5,7 @@ import depot.DepotManager;
 import employees.EmployeeManagement;
 import expenses.*;
 import java.util.Scanner;
+import payment.Payment;
 import payment.PaymentManager;
 
 /**
@@ -81,7 +82,12 @@ public class AccountingMenu {
                     paymentManager.getReport();
                 }
                 case 3 -> {
-                    
+                    Payment payment = findPayment();
+                    if (payment == null) {
+                        System.out.println("Payment ID not found");
+                    } else {
+                    managePayment(payment);
+                    }
                 }
                 case 4 -> {
                     expenseSubMenu();
@@ -145,5 +151,48 @@ public class AccountingMenu {
                 }
             }
         }
-    }     
+    } 
+
+    public Payment findPayment() {
+        System.out.println("Enter the payment ID of the payment you want to manage: ");
+        int paymentID = in.nextInt();
+        return paymentManager.findPaymentById(paymentID);       
+    }
+    
+    public void managePayment(Payment payment) {
+         int menuOption = 0;
+        
+        while (menuOption != 5) {
+            System.out.println("╔════════════════════════════════════════════════╗");
+            System.out.println("║            Manage Payment Menu                 ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║  1. Update amount                              ║");
+            System.out.println("║  2. Delete payment                             ║");
+            System.out.println("║  3. Return to previous menu                    ║");
+            System.out.println("╚════════════════════════════════════════════════╝");
+            System.out.print("Please select an option (1-3): ");
+
+            menuOption = in.nextInt();
+            
+            System.out.println("══════════════════════════════════════════════════");
+            switch (menuOption) {
+                case 1 -> {
+                    System.out.println("What is the updated payment amount for payment ID: " + payment.getPaymentId());
+                    double amount = in.nextDouble();
+                    payment.setPaymentAmount(amount);
+                    System.out.println("Payment amount has been updated");
+                }
+                case 2 -> {
+                    System.out.println("Payment " + payment.getPaymentId() + " has been removed");
+                    paymentManager.removePayment(payment);
+                    return;
+                    
+                }
+                case 3 -> {
+                    System.out.println("Returning to previous menu...");
+                    return;
+                }
+            }
+        }
+    }
 }

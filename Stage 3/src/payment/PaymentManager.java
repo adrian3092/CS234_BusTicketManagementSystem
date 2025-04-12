@@ -37,20 +37,26 @@ public class PaymentManager {
     }
     
     /**
+     * Removes a payment from the list of payments
+     * @param payment The payment to remove
+     */
+    public void removePayment(Payment payment) {
+        payments.remove(payment);
+    }
+    
+    /**
      * process a payment for a ticket
      * @param passenger the passenger making the payment
      * @param paymentAmount the amount to be charged
      * @param cardNumber the credit card number
      * @param expirationDate the credit card expiration date
+     * @param paymentManager This PaymentManager list to save the payment
      * @return the payment
      */
-    public Payment processPayment(Passenger passenger, double paymentAmount, String cardNumber, String expirationDate) {
+    public Payment processPayment(Passenger passenger, double paymentAmount, String cardNumber, String expirationDate, PaymentManager paymentManager) {
         
         // create a new credit card payment
-        Payment payment = new Payment("Credit Card", paymentAmount, passenger, cardNumber, expirationDate);
-        
-        // add payment to the list
-        addPayment(payment);
+        Payment payment = new Payment("Credit Card", paymentAmount, passenger, cardNumber, expirationDate, this);
         
         return payment;
     }

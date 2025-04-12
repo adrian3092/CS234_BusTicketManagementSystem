@@ -18,6 +18,7 @@ public class Payment {
     private Passenger passenger;
     private String cardNumber;
     private String expirationDate;
+    private PaymentManager paymentManager;
 
     /**
      * default constructor
@@ -27,14 +28,16 @@ public class Payment {
      * @param passenger the passenger making the payment
      * @param cardNumber the credit card number
      * @param expirationDate the credit card expiration date
+     * @param paymentManager The PaymentManager object that manages the payments
      */
-    public Payment(String paymentType, double paymentAmount, Passenger passenger, String cardNumber, String expirationDate) {
+    public Payment(String paymentType, double paymentAmount, Passenger passenger, String cardNumber, String expirationDate, PaymentManager paymentManager) {
         paymentId = nextPaymentId++;      
         this.paymentAmount = paymentAmount;
         this.passenger = passenger;
         this.cardNumber = maskCardNumber(cardNumber);
         this.expirationDate = expirationDate;
         paymentStatus = "Paid";
+        paymentManager.addPayment(this);
     }
     
     /**
@@ -74,6 +77,14 @@ public class Payment {
      */
     public double getPaymentAmount() {
         return paymentAmount;
+    }
+    
+    /**
+     * Sets the payment amount
+     * @param amount The payment amount
+     */
+    public void setPaymentAmount(double amount) {
+        this.paymentAmount = amount;
     }
 
     /**

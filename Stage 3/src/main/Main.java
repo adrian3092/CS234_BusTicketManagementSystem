@@ -120,8 +120,7 @@ public class Main {
         
         // create ticket, passenger and payment
         Passenger passenger1 = new Passenger("Robert Smith", "robert.smith@gmail.com", "2824782957");
-        Payment payment1 = new Payment("Credit Card", 3, passenger1, "5105105105105100", "12/26");
-        paymentManager.addPayment(payment1);
+        Payment payment1 = new Payment("Credit Card", 3, passenger1, "5105105105105100", "12/26", paymentManager);
         TicketIssuer ticketIssuer = new TicketIssuer();
         ticketIssuer.bookTicket(passenger1, schedule1);
 

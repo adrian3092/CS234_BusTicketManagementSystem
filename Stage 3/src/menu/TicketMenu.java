@@ -63,7 +63,7 @@ public class TicketMenu {
         String expirationDate = in.nextLine();
         
         // process payment
-        Payment payment = paymentManager.processPayment(passenger, ticketPrice, cardNumber, expirationDate);
+        Payment payment = paymentManager.processPayment(passenger, ticketPrice, cardNumber, expirationDate, paymentManager);
         
         // display ticket and payment confirmation
         System.out.println("\nYour ticket has been booked and payment processed successfully!");
