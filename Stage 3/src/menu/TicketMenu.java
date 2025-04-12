@@ -24,13 +24,14 @@ public class TicketMenu {
      * default constructor
      * @param in scanner
      * @param scheduleManager the schedule manager containing available schedules
-     * @param passsengerManager the PassengerManager database
+     * @param passengerManager the PassengerManager database
+     * @param paymentManager the PaymentManager database
      */
-    public TicketMenu(Scanner in, ScheduleManager scheduleManager, PassengerManager passengerManager) {
+    public TicketMenu(Scanner in, ScheduleManager scheduleManager, PassengerManager passengerManager, PaymentManager paymentManager) {
         this.in = in;
         ticketIssuer = new TicketIssuer();
         this.scheduleManager = scheduleManager;
-        this.paymentManager = new PaymentManager();
+        this.paymentManager = paymentManager;
         this.passengerManager = passengerManager;
     }
 
@@ -63,7 +64,7 @@ public class TicketMenu {
         String expirationDate = in.nextLine();
         
         // process payment
-        Payment payment = paymentManager.processPayment(passenger, ticketPrice, cardNumber, expirationDate, paymentManager);
+        Payment payment = paymentManager.processPayment(passenger, ticketPrice, cardNumber, expirationDate, this.paymentManager);
         
         // display ticket and payment confirmation
         System.out.println("\nYour ticket has been booked and payment processed successfully!");

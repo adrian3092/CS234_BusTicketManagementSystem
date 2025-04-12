@@ -6,6 +6,7 @@ import login.LoginManager;
 import main.Passenger;
 import main.PassengerManager;
 import main.ScheduleManager;
+import payment.PaymentManager;
 
 /**
  * PassengerMenu class provides a menu interface for passengers to log in, sign up, 
@@ -18,6 +19,7 @@ public class PassengerMenu {
     private PassengerManager passengerManager;
     private ScheduleManager scheduleManager;
     private LoginManager loginManager;
+    private PaymentManager paymentManager;
     private TicketMenu ticketMenu;
 
     /**
@@ -27,13 +29,16 @@ public class PassengerMenu {
      * @param passengerManager Manager to handle passenger-related operations
      * @param scheduleManager  Manager to handle schedule-related operations
      * @param loginManager     Manager to handle login-related operations
+     * @param paymentManager   Manager to handle payment-related operations
      */
-    public PassengerMenu(Scanner in, PassengerManager passengerManager, ScheduleManager scheduleManager, LoginManager loginManager) {
+    public PassengerMenu(Scanner in, PassengerManager passengerManager, ScheduleManager scheduleManager, 
+                         LoginManager loginManager, PaymentManager paymentManager) {
         this.passengerManager = passengerManager;
         this.scheduleManager = scheduleManager;
         this.in = in;
         this.loginManager = loginManager;
-        this.ticketMenu = new TicketMenu(in, scheduleManager, passengerManager);
+        this.paymentManager = paymentManager;
+        this.ticketMenu = new TicketMenu(in, scheduleManager, passengerManager, paymentManager);
     }
 
     /**

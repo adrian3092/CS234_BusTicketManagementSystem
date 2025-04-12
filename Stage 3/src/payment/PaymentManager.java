@@ -56,7 +56,7 @@ public class PaymentManager {
     public Payment processPayment(Passenger passenger, double paymentAmount, String cardNumber, String expirationDate, PaymentManager paymentManager) {
         
         // create a new credit card payment
-        Payment payment = new Payment("Credit Card", paymentAmount, passenger, cardNumber, expirationDate, this);
+        Payment payment = new Payment("Credit Card", paymentAmount, passenger, cardNumber, expirationDate, paymentManager);
         
         return payment;
     }
