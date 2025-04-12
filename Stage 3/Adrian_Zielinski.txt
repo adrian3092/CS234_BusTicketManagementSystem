@@ -1,0 +1,3 @@
+The classes I made for this stage are: Bus, BusManager, Depot, DepotManager, Payment,
+PaymentManager, Ticket, TicketIssuer, TicketManager, Dispatcher, DriverAssignment, RouteAssignment,
+ScheduleManager, Main, AdminMenu, BusMenu, DepotMenu and TicketMenu. 
