@@ -101,4 +101,16 @@ public class PaymentManager {
         
         return false;
     }
+    
+    /**
+     * Prints out an expense report with all of the expenses in the database
+     */
+    public void getReport() {
+        // Print the header for the report
+        System.out.printf("%-15s %-15s %-10s%n", "Payment ID", "Name", "Cost");
+        System.out.println("--------------------------------------------------");
+        for(Payment payment : payments) {
+            System.out.println(payment);
+        }             
+    }
 }

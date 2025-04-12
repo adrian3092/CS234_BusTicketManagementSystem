@@ -116,4 +116,14 @@ public class Payment {
     public String getExpirationDate() {
         return expirationDate;
     }
+    
+    /**
+     * Used when printing the object. 
+     * @return a String with the payment ID, passenger name, and cost
+     */
+    @Override
+    public String toString() {
+        return String.format("%-15s %-15s $%-10.2f", 
+            paymentId, passenger.getPassengerName(), paymentAmount);
+    }
 }

@@ -5,6 +5,7 @@ import depot.DepotManager;
 import employees.EmployeeManagement;
 import expenses.*;
 import java.util.Scanner;
+import payment.PaymentManager;
 
 /**
  * This class is used for the accounting menu. It displays a menu and asks for
@@ -26,6 +27,7 @@ public class AccountingMenu {
     private BusManager busManager;
     private DepotManager depotManager;
     private EmployeeManagement employeeManagement;
+    private PaymentManager paymentManager;
     
     /**
      * Constructor for the class. 
@@ -39,12 +41,13 @@ public class AccountingMenu {
      */
     public AccountingMenu(Scanner in, Accounting accounting, 
             BusManager busManager, DepotManager depotManager, 
-            EmployeeManagement employeeManagement) {
+            EmployeeManagement employeeManagement, PaymentManager paymentManager) {
         this.in = in;
         this.accounting = accounting;
         this.busManager = busManager;
         this.depotManager = depotManager;
         this.employeeManagement = employeeManagement;
+        this.paymentManager = paymentManager;
         menuOption = 0;
     }
 
@@ -57,12 +60,14 @@ public class AccountingMenu {
             System.out.println("╔════════════════════════════════════════════════╗");
             System.out.println("║                 ACCOUNTING MENU                ║");
             System.out.println("╠════════════════════════════════════════════════╣");
-            System.out.println("║  1. Generate Report                            ║");
-            System.out.println("║  2. Add a new expense                          ║");
-            System.out.println("║  3. Remove an existing expense                 ║");
-            System.out.println("║  4. Return to previous menu                    ║");
+            System.out.println("║  1. Generate Expense Report                    ║");
+            System.out.println("║  2. Generate Payment Report                    ║");
+            System.out.println("║  3. Manage Payments                            ║");
+            System.out.println("║  4. Add a new expense                          ║");
+            System.out.println("║  5. Remove an existing expense                 ║");
+            System.out.println("║  6. Return to previous menu                    ║");
             System.out.println("╚════════════════════════════════════════════════╝");
-            System.out.print(" Please select an option (1-4): ");
+            System.out.print(" Please select an option (1-6): ");
 
             menuOption = in.nextInt();
 
@@ -73,12 +78,18 @@ public class AccountingMenu {
                     accounting.getReport();
                 }
                 case 2 -> {
-                    expenseSubMenu();
+                    paymentManager.getReport();
                 }
                 case 3 -> {
-                    accounting.removeExpense();
+                    
                 }
                 case 4 -> {
+                    expenseSubMenu();
+                }
+                case 5 -> {
+                    accounting.removeExpense();
+                }
+                case 6 -> {
                     System.out.println("Returning to previous menu...");
                     menuOption = 0; // reset menuOption before returning
                     return;

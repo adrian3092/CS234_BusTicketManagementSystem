@@ -39,6 +39,9 @@ public class Main {
         //create passenger manager
         PassengerManager passengerManager = new PassengerManager();
         
+        //create payment manager
+        PaymentManager paymentManager = new PaymentManager();
+        
         // create employees
         Admin admin1 = new Admin("John", "Doe", "Admin", "5286857246", 40500, employeeManagement, loginManager);
         Driver driver1 = new Driver("Lauren", "Smith", "Driver", "8518534605", 51800, employeeManagement, loginManager);
@@ -103,7 +106,9 @@ public class Main {
         dispatcher.assignDriverToBus(driver1, bus2);
 
         //create admin menu
-        AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, scheduleManager, accounting, employeeManagement, routeManager, dispatcher, loginManager);
+        AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, 
+                scheduleManager, accounting, employeeManagement, routeManager, 
+                dispatcher, loginManager, paymentManager);
 
         // create driver menu
         DriverMenu driverMenu = new DriverMenu(in, dispatcher, scheduleManager, busManager);
@@ -116,7 +121,6 @@ public class Main {
         // create ticket, passenger and payment
         Passenger passenger1 = new Passenger("Robert Smith", "robert.smith@gmail.com", "2824782957");
         Payment payment1 = new Payment("Credit Card", 3, passenger1, "5105105105105100", "12/26");
-        PaymentManager paymentManager = new PaymentManager();
         paymentManager.addPayment(payment1);
         TicketIssuer ticketIssuer = new TicketIssuer();
         ticketIssuer.bookTicket(passenger1, schedule1);

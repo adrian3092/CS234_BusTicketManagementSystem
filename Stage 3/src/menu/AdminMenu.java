@@ -8,6 +8,7 @@ import expenses.Accounting;
 import java.util.Scanner;
 import main.*;
 import login.LoginManager;
+import payment.PaymentManager;
 
 /**
  * This class represents the menu that is shown after an admin logins to the 
@@ -28,6 +29,7 @@ public class AdminMenu {
     private RouteMenu routeMenu;
     private Dispatcher dispatcher;
     private LoginManager loginManager;
+    private PaymentManager paymentManager;
 
     /**
      * default constructor
@@ -41,12 +43,12 @@ public class AdminMenu {
      * @param routeManager The RouteManager object for managing routes
      * @param loginManager The LoginManager object for managing logins
      */
-    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting, EmployeeManagement employeeManagement, RouteManager routeManager, Dispatcher dispatcher, LoginManager loginManager) {
+    public AdminMenu(Scanner in, BusManager busManager, DepotManager depotManager, ScheduleManager scheduleManager, Accounting accounting, EmployeeManagement employeeManagement, RouteManager routeManager, Dispatcher dispatcher, LoginManager loginManager, PaymentManager paymentManager) {
         this.in = in;
         menuOption = 0;
         busMenu = new BusMenu(in, busManager, depotManager);
         depotMenu = new DepotMenu(in, busManager, depotManager);
-        accountingMenu = new AccountingMenu(in, accounting, busManager, depotManager, employeeManagement);
+        accountingMenu = new AccountingMenu(in, accounting, busManager, depotManager, employeeManagement, paymentManager);
         employeeManagementMenu = new EmployeeManagementMenu(in, employeeManagement, loginManager);
         scheduleMenu = new ScheduleMenu(in, scheduleManager, routeManager, depotManager);
         routeMenu = new RouteMenu(in, routeManager, dispatcher, busManager, employeeManagement);
@@ -65,7 +67,7 @@ public class AdminMenu {
                             System.out.println("║  3. Route Management                           ║");
                             System.out.println("║  4. Depot Management                           ║");
                             System.out.println("║  5. Employee Management                        ║");
-                            System.out.println("║  6. Expense Management                         ║");
+                            System.out.println("║  6. Accounting                                 ║");
                             System.out.println("║  7. Return to Main Menu                        ║");
                             System.out.println("╚════════════════════════════════════════════════╝");
                             System.out.print("Please select an option (1-7): ");
