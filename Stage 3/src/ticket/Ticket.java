@@ -1,8 +1,8 @@
 
 package ticket;
 
-import main.Schedule;
 import main.Passenger;
+import main.Schedule;
 
 /**
  * this class represents a ticket
@@ -59,11 +59,10 @@ public class Ticket {
      * schedule, and the status of the ticket.
      */
     @Override
-    public String toString() {
-        return "~~~~~~~~~~~~" +
-                "\nTicket Number: " + ticketNumber +
-                "\nPassenger Name: " + passenger +
-                "\nSchedule: " + schedule +
+    public String toString() {       
+        return  "\nTicket Number: " + ticketNumber +
+                "\nPassenger Name: " + passenger.getPassengerName() +
+                "\nSchedule: " + schedule.getName() +
                 "\nStatus: " + status;
     }
 }

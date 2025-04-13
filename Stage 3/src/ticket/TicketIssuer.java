@@ -51,4 +51,8 @@ public class TicketIssuer {
         return lastTicketNumber;
 
     }
+
+    public TicketManager getTicketManager() {
+        return ticketManager;
+    }
 }

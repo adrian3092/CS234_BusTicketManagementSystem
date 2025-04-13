@@ -147,7 +147,7 @@ public class Main {
                 case 1 -> {
                     // book ticket
                     in.nextLine(); // consume the leftover new line character
-                    PassengerMenu passengerMenu = new PassengerMenu(in, passengerManager, scheduleManager, loginManager, paymentManager);
+                    PassengerMenu passengerMenu = new PassengerMenu(in, passengerManager, scheduleManager, loginManager, paymentManager, ticketIssuer);
                     passengerMenu.displayMenu();
                 }
                 case 2 -> {

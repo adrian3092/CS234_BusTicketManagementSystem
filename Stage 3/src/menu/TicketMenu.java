@@ -2,10 +2,9 @@
 package menu;
 
 import java.util.Scanner;
-
-import ticket.*;
 import main.*;
 import payment.*;
+import ticket.*;
 
 /**
  * this class represents a menu responsible
@@ -27,9 +26,9 @@ public class TicketMenu {
      * @param passengerManager the PassengerManager database
      * @param paymentManager the PaymentManager database
      */
-    public TicketMenu(Scanner in, ScheduleManager scheduleManager, PassengerManager passengerManager, PaymentManager paymentManager) {
+    public TicketMenu(Scanner in, ScheduleManager scheduleManager, PassengerManager passengerManager, PaymentManager paymentManager, TicketIssuer ticketIssuer) {
         this.in = in;
-        ticketIssuer = new TicketIssuer();
+        this.ticketIssuer = ticketIssuer;
         this.scheduleManager = scheduleManager;
         this.paymentManager = paymentManager;
         this.passengerManager = passengerManager;
@@ -49,7 +48,7 @@ public class TicketMenu {
         }
         
         // book the ticket
-        Ticket ticket = ticketIssuer.bookTicket(passenger, selectedSchedule);
+        Ticket ticket = this.ticketIssuer.bookTicket(passenger, selectedSchedule);
         
         // set ticket price 
         double ticketPrice = 3.00;

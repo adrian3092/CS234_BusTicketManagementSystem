@@ -1,5 +1,6 @@
 package menu;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import login.Login;
 import login.LoginManager;
@@ -7,6 +8,7 @@ import main.Passenger;
 import main.PassengerManager;
 import main.ScheduleManager;
 import payment.PaymentManager;
+import ticket.*;
 
 /**
  * PassengerMenu class provides a menu interface for passengers to log in, sign up, 
@@ -16,11 +18,14 @@ import payment.PaymentManager;
  */
 public class PassengerMenu {
     private Scanner in;
+    private Passenger passenger;
     private PassengerManager passengerManager;
-    private ScheduleManager scheduleManager;
     private LoginManager loginManager;
-    private PaymentManager paymentManager;
     private TicketMenu ticketMenu;
+    private String passengerID;
+    private TicketIssuer ticketIssuer;
+    private TicketManager ticketManager;
+    private Login login;
 
     /**
      * Constructor to initialize PassengerMenu with required managers and input scanner.
@@ -30,15 +35,14 @@ public class PassengerMenu {
      * @param scheduleManager  Manager to handle schedule-related operations
      * @param loginManager     Manager to handle login-related operations
      * @param paymentManager   Manager to handle payment-related operations
+     * @param ticketIssuer    Manager to handle ticket issuance
      */
-    public PassengerMenu(Scanner in, PassengerManager passengerManager, ScheduleManager scheduleManager, 
-                         LoginManager loginManager, PaymentManager paymentManager) {
+    public PassengerMenu(Scanner in, PassengerManager passengerManager, ScheduleManager scheduleManager, LoginManager loginManager, PaymentManager paymentManager, TicketIssuer ticketIssuer) {
         this.passengerManager = passengerManager;
-        this.scheduleManager = scheduleManager;
         this.in = in;
         this.loginManager = loginManager;
-        this.paymentManager = paymentManager;
-        this.ticketMenu = new TicketMenu(in, scheduleManager, passengerManager, paymentManager);
+        this.ticketMenu = new TicketMenu(in, scheduleManager, passengerManager, paymentManager, ticketIssuer);
+        this.ticketIssuer = ticketIssuer;
     }
 
     /**
@@ -66,19 +70,10 @@ public class PassengerMenu {
             switch (choice) {
                 case 1:
                     System.out.println("Redirecting to login...");
-                    String passengerID = loginManager.checkCredentials();
+                    this.passengerID = loginManager.checkCredentials();
                     in.nextLine(); // Consume the newline character left by nextInt()
-                    if (passengerID.equals("not found")) {
-                        System.out.println("Passenger ID not found. Please try again.");
-                    } else if (passengerID.equals("invalid")) {
-                        System.out.println("Invalid credentials. Please try again.");
-                        break;
-                    } else if (passengerID.equals("error")) {
-                        System.out.println("An error occurred during login. Please try again later.");
-                    } else if (passengerID.equals("empty")) {
-                        System.out.println("No passengers found. Please sign up first.");
-                    }
-                    if (passengerID.equals("not found")) {
+                    if (this.passengerID.equals("not found")) {
+                        System.out.println("Passenger ID not found. Please try again.");                    
                         System.out.println("Want to continue as guest? (yes/no)");
                         String response = in.nextLine();
                         if (response.equalsIgnoreCase("yes")) {
@@ -87,9 +82,9 @@ public class PassengerMenu {
                             System.out.println("Returning to main menu...");
                             choice = 4; // Set choice to 4 to exit the loop
                         }
-                    }
+                    }                    
                     else
-                    {ticketMenu.displayMenu(passengerID);}
+                    {ticketMenu.displayMenu(this.passengerID);}
                     break;
                 case 2:
                     System.out.println("Redirecting to sign-up...");
@@ -114,11 +109,10 @@ public class PassengerMenu {
     private void signUp() {
         System.out.println("Please enter your name: ");
         String name = in.nextLine();
-        System.out.println("Please enter your email: ");
-        String email = in.nextLine();
         System.out.println("Please enter your phone number: ");
         String phone = in.nextLine();
-        
+        System.out.println("Please enter your email: ");
+        String email = in.nextLine();  
         String password;
         String confirmPassword;
         do{
@@ -131,11 +125,128 @@ public class PassengerMenu {
         }
         } while (!password.equals(confirmPassword)); 
 
-        Passenger newPassenger = new Passenger(name, email, phone);
-        passengerManager.addPassenger(newPassenger);
+        this.passenger = new Passenger(name, email, phone);
+        passengerManager.addPassenger(this.passenger);
+        this.passengerID = this.passenger.getPassengerID();
+        System.out.println("══════════════════════════════════════════════════"); 
         System.out.println("Welcome " + name + "! Your account has been created successfully.");
-        System.out.println("Your Passenger ID is: " + newPassenger.getPassengerID());
+        System.out.println("Your Passenger ID is: " + this.passenger.getPassengerID());
 
-        new Login(newPassenger, loginManager, email, password);
+        this.login = new Login(this.passenger, loginManager, email, password);
+        passengerDashboard();
+    }
+
+    /**
+     * Displays the passenger dashboard menu and handles user input for various options.
+     */
+    private void passengerDashboard() {
+
+        int choice;
+        do {
+            System.out.println("╔════════════════════════════════════════════════╗");
+            System.out.println("║               PASSENGER DASHBOARD              ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║  1. Book Ticket                                ║");
+            System.out.println("║  2. View Ticket History                        ║");
+            System.out.println("║  3. Update Profile                             ║");
+            System.out.println("║  4. Logout                                     ║");
+            System.out.println("╚════════════════════════════════════════════════╝");
+            System.out.print("Please select an option (1-4): ");
+            choice = in.nextInt();
+            in.nextLine(); // Consume the newline character left by nextInt()
+
+            switch (choice) {
+            case 1:
+                this.ticketMenu.displayMenu(this.passengerID);
+                break;
+            case 2:
+                System.out.println("Viewing ticket history...");
+                this.ticketManager = this.ticketIssuer.getTicketManager();
+                ArrayList<Ticket> tickets = this.ticketManager.getTickets();
+                System.out.println("══════════════════════════════════════════════════"); 
+                for (Ticket ticket : tickets) {
+                    if (ticket.getPassenger().getPassengerID().equals(this.passengerID)) {
+                        System.out.println(ticket);}
+                }
+                System.out.println("══════════════════════════════════════════════════"); 
+                break;
+            case 3:
+                System.out.println("Updating profile...");
+                updateProfile();
+                break;
+            case 4:
+                System.out.println("Logging out...");
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 4);
+
+    }
+
+    /**
+     * Handles passenger profile update.
+     */
+    private void updateProfile() {
+        int choice;
+        do {
+            System.out.println("╔════════════════════════════════════════════════╗");
+            System.out.println("║              UPDATE PROFILE MENU               ║");
+            System.out.println("╠════════════════════════════════════════════════╣");
+            System.out.println("║  1. Update Name                                ║");
+            System.out.println("║  2. Update Email                               ║");
+            System.out.println("║  3. Update Phone Number                        ║");
+            System.out.println("║  4. Delete Account                             ║");
+            System.out.println("║  5. Back to Dashboard                          ║");
+            System.out.println("╚════════════════════════════════════════════════╝");
+            System.out.print("Please select an option (1-5): ");
+            choice = in.nextInt();
+            in.nextLine(); // Consume the newline character left by nextInt()
+
+            switch (choice) {
+            case 1:                
+                Passenger passenger = passengerManager.getPassengerById(this.passengerID);
+                System.out.println("Enter new name: ");
+                String newName = in.nextLine();
+                passenger.setName(newName);
+                System.out.println("Name updated successfully.");
+                break;
+            case 2:
+                Passenger passenger2 = passengerManager.getPassengerById(this.passengerID);
+                System.out.println("Enter new email: ");
+                String newEmail = in.nextLine();
+                passenger2.setEmail(newEmail);
+                System.out.println("Email updated successfully.");
+                break;
+            case 3:
+                Passenger passenger3 = passengerManager.getPassengerById(this.passengerID);
+                System.out.println("Enter new phone number: ");
+                String newPhone = in.nextLine();
+                passenger3.setPhoneNumber(newPhone);
+                System.out.println("Phone number updated successfully.");
+                break;
+            case 4:
+                System.out.println("Are you sure you want to delete your account? (yes/no)");
+                String confirm = in.nextLine();
+                if(confirm.equalsIgnoreCase("yes")) {
+                this.passengerManager.deletePassenger(this.passengerID);
+                loginManager.getLogins().remove(this.login);
+                System.out.println("Account deleted successfully.");
+                displayMenu();
+                return; // Exit the method after account deletion
+                }
+                else {
+                System.out.println("Account deletion cancelled.");
+                }
+                break;
+            case 5:
+                System.out.println("Returning to dashboard...");
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 5);
+        
     }
 }
+
