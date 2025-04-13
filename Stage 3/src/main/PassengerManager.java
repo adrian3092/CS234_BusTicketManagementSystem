@@ -9,7 +9,6 @@ import java.util.ArrayList;
  */
 public class PassengerManager {
     private ArrayList<Passenger> passengers; // List of passengers
-    private int passengerCount = 0; // Number of passengers
 
     /**
      * Constructor to initialize the passenger manager.
@@ -34,7 +33,6 @@ public class PassengerManager {
      */
     public void addPassenger(Passenger passenger) {
         passengers.add(passenger);
-        passengerCount++;
     }
 
     /**
@@ -44,7 +42,6 @@ public class PassengerManager {
      */
     public void removePassenger(Passenger passenger) {
         passengers.remove(passenger);
-        passengerCount--;
     }
 
     /**
@@ -52,9 +49,6 @@ public class PassengerManager {
      * 
      * @return The number of passengers.
      */
-    public int getPassengerCount() {
-        return passengerCount;
-    }
 
     /**
      * Retrieves a passenger by their ID.

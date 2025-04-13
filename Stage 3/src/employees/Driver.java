@@ -63,11 +63,4 @@ public class Driver extends Employee {
     public void setBus(Bus bus) {
         this.bus = bus;
     }
-
-    /**
-     * Displays the schedule for the bus assigned to the driver.
-     */
-    public void viewSchedule() {
-        // View the schedule for the bus
-    }
 }
