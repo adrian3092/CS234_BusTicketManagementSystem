@@ -73,7 +73,7 @@ public class TicketMenu {
         System.out.println("Route: " + selectedSchedule.getRoute().getName());
         System.out.println("Start Time: " + formatTime(selectedSchedule.getStartTime()));
         System.out.println("Passenger: " + passenger.getPassengerName());
-        System.out.println("-----------------------");
+        System.out.println("══════════════════════════════════════════════════"); 
         System.out.println("Payment Information:");
         System.out.println("Payment ID: " + payment.getPaymentId());
         System.out.println("Amount: $" + String.format("%.2f", payment.getPaymentAmount()));
