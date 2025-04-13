@@ -103,6 +103,8 @@ public class Main {
         // create dispatcher
         Dispatcher dispatcher = new Dispatcher(busManager);
         dispatcher.assignBusToRoute(bus2, route1);
+        dispatcher.assignBusToRoute(bus1, route2);
+        dispatcher.assignDriverToBus(driver2, bus1);
         dispatcher.assignDriverToBus(driver1, bus2);
 
         //create admin menu
