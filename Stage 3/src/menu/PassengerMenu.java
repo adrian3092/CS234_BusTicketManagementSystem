@@ -84,7 +84,7 @@ public class PassengerMenu {
                         }
                     }                    
                     else
-                    {ticketMenu.displayMenu(this.passengerID);}
+                    {passengerDashboard();}
                     break;
                 case 2:
                     System.out.println("Redirecting to sign-up...");

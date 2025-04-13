@@ -59,6 +59,7 @@ public class TicketMenu {
         //in.nextLine(); // consume newline character
         System.out.print("Please enter your credit card number: ");
         String cardNumber = in.nextLine();
+        in.nextLine(); // consume newline character
         System.out.print("Please enter your credit card expiration date (MM/YY): ");
         String expirationDate = in.nextLine();
         

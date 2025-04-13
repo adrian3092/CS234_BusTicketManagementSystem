@@ -104,6 +104,9 @@ public class Main {
         dispatcher.assignDriverToBus(driver2, bus1);
         dispatcher.assignDriverToBus(driver1, bus2);
 
+        // create ticket issuer
+        TicketIssuer ticketIssuer = new TicketIssuer();
+
         //create admin menu
         AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, 
                 scheduleManager, accounting, employeeManagement, routeManager, 
@@ -111,6 +114,8 @@ public class Main {
 
         // create driver menu
         DriverMenu driverMenu = new DriverMenu(in, dispatcher, scheduleManager, busManager);
+
+
         
         //create expenses
         Salary employee1Salary = new Salary(accounting, 2000, admin1);
@@ -119,9 +124,13 @@ public class Main {
         
         // create ticket, passenger and payment
         Passenger passenger1 = new Passenger("Robert Smith", "robert.smith@gmail.com", "2824782957");
+        passengerManager.addPassenger(passenger1);
         Payment payment1 = new Payment("Credit Card", 3, passenger1, "5105105105105100", "12/26", paymentManager);
-        TicketIssuer ticketIssuer = new TicketIssuer();
+        Login passengerLogin = new Login(passenger1, loginManager, passenger1.getEmail(), "password");
+        PassengerMenu passengerMenu = new PassengerMenu(in, passengerManager, scheduleManager, loginManager, paymentManager, ticketIssuer);
         ticketIssuer.bookTicket(passenger1, schedule1);
+
+        
 
         // logic for the main menu
         int menuOption = 0;
@@ -144,9 +153,7 @@ public class Main {
 
             switch (menuOption) {
                 case 1 -> {
-                    // book ticket
                     in.nextLine(); // consume the leftover new line character
-                    PassengerMenu passengerMenu = new PassengerMenu(in, passengerManager, scheduleManager, loginManager, paymentManager, ticketIssuer);
                     passengerMenu.displayMenu();
                 }
                 case 2 -> {
