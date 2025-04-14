@@ -56,10 +56,9 @@ public class TicketMenu {
         // collect payment information
         System.out.println("\nPayment Information:");
         System.out.println("Ticket Price: $" + String.format("%.2f", ticketPrice));
-        //in.nextLine(); // consume newline character
+        in.nextLine(); // consume newline character
         System.out.print("Please enter your credit card number: ");
         String cardNumber = in.nextLine();
-        in.nextLine(); // consume newline character
         System.out.print("Please enter your credit card expiration date (MM/YY): ");
         String expirationDate = in.nextLine();
         
