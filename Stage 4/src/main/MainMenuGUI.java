@@ -66,6 +66,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         EmployeeLoginMainMenuBtn.setText("Employee Login");
         EmployeeLoginMainMenuBtn.setBorderPainted(false);
+        EmployeeLoginMainMenuBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EmployeeLoginMainMenuBtnActionPerformed(evt);
+            }
+        });
 
         welcomeHeader1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         welcomeHeader1.setText("WELCOME TO BUS ");
@@ -125,6 +130,10 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private void ViewSchedulesMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSchedulesMainMenuBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ViewSchedulesMainMenuBtnActionPerformed
+
+    private void EmployeeLoginMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeLoginMainMenuBtnActionPerformed
+        new LoginGUI().setVisible(true);
+    }//GEN-LAST:event_EmployeeLoginMainMenuBtnActionPerformed
     
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
     button.setOpaque(true);
