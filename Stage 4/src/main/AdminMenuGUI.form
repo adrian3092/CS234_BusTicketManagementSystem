@@ -26,7 +26,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="tabAdmin" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tabAdmin" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -52,15 +56,48 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="677" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="btnAddBus" max="32767" attributes="0"/>
+                          <Component id="btnManageBus" alignment="1" pref="251" max="32767" attributes="0"/>
+                          <Component id="btnDisplayBuses" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="201" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="374" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnAddBus" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnManageBus" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnDisplayBuses" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="219" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="btnAddBus">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Add a New Bus"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnManageBus">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Manage an Existing Bus"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnDisplayBuses">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Display all Buses"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="panelSchedule">
           <Constraints>
@@ -74,15 +111,58 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="677" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="209" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnAddSchedule" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
+                          <Component id="btnDisplaySchedules" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnRemoveSchedule" pref="259" max="32767" attributes="0"/>
+                              <Component id="btnManageSchedule" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="197" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="374" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnAddSchedule" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnRemoveSchedule" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnManageSchedule" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnDisplaySchedules" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="178" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="btnAddSchedule">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Add a New Schedule"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnRemoveSchedule">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Remove an Existing Schedule"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnManageSchedule">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Manage an Existing Schedule"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnDisplaySchedules">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Display All Schedules"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="panelRoute">
           <Constraints>
@@ -104,7 +184,7 @@
                           <Component id="btnManageRoute" alignment="1" max="32767" attributes="0"/>
                           <Component id="btnAddRoute" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="213" max="32767" attributes="0"/>
+                      <EmptySpace pref="201" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -162,15 +242,64 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="677" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace pref="224" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnUnassignBus" pref="216" max="32767" attributes="0"/>
+                          <Component id="btnAssignBus" max="32767" attributes="0"/>
+                          <Component id="btnDisplayDepots" max="32767" attributes="0"/>
+                          <Component id="btnDeleteDepot" max="32767" attributes="0"/>
+                          <Component id="btnAddDepot" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="225" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="374" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnAddDepot" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnDeleteDepot" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnAssignBus" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnUnassignBus" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnDisplayDepots" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="137" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="btnAddDepot">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Add a New Depot"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnDeleteDepot">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Delete an Existing Depot"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnAssignBus">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Assign a Bus to a Depot"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnUnassignBus">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Unassign a Bus From a Depot"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnDisplayDepots">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Display All Depots"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="panelEmployee">
           <Constraints>
@@ -184,15 +313,56 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="677" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="201" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="btnUpdateEmployee" pref="263" max="32767" attributes="0"/>
+                          <Component id="btnDisplayEmployees" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnDeleteEmployee" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnAddEmployee" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="201" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="374" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="btnAddEmployee" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnDeleteEmployee" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnDisplayEmployees" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnUpdateEmployee" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="178" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="btnAddEmployee">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Add a New Employee"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnDeleteEmployee">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Delete an Existing Employee"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnDisplayEmployees">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Display All Employees"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnUpdateEmployee">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Update Employee Information"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="panelAccounting">
           <Constraints>
@@ -215,7 +385,7 @@
                           <Component id="btnNewExpense" alignment="1" max="32767" attributes="0"/>
                           <Component id="btnRemoveExpense" alignment="1" pref="251" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="213" max="32767" attributes="0"/>
+                      <EmptySpace pref="201" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
