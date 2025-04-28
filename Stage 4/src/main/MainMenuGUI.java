@@ -149,7 +149,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
             button.setBackground(normal);
         }
     });
-}
+}   
 
     /**
      * @param args the command line arguments
