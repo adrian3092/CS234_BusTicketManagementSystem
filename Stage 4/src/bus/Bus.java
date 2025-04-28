@@ -34,6 +34,32 @@ public class Bus {
         this.capacity = capacity;
         this.status = "Available";
     }
+    
+    /**
+     * constructor that initializes the
+     * year, make, model, mileage, and uses a specific busId
+     * used for loading buses from CSV
+     * @param year the year of the bus
+     * @param make the make of the bus
+     * @param model the model of the bus
+     * @param mileage the mileage of the bus
+     * @param capacity the capacity of the bus
+     * @param busId the specific bus ID to use
+     */
+    public Bus(int year, String make, String model, int mileage, int capacity, int busId) {
+        this.busId = busId;
+        this.year = year;
+        this.make = make;
+        this.model = model;
+        this.mileage = mileage;
+        this.capacity = capacity;
+        this.status = "Available";
+        
+        // update nextBusId if this id is greater than or equal to the current nextBusId
+        if (busId >= nextBusId) {
+            nextBusId = busId + 1;
+        }
+    }
 
     /**
      * gets the id of a bus

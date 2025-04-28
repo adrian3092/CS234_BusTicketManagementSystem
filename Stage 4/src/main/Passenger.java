@@ -29,6 +29,28 @@ public class Passenger {
         this.phoneNumber = phone;
         this.passengerID = IdGenerator.generatePassengerId(); // Generate unique ID
     }
+    
+    /**
+     * constructor to initialize a Passenger object with a specific ID
+     * used for loading passengers from CSV
+     * 
+     * @param name        The name of the passenger.
+     * @param email       The email address of the passenger.
+     * @param phone       The phone number of the passenger.
+     * @param passengerID The specific passenger ID to use.
+     */
+    public Passenger(String name, String email, String phone, String passengerID) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phone;
+        this.passengerID = passengerID;
+        
+        // update the ID generator if this ID has a higher number
+        if (passengerID.startsWith("P-")) {
+            int idNumber = Integer.parseInt(passengerID.substring(2));
+            IdGenerator.updatePassengerIdIfHigher(idNumber);
+        }
+    }
 
     /**
      * Gets the passenger's unique ID.

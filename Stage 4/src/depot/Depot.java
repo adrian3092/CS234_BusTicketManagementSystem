@@ -25,6 +25,23 @@ public class Depot {
         this.address = address;
         this.buses = new ArrayList<>();
     }
+    
+    /**
+     * constructor that initializes the address with a specific depot ID
+     * used for loading depots from CSV
+     * @param address the address of the depot
+     * @param depotId the specific depot ID to use
+     */
+    public Depot(String address, int depotId) {
+        this.depotId = depotId;
+        this.address = address;
+        this.buses = new ArrayList<>();
+        
+        // update nextDepotId if this id is greater than or equal to the current nextDepotId
+        if (depotId >= nextDepotId) {
+            nextDepotId = depotId + 1;
+        }
+    }
 
     /**
      * get the id of the depot
@@ -104,12 +121,11 @@ public class Depot {
     }
 
     /**
-     * Used to print the object
+     * used to print the object
      * @return a string with the depot ID and address
      */
     @Override
     public String toString() {
         return "Depot ID: " + depotId + ", Address: " + address;
     }
-
 }

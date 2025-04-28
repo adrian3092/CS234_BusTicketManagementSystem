@@ -2,6 +2,11 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import csv.CSVHandler;
+import depot.Depot;
+import depot.DepotManager;
 
 /**
  * this class manages all schedules
@@ -11,12 +16,15 @@ import java.util.ArrayList;
 public class ScheduleManager {
 
     private final ArrayList<Schedule> schedules;
+    private static final String SCHEDULES_CSV_FILE_PATH = "Stage 4/data/schedules.csv";
+    private static final String DEPARTURE_TIMES_CSV_FILE_PATH = "Stage 4/data/departure_times.csv";
 
     /**
      * default constructor
      */
     public ScheduleManager() {
         this.schedules = new ArrayList<>();
+        loadSchedulesFromCSV();
     }
 
     /**
@@ -33,6 +41,7 @@ public class ScheduleManager {
      */
     public void addSchedule(Schedule schedule) {
         schedules.add(schedule);
+        saveSchedulesToCSV();
     }
 
     /** 
@@ -42,6 +51,7 @@ public class ScheduleManager {
      */
     public void removeSchedule(Schedule schedule) {
         schedules.remove(schedule);
+        saveSchedulesToCSV();
     }
 
     /**
@@ -125,5 +135,125 @@ public class ScheduleManager {
         int minutes = (int) (((time - hours) * 100) + 0.5);
         
         return String.format("%02d:%02d", hours, minutes);
+    }
+    
+    /**
+     * load schedules from CSV file
+     * @param routeManager the route manager to use for finding routes by ID
+     * @param depotManager the depot manager to use for finding depots by ID
+     */
+    public void loadSchedulesFromCSV(RouteManager routeManager, DepotManager depotManager) {
+        List<String[]> data = CSVHandler.readCSV(SCHEDULES_CSV_FILE_PATH);
+        
+        // clear existing schedules
+        schedules.clear();
+        
+        // skip header row if it exists
+        boolean hasHeader = data.get(0)[0].equals("name");
+        int startRow = hasHeader ? 1 : 0;
+        
+        // process each row
+        for (int i = startRow; i < data.size(); i++) {
+            String[] row = data.get(i);
+            
+            String name = row[0];
+            String routeID = row[1];
+            int depotId = Integer.parseInt(row[2]);
+            double startTime = Double.parseDouble(row[3]);
+            
+            // find the route and depot
+            Route route = routeManager.getRouteById(routeID);
+            Depot depot = depotManager.findDepotById(depotId);
+            
+            // create schedule if both route and depot exist
+            if (route != null && depot != null) {
+                Schedule schedule = new Schedule(route, depot, startTime);
+                schedule.setName(name);
+                schedules.add(schedule);
+            }
+        }
+        
+        // load departure times for each schedule
+        loadDepartureTimesFromCSV();
+    }
+    
+    /**
+     * load schedules from CSV file
+     */
+    private void loadSchedulesFromCSV() {
+        // This is just a placeholder - the actual loading will happen when 
+        // loadSchedulesFromCSV(routeManager, depotManager) is called
+    }
+    
+    /**
+     * save schedules to CSV file
+     */
+    public void saveSchedulesToCSV() {
+        List<String[]> data = new ArrayList<>();
+        
+        // add data rows
+        for (Schedule schedule : schedules) {
+            String routeID = schedule.getRoute() != null ? schedule.getRoute().getRouteID() : "";
+            int depotId = schedule.getDepot() != null ? schedule.getDepot().getDepotId() : 0;
+            
+            String[] row = new String[]{
+                schedule.getName(),
+                routeID,
+                String.valueOf(depotId),
+                String.valueOf(schedule.getStartTime())
+            };
+            data.add(row);
+        }
+        
+        CSVHandler.writeCSV(SCHEDULES_CSV_FILE_PATH, data);
+        
+        // save departure times for each schedule
+        saveDepartureTimesToCSV();
+    }
+    
+    /**
+     * load departure times from CSV file
+     */
+    private void loadDepartureTimesFromCSV() {
+        List<String[]> data = CSVHandler.readCSV(DEPARTURE_TIMES_CSV_FILE_PATH);
+        
+        // skip header row if it exists
+        boolean hasHeader = data.get(0)[0].equals("scheduleName");
+        int startRow = hasHeader ? 1 : 0;
+        
+        // process each row
+        for (int i = startRow; i < data.size(); i++) {
+            String[] row = data.get(i);
+            
+            String scheduleName = row[0];
+            double departureTime = Double.parseDouble(row[1]);
+            
+            // find the schedule
+            Schedule schedule = getScheduleByName(scheduleName);
+            
+            // add the departure time to the schedule
+            if (schedule != null) {
+                schedule.getDepartureTimes().add(departureTime);
+            }
+        }
+    }
+    
+    /**
+     * save departure times to CSV file
+     */
+    private void saveDepartureTimesToCSV() {
+        List<String[]> data = new ArrayList<>();
+        
+        // add data rows
+        for (Schedule schedule : schedules) {
+            for (Double departureTime : schedule.getDepartureTimes()) {
+                String[] row = new String[]{
+                    schedule.getName(),
+                    String.valueOf(departureTime)
+                };
+                data.add(row);
+            }
+        }
+        CSVHandler.writeCSV(DEPARTURE_TIMES_CSV_FILE_PATH, data);
     }
 }

@@ -2,7 +2,11 @@
 package payment;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import csv.CSVHandler;
 import main.Passenger;
+import main.PassengerManager;
 
 /**
  * this class manages all payments
@@ -12,12 +16,14 @@ import main.Passenger;
 public class PaymentManager {
     
     private ArrayList<Payment> payments;
+    private static final String PAYMENTS_CSV_FILE_PATH = "Stage 4/data/payments.csv";
     
     /**
      * default constructor
      */
     public PaymentManager() {
         payments = new ArrayList<>();
+        loadPaymentsFromCSV();
     }
     
     /**
@@ -34,6 +40,7 @@ public class PaymentManager {
      */
     public void addPayment(Payment payment) {
         payments.add(payment);
+        savePaymentsToCSV();
     }
     
     /**
@@ -42,6 +49,7 @@ public class PaymentManager {
      */
     public void removePayment(Payment payment) {
         payments.remove(payment);
+        savePaymentsToCSV();
     }
     
     /**
@@ -102,6 +110,7 @@ public class PaymentManager {
         
         if (payment != null) {
             payment.setPaymentStatus("Canceled");
+            savePaymentsToCSV();
             return true;
         }
         
@@ -118,5 +127,73 @@ public class PaymentManager {
         for(Payment payment : payments) {
             System.out.println(payment);
         }             
+    }
+    
+    /**
+     * load payments from CSV file
+     * @param passengerManager the passenger manager to use for finding passengers by ID
+     */
+    public void loadPaymentsFromCSV(PassengerManager passengerManager) {
+        List<String[]> data = CSVHandler.readCSV(PAYMENTS_CSV_FILE_PATH);
+        
+        // clear existing payments
+        payments.clear();
+        
+        // skip header row if it exists
+        boolean hasHeader = data.get(0)[0].equals("paymentId");
+        int startRow = hasHeader ? 1 : 0;
+        
+        // process each row
+        for (int i = startRow; i < data.size(); i++) {
+            String[] row = data.get(i);
+            
+            int paymentId = Integer.parseInt(row[0]);
+            String paymentType = row[1];
+            double paymentAmount = Double.parseDouble(row[2]);
+            String paymentStatus = row[3];
+            String passengerID = row[4];
+            String cardNumber = row[5];
+            String expirationDate = row[6];
+            
+            // find the passenger
+            Passenger passenger = passengerManager.getPassengerById(passengerID);
+            
+            // create payment if passenger exists
+            if (passenger != null) {
+                Payment payment = new Payment(paymentId, paymentType, paymentAmount, paymentStatus, 
+                                                passenger, cardNumber, expirationDate, this);
+            }
+        }
+    }
+    
+    /**
+     * load payments from CSV file
+     */
+    private void loadPaymentsFromCSV() {
+        //
+    }
+    
+    /**
+     * save payments to CSV file
+     */
+    public void savePaymentsToCSV() {
+        List<String[]> data = new ArrayList<>();
+        
+        // add data rows
+        for (Payment payment : payments) {
+            String passengerID = payment.getPassenger() != null ? payment.getPassenger().getPassengerID() : "";
+            
+            String[] row = new String[]{
+                String.valueOf(payment.getPaymentId()),
+                payment.getPaymentType(),
+                String.valueOf(payment.getPaymentAmount()),
+                payment.getPaymentStatus(),
+                passengerID,
+                payment.getCardNumber(),
+                payment.getExpirationDate()
+            };
+            data.add(row);
+        }
+        CSVHandler.writeCSV(PAYMENTS_CSV_FILE_PATH, data);
     }
 }

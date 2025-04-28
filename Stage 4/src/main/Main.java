@@ -1,4 +1,3 @@
-
 package main;
 
 import bus.*;
@@ -12,7 +11,7 @@ import payment.*;
 import ticket.*;
 
 /**
- * This is the main file to run the program. Has a static scanner object that is
+ * this is the main file to run the program. it has a static scanner object that is
  * used by the other classes for user input
  * @author Adrian Zielinski
  */
@@ -21,116 +20,64 @@ public class Main {
     public static Scanner in = new Scanner(System.in);
     
     /**
-     * This is the main method. It creates initial data for the program and 
-     * displays the main menu.
-     * @param args Possible command line arguments
+     * this is the main method. it loads all data from CSV files and displays the main menu
+     * @param args possible command line arguments
      */
     public static void main(String[] args) {
 
-        //create login database
+        // create login database
         LoginManager loginManager = new LoginManager(in);
 
-        //create Route database
+        // create Route database and load routes
         RouteManager routeManager = new RouteManager();
         
-        //create employee database
+        // create employee database
         EmployeeManagement employeeManagement = new EmployeeManagement();
 
-        //create passenger manager
+        // create passenger manager and load passengers
         PassengerManager passengerManager = new PassengerManager();
         
-        //create payment manager
+        // create payment manager and load payments
         PaymentManager paymentManager = new PaymentManager();
+        paymentManager.loadPaymentsFromCSV(passengerManager);
         
-        // create employees
-        Admin admin1 = new Admin("John", "Doe", "Admin", "5286857246", 40500, employeeManagement, loginManager);
-        Driver driver1 = new Driver("Lauren", "Smith", "Driver", "8518534605", 51800, employeeManagement, loginManager);       
-        Driver driver2 = new Driver("Robert", "Brown", "Driver", "4586994350", 55200, employeeManagement, loginManager);
-
-        // create initial depots
+        // load employees after login manager is initialized
+        employeeManagement.loadEmployeesFromCSV(loginManager);
+        
+        // load logins after employees and passengers are loaded
+        loginManager.loadLoginsFromCSV(employeeManagement, passengerManager);
+    
+        // create depot and bus managers and load data
         DepotManager depotManager = new DepotManager();
-        Depot depot1 = new Depot("1862 Aviation Way, Los Angeles, CA 90071");
-        depotManager.addDepot(depot1);
-        Depot depot2 = new Depot("2155 Norman Street, Los Angeles, CA 90008");
-        depotManager.addDepot(depot2);
-
-        // create initial routes and bus stops, add bus stops to routes
-        Route route1 = new Route("Downtown", routeManager);
-        Route route2 = new Route("Midtown", routeManager);
-
-        BusStop busStop1 = new BusStop("Main St & 6th St", 0.3);
-        BusStop busStop2 = new BusStop("Broadway & 6th St", 0.2);
-        BusStop busStop3 = new BusStop("Hill St & 6th St", 0.3);
-        BusStop busStop4 = new BusStop("Olive St & 6th St", 0.2);
-        BusStop busStop5 = new BusStop("Figueroa St & 6th St", 0.4);
-        
-        route1.addStop(busStop1);
-        route1.addStop(busStop2);
-        route1.addStop(busStop3);
-        route1.addStop(busStop4);
-        route1.addStop(busStop5);
-
-        // create initial schedule
-        ScheduleManager scheduleManager = new ScheduleManager();
-        Schedule schedule1 = new Schedule(route1, depot1, 08.30);
-        scheduleManager.addSchedule(schedule1);
-        schedule1.setName("Morning");
-
-        schedule1.getDepartureTimes().add(8.50);
-        schedule1.getDepartureTimes().add(9.00);
-        schedule1.getDepartureTimes().add(9.50);
-        schedule1.getDepartureTimes().add(10.00);
-        schedule1.getDepartureTimes().add(10.50);
-
-        // create two initial buses, and add to list of all buses
         BusManager busManager = new BusManager(depotManager);
-        Bus bus1 = new Bus(2024, "Volvo", "7900", 3786, 40);
-        Bus bus2 = new Bus(2013, "Volvo", "8900", 154965, 60);
         
-        busManager.addBus(bus1);
-        busManager.addBus(bus2);
-
-        // assign buses to the depot
-        depot1.assignBus(bus1);
-        depot1.assignBus(bus2);
+        // load bus-depot assignments after both buses and depots are loaded
+        depotManager.loadDepotBusAssignmentsFromCSV(busManager);
         
-        //create accounting database
+        // create schedule manager and load schedules
+        ScheduleManager scheduleManager = new ScheduleManager();
+        scheduleManager.loadSchedulesFromCSV(routeManager, depotManager);
+        
+        // create accounting database
         Accounting accounting = new Accounting(in, busManager, depotManager, employeeManagement);
         
         // create dispatcher
         Dispatcher dispatcher = new Dispatcher(busManager);
-        dispatcher.assignBusToRoute(bus2, route1);
-        dispatcher.assignBusToRoute(bus1, route2);
-        dispatcher.assignDriverToBus(driver2, bus1);
-        dispatcher.assignDriverToBus(driver1, bus2);
-
-        // create ticket issuer
+        
+        // create ticket issuer and load tickets
         TicketIssuer ticketIssuer = new TicketIssuer();
+        ticketIssuer.getTicketManager().loadTicketsFromCSV(passengerManager, scheduleManager);
 
-        //create admin menu
+        // create admin menu
         AdminMenu adminMenu = new AdminMenu(in, busManager, depotManager, 
                 scheduleManager, accounting, employeeManagement, routeManager, 
                 dispatcher, loginManager, paymentManager);
 
         // create driver menu
         DriverMenu driverMenu = new DriverMenu(in, dispatcher, scheduleManager, busManager);
-
-
         
-        //create expenses
-        Salary employee1Salary = new Salary(accounting, 2000, admin1);
-        FuelCost bus1Fuel = new FuelCost(accounting, 500, bus1);
-        MaintenanceCost bus1Maintenance = new MaintenanceCost(accounting, 650, bus1);  
-        
-        // create ticket, passenger and payment
-        Passenger passenger1 = new Passenger("Robert Smith", "robert.smith@gmail.com", "2824782957");
-        passengerManager.addPassenger(passenger1);
-        Payment payment1 = new Payment("Credit Card", 3, passenger1, "5105105105105100", "12/26", paymentManager);
-        Login passengerLogin = new Login(passenger1, loginManager, passenger1.getEmail(), "password");
+        // reate passenger menu
         PassengerMenu passengerMenu = new PassengerMenu(in, passengerManager, scheduleManager, loginManager, paymentManager, ticketIssuer);
-        ticketIssuer.bookTicket(passenger1, schedule1);
-
-        
 
         // logic for the main menu
         int menuOption = 0;
@@ -176,6 +123,19 @@ public class Main {
                 }
                 case 4 -> {
                     System.out.println("Thank you for using the Bus Company App!");
+                    System.out.println("Saving data...");
+                    
+                    // save all data before exiting the program
+                    busManager.saveBusesToCSV();
+                    depotManager.saveDepotsToCSV();
+                    routeManager.saveRoutesToCSV();
+                    scheduleManager.saveSchedulesToCSV();
+                    passengerManager.savePassengersToCSV();
+                    paymentManager.savePaymentsToCSV();
+                    employeeManagement.saveEmployeesToCSV();
+                    loginManager.saveLoginsToCSV();
+                    ticketIssuer.saveTicketsToCSV();
+                    
                     System.out.println("Exiting the program. Goodbye!");
                     in.close(); // close scanner when exiting
                 }

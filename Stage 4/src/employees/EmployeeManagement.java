@@ -1,6 +1,10 @@
 package employees;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import csv.CSVHandler;
+import login.LoginManager;
 
 /**
  * EmployeeManagement class handles the management of employees and drivers.
@@ -11,6 +15,8 @@ import java.util.ArrayList;
 public class EmployeeManagement {
     private ArrayList<Employee> employees; // List to store employees
     private ArrayList<Driver> drivers; // List to store all drivers
+    private static final String EMPLOYEES_CSV_FILE_PATH = "Stage 4/data/employees.csv";
+    private static final String DRIVERS_CSV_FILE_PATH = "Stage 4/data/drivers.csv";
 
     /**
      * Constructor to initialize the employee and driver lists.
@@ -18,6 +24,7 @@ public class EmployeeManagement {
     public EmployeeManagement() {
         employees = new ArrayList<>(); // Initialize the list of employees
         drivers = new ArrayList<>(); // Initialize the list of drivers
+        loadEmployeesFromCSV();
     }
 
     /**
@@ -27,6 +34,7 @@ public class EmployeeManagement {
      */
     public void addEmployee(Employee employee) {
         employees.add(employee);
+        saveEmployeesToCSV();
     }
 
     /**
@@ -41,6 +49,7 @@ public class EmployeeManagement {
         if (employee instanceof Driver) {
             drivers.remove((Driver) employee);
         }
+        saveEmployeesToCSV();
     }
 
     /**
@@ -131,6 +140,7 @@ public class EmployeeManagement {
         if (!employees.contains(driver)) {
             employees.add(driver);
         }
+        saveEmployeesToCSV();
     }
 
     /**
@@ -161,5 +171,72 @@ public class EmployeeManagement {
             }
         }
         return null; // Employee not found
+    }
+    
+    /**
+     * load employees from CSV file
+     * @param loginManager the login manager to use for creating logins
+     */
+    public void loadEmployeesFromCSV(LoginManager loginManager) {
+        List<String[]> data = CSVHandler.readCSV(EMPLOYEES_CSV_FILE_PATH);
+        
+        // clear existing employees
+        employees.clear();
+        drivers.clear();
+        
+        // skip header row if it exists
+        boolean hasHeader = data.get(0)[0].equals("employeeID");
+        int startRow = hasHeader ? 1 : 0;
+        
+        // process each row
+        for (int i = startRow; i < data.size(); i++) {
+            String[] row = data.get(i);
+            
+            String employeeID = row[0];
+            String firstName = row[1];
+            String lastName = row[2];
+            String jobTitle = row[3];
+            String phoneNumber = row[4];
+            float salary = Float.parseFloat(row[5]);
+            
+            // create employee based on job title
+            if (jobTitle.equals("Admin")) {
+                new Admin(firstName, lastName, jobTitle, phoneNumber, salary, this, loginManager, employeeID);
+            } else if (jobTitle.equals("Driver")) {
+                new Driver(firstName, lastName, jobTitle, phoneNumber, salary, this, loginManager, employeeID);
+            }
+        }
+    }
+    
+    /**
+     * load employees from CSV file
+     */
+    private void loadEmployeesFromCSV() {
+        //
+    }
+    
+    /**
+     * save employees to CSV file
+     */
+    public void saveEmployeesToCSV() {
+        List<String[]> data = new ArrayList<>();
+        
+        // add data rows
+        for (Employee employee : employees) {
+            String[] nameParts = employee.getName().split(" ");
+            String firstName = nameParts[0];
+            String lastName = nameParts.length > 1 ? nameParts[1] : "";
+            
+            String[] row = new String[]{
+                employee.getEmployeeID(),
+                firstName,
+                lastName,
+                employee.getJobTitle(),
+                employee.getPhoneNumber(),
+                String.valueOf(employee.getSalary())
+            };
+            data.add(row);
+        }
+        CSVHandler.writeCSV(EMPLOYEES_CSV_FILE_PATH, data);
     }
 }

@@ -24,7 +24,6 @@ public class Payment {
      * default constructor
      * @param paymentType the type of payment being used ( currently only "Credit Card" is accepted)
      * @param paymentAmount the amount to be charged
-     * @param paymentDate the date of the payment
      * @param passenger the passenger making the payment
      * @param cardNumber the credit card number
      * @param expirationDate the credit card expiration date
@@ -32,11 +31,42 @@ public class Payment {
      */
     public Payment(String paymentType, double paymentAmount, Passenger passenger, String cardNumber, String expirationDate, PaymentManager paymentManager) {
         paymentId = nextPaymentId++;      
+        this.paymentType = paymentType;
         this.paymentAmount = paymentAmount;
         this.passenger = passenger;
         this.cardNumber = maskCardNumber(cardNumber);
         this.expirationDate = expirationDate;
         paymentStatus = "Paid";
+        paymentManager.addPayment(this);
+    }
+    
+    /**
+     * Constructor with specific payment ID for loading payments from CSV
+     * @param paymentId the specific payment ID to use
+     * @param paymentType the type of payment
+     * @param paymentAmount the amount charged
+     * @param paymentStatus the status of the payment
+     * @param passenger the passenger who made the payment
+     * @param cardNumber the credit card number (masked)
+     * @param expirationDate the credit card expiration date
+     * @param paymentManager the PaymentManager object that manages the payments
+     */
+    public Payment(int paymentId, String paymentType, double paymentAmount, String paymentStatus, 
+                  Passenger passenger, String cardNumber, String expirationDate, PaymentManager paymentManager) {
+        this.paymentId = paymentId;
+        this.paymentType = paymentType;
+        this.paymentAmount = paymentAmount;
+        this.paymentStatus = paymentStatus;
+        this.passenger = passenger;
+        this.cardNumber = cardNumber;
+        this.expirationDate = expirationDate;
+        this.paymentManager = paymentManager;
+        
+        // update nextPaymentId if this id is greater than or equal to the current nextPaymentId
+        if (paymentId >= nextPaymentId) {
+            nextPaymentId = paymentId + 1;
+        }
+        
         paymentManager.addPayment(this);
     }
     

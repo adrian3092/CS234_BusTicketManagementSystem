@@ -28,14 +28,30 @@ public class AdminMenuGUI extends javax.swing.JFrame {
 
         tabAdmin = new javax.swing.JTabbedPane();
         panelBus = new javax.swing.JPanel();
+        btnAddBus = new javax.swing.JButton();
+        btnManageBus = new javax.swing.JButton();
+        btnDisplayBuses = new javax.swing.JButton();
         panelSchedule = new javax.swing.JPanel();
+        btnAddSchedule = new javax.swing.JButton();
+        btnRemoveSchedule = new javax.swing.JButton();
+        btnManageSchedule = new javax.swing.JButton();
+        btnDisplaySchedules = new javax.swing.JButton();
         panelRoute = new javax.swing.JPanel();
         btnAddRoute = new javax.swing.JButton();
         btnManageRoute = new javax.swing.JButton();
         btnDisplayRoutes = new javax.swing.JButton();
         btnRouteAssignment = new javax.swing.JButton();
         panelDepot = new javax.swing.JPanel();
+        btnAddDepot = new javax.swing.JButton();
+        btnDeleteDepot = new javax.swing.JButton();
+        btnAssignBus = new javax.swing.JButton();
+        btnUnassignBus = new javax.swing.JButton();
+        btnDisplayDepots = new javax.swing.JButton();
         panelEmployee = new javax.swing.JPanel();
+        btnAddEmployee = new javax.swing.JButton();
+        btnDeleteEmployee = new javax.swing.JButton();
+        btnDisplayEmployees = new javax.swing.JButton();
+        btnUpdateEmployee = new javax.swing.JButton();
         panelAccounting = new javax.swing.JPanel();
         btnExpenseReport = new javax.swing.JButton();
         btnPaymentReport = new javax.swing.JButton();
@@ -46,28 +62,72 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Admin Menu");
 
+        btnAddBus.setText("Add a New Bus");
+
+        btnManageBus.setText("Manage an Existing Bus");
+
+        btnDisplayBuses.setText("Display all Buses");
+
         javax.swing.GroupLayout panelBusLayout = new javax.swing.GroupLayout(panelBus);
         panelBus.setLayout(panelBusLayout);
         panelBusLayout.setHorizontalGroup(
             panelBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 677, Short.MAX_VALUE)
+            .addGroup(panelBusLayout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addGroup(panelBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnAddBus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageBus, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(btnDisplayBuses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         panelBusLayout.setVerticalGroup(
             panelBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(panelBusLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(btnAddBus)
+                .addGap(18, 18, 18)
+                .addComponent(btnManageBus)
+                .addGap(18, 18, 18)
+                .addComponent(btnDisplayBuses)
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Bus", panelBus);
+
+        btnAddSchedule.setText("Add a New Schedule");
+
+        btnRemoveSchedule.setText("Remove an Existing Schedule");
+
+        btnManageSchedule.setText("Manage an Existing Schedule");
+
+        btnDisplaySchedules.setText("Display All Schedules");
 
         javax.swing.GroupLayout panelScheduleLayout = new javax.swing.GroupLayout(panelSchedule);
         panelSchedule.setLayout(panelScheduleLayout);
         panelScheduleLayout.setHorizontalGroup(
             panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 677, Short.MAX_VALUE)
+            .addGroup(panelScheduleLayout.createSequentialGroup()
+                .addGap(209, 209, 209)
+                .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDisplaySchedules, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnRemoveSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                        .addComponent(btnManageSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
         panelScheduleLayout.setVerticalGroup(
             panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(panelScheduleLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(btnAddSchedule)
+                .addGap(18, 18, 18)
+                .addComponent(btnRemoveSchedule)
+                .addGap(18, 18, 18)
+                .addComponent(btnManageSchedule)
+                .addGap(18, 18, 18)
+                .addComponent(btnDisplaySchedules)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Schedule", panelSchedule);
@@ -96,7 +156,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnDisplayRoutes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnManageRoute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAddRoute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         panelRouteLayout.setVerticalGroup(
             panelRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,28 +174,81 @@ public class AdminMenuGUI extends javax.swing.JFrame {
 
         tabAdmin.addTab("Route", panelRoute);
 
+        btnAddDepot.setText("Add a New Depot");
+
+        btnDeleteDepot.setText("Delete an Existing Depot");
+
+        btnAssignBus.setText("Assign a Bus to a Depot");
+
+        btnUnassignBus.setText("Unassign a Bus From a Depot");
+
+        btnDisplayDepots.setText("Display All Depots");
+
         javax.swing.GroupLayout panelDepotLayout = new javax.swing.GroupLayout(panelDepot);
         panelDepot.setLayout(panelDepotLayout);
         panelDepotLayout.setHorizontalGroup(
             panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 677, Short.MAX_VALUE)
+            .addGroup(panelDepotLayout.createSequentialGroup()
+                .addContainerGap(224, Short.MAX_VALUE)
+                .addGroup(panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnUnassignBus, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                    .addComponent(btnAssignBus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDisplayDepots, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeleteDepot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAddDepot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
         panelDepotLayout.setVerticalGroup(
             panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(panelDepotLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(btnAddDepot)
+                .addGap(18, 18, 18)
+                .addComponent(btnDeleteDepot)
+                .addGap(18, 18, 18)
+                .addComponent(btnAssignBus)
+                .addGap(18, 18, 18)
+                .addComponent(btnUnassignBus)
+                .addGap(18, 18, 18)
+                .addComponent(btnDisplayDepots)
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Depot", panelDepot);
+
+        btnAddEmployee.setText("Add a New Employee");
+
+        btnDeleteEmployee.setText("Delete an Existing Employee");
+
+        btnDisplayEmployees.setText("Display All Employees");
+
+        btnUpdateEmployee.setText("Update Employee Information");
 
         javax.swing.GroupLayout panelEmployeeLayout = new javax.swing.GroupLayout(panelEmployee);
         panelEmployee.setLayout(panelEmployeeLayout);
         panelEmployeeLayout.setHorizontalGroup(
             panelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 677, Short.MAX_VALUE)
+            .addGroup(panelEmployeeLayout.createSequentialGroup()
+                .addGap(201, 201, 201)
+                .addGroup(panelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnUpdateEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                    .addComponent(btnDisplayEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeleteEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAddEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         panelEmployeeLayout.setVerticalGroup(
             panelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(panelEmployeeLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(btnAddEmployee)
+                .addGap(18, 18, 18)
+                .addComponent(btnDeleteEmployee)
+                .addGap(18, 18, 18)
+                .addComponent(btnDisplayEmployees)
+                .addGap(18, 18, 18)
+                .addComponent(btnUpdateEmployee)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Employee", panelEmployee);
@@ -162,7 +275,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnManagePayments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNewExpense, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRemoveExpense, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         panelAccountingLayout.setVerticalGroup(
             panelAccountingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +299,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabAdmin)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabAdmin)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +328,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -237,15 +353,31 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddBus;
+    private javax.swing.JButton btnAddDepot;
+    private javax.swing.JButton btnAddEmployee;
     private javax.swing.JButton btnAddRoute;
+    private javax.swing.JButton btnAddSchedule;
+    private javax.swing.JButton btnAssignBus;
+    private javax.swing.JButton btnDeleteDepot;
+    private javax.swing.JButton btnDeleteEmployee;
+    private javax.swing.JButton btnDisplayBuses;
+    private javax.swing.JButton btnDisplayDepots;
+    private javax.swing.JButton btnDisplayEmployees;
     private javax.swing.JButton btnDisplayRoutes;
+    private javax.swing.JButton btnDisplaySchedules;
     private javax.swing.JButton btnExpenseReport;
+    private javax.swing.JButton btnManageBus;
     private javax.swing.JButton btnManagePayments;
     private javax.swing.JButton btnManageRoute;
+    private javax.swing.JButton btnManageSchedule;
     private javax.swing.JButton btnNewExpense;
     private javax.swing.JButton btnPaymentReport;
     private javax.swing.JButton btnRemoveExpense;
+    private javax.swing.JButton btnRemoveSchedule;
     private javax.swing.JButton btnRouteAssignment;
+    private javax.swing.JButton btnUnassignBus;
+    private javax.swing.JButton btnUpdateEmployee;
     private javax.swing.JPanel panelAccounting;
     private javax.swing.JPanel panelBus;
     private javax.swing.JPanel panelDepot;

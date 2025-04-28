@@ -26,7 +26,28 @@ public class Route {
         this.name = name;
         this.stops = new ArrayList<>();
         this.routeID = IdGenerator.generateRouteId(); //@Handsome Onojerame -- added route ID generation
+        this.routeManager = routeManager;
         routeManager.addRoute(this); //@Handsome Onojerame -- added route to RouteManager
+    }
+    
+    /**
+     * constructor for the class with a specific routeID
+     * Used for loading routes from CSV
+     * @param name the name of the route
+     * @param routeID the specific route ID to use
+     * @param routeManager the RouteManager object with the list of routes
+     */
+    public Route(String name, String routeID, RouteManager routeManager) {
+        this.name = name;
+        this.stops = new ArrayList<>();
+        this.routeID = routeID;
+        this.routeManager = routeManager;
+        
+        // update the ID generator if this ID has a higher number
+        if (routeID.startsWith("R-")) {
+            int idNumber = Integer.parseInt(routeID.substring(2));
+            IdGenerator.updateRouteIdIfHigher(idNumber);
+        }
     }
 
     /**

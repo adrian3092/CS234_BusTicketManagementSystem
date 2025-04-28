@@ -38,6 +38,21 @@ public class Login {
     }
     
     /**
+     * constructor for the class for employee logins with specific username and password.
+     * used for loading logins from CSV
+     * @param employee The Employee who the login belongs to
+     * @param loginManager The LoginManager database
+     * @param username The username for the login
+     * @param password The login password
+     */
+    public Login(Employee employee, LoginManager loginManager, String username, String password) {
+        this.employee = employee;
+        this.username = username;
+        this.password = password;
+        loginManager.getLogins().add(this);
+    }
+    
+    /**
      * Constructor for the class for passenger logins. 
      * @param passenger The passenger who the login belongs to
      * @param loginManager The LoginManager database
