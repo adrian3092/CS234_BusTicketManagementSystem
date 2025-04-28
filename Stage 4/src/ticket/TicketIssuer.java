@@ -23,6 +23,22 @@ public class TicketIssuer {
     }
     
     /**
+     * Get the last ticket number used
+     * @return the last ticket number
+     */
+    public static int getLastTicketNumber() {
+        return lastTicketNumber;
+    }
+    
+    /**
+     * Set the last ticket number
+     * @param ticketNumber the new last ticket number
+     */
+    public static void setLastTicketNumber(int ticketNumber) {
+        lastTicketNumber = ticketNumber;
+    }
+    
+    /**
      * books a ticket for a passenger for a specific schedule
      * @param passenger the passenger booking the ticket
      * @param schedule the schedule for which the ticket is being booked
@@ -52,7 +68,18 @@ public class TicketIssuer {
 
     }
 
+    /**
+     * Get the ticket manager
+     * @return the ticket manager
+     */
     public TicketManager getTicketManager() {
         return ticketManager;
+    }
+    
+    /**
+     * Save tickets to CSV file
+     */
+    public void saveTicketsToCSV() {
+        ticketManager.saveTicketsToCSV();
     }
 }

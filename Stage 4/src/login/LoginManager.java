@@ -1,8 +1,14 @@
 package login;
 
-import login.Login;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import csv.CSVHandler;
+import employees.Employee;
+import employees.EmployeeManagement;
+import main.Passenger;
+import main.PassengerManager;
 
 /**
  * This class manages the login system. It has 4 instance variables.
@@ -20,6 +26,7 @@ public class LoginManager {
     private ArrayList<Login> logins;
     private String enteredUsername;
     private String enteredPassword;
+    private static final String LOGINS_CSV_FILE_PATH = "Stage 4/data/logins.csv";
 
     /**
      * Constructor for the class. Initializes the database of logins.
@@ -28,6 +35,7 @@ public class LoginManager {
     public LoginManager(Scanner in) {
         this.in = in;
         logins = new ArrayList<>();
+        loadLoginsFromCSV();
     }
     
     /**
@@ -77,5 +85,80 @@ public class LoginManager {
      */
     public ArrayList<Login> getLogins() {
         return logins;
-    }   
+    }
+    
+    /**
+     * load logins from CSV file
+     * @param employeeManagement the employee management to use for finding employees by ID
+     * @param passengerManager the passenger manager to use for finding passengers by ID
+     */
+    public void loadLoginsFromCSV(EmployeeManagement employeeManagement, PassengerManager passengerManager) {
+        List<String[]> data = CSVHandler.readCSV(LOGINS_CSV_FILE_PATH);
+        
+        // clear existing logins
+        logins.clear();
+        
+        // skip header row if it exists
+        boolean hasHeader = data.get(0)[0].equals("username");
+        int startRow = hasHeader ? 1 : 0;
+        
+        // process each row
+        for (int i = startRow; i < data.size(); i++) {
+            String[] row = data.get(i);
+            
+            String username = row[0];
+            String password = row[1];
+            String employeeId = row.length > 2 ? row[2] : "";
+            String passengerId = row.length > 3 ? row[3] : "";
+            
+            // find the employee or passenger
+            Employee employee = null;
+            Passenger passenger = null;
+            
+            if (!employeeId.isEmpty()) {
+                employee = employeeManagement.getEmployeeById(employeeId);
+            }
+            
+            if (!passengerId.isEmpty()) {
+                passenger = passengerManager.getPassengerById(passengerId);
+            }
+            
+            // create login if employee or passenger exists
+            if (employee != null) {
+                new Login(employee, this, username, password);
+            } else if (passenger != null) {
+                new Login(passenger, this, username, password);
+            }
+        }
+    }
+    
+    /**
+     * load logins from CSV file
+     */
+    private void loadLoginsFromCSV() {
+        // 
+    }
+    
+    /**
+     * save logins to CSV file
+     */
+    public void saveLoginsToCSV() {
+        List<String[]> data = new ArrayList<>();
+        
+        // add data rows
+        for (Login login : logins) {
+            String employeeId = login.getEmployee() != null ? login.getEmployee().getEmployeeID() : "";
+            String passengerId = login.getPassenger() != null ? login.getPassenger().getPassengerID() : "";
+            
+            String[] row = new String[]{
+                login.getUsername(),
+                login.getPassword(),
+                employeeId,
+                passengerId
+            };
+            data.add(row);
+        }
+        
+        CSVHandler.writeCSV(LOGINS_CSV_FILE_PATH, data);
+    }
 }

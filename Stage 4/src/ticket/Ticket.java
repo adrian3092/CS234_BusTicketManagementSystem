@@ -28,6 +28,20 @@ public class Ticket {
         this.ticketNumber = ticketNumber;
         status = "Active";
     }
+    
+    /**
+     * constructor with status parameter for loading from CSV
+     * @param schedule the schedule associated with the ticket
+     * @param passenger the passenger associated with the ticket
+     * @param ticketNumber the ticket number of the ticket
+     * @param status the status of the ticket
+     */
+    public Ticket(Schedule schedule, Passenger passenger, int ticketNumber, String status) {
+        this.schedule = schedule;
+        this.passenger = passenger;
+        this.ticketNumber = ticketNumber;
+        this.status = status;
+    }
 
     /**
      * get the ticket number
@@ -47,10 +61,26 @@ public class Ticket {
 
     /**
      * get the passenger associated with the ticket
-     * @return
+     * @return the passenger associated with the ticket
      */
     public Passenger getPassenger() {
         return passenger;
+    }
+    
+    /**
+     * get the status of the ticket
+     * @return the status of the ticket
+     */
+    public String getStatus() {
+        return status;
+    }
+    
+    /**
+     * set the status of the ticket
+     * @param status the new status of the ticket
+     */
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     /**

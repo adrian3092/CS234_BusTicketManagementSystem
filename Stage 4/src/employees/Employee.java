@@ -49,6 +49,42 @@ public class Employee {
         employeeManagement.addEmployee(this);
         new Login(this, loginManager); //creates new login for employee
     }
+    
+    /**
+     * constructor to initialize an Employee object with a specific employee ID
+     * Used for loading employees from CSV
+     * 
+     * @param firstName         The first name of the employee.
+     * @param lastName          The last name of the employee.
+     * @param jobTitle          The job title of the employee (Driver or Admin).
+     * @param phoneNumber       The phone number of the employee.
+     * @param salary            The salary of the employee.
+     * @param employeeManagement Reference to the EmployeeManagement class.
+     * @param loginManager      The LoginManager with the list of logins
+     * @param employeeID        The specific employee ID to use
+     */
+    public Employee(String firstName, String lastName, String jobTitle, String phoneNumber, float salary, 
+                   EmployeeManagement employeeManagement, LoginManager loginManager, String employeeID) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.jobTitle = jobTitle;
+        this.phoneNumber = phoneNumber;
+        this.salary = salary;
+        this.email = firstName + lastName + "@buscompany.com"; // Creates email for employee
+        this.employeeID = employeeID;
+        
+        // Update ID generators if this ID has a higher number
+        if (jobTitle.equalsIgnoreCase("Admin") && employeeID.startsWith("A-")) {
+            int idNumber = Integer.parseInt(employeeID.substring(2));
+            IdGenerator.updateAdminIdIfHigher(idNumber);
+        } else if (jobTitle.equalsIgnoreCase("Driver") && employeeID.startsWith("D-")) {
+            int idNumber = Integer.parseInt(employeeID.substring(2));
+            IdGenerator.updateDriverIdIfHigher(idNumber);
+        }
+        
+        employeeManagement.addEmployee(this);
+        new Login(this, loginManager, this.getEmail(), "password"); // Create login for employee loaded from CSV
+    }
 
     // Getters
 

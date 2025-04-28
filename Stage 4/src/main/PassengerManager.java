@@ -1,6 +1,9 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import csv.CSVHandler;
 
 /**
  * Manages a list of passengers, providing methods to add, remove, update, and retrieve passengers.
@@ -9,12 +12,14 @@ import java.util.ArrayList;
  */
 public class PassengerManager {
     private ArrayList<Passenger> passengers; // List of passengers
+    private static final String PASSENGERS_CSV_FILE_PATH = "Stage 4/data/passengers.csv";
 
     /**
      * Constructor to initialize the passenger manager.
      */
     public PassengerManager() {
         this.passengers = new ArrayList<>();
+        loadPassengersFromCSV();
     }
 
     /**
@@ -33,6 +38,7 @@ public class PassengerManager {
      */
     public void addPassenger(Passenger passenger) {
         passengers.add(passenger);
+        savePassengersToCSV();
     }
 
     /**
@@ -42,13 +48,8 @@ public class PassengerManager {
      */
     public void removePassenger(Passenger passenger) {
         passengers.remove(passenger);
+        savePassengersToCSV();
     }
-
-    /**
-     * Retrieves the total number of passengers.
-     * 
-     * @return The number of passengers.
-     */
 
     /**
      * Retrieves a passenger by their ID.
@@ -79,6 +80,7 @@ public class PassengerManager {
             passenger.setName(name);
             passenger.setEmail(email);
             passenger.setPhoneNumber(phone);
+            savePassengersToCSV();
         } else {
             System.out.println("Passenger not found.");
         }
@@ -97,5 +99,53 @@ public class PassengerManager {
         } else {
             System.out.println("Passenger not found.");
         }
+    }
+    
+    /**
+     * load passengers from CSV file
+     */
+    private void loadPassengersFromCSV() {
+        List<String[]> data = CSVHandler.readCSV(PASSENGERS_CSV_FILE_PATH);
+        
+        // clear existing passengers
+        passengers.clear();
+        
+        // skip header row if it exists
+        boolean hasHeader = data.get(0)[0].equals("passengerID");
+        int startRow = hasHeader ? 1 : 0;
+        
+        // process each row
+        for (int i = startRow; i < data.size(); i++) {
+            String[] row = data.get(i);
+            
+            String passengerID = row[0];
+            String name = row[1];
+            String email = row[2];
+            String phoneNumber = row[3];
+            
+            // create passenger with specific ID
+            Passenger passenger = new Passenger(name, email, phoneNumber, passengerID);
+            passengers.add(passenger);
+
+        }
+    }
+    
+    /**
+     * save passengers to CSV file
+     */
+    public void savePassengersToCSV() {
+        List<String[]> data = new ArrayList<>();
+        
+        // add data rows
+        for (Passenger passenger : passengers) {
+            String[] row = new String[]{
+                passenger.getPassengerID(),
+                passenger.getPassengerName(),
+                passenger.getEmail(),
+                passenger.getPhoneNumber()
+            };
+            data.add(row);
+        }
+        CSVHandler.writeCSV(PASSENGERS_CSV_FILE_PATH, data);
     }
 }

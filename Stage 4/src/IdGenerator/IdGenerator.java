@@ -22,6 +22,18 @@ public class IdGenerator {
         pID++;
         return newID;
     }
+    
+    /**
+     * updates the passenger ID counter if the provided ID is higher than the current counter
+     * used when loading passengers from CSV to ensure new IDs don't conflict
+     * 
+     * @param idNumber the ID number to check against the current counter
+     */
+    public static void updatePassengerIdIfHigher(int idNumber) {
+        if (idNumber >= pID) {
+            pID = idNumber + 1;
+        }
+    }
 
     /**
      * Generates a unique Admin ID.
@@ -34,6 +46,17 @@ public class IdGenerator {
         aID++;
         return newID;
     }
+    
+    /**
+     * updates the admin ID counter if the provided ID is higher than the current counter
+     * used when loading admin employees from CSV to ensure new IDs don't conflict
+     * @param idNumber the ID number to check against the current counter
+     */
+    public static void updateAdminIdIfHigher(int idNumber) {
+        if (idNumber >= aID) {
+            aID = idNumber + 1;
+        }
+    }
 
     /**
      * Generates a unique Driver ID.
@@ -45,6 +68,17 @@ public class IdGenerator {
         String newID = "D-" + dID.toString();
         dID++;
         return newID;
+    }
+    
+    /**
+     * updates the driver ID counter if the provided ID is higher than the current counter
+     * used when loading driver employees from CSV to ensure new IDs don't conflict
+     * @param idNumber the ID number to check against the current counter
+     */
+    public static void updateDriverIdIfHigher(int idNumber) {
+        if (idNumber >= dID) {
+            dID = idNumber + 1;
+        }
     }
 
     /**
@@ -59,4 +93,14 @@ public class IdGenerator {
         return newID;
     }
     
+    /**
+     * updates the route ID counter if the provided ID is higher than the current counter
+     * used when loading routes from CSV to ensure new IDs don't conflict.
+     * @param idNumber the ID number to check against the current counter
+     */
+    public static void updateRouteIdIfHigher(int idNumber) {
+        if (idNumber >= rID) {
+            rID = idNumber + 1;
+        }
+    }
 }
