@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package main;
+
+import java.awt.Color;
 
 /**
  *
@@ -15,7 +14,11 @@ public class PassengerLoginFormGUI extends javax.swing.JFrame {
      */
     public PassengerLoginFormGUI() {
         initComponents();
+        setupPlaceholderBehavior();
+        setupPasswordMatching();
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -139,6 +142,79 @@ public class PassengerLoginFormGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmPasswordtxtActionPerformed
 
+    private void setupPlaceholderBehavior() {
+    setupFieldPlaceholder(nameTxt, "Name");
+    setupFieldPlaceholder(phoneNumberTxt, "Phone Number");
+    setupFieldPlaceholder(emailTxt, "Email");
+    setupPasswordFieldPlaceholder(passwordTxt, "Password");
+    setupPasswordFieldPlaceholder(confirmPasswordtxt, "Confirm Password");
+}
+
+private void setupFieldPlaceholder(final javax.swing.JTextField field, final String placeholder) {
+    field.setForeground(new java.awt.Color(153, 153, 153));
+
+    field.addFocusListener(new java.awt.event.FocusAdapter() {
+        @Override
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            if (field.getText().equals(placeholder)) {
+                field.setText("");
+                field.setForeground(new java.awt.Color(0, 0, 0));
+            }
+        }
+        @Override
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            if (field.getText().isEmpty()) {
+                field.setForeground(new java.awt.Color(153, 153, 153));
+                field.setText(placeholder);
+            }
+        }
+    });
+}
+
+private void setupPasswordFieldPlaceholder(final javax.swing.JPasswordField field, final String placeholder) {
+    field.setForeground(new java.awt.Color(153, 153, 153));
+    field.setEchoChar((char)0); // No bullet dots for placeholder
+
+    field.addFocusListener(new java.awt.event.FocusAdapter() {
+        @Override
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            String pwd = new String(field.getPassword());
+            if (pwd.equals(placeholder)) {
+                field.setText("");
+                field.setForeground(new java.awt.Color(0, 0, 0));
+                field.setEchoChar('•'); // Dots appear when typing real password
+            }
+        }
+        @Override
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            String pwd = new String(field.getPassword());
+            if (pwd.isEmpty()) {
+                field.setForeground(new java.awt.Color(153, 153, 153));
+                field.setText(placeholder);
+                field.setEchoChar((char)0); // No masking for placeholder
+            }
+        }
+    });
+}
+    private void setupPasswordMatching() {
+    // When user clicks SignUp button, check passwords
+    signUpBtn.addActionListener(new java.awt.event.ActionListener() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            String password = new String(passwordTxt.getPassword());
+            String confirmPassword = new String(confirmPasswordtxt.getPassword());
+
+            if (password.equals(confirmPassword)) {
+                passwordMismatchLbl.setForeground(new java.awt.Color(0, 153, 0)); // Green for match
+                passwordMismatchLbl.setText("Passwords are a match!");
+            } else {
+                passwordMismatchLbl.setForeground(Color.RED);
+                passwordMismatchLbl.setText("Oops! Passwords do not match.");
+            }
+        }
+    });
+}
+
     /**
      * @param args the command line arguments
      */
@@ -168,6 +244,7 @@ public class PassengerLoginFormGUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new PassengerLoginFormGUI().setVisible(true);
             }
