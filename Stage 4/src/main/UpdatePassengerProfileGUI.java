@@ -35,7 +35,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(215, 224, 223));
 
         nameUpdatetxt.setForeground(new java.awt.Color(153, 153, 153));
         nameUpdatetxt.setText("Update Name");
