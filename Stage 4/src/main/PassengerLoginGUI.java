@@ -41,10 +41,12 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("passenger Login");
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(51, 153, 0));
 
+        userNameField.setBackground(new java.awt.Color(0, 51, 0));
         userNameField.setForeground(new java.awt.Color(153, 153, 153));
         userNameField.setText("Username");
+        userNameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         userNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameFieldActionPerformed(evt);
@@ -52,61 +54,67 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         });
 
         loginBtn.setBackground(new java.awt.Color(0, 204, 0));
-        loginBtn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        loginBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         loginBtn.setForeground(new java.awt.Color(255, 255, 255));
-        loginBtn.setText("Login");
+        loginBtn.setText("Continue As Guest...");
         loginBtn.setBorderPainted(false);
 
-        SignUpLabel.setForeground(new java.awt.Color(255, 0, 51));
+        SignUpLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SignUpLabel.setForeground(new java.awt.Color(255, 255, 0));
         SignUpLabel.setText("Sign up");
 
+        passwordField.setBackground(new java.awt.Color(0, 51, 0));
         passwordField.setForeground(new java.awt.Color(153, 153, 153));
         passwordField.setText("password");
+        passwordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFieldActionPerformed(evt);
             }
         });
 
-        continueAsGuestLabel.setForeground(new java.awt.Color(255, 0, 51));
-        continueAsGuestLabel.setText("Continue As Guest");
+        continueAsGuestLabel.setBackground(new java.awt.Color(255, 255, 255));
+        continueAsGuestLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        continueAsGuestLabel.setForeground(new java.awt.Color(255, 255, 0));
+        continueAsGuestLabel.setText("Login");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(SignUpLabel))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(continueAsGuestLabel)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(userNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                    .addComponent(passwordField))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(436, 436, 436)
+                .addComponent(continueAsGuestLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(429, 429, 429)
+                .addComponent(SignUpLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(376, 376, 376)
+                .addComponent(loginBtn)
+                .addContainerGap(388, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(91, 91, 91)
-                .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(154, 154, 154)
+                .addComponent(continueAsGuestLabel)
                 .addGap(18, 18, 18)
-                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(loginBtn)
                 .addGap(18, 18, 18)
                 .addComponent(SignUpLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(continueAsGuestLabel)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -169,13 +177,13 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     SignUpLabel.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
         public void mouseEntered(java.awt.event.MouseEvent evt) {
-            SignUpLabel.setForeground(new java.awt.Color(0, 153, 0)); // Hover color (light blue)
+            SignUpLabel.setForeground(new java.awt.Color(255, 255, 255)); // Hover color (light blue)
             SignUpLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Change cursor to hand
         }
 
         @Override
         public void mouseExited(java.awt.event.MouseEvent evt) {
-            SignUpLabel.setForeground(Color.RED); // Original color (green)
+            SignUpLabel.setForeground(new java.awt.Color(255,255,0)); // Original color (green)
             SignUpLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Restore cursor
         }
     });
