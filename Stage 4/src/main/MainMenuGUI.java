@@ -124,11 +124,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookTicketMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTicketMainMenuBtnActionPerformed
-        // TODO add your handling code here:
+        new PassengerLoginGUI().setVisible(true);
     }//GEN-LAST:event_bookTicketMainMenuBtnActionPerformed
 
     private void ViewSchedulesMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSchedulesMainMenuBtnActionPerformed
-        // TODO add your handling code here:
+        new ViewScheduleGUI().setVisible(true);
     }//GEN-LAST:event_ViewSchedulesMainMenuBtnActionPerformed
 
     private void EmployeeLoginMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeLoginMainMenuBtnActionPerformed
