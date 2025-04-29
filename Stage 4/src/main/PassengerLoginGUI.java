@@ -39,6 +39,9 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         continueAsGuestLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("passenger Login");
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         userNameField.setForeground(new java.awt.Color(153, 153, 153));
         userNameField.setText("Username");

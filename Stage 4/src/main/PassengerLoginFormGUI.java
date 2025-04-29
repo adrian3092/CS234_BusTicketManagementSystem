@@ -39,6 +39,7 @@ public class PassengerLoginFormGUI extends javax.swing.JFrame {
         passwordMismatchLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sign Up Form");
 
         nameTxt.setText("Name");
 
