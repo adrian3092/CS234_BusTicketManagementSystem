@@ -31,33 +31,47 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnAddBus = new javax.swing.JButton();
         btnManageBus = new javax.swing.JButton();
         btnDisplayBuses = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableBus = new javax.swing.JTable();
         panelSchedule = new javax.swing.JPanel();
         btnAddSchedule = new javax.swing.JButton();
         btnRemoveSchedule = new javax.swing.JButton();
         btnManageSchedule = new javax.swing.JButton();
         btnDisplaySchedules = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tableSchedule = new javax.swing.JTable();
         panelRoute = new javax.swing.JPanel();
         btnAddRoute = new javax.swing.JButton();
         btnManageRoute = new javax.swing.JButton();
-        btnDisplayRoutes = new javax.swing.JButton();
         btnRouteAssignment = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableRoute = new javax.swing.JTable();
         panelDepot = new javax.swing.JPanel();
         btnAddDepot = new javax.swing.JButton();
         btnDeleteDepot = new javax.swing.JButton();
         btnAssignBus = new javax.swing.JButton();
         btnUnassignBus = new javax.swing.JButton();
         btnDisplayDepots = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableDepot = new javax.swing.JTable();
         panelEmployee = new javax.swing.JPanel();
         btnAddEmployee = new javax.swing.JButton();
         btnDeleteEmployee = new javax.swing.JButton();
         btnDisplayEmployees = new javax.swing.JButton();
         btnUpdateEmployee = new javax.swing.JButton();
-        panelAccounting = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tableEmployee = new javax.swing.JTable();
+        panelExpenses = new javax.swing.JPanel();
         btnExpenseReport = new javax.swing.JButton();
         btnPaymentReport = new javax.swing.JButton();
         btnManagePayments = new javax.swing.JButton();
         btnNewExpense = new javax.swing.JButton();
         btnRemoveExpense = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableExpenses = new javax.swing.JTable();
+        panelPayments = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablePayments = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Admin Menu");
@@ -68,28 +82,61 @@ public class AdminMenuGUI extends javax.swing.JFrame {
 
         btnDisplayBuses.setText("Display all Buses");
 
+        tableBus.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Bus ID", "Year/Make/Model", "Mileage", "Seating Capacity", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tableBus);
+
         javax.swing.GroupLayout panelBusLayout = new javax.swing.GroupLayout(panelBus);
         panelBus.setLayout(panelBusLayout);
         panelBusLayout.setHorizontalGroup(
             panelBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBusLayout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addGroup(panelBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnAddBus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManageBus, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                    .addComponent(btnDisplayBuses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(panelBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddBus, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageBus, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDisplayBuses, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
         panelBusLayout.setVerticalGroup(
             panelBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBusLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(btnAddBus)
-                .addGap(18, 18, 18)
-                .addComponent(btnManageBus)
-                .addGap(18, 18, 18)
-                .addComponent(btnDisplayBuses)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addGroup(panelBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panelBusLayout.createSequentialGroup()
+                        .addComponent(btnAddBus)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnManageBus)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDisplayBuses)))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Bus", panelBus);
@@ -102,32 +149,64 @@ public class AdminMenuGUI extends javax.swing.JFrame {
 
         btnDisplaySchedules.setText("Display All Schedules");
 
+        tableSchedule.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Name", "Route", "Start Time", "Departure Times", "Stops"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(tableSchedule);
+
         javax.swing.GroupLayout panelScheduleLayout = new javax.swing.GroupLayout(panelSchedule);
         panelSchedule.setLayout(panelScheduleLayout);
         panelScheduleLayout.setHorizontalGroup(
             panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelScheduleLayout.createSequentialGroup()
-                .addGap(209, 209, 209)
+                .addContainerGap()
                 .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAddSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDisplaySchedules, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnRemoveSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                        .addComponent(btnManageSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(197, Short.MAX_VALUE))
+                    .addComponent(btnRemoveSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDisplaySchedules, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         panelScheduleLayout.setVerticalGroup(
             panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelScheduleLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(btnAddSchedule)
-                .addGap(18, 18, 18)
-                .addComponent(btnRemoveSchedule)
-                .addGap(18, 18, 18)
-                .addComponent(btnManageSchedule)
-                .addGap(18, 18, 18)
-                .addComponent(btnDisplaySchedules)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panelScheduleLayout.createSequentialGroup()
+                        .addComponent(btnAddSchedule)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRemoveSchedule)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnManageSchedule)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDisplaySchedules)))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Schedule", panelSchedule);
@@ -141,35 +220,63 @@ public class AdminMenuGUI extends javax.swing.JFrame {
 
         btnManageRoute.setText("Manage an Existing Route");
 
-        btnDisplayRoutes.setText("Display All Routes");
-
         btnRouteAssignment.setText("Manage Route Assignment");
+
+        tableRoute.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Route ID", "Name"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableRoute);
 
         javax.swing.GroupLayout panelRouteLayout = new javax.swing.GroupLayout(panelRoute);
         panelRoute.setLayout(panelRouteLayout);
         panelRouteLayout.setHorizontalGroup(
             panelRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRouteLayout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addGroup(panelRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnRouteAssignment, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                    .addComponent(btnDisplayRoutes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManageRoute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddRoute, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addGroup(panelRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRouteAssignment, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAddRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         panelRouteLayout.setVerticalGroup(
             panelRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRouteLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(btnAddRoute)
-                .addGap(18, 18, 18)
-                .addComponent(btnManageRoute)
-                .addGap(18, 18, 18)
-                .addComponent(btnDisplayRoutes)
-                .addGap(18, 18, 18)
-                .addComponent(btnRouteAssignment)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addGroup(panelRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panelRouteLayout.createSequentialGroup()
+                        .addComponent(btnAddRoute)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnManageRoute)
+                        .addGap(59, 59, 59)
+                        .addComponent(btnRouteAssignment)))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Route", panelRoute);
@@ -184,34 +291,60 @@ public class AdminMenuGUI extends javax.swing.JFrame {
 
         btnDisplayDepots.setText("Display All Depots");
 
+        tableDepot.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Depot ID", "Address"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tableDepot);
+
         javax.swing.GroupLayout panelDepotLayout = new javax.swing.GroupLayout(panelDepot);
         panelDepot.setLayout(panelDepotLayout);
         panelDepotLayout.setHorizontalGroup(
             panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDepotLayout.createSequentialGroup()
-                .addContainerGap(224, Short.MAX_VALUE)
-                .addGroup(panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnUnassignBus, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                    .addComponent(btnAssignBus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDisplayDepots, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeleteDepot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddDepot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddDepot, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeleteDepot, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAssignBus, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUnassignBus, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDisplayDepots, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         panelDepotLayout.setVerticalGroup(
             panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDepotLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(btnAddDepot)
-                .addGap(18, 18, 18)
-                .addComponent(btnDeleteDepot)
-                .addGap(18, 18, 18)
-                .addComponent(btnAssignBus)
-                .addGap(18, 18, 18)
-                .addComponent(btnUnassignBus)
-                .addGap(18, 18, 18)
-                .addComponent(btnDisplayDepots)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addGroup(panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panelDepotLayout.createSequentialGroup()
+                        .addComponent(btnAddDepot)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeleteDepot)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAssignBus)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUnassignBus)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDisplayDepots)))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Depot", panelDepot);
@@ -224,31 +357,64 @@ public class AdminMenuGUI extends javax.swing.JFrame {
 
         btnUpdateEmployee.setText("Update Employee Information");
 
+        tableEmployee.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Name", "Employee ID", "Job Title", "Email", "Phone Number", "Salary"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tableEmployee);
+
         javax.swing.GroupLayout panelEmployeeLayout = new javax.swing.GroupLayout(panelEmployee);
         panelEmployee.setLayout(panelEmployeeLayout);
         panelEmployeeLayout.setHorizontalGroup(
             panelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelEmployeeLayout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addGroup(panelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnUpdateEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                    .addComponent(btnDisplayEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeleteEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(panelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeleteEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdateEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDisplayEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
         panelEmployeeLayout.setVerticalGroup(
             panelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelEmployeeLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(btnAddEmployee)
-                .addGap(18, 18, 18)
-                .addComponent(btnDeleteEmployee)
-                .addGap(18, 18, 18)
-                .addComponent(btnDisplayEmployees)
-                .addGap(18, 18, 18)
-                .addComponent(btnUpdateEmployee)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addGroup(panelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panelEmployeeLayout.createSequentialGroup()
+                        .addComponent(btnAddEmployee)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeleteEmployee)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDisplayEmployees)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUpdateEmployee)))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Employee", panelEmployee);
@@ -263,53 +429,123 @@ public class AdminMenuGUI extends javax.swing.JFrame {
 
         btnRemoveExpense.setText("Remove an Existing Expense");
 
-        javax.swing.GroupLayout panelAccountingLayout = new javax.swing.GroupLayout(panelAccounting);
-        panelAccounting.setLayout(panelAccountingLayout);
-        panelAccountingLayout.setHorizontalGroup(
-            panelAccountingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAccountingLayout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addGroup(panelAccountingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnExpenseReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPaymentReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManagePayments, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnNewExpense, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRemoveExpense, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE))
-                .addContainerGap(201, Short.MAX_VALUE))
+        tableExpenses.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Expense ID", "Type", "Entity", "Cost"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(tableExpenses);
+
+        javax.swing.GroupLayout panelExpensesLayout = new javax.swing.GroupLayout(panelExpenses);
+        panelExpenses.setLayout(panelExpensesLayout);
+        panelExpensesLayout.setHorizontalGroup(
+            panelExpensesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelExpensesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelExpensesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnExpenseReport, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPaymentReport, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManagePayments, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNewExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRemoveExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
-        panelAccountingLayout.setVerticalGroup(
-            panelAccountingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAccountingLayout.createSequentialGroup()
+        panelExpensesLayout.setVerticalGroup(
+            panelExpensesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelExpensesLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(btnExpenseReport)
-                .addGap(18, 18, 18)
-                .addComponent(btnPaymentReport)
-                .addGap(18, 18, 18)
-                .addComponent(btnManagePayments)
-                .addGap(18, 18, 18)
-                .addComponent(btnNewExpense)
-                .addGap(18, 18, 18)
-                .addComponent(btnRemoveExpense)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGroup(panelExpensesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(panelExpensesLayout.createSequentialGroup()
+                        .addComponent(btnExpenseReport)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnPaymentReport)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnManagePayments)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNewExpense)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRemoveExpense)))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
-        tabAdmin.addTab("Accounting", panelAccounting);
+        tabAdmin.addTab("Expenses", panelExpenses);
+
+        tablePayments.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Payment ID", "Name", "Cost"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(tablePayments);
+
+        javax.swing.GroupLayout panelPaymentsLayout = new javax.swing.GroupLayout(panelPayments);
+        panelPayments.setLayout(panelPaymentsLayout);
+        panelPaymentsLayout.setHorizontalGroup(
+            panelPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPaymentsLayout.createSequentialGroup()
+                .addContainerGap(312, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+        panelPaymentsLayout.setVerticalGroup(
+            panelPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPaymentsLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        tabAdmin.addTab("Payments", panelPayments);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tabAdmin)
-                .addContainerGap())
+            .addComponent(tabAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tabAdmin)
         );
 
-        setSize(new java.awt.Dimension(693, 418));
+        setSize(new java.awt.Dimension(802, 355));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -364,7 +600,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnDisplayBuses;
     private javax.swing.JButton btnDisplayDepots;
     private javax.swing.JButton btnDisplayEmployees;
-    private javax.swing.JButton btnDisplayRoutes;
     private javax.swing.JButton btnDisplaySchedules;
     private javax.swing.JButton btnExpenseReport;
     private javax.swing.JButton btnManageBus;
@@ -378,12 +613,27 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnRouteAssignment;
     private javax.swing.JButton btnUnassignBus;
     private javax.swing.JButton btnUpdateEmployee;
-    private javax.swing.JPanel panelAccounting;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JPanel panelBus;
     private javax.swing.JPanel panelDepot;
     private javax.swing.JPanel panelEmployee;
+    private javax.swing.JPanel panelExpenses;
+    private javax.swing.JPanel panelPayments;
     private javax.swing.JPanel panelRoute;
     private javax.swing.JPanel panelSchedule;
     private javax.swing.JTabbedPane tabAdmin;
+    private javax.swing.JTable tableBus;
+    private javax.swing.JTable tableDepot;
+    private javax.swing.JTable tableEmployee;
+    private javax.swing.JTable tableExpenses;
+    private javax.swing.JTable tablePayments;
+    private javax.swing.JTable tableRoute;
+    private javax.swing.JTable tableSchedule;
     // End of variables declaration//GEN-END:variables
 }
