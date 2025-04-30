@@ -30,14 +30,12 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         panelBus = new javax.swing.JPanel();
         btnAddBus = new javax.swing.JButton();
         btnManageBus = new javax.swing.JButton();
-        btnDisplayBuses = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableBus = new javax.swing.JTable();
         panelSchedule = new javax.swing.JPanel();
         btnAddSchedule = new javax.swing.JButton();
         btnRemoveSchedule = new javax.swing.JButton();
         btnManageSchedule = new javax.swing.JButton();
-        btnDisplaySchedules = new javax.swing.JButton();
         jScrollPane7 = new javax.swing.JScrollPane();
         tableSchedule = new javax.swing.JTable();
         panelRoute = new javax.swing.JPanel();
@@ -51,13 +49,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnDeleteDepot = new javax.swing.JButton();
         btnAssignBus = new javax.swing.JButton();
         btnUnassignBus = new javax.swing.JButton();
-        btnDisplayDepots = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableDepot = new javax.swing.JTable();
         panelEmployee = new javax.swing.JPanel();
         btnAddEmployee = new javax.swing.JButton();
         btnDeleteEmployee = new javax.swing.JButton();
-        btnDisplayEmployees = new javax.swing.JButton();
         btnUpdateEmployee = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         tableEmployee = new javax.swing.JTable();
@@ -88,10 +84,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnManageBus.setBackground(new java.awt.Color(89, 167, 65));
         btnManageBus.setForeground(new java.awt.Color(255, 255, 255));
         btnManageBus.setText("Manage an Existing Bus");
-
-        btnDisplayBuses.setBackground(new java.awt.Color(89, 167, 65));
-        btnDisplayBuses.setForeground(new java.awt.Color(255, 255, 255));
-        btnDisplayBuses.setText("Display all Buses");
 
         tableBus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,11 +120,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             .addGroup(panelBusLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(panelBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnManageBus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddBus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDisplayBuses, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnManageBus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(btnAddBus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelBusLayout.setVerticalGroup(
@@ -143,11 +134,9 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addGroup(panelBusLayout.createSequentialGroup()
                         .addComponent(btnAddBus)
                         .addGap(18, 18, 18)
-                        .addComponent(btnManageBus)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDisplayBuses))
+                        .addComponent(btnManageBus))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Bus", panelBus);
@@ -159,8 +148,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnRemoveSchedule.setText("Remove an Existing Schedule");
 
         btnManageSchedule.setText("Manage an Existing Schedule");
-
-        btnDisplaySchedules.setText("Display All Schedules");
 
         tableSchedule.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -199,27 +186,24 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAddSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRemoveSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDisplaySchedules, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnManageSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         panelScheduleLayout.setVerticalGroup(
             panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelScheduleLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelScheduleLayout.createSequentialGroup()
                         .addComponent(btnAddSchedule)
                         .addGap(18, 18, 18)
                         .addComponent(btnRemoveSchedule)
                         .addGap(18, 18, 18)
-                        .addComponent(btnManageSchedule)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDisplaySchedules)))
-                .addContainerGap(147, Short.MAX_VALUE))
+                        .addComponent(btnManageSchedule)))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Schedule", panelSchedule);
@@ -306,8 +290,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
 
         btnUnassignBus.setText("Unassign a Bus From a Depot");
 
-        btnDisplayDepots.setText("Display All Depots");
-
         tableDepot.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -339,18 +321,17 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnAddDepot, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteDepot, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAssignBus, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUnassignBus, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDisplayDepots, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnUnassignBus, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
         panelDepotLayout.setVerticalGroup(
             panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDepotLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
-                .addGroup(panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelDepotLayout.createSequentialGroup()
                         .addComponent(btnAddDepot)
                         .addGap(18, 18, 18)
@@ -358,10 +339,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnAssignBus)
                         .addGap(18, 18, 18)
-                        .addComponent(btnUnassignBus)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDisplayDepots)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                        .addComponent(btnUnassignBus)))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Depot", panelDepot);
@@ -371,8 +350,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnAddEmployee.setText("Add a New Employee");
 
         btnDeleteEmployee.setText("Delete an Existing Employee");
-
-        btnDisplayEmployees.setText("Display All Employees");
 
         btnUpdateEmployee.setText("Update Employee Information");
 
@@ -413,9 +390,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 .addGroup(panelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdateEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDisplayEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                    .addComponent(btnUpdateEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -429,11 +405,9 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                         .addComponent(btnAddEmployee)
                         .addGap(18, 18, 18)
                         .addComponent(btnDeleteEmployee)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDisplayEmployees)
-                        .addGap(18, 18, 18)
+                        .addGap(59, 59, 59)
                         .addComponent(btnUpdateEmployee)))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Employee", panelEmployee);
@@ -620,10 +594,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnAssignBus;
     private javax.swing.JButton btnDeleteDepot;
     private javax.swing.JButton btnDeleteEmployee;
-    private javax.swing.JButton btnDisplayBuses;
-    private javax.swing.JButton btnDisplayDepots;
-    private javax.swing.JButton btnDisplayEmployees;
-    private javax.swing.JButton btnDisplaySchedules;
     private javax.swing.JButton btnExpenseReport;
     private javax.swing.JButton btnManageBus;
     private javax.swing.JButton btnManagePayments;
