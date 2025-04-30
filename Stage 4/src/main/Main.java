@@ -80,7 +80,8 @@ public class Main {
         PassengerMenu passengerMenu = new PassengerMenu(in, passengerManager, scheduleManager, loginManager, paymentManager, ticketIssuer);
         
         // create main menu gui with all necessary managers
-        new MainMenuGUI(loginManager, scheduleManager, routeManager, depotManager).setVisible(true);
+        MainMenuGUI mainMenuGUI = new MainMenuGUI(loginManager, scheduleManager, routeManager, depotManager);
+        mainMenuGUI.setVisible(true);
 
         // logic for the main menu
         int menuOption = 0;
