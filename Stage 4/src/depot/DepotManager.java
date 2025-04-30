@@ -15,8 +15,8 @@ import csv.CSVHandler;
 public class DepotManager {
 
     private final ArrayList<Depot> depots;
-    private static final String CSV_FILE_PATH ="Stage 4/data/depots.csv";
-    private static final String DEPOT_BUS_CSV_FILE_PATH = "Stage 4/data/depot_buses.csv";
+    private static final String CSV_FILE_PATH ="data/depots.csv";
+    private static final String DEPOT_BUS_CSV_FILE_PATH = "data/depot_buses.csv";
 
     /**
      * default constructor

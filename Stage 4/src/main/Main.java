@@ -78,6 +78,9 @@ public class Main {
         
         // reate passenger menu
         PassengerMenu passengerMenu = new PassengerMenu(in, passengerManager, scheduleManager, loginManager, paymentManager, ticketIssuer);
+        
+        //create main menu gui
+        new MainMenuGUI().setVisible(true);
 
         // logic for the main menu
         int menuOption = 0;
