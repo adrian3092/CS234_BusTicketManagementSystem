@@ -12,7 +12,7 @@ import csv.CSVHandler;
  */
 public class PassengerManager {
     private ArrayList<Passenger> passengers; // List of passengers
-    private static final String PASSENGERS_CSV_FILE_PATH = "Stage 4/data/passengers.csv";
+    private static final String PASSENGERS_CSV_FILE_PATH = "data/passengers.csv";
 
     /**
      * Constructor to initialize the passenger manager.

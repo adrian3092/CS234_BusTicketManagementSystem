@@ -16,7 +16,7 @@ public class BusManager {
 
     private final ArrayList<Bus> allBuses;
     private final DepotManager depotManager;
-    private static final String CSV_FILE_PATH = "Stage 4/data/buses.csv";
+    private static final String CSV_FILE_PATH = "data/buses.csv";
 
     /**
      * default constructor

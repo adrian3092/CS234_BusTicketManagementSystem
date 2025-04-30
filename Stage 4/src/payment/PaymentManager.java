@@ -16,7 +16,7 @@ import main.PassengerManager;
 public class PaymentManager {
     
     private ArrayList<Payment> payments;
-    private static final String PAYMENTS_CSV_FILE_PATH = "Stage 4/data/payments.csv";
+    private static final String PAYMENTS_CSV_FILE_PATH = "data/payments.csv";
     
     /**
      * default constructor

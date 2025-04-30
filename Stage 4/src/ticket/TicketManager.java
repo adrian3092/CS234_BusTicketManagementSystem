@@ -18,7 +18,7 @@ import main.ScheduleManager;
 public class TicketManager {
     
     private ArrayList<Ticket> allTickets;
-    private static final String TICKETS_CSV_FILE_PATH = "Stage 4/data/tickets.csv";
+    private static final String TICKETS_CSV_FILE_PATH = "data/tickets.csv";
 
     /**
      * default constructor
