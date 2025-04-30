@@ -15,6 +15,7 @@ import login.LoginManager;
  */
 public class MainMenuGUI extends javax.swing.JFrame {
     
+    private Database database;
     private LoginManager loginManager;
     private ScheduleManager scheduleManager;
     private RouteManager routeManager;
@@ -22,16 +23,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form MainMenuGUI
-     * @param loginManager the login manager
+     * @param database
      */
-    public MainMenuGUI(LoginManager loginManager) {
+    public MainMenuGUI(Database database) {
         initComponents();
-        this.loginManager = loginManager;
-        
-        // Initialize with default values
-        this.scheduleManager = null;
-        this.routeManager = null;
-        this.depotManager = null;
+        this.database = database;
         
         addHoverEffect(bookTicketMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
         addHoverEffect(ViewSchedulesMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
@@ -178,7 +174,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewSchedulesMainMenuBtnActionPerformed
 
     private void EmployeeLoginMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeLoginMainMenuBtnActionPerformed
-        new LoginGUI(loginManager).setVisible(true);
+        new LoginGUI(database.getLoginManager()).setVisible(true);
     }//GEN-LAST:event_EmployeeLoginMainMenuBtnActionPerformed
     
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {

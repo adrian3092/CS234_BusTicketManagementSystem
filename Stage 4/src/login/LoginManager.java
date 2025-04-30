@@ -2,8 +2,6 @@ package login;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 import csv.CSVHandler;
 import employees.Employee;
 import employees.EmployeeManagement;
@@ -22,7 +20,6 @@ import main.PassengerManager;
  */
 public class LoginManager {
     
-    private Scanner in;
     private ArrayList<Login> logins;
     private String enteredUsername;
     private String enteredPassword;
@@ -30,10 +27,9 @@ public class LoginManager {
 
     /**
      * Constructor for the class. Initializes the database of logins.
-     * @param in The Scanner object used for input
+     * 
      */
-    public LoginManager(Scanner in) {
-        this.in = in;
+    public LoginManager() {
         logins = new ArrayList<>();
         loadLoginsFromCSV();
     }
@@ -50,10 +46,6 @@ public class LoginManager {
      * @return A String. Either job title, passenger ID, or "not found"
      */
     public String checkCredentials(String enteredUsername, String enteredPassword) {
-//        System.out.print("Username: ");
-//        enteredUsername = in.next();
-//        System.out.print("Password: ");
-//        enteredPassword = in.next();
         
         String accessLevel = "not found";
         

@@ -93,7 +93,7 @@ public class AccountingMenu {
                     expenseSubMenu();
                 }
                 case 5 -> {
-                    accounting.removeExpense();
+//                    accounting.removeExpense();
                 }
                 case 6 -> {
                     System.out.println("Returning to previous menu...");
@@ -130,17 +130,17 @@ public class AccountingMenu {
             System.out.println("══════════════════════════════════════════════════");
             switch (menuOption) {
                 case 1 -> {
-                    accounting.addBusCost(busManager, "fuel");
+//                    accounting.addBusCost(busManager, "fuel");
                 }
                 case 2 -> {
-                    accounting.addBusCost(busManager, "maintenance");
+//                    accounting.addBusCost(busManager, "maintenance");
 
                 }
                 case 3 -> {
-                    accounting.addSalary(employeeManagement);
+//                    accounting.addSalary(employeeManagement);
                 }
                 case 4 -> {
-                    accounting.addUtilityCost(depotManager);
+//                    accounting.addUtilityCost(depotManager);
                 }
                 case 5 -> {
                     System.out.println("Returning to previous menu...");
