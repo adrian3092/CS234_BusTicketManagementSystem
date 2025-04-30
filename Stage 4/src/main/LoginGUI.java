@@ -1,19 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package main;
 
+import login.LoginManager;
+        
 /**
  *
- * @author georg
+ * @author George Candal
  */
 public class LoginGUI extends javax.swing.JFrame {
+    
+    private LoginManager loginManager;
 
     /**
      * Creates new form LoginGUI
      */
-    public LoginGUI() {
+    public LoginGUI(LoginManager loginManager) {
+        this.loginManager = loginManager;
         initComponents();
     }
 
@@ -30,7 +32,7 @@ public class LoginGUI extends javax.swing.JFrame {
         lblUsername = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -69,7 +71,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLogin)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                         .addComponent(txtUsername)))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
@@ -82,7 +84,7 @@ public class LoginGUI extends javax.swing.JFrame {
                     .addComponent(lblUsername))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPassword))
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin)
@@ -115,7 +117,23 @@ public class LoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // Get username and password from text fields
+        String username = txtUsername.getText();
+        String password = new String(txtPassword.getPassword());
         
+        
+        String accessLevel = loginManager.checkCredentials(username, password);
+                    if (accessLevel.equals("Admin")) {
+                        new AdminMenuGUI().setVisible(true);
+                        dispose();
+                    } else if (accessLevel.equals("Driver")) {
+                        // create driver menu
+                        dispose();
+                    } else {
+                        new InvalidCredentials().setVisible(true);
+                        txtUsername.setText("");
+                        txtPassword.setText("");
+                    }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -145,20 +163,20 @@ public class LoginGUI extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginGUI().setVisible(true);
-            }
-        });
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new LoginGUI(loginManager).setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUsername;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

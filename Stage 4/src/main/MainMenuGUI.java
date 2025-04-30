@@ -6,18 +6,22 @@ package main;
 
 import java.awt.Color;
 import javax.swing.JButton;
+import login.LoginManager;
 
 /**
  *
  * @author Owner
  */
 public class MainMenuGUI extends javax.swing.JFrame {
+    
+    private LoginManager loginManager;
 
     /**
      * Creates new form MainMenuGUI
      */
-    public MainMenuGUI() {
+    public MainMenuGUI(LoginManager loginManager) {
         initComponents();
+        this.loginManager = loginManager;
         
         addHoverEffect(bookTicketMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
         addHoverEffect(ViewSchedulesMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
@@ -132,7 +136,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewSchedulesMainMenuBtnActionPerformed
 
     private void EmployeeLoginMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeLoginMainMenuBtnActionPerformed
-        new LoginGUI().setVisible(true);
+        new LoginGUI(loginManager).setVisible(true);
     }//GEN-LAST:event_EmployeeLoginMainMenuBtnActionPerformed
     
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
@@ -181,11 +185,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainMenuGUI().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MainMenuGUI().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

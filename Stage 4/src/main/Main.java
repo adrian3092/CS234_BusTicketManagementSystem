@@ -80,7 +80,7 @@ public class Main {
         PassengerMenu passengerMenu = new PassengerMenu(in, passengerManager, scheduleManager, loginManager, paymentManager, ticketIssuer);
         
         //create main menu gui
-        new MainMenuGUI().setVisible(true);
+        new MainMenuGUI(loginManager).setVisible(true);
 
         // logic for the main menu
         int menuOption = 0;
@@ -111,18 +111,18 @@ public class Main {
                     System.out.println(scheduleManager);
                 }
                 case 3 -> {
-                    // employee login
-                    System.out.println("Employee Login");
-                    String accessLevel = loginManager.checkCredentials();
-                    if (accessLevel.equals("Admin")) {
-                        System.out.println("Access Granted: Admin Menu");
-                        adminMenu.displayMenu();
-                    } else if (accessLevel.equals("Driver")) {
-                        System.out.println("Access Granted: Driver Menu");
-                        driverMenu.displayMenu();
-                    } else {
-                        System.out.println("Access Denied: Invalid Credentials");
-                    }
+//                    // employee login
+//                    System.out.println("Employee Login");
+//                    String accessLevel = loginManager.checkCredentials();
+//                    if (accessLevel.equals("Admin")) {
+//                        System.out.println("Access Granted: Admin Menu");
+//                        adminMenu.displayMenu();
+//                    } else if (accessLevel.equals("Driver")) {
+//                        System.out.println("Access Granted: Driver Menu");
+//                        driverMenu.displayMenu();
+//                    } else {
+//                        System.out.println("Access Denied: Invalid Credentials");
+//                    }
                 }
                 case 4 -> {
                     System.out.println("Thank you for using the Bus Company App!");

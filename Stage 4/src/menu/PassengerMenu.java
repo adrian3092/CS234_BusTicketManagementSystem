@@ -70,7 +70,7 @@ public class PassengerMenu {
             switch (choice) {
                 case 1:
                     System.out.println("Redirecting to login...");
-                    this.passengerID = loginManager.checkCredentials();
+//                    this.passengerID = loginManager.checkCredentials();
                     in.nextLine(); // Consume the newline character left by nextInt()
                     if (this.passengerID.equals("not found")) {
                         System.out.println("Passenger ID not found. Please try again.");                    

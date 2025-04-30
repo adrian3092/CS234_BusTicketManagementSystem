@@ -49,11 +49,11 @@ public class LoginManager {
      * return "not found"
      * @return A String. Either job title, passenger ID, or "not found"
      */
-    public String checkCredentials() {
-        System.out.print("Username: ");
-        enteredUsername = in.next();
-        System.out.print("Password: ");
-        enteredPassword = in.next();
+    public String checkCredentials(String enteredUsername, String enteredPassword) {
+//        System.out.print("Username: ");
+//        enteredUsername = in.next();
+//        System.out.print("Password: ");
+//        enteredPassword = in.next();
         
         String accessLevel = "not found";
         
