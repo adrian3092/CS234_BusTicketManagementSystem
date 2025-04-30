@@ -76,11 +76,11 @@ public class Main {
         // create driver menu
         DriverMenu driverMenu = new DriverMenu(in, dispatcher, scheduleManager, busManager);
         
-        // reate passenger menu
+        // create passenger menu
         PassengerMenu passengerMenu = new PassengerMenu(in, passengerManager, scheduleManager, loginManager, paymentManager, ticketIssuer);
         
-        //create main menu gui
-        new MainMenuGUI(loginManager).setVisible(true);
+        // create main menu gui with all necessary managers
+        new MainMenuGUI(loginManager, scheduleManager, routeManager, depotManager).setVisible(true);
 
         // logic for the main menu
         int menuOption = 0;
@@ -107,8 +107,8 @@ public class Main {
                     passengerMenu.displayMenu();
                 }
                 case 2 -> {
-                    // view schedule
-                    System.out.println(scheduleManager);
+//                    // view schedule
+//                    System.out.println(scheduleManager);
                 }
                 case 3 -> {
 //                    // employee login

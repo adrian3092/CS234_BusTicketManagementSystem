@@ -4,6 +4,7 @@
  */
 package main;
 
+import depot.DepotManager;
 import java.awt.Color;
 import javax.swing.JButton;
 import login.LoginManager;
@@ -15,13 +16,22 @@ import login.LoginManager;
 public class MainMenuGUI extends javax.swing.JFrame {
     
     private LoginManager loginManager;
+    private ScheduleManager scheduleManager;
+    private RouteManager routeManager;
+    private DepotManager depotManager;
 
     /**
      * Creates new form MainMenuGUI
+     * @param loginManager the login manager
      */
     public MainMenuGUI(LoginManager loginManager) {
         initComponents();
         this.loginManager = loginManager;
+        
+        // Initialize with default values
+        this.scheduleManager = null;
+        this.routeManager = null;
+        this.depotManager = null;
         
         addHoverEffect(bookTicketMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
         addHoverEffect(ViewSchedulesMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
@@ -131,8 +141,40 @@ public class MainMenuGUI extends javax.swing.JFrame {
         new PassengerLoginGUI().setVisible(true);
     }//GEN-LAST:event_bookTicketMainMenuBtnActionPerformed
 
+    /**
+     * Creates new form MainMenuGUI with all managers
+     * @param loginManager the login manager
+     * @param scheduleManager the schedule manager
+     * @param routeManager the route manager
+     * @param depotManager the depot manager
+     */
+    public MainMenuGUI(LoginManager loginManager, ScheduleManager scheduleManager, 
+            RouteManager routeManager, DepotManager depotManager) {
+        initComponents();
+        this.loginManager = loginManager;
+        this.scheduleManager = scheduleManager;
+        this.routeManager = routeManager;
+        this.depotManager = depotManager;
+        
+        addHoverEffect(bookTicketMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
+        addHoverEffect(ViewSchedulesMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
+        addHoverEffect(EmployeeLoginMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
+    }
+
     private void ViewSchedulesMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSchedulesMainMenuBtnActionPerformed
-        new ViewScheduleGUI().setVisible(true);
+        if (scheduleManager != null && routeManager != null && depotManager != null) {
+            new ViewScheduleGUI(scheduleManager, routeManager, depotManager).setVisible(true);
+        } else {
+            // Create new instances if not provided
+            ScheduleManager sm = new ScheduleManager();
+            RouteManager rm = new RouteManager();
+            DepotManager dm = new DepotManager();
+            
+            // Load data
+            sm.loadSchedulesFromCSV(rm, dm);
+            
+            new ViewScheduleGUI(sm, rm, dm).setVisible(true);
+        }
     }//GEN-LAST:event_ViewSchedulesMainMenuBtnActionPerformed
 
     private void EmployeeLoginMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeLoginMainMenuBtnActionPerformed

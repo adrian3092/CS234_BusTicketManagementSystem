@@ -1,22 +1,126 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package main;
 
+import depot.DepotManager;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+
 /**
- *
- * @author adrianzielinski
+ * GUI for viewing all available schedules
+ * @author Adrian Zielinski
  */
 public class ViewScheduleGUI extends javax.swing.JFrame {
 
+    private ScheduleManager scheduleManager;
+    private RouteManager routeManager;
+    private DepotManager depotManager;
+    
     /**
-     * Creates new form ViewScheduleGUI
+     * creates new form ViewScheduleGUI with default managers
      */
     public ViewScheduleGUI() {
         initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    /**
+     * creates new form ViewScheduleGUI with specified managers
+     * @param scheduleManager the schedule manager
+     * @param routeManager the route manager
+     * @param depotManager the depot manager
+     */
+    public ViewScheduleGUI(ScheduleManager scheduleManager, RouteManager routeManager, DepotManager depotManager) {
+        initComponents();
+        this.scheduleManager = scheduleManager;
+        this.routeManager = routeManager;
+        this.depotManager = depotManager;
+        
+        // set row height to better display content
+        jTable1.setRowHeight(40);
+        
+        populateScheduleTable();
+        
+        // set preferred column widths after populating data
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(100); // name
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(100); // route
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(80);  // start time
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(150); // departure times
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(200); // stops
+        
+        setLocationRelativeTo(null);
+    }
+    
+    /**
+     * populates the schedule table with data from the schedule manager
+     */
+    private void populateScheduleTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // clear existing rows
+        
+        ArrayList<Schedule> schedules = scheduleManager.getSchedules();
+        
+        if (schedules.isEmpty()) {
+            // display a message when no schedules are available
+            model.addRow(new Object[]{"No schedules available", "", "", "", ""});
+            return;
+        }
+        
+        for (Schedule schedule : schedules) {
+            String name = schedule.getName();
+            String routeName = schedule.getRoute() != null ? schedule.getRoute().getName() : "N/A";
+            String startTime = formatTime(schedule.getStartTime());
+            
+            // format departure times as comma-separated list
+            String departureTimes = "";
+            if (schedule.getDepartureTimes() != null && !schedule.getDepartureTimes().isEmpty()) {
+                for (int i = 0; i < schedule.getDepartureTimes().size(); i++) {
+                    departureTimes += formatTime(schedule.getDepartureTimes().get(i));
+                    if (i < schedule.getDepartureTimes().size() - 1) {
+                        departureTimes += ", ";
+                    }
+                }
+            } else {
+                departureTimes = "N/A";
+            }
+            
+            // format stops as comma-separated list
+            String stops = "";
+            if (schedule.getRoute() != null && schedule.getRoute().getStops() != null && 
+                !schedule.getRoute().getStops().isEmpty()) {
+                for (int i = 0; i < schedule.getRoute().getStops().size(); i++) {
+                    stops += schedule.getRoute().getStops().get(i).getName();
+                    if (i < schedule.getRoute().getStops().size() - 1) {
+                        stops += ", ";
+                    }
+                }
+            } else {
+                stops = "N/A";
+            }
+            
+            model.addRow(new Object[]{name, routeName, startTime, departureTimes, stops});
+        }
+    }
+    
+    /**
+     * formats a double time value to a string in the format HH:MM
+     * @param time the time as a double
+     * @return the formatted time string
+     */
+    private String formatTime(double time) {
+        int hours = (int) time;
+        int minutes = (int) (((time - hours) * 100) + 0.5);
+        
+        return String.format("%02d:%02d", hours, minutes);
     }
 
+    /**
+     * handles the return to main menu button click
+     * @param evt the action event
+     */
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // close this window and return to main menu
+        this.dispose();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,17 +130,89 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        returnButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Available Schedules");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Name", "Route", "Start Time", "Departure Times", "Stops"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 613, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(12, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jLabel1.setText("Available Schedules");
+        
+        returnButton.setText("Return to Main Menu");
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(208, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(268, 268, 268))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(returnButton)
+                        .addGap(268, 268, 268))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 204, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(returnButton)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
@@ -72,11 +248,24 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewScheduleGUI().setVisible(true);
+                // For testing purposes only
+                ScheduleManager scheduleManager = new ScheduleManager();
+                RouteManager routeManager = new RouteManager();
+                DepotManager depotManager = new DepotManager();
+                
+                // Load data
+                scheduleManager.loadSchedulesFromCSV(routeManager, depotManager);
+                
+                new ViewScheduleGUI(scheduleManager, routeManager, depotManager).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JButton returnButton;
     // End of variables declaration//GEN-END:variables
 }
