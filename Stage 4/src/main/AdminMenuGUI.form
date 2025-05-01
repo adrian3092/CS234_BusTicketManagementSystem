@@ -710,7 +710,7 @@
                       <Table columnCount="3" rowCount="4">
                         <Column editable="true" title="Payment ID" type="java.lang.Integer"/>
                         <Column editable="true" title="Name" type="java.lang.String"/>
-                        <Column editable="true" title="Cost" type="java.lang.Float"/>
+                        <Column editable="true" title="Cost" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
