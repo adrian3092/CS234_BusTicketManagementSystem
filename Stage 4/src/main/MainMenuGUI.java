@@ -38,7 +38,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         // add font setting for buttons
         bookTicketMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
         ViewSchedulesMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
-        EmployeeLoginMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        EmployeeLoginMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));        
     }
 
     /**
@@ -61,6 +61,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu");
         setLocation(new java.awt.Point(0, 0));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         mainMenuContentPanel.setOpaque(false);
@@ -197,6 +202,13 @@ public class MainMenuGUI extends javax.swing.JFrame {
         new LoginGUI(database.getLoginManager(), database).setVisible(true);
 
     }//GEN-LAST:event_EmployeeLoginMainMenuBtnActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // Save data to CSV when window is closed
+        
+        database.saveData();
+        System.exit(0);
+    }//GEN-LAST:event_formWindowClosing
     
     /**
      * gets the database instance
