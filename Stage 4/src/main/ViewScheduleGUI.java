@@ -68,12 +68,6 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
         
         ArrayList<Schedule> schedules = scheduleManager.getSchedules();
         
-        if (schedules.isEmpty()) {
-            // display a message when no schedules are available
-            model.addRow(new Object[]{"No schedules available", "", "", "", ""});
-            return;
-        }
-        
         for (Schedule schedule : schedules) {
             String name = schedule.getName();
             String routeName = schedule.getRoute() != null ? schedule.getRoute().getName() : "N/A";

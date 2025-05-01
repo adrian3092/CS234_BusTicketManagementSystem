@@ -11,6 +11,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,10 +19,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author georg
+ * @author George Candal
  */
 public class AdminMenuGUI extends javax.swing.JFrame {
 
@@ -39,7 +41,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         customizeTabHeaders();
         
         // load buses into the table
-        loadBusTable();
+        populateBusTable();
+        // load routes into the table
+        populateRouteTable();
+        // load depots into the table
+        populateDepotTable();
     }
 
     /**
@@ -582,14 +588,15 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         // refresh the appropriate table based on the selected tab
         int selectedTab = tabAdmin.getSelectedIndex();
         if (selectedTab == 0) { // bus tab
-            loadBusTable();
+            populateBusTable();
         }
     }//GEN-LAST:event_tabAdminStateChanged
     
     /**
-     * loads all buses from the BusManager into the bus table
+     * populates the bus table with data from the bus manager
+     * @author Adrian Zielinski
      */
-    private void loadBusTable() {
+    private void populateBusTable() {
         if (database == null || database.getBusManager() == null) {
             return;
         }
@@ -611,6 +618,60 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 bus.getMileage(),
                 bus.getCapacity(),
                 bus.getStatus()
+            });
+        }
+    }
+    
+    /**
+     * populates the route table with data from the route manager
+     * @author Adrian Zielinski
+     */
+    private void populateRouteTable() {
+        if (database == null || database.getRouteManager() == null) {
+            return;
+        }
+        
+        // get all routes from the RouteManager
+        java.util.ArrayList<Route> routes = database.getRouteManager().getRoutes();
+        
+        // create a table model with the appropriate columns
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableRoute.getModel();
+        
+        // clear existing rows
+        model.setRowCount(0);
+        
+        // add each route to the table
+        for (Route route: routes) {
+            model.addRow(new Object[]{
+                route.getRouteID(),
+                route.getName()
+            });
+        }
+    }
+    
+    /**
+     * populates the depot table with data from the depot manager
+     * @author Adrian Zielinski
+     */
+    private void populateDepotTable() {
+        if (database == null || database.getDepotManager() == null) {
+            return;
+        }
+        
+        // get all depots from the DepotManager
+        java.util.ArrayList<depot.Depot> depots = database.getDepotManager().getAllDepots();
+        
+        // create a table model with the appropriate columns
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableDepot.getModel();
+        
+        // clear existing rows
+        model.setRowCount(0);
+        
+        // add each depot to the table
+        for (depot.Depot depot: depots) {
+            model.addRow(new Object[]{
+                depot.getDepotId(),
+                depot.getDepotAddress()
             });
         }
     }

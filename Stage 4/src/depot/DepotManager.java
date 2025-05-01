@@ -53,7 +53,7 @@ public class DepotManager {
     }
 
     /**
-     * get the depot associated with the depot it
+     * get the depot associated with the depot id
      * @param depotId the id of the depot
      * @return the depot associated with depotId
      */
