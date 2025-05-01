@@ -20,6 +20,7 @@ public class AddBusGUI extends javax.swing.JFrame {
         this.database = database;
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
+        setAutoRequestFocus(false);
     }
 
     /**
