@@ -46,6 +46,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         populateRouteTable();
         // load depots into the table
         populateDepotTable();
+        // load employees into the table
+        populateEmployeeTable();
+        // load payments into the table
+        populatePaymentsTable();
     }
 
     /**
@@ -470,7 +474,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -537,7 +541,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -622,6 +626,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }
     
+    private void populateScheduleTable() {
+        //
+    }
+    
     /**
      * populates the route table with data from the route manager
      * @author Adrian Zielinski
@@ -672,6 +680,65 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             model.addRow(new Object[]{
                 depot.getDepotId(),
                 depot.getDepotAddress()
+            });
+        }
+    }
+    
+    /**
+     * populates the employee table with data from EmployeeManagement
+     * @author Adrian Zielinski
+     */
+    private void populateEmployeeTable() {
+        if (database == null || database.getEmployeeManagement() == null) {
+            return;
+        }
+        
+        // get all employees from EmployeeManagement
+        java.util.ArrayList<employees.Employee> employees = database.getEmployeeManagement().getAllEmployees();
+        
+        // create a table model with the appropriate columns
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableEmployee.getModel();
+        
+        // clear existing rows
+        model.setRowCount(0);
+        
+        // add each employee to the table
+        for (employees.Employee employee: employees) {
+            model.addRow(new Object[]{
+                employee.getName(),
+                employee.getEmployeeID(),
+                employee.getJobTitle(),
+                employee.getEmail(),
+                employee.getPhoneNumber(),
+                "$" + employee.getSalary()
+            });
+        }
+    }
+    
+    private void populateExpensesTable() {
+        //
+    }
+    
+    private void populatePaymentsTable() {
+        if (database == null || database.getPaymentManager() == null) {
+            return;
+        }
+        
+        // get all payments from PaymentManager
+        java.util.ArrayList<payment.Payment> payments = database.getPaymentManager().getAllPayments();
+        
+        // create a table model with the appropriate columns
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tablePayments.getModel();
+        
+        // clear existing rows
+        model.setRowCount(0);
+        
+        // add each payment to the table
+        for (payment.Payment payment: payments) {
+            model.addRow(new Object[]{
+                payment.getPaymentId(),
+                payment.getPassenger().getPassengerName(),
+                "$" + payment.getPaymentAmount()
             });
         }
     }
