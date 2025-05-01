@@ -127,6 +127,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         });
 
         btnManageBus.setText("Manage an Existing Bus");
+        btnManageBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageBusActionPerformed(evt);
+            }
+        });
 
         tableBus.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -605,6 +610,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         AddBusGUI addBusGUI = new AddBusGUI(this.database, this);
         addBusGUI.setVisible(true);
     }//GEN-LAST:event_btnAddBusActionPerformed
+
+    private void btnManageBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageBusActionPerformed
+        ManageBusGUI manageBusGUI = new ManageBusGUI(this.database, this);
+        manageBusGUI.setVisible(true);
+    }//GEN-LAST:event_btnManageBusActionPerformed
     
     /**
      * populates the bus table with data from the bus manager

@@ -9,11 +9,16 @@ package main;
  * @author Owner
  */
 public class ManageBusGUI extends javax.swing.JFrame {
-
+    
+    private Database database;
+    private AdminMenuGUI adminMenuGUI;
+    
     /**
      * Creates new form ManageBusGUI
      */
-    public ManageBusGUI() {
+    public ManageBusGUI(Database database, AdminMenuGUI adminMenuGUI) {
+        this.database = database;
+        this.adminMenuGUI = adminMenuGUI;
         initComponents();
     }
 
@@ -29,22 +34,32 @@ public class ManageBusGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         busIDTxt = new javax.swing.JTextField();
         busIDlbl = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        deleteBusButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         busInfoTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(215, 224, 223));
 
         jPanel1.setBackground(new java.awt.Color(215, 224, 223));
 
         busIDTxt.setText("Bus ID");
+        busIDTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busIDTxtActionPerformed(evt);
+            }
+        });
 
         busIDlbl.setLabelFor(busIDTxt);
         busIDlbl.setText("Enter a bus Id:");
 
-        jButton1.setText("Delete Bus");
+        deleteBusButton.setText("Delete Bus");
+        deleteBusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBusButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -55,7 +70,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(busIDTxt)
                     .addComponent(busIDlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                    .addComponent(deleteBusButton, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -66,7 +81,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(busIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(deleteBusButton)
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -124,12 +139,54 @@ public class ManageBusGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * delete a specific bus by id
+     * @param evt 
+     */
+    private void deleteBusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBusButtonActionPerformed
+        int busId = Integer.parseInt(busIDTxt.getText());
+        
+        bus.Bus bus = database.getBusManager().findBusById(busId);
+        database.getBusManager().removeBus(bus);
+        
+        // refresh the bus table in AdminMenuGUI
+        if (adminMenuGUI != null) {
+            adminMenuGUI.populateBusTable();
+        }
+    }//GEN-LAST:event_deleteBusButtonActionPerformed
+    
+    /**
+     * populate bus info table
+     * @param evt 
+     */
+    private void busIDTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busIDTxtActionPerformed
+        int busId = Integer.parseInt(busIDTxt.getText());
+        
+        // get all buses from the BusManager
+        bus.Bus bus = database.getBusManager().findBusById(busId);
+        
+        // create a table model with the appropriate columns
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) busInfoTable.getModel();
+        
+        // clear existing rows
+        model.setRowCount(0);
+        
+        // add bus info to the table
+        model.addRow(new Object[]{
+                bus.getYear(),
+                bus.getMake(),
+                bus.getModel(),
+                bus.getMileage(),
+                bus.getCapacity()
+            });
+    }//GEN-LAST:event_busIDTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,7 +218,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageBusGUI().setVisible(true);
+        //        new ManageBusGUI().setVisible(true);
             }
         });
     }
@@ -170,7 +227,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
     private javax.swing.JTextField busIDTxt;
     private javax.swing.JLabel busIDlbl;
     private javax.swing.JTable busInfoTable;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton deleteBusButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
