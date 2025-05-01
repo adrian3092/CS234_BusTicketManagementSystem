@@ -120,6 +120,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         panelBus.setBackground(new java.awt.Color(215, 224, 223));
 
         btnAddBus.setText("Add a New Bus");
+        btnAddBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddBusActionPerformed(evt);
+            }
+        });
 
         btnManageBus.setText("Manage an Existing Bus");
 
@@ -474,7 +479,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -541,7 +546,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -595,12 +600,17 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             populateBusTable();
         }
     }//GEN-LAST:event_tabAdminStateChanged
+
+    private void btnAddBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBusActionPerformed
+        AddBusGUI addBusGUI = new AddBusGUI(this.database, this);
+        addBusGUI.setVisible(true);
+    }//GEN-LAST:event_btnAddBusActionPerformed
     
     /**
      * populates the bus table with data from the bus manager
      * @author Adrian Zielinski
      */
-    private void populateBusTable() {
+    public void populateBusTable() {
         if (database == null || database.getBusManager() == null) {
             return;
         }
@@ -626,6 +636,9 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * populates the schedule table with data from the schedule manager
+     */
     private void populateScheduleTable() {
         //
     }
@@ -715,10 +728,17 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * populates the expenses table
+     */
     private void populateExpensesTable() {
         //
     }
     
+    /**
+     * populates the payments table with data from the payment manager
+     * @author Adrian Zielinski
+     */
     private void populatePaymentsTable() {
         if (database == null || database.getPaymentManager() == null) {
             return;

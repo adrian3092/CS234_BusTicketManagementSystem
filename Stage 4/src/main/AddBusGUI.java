@@ -9,11 +9,16 @@ package main;
  * @author Owner
  */
 public class AddBusGUI extends javax.swing.JFrame {
-
+    
+    private Database database;
+    private AdminMenuGUI adminMenuGUI;
+    
     /**
      * Creates new form AddBusGUI
      */
-    public AddBusGUI() {
+    public AddBusGUI(Database database, AdminMenuGUI adminMenuGUI) {
+        this.database = database;
+        this.adminMenuGUI = adminMenuGUI;
         initComponents();
     }
 
@@ -138,8 +143,26 @@ public class AddBusGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_seatingCapacityTxtActionPerformed
 
+    /**
+     * create a new bus, and add it to the bus manager
+     * @param evt 
+     */
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+        int year = Integer.parseInt(yearTxt.getText());
+        String make = makeTxt.getText();
+        String model = modelTxt.getText();
+        int mileage = Integer.parseInt(mileageTxt.getText());
+        int capacity = Integer.parseInt(seatingCapacityTxt.getText());
+        
+        bus.Bus bus = new bus.Bus(year, make, model, mileage, capacity);
+        database.getBusManager().addBus(bus);
+        
+        // refresh the bus table in AdminMenuGUI
+        if (adminMenuGUI != null) {
+            adminMenuGUI.populateBusTable();
+        }
+        
+        this.dispose();
     }//GEN-LAST:event_addBtnActionPerformed
 
     /**
@@ -172,7 +195,7 @@ public class AddBusGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddBusGUI().setVisible(true);
+         //       new AddBusGUI(Database database).setVisible(true);
             }
         });
     }
