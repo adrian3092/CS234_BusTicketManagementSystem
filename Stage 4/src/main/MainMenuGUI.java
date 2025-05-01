@@ -194,9 +194,17 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
     private void EmployeeLoginMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeLoginMainMenuBtnActionPerformed
 
-        new LoginGUI(database.getLoginManager()).setVisible(true);
+        new LoginGUI(database.getLoginManager(), database).setVisible(true);
 
     }//GEN-LAST:event_EmployeeLoginMainMenuBtnActionPerformed
+    
+    /**
+     * gets the database instance
+     * @return the database
+     */
+    public Database getDatabase() {
+        return database;
+    }
     
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
     button.setOpaque(true);

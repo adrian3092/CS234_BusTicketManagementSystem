@@ -28,13 +28,18 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     /**
      * Creates new form AdminMenuGUI
      */
-    public AdminMenuGUI() {
-        
+    private Database database;
+    
+    public AdminMenuGUI(Database database) {
+        this.database = database;
 
         initComponents();
         styleAdminButtons();
         normalizeButtonFonts();
         customizeTabHeaders();
+        
+        // load buses into the table
+        loadBusTable();
     }
 
     /**
@@ -574,8 +579,41 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddRouteActionPerformed
 
     private void tabAdminStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabAdminStateChanged
-        // TODO add your handling code here:
+        // refresh the appropriate table based on the selected tab
+        int selectedTab = tabAdmin.getSelectedIndex();
+        if (selectedTab == 0) { // bus tab
+            loadBusTable();
+        }
     }//GEN-LAST:event_tabAdminStateChanged
+    
+    /**
+     * loads all buses from the BusManager into the bus table
+     */
+    private void loadBusTable() {
+        if (database == null || database.getBusManager() == null) {
+            return;
+        }
+        
+        // get all buses from the BusManager
+        java.util.ArrayList<bus.Bus> buses = database.getBusManager().getAllBuses();
+        
+        // create a table model with the appropriate columns
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableBus.getModel();
+        
+        // clear existing rows
+        model.setRowCount(0);
+        
+        // add each bus to the table
+        for (bus.Bus bus : buses) {
+            model.addRow(new Object[]{
+                bus.getBusId(),
+                bus.getYear() + "/" + bus.getMake() + "/" + bus.getModel(),
+                bus.getMileage(),
+                bus.getCapacity(),
+                bus.getStatus()
+            });
+        }
+    }
 
     private void styleAdminButtons() {
     Color bg = Color.WHITE;
@@ -688,41 +726,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     }
 }
 
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("FlatLaf".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminMenuGUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddBus;
