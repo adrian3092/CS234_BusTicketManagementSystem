@@ -199,7 +199,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
     private void EmployeeLoginMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeLoginMainMenuBtnActionPerformed
 
-        new LoginGUI(database.getLoginManager(), database).setVisible(true);
+        new LoginGUI(database).setVisible(true);
 
     }//GEN-LAST:event_EmployeeLoginMainMenuBtnActionPerformed
 

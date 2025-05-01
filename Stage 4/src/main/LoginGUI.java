@@ -11,29 +11,12 @@ public class LoginGUI extends javax.swing.JFrame {
     
     private LoginManager loginManager;
     private Database database;
-
-    /**
-     * Creates new form LoginGUI
-     */
-    public LoginGUI(LoginManager loginManager) {
-        this.loginManager = loginManager;
-        this.database = null;
-        initComponents();
-        setupUsernameBehavior();
-        setupPasswordBehavior();
-        setLocationRelativeTo(null);
-        setAutoRequestFocus(false);
-        btnLogin.setBackground(Color.white);
-        btnLogin.setForeground(Color.black);
-        
-        btnLogin.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
-    }
     
     /**
      * creates new form LoginGUI with database
      */
-    public LoginGUI(LoginManager loginManager, Database database) {
-        this.loginManager = loginManager;
+    public LoginGUI(Database database) {
+        this.loginManager = database.getLoginManager();
         this.database = database;
         initComponents();
         setupUsernameBehavior();
