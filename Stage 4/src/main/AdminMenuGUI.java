@@ -4,6 +4,7 @@
  */
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -13,6 +14,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
 
 /**
  *
@@ -24,10 +29,12 @@ public class AdminMenuGUI extends javax.swing.JFrame {
      * Creates new form AdminMenuGUI
      */
     public AdminMenuGUI() {
+        
+
         initComponents();
-        customizeTabBehavior();
         styleAdminButtons();
         normalizeButtonFonts();
+        customizeTabHeaders();
     }
 
     /**
@@ -591,63 +598,58 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         button.setBorderPainted(false); // optional for a cleaner look
     }
 }
-
     
-    private void updateActiveTabColor() {
+    private void customizeTabHeaders() {
     for (int i = 0; i < tabAdmin.getTabCount(); i++) {
-        Component c = tabAdmin.getTabComponentAt(i);
-        if (c instanceof JLabel label) {
-            if (i == tabAdmin.getSelectedIndex()) {
-                label.setBackground(new Color(0, 153, 0)); // Active tab green
-                label.setForeground(Color.WHITE);
-            } else {
-                label.setBackground(new Color(16, 32, 47)); // Inactive default
-                label.setForeground(new Color(215, 224, 223));
-            }
-        }
-    }
-}
+        String title = tabAdmin.getTitleAt(i);
+        tabAdmin.setTitleAt(i, ""); // Remove default title
 
-    private void customizeTabBehavior() {
-    int tabCount = tabAdmin.getTabCount();
+        JLabel tabLabel = new JLabel(title, SwingConstants.CENTER);
+        tabLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        tabLabel.setForeground(new Color(215, 224, 223));
+        tabLabel.setBorder(BorderFactory.createEmptyBorder(8, 16, 8, 16));
+        tabLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-    for (int i = 0; i < tabCount; i++) {
+        JPanel tabPanel = new JPanel(new BorderLayout());
+        tabPanel.setOpaque(true);
+        tabPanel.setBackground(new Color(16, 32, 47)); // default inactive color
+        tabPanel.add(tabLabel, BorderLayout.CENTER);
+
         final int index = i;
 
-        JLabel tabLabel = new JLabel(tabAdmin.getTitleAt(index));
-        tabLabel.setOpaque(true);
-        tabLabel.setBackground(new Color(16, 32, 47));
-        tabLabel.setForeground(new Color(215, 224, 223));
-        tabLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        tabLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-        tabLabel.addMouseListener(new MouseAdapter() {
+        // Hover effect
+        tabPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
                 if (tabAdmin.getSelectedIndex() != index) {
-                    tabLabel.setBackground(new Color(34, 50, 65)); // Hover color
+                    tabPanel.setBackground(new Color(34, 50, 65)); // hover color
                 }
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 if (tabAdmin.getSelectedIndex() != index) {
-                    tabLabel.setBackground(new Color(16, 32, 47)); // Default color
+                    tabPanel.setBackground(new Color(16, 32, 47)); // default
                 }
             }
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                tabAdmin.setSelectedIndex(index); // Switch tab
+                tabAdmin.setSelectedIndex(index);
             }
         });
 
-        tabAdmin.setTabComponentAt(index, tabLabel);
+        tabAdmin.setTabComponentAt(index, tabPanel);
     }
 
-    // Listen for tab change to update active tab styling
-    tabAdmin.addChangeListener(e -> updateActiveTabColor());
+    // Style selected tab on tab change
+    tabAdmin.addChangeListener(e -> updateTabStyles());
+    updateTabStyles(); // Apply to initial tab
+    
 }
+
+
+
 
     private void normalizeButtonFonts() {
     Font plainFont = new Font("Segoe UI", Font.PLAIN, 12); // or any preferred font
@@ -665,6 +667,27 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btn.setFont(plainFont);
     }
 }
+    
+    private void updateTabStyles() {
+    for (int i = 0; i < tabAdmin.getTabCount(); i++) {
+        Component c = tabAdmin.getTabComponentAt(i);
+        if (c instanceof JPanel panel) {
+            Component label = panel.getComponent(0);
+            if (label instanceof JLabel tabLabel) {
+                if (i == tabAdmin.getSelectedIndex()) {
+                    panel.setBackground(new Color(0, 153, 0)); // active green
+                    tabLabel.setForeground(Color.WHITE);
+                    tabLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
+                } else {
+                    panel.setBackground(new Color(16, 32, 47));
+                    tabLabel.setForeground(new Color(215, 224, 223));
+                    tabLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+                }
+            }
+        }
+    }
+}
+
 
     /**
      * @param args the command line arguments
@@ -677,7 +700,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("FlatLaf".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

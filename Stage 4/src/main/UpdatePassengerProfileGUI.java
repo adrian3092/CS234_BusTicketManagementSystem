@@ -5,7 +5,9 @@
 package main;
 
 import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.border.Border;
 
 /**
  *
@@ -20,6 +22,9 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         initComponents();
         setAutoRequestFocus(false);
         setLocationRelativeTo(null);
+        deleteAccountBtn1.setBackground(Color.white);
+        saveUpdateBtn.setForeground(Color.black);
+        
         addHoverEffect(deleteAccountBtn1, Color.WHITE, Color.GREEN);
         addHoverEffect(saveUpdateBtn, Color.WHITE, Color.GREEN);
 
@@ -88,12 +93,8 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
             }
         });
 
-        saveUpdateBtn.setBackground(new java.awt.Color(89, 167, 65));
-        saveUpdateBtn.setForeground(new java.awt.Color(255, 255, 255));
         saveUpdateBtn.setText("Save Update");
 
-        deleteAccountBtn1.setBackground(new java.awt.Color(89, 167, 65));
-        deleteAccountBtn1.setForeground(new java.awt.Color(255, 255, 255));
         deleteAccountBtn1.setText("Delete Account");
         deleteAccountBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

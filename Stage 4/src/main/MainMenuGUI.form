@@ -66,7 +66,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="welcomeHeader2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                  <Component id="bookTicketMainMenuBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="bookTicketMainMenuBtn" min="-2" pref="23" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="ViewSchedulesMainMenuBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -79,10 +79,8 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="bookTicketMainMenuBtn">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2f" green="20" red="10" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Book Ticket"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Hand Cursor"/>
             </Property>
@@ -93,10 +91,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="ViewSchedulesMainMenuBtn">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="2f" green="20" red="10" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="View Schedules"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewSchedulesMainMenuBtnActionPerformed"/>
@@ -105,6 +101,7 @@
         <Component class="javax.swing.JButton" name="EmployeeLoginMainMenuBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Employee Login"/>
+            <Property name="borderPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EmployeeLoginMainMenuBtnActionPerformed"/>

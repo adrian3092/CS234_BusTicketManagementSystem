@@ -65,8 +65,8 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         mainMenuContentPanel.setOpaque(false);
 
-        bookTicketMainMenuBtn.setForeground(new java.awt.Color(16, 32, 47));
         bookTicketMainMenuBtn.setText("Book Ticket");
+        bookTicketMainMenuBtn.setBorderPainted(false);
         bookTicketMainMenuBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bookTicketMainMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,8 +74,8 @@ public class MainMenuGUI extends javax.swing.JFrame {
             }
         });
 
-        ViewSchedulesMainMenuBtn.setForeground(new java.awt.Color(16, 32, 47));
         ViewSchedulesMainMenuBtn.setText("View Schedules");
+        ViewSchedulesMainMenuBtn.setBorderPainted(false);
         ViewSchedulesMainMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ViewSchedulesMainMenuBtnActionPerformed(evt);
@@ -83,6 +83,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         });
 
         EmployeeLoginMainMenuBtn.setText("Employee Login");
+        EmployeeLoginMainMenuBtn.setBorderPainted(false);
         EmployeeLoginMainMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EmployeeLoginMainMenuBtnActionPerformed(evt);
@@ -119,7 +120,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(welcomeHeader2)
                 .addGap(64, 64, 64)
-                .addComponent(bookTicketMainMenuBtn)
+                .addComponent(bookTicketMainMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ViewSchedulesMainMenuBtn)
                 .addGap(18, 18, 18)

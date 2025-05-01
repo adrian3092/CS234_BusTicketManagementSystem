@@ -2,7 +2,9 @@
 package main;
 
 import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.border.Border;
 
 /**
  *
@@ -18,10 +20,14 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         setupUsernameBehavior();
         setupPasswordBehavior();
         setupSignUpLabelHover();
+        setupContinueAsGuestLabelHover();
         setupSignUpLabelAction();
         addHoverEffect(loginBtn);
         setLocationRelativeTo(null);
         setAutoRequestFocus(false);
+        
+        loginBtn.setBackground(Color.white);
+        loginBtn.setForeground(Color.black);
     }
 
     /**
@@ -38,85 +44,78 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         loginBtn = new javax.swing.JButton();
         SignUpLabel = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
-        continueAsGuestLabel = new javax.swing.JLabel();
+        continueAsGuestlbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Passenger Login");
 
-        jPanel1.setBackground(new java.awt.Color(51, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(215, 224, 223));
 
-        userNameField.setBackground(new java.awt.Color(0, 51, 0));
         userNameField.setForeground(new java.awt.Color(153, 153, 153));
         userNameField.setText("Username");
-        userNameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        userNameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         userNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameFieldActionPerformed(evt);
             }
         });
 
-        loginBtn.setBackground(new java.awt.Color(0, 204, 0));
         loginBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        loginBtn.setForeground(new java.awt.Color(255, 255, 255));
-        loginBtn.setText("Continue As Guest...");
+        loginBtn.setText("Login");
         loginBtn.setBorderPainted(false);
 
         SignUpLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        SignUpLabel.setForeground(new java.awt.Color(255, 255, 0));
+        SignUpLabel.setForeground(new java.awt.Color(0, 204, 51));
         SignUpLabel.setText("Sign up");
 
-        passwordField.setBackground(new java.awt.Color(0, 51, 0));
         passwordField.setForeground(new java.awt.Color(153, 153, 153));
         passwordField.setText("password");
-        passwordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 0)));
+        passwordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFieldActionPerformed(evt);
             }
         });
 
-        continueAsGuestLabel.setBackground(new java.awt.Color(255, 255, 255));
-        continueAsGuestLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        continueAsGuestLabel.setForeground(new java.awt.Color(255, 255, 0));
-        continueAsGuestLabel.setText("Login");
+        continueAsGuestlbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        continueAsGuestlbl.setForeground(new java.awt.Color(0, 204, 51));
+        continueAsGuestlbl.setText("Continue As Guest");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 111, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(userNameField, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                    .addComponent(passwordField))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                    .addComponent(userNameField))
+                .addContainerGap(123, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(436, 436, 436)
-                .addComponent(continueAsGuestLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(429, 429, 429)
+                .addGap(185, 185, 185)
                 .addComponent(SignUpLabel)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(376, 376, 376)
-                .addComponent(loginBtn)
-                .addContainerGap(388, Short.MAX_VALUE))
+                .addGap(150, 150, 150)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(continueAsGuestlbl)
+                    .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(continueAsGuestLabel)
-                .addGap(18, 18, 18)
-                .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(141, 141, 141)
+                .addComponent(userNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(loginBtn)
                 .addGap(18, 18, 18)
                 .addComponent(SignUpLabel)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(continueAsGuestlbl)
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -135,17 +134,21 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     
     // Set up focus behaviour for Username text field
     private void setupUsernameBehavior() {
+    Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
+    Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
     userNameField.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {
             if (userNameField.getText().equals("Username")) {
                 userNameField.setText("");
                 userNameField.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+                userNameField.setBorder(focusBorder);
             }
         }
         public void focusLost(java.awt.event.FocusEvent evt) {
             if (userNameField.getText().isEmpty()) {
                 userNameField.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
                 userNameField.setText("Username");
+                userNameField.setBorder(defaultBorder);
             }
         }
     });
@@ -154,6 +157,8 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     // set up password focus behaviour for password field
     private void setupPasswordBehavior() {
     passwordField.setEchoChar((char)0); // No masking initially (for placeholder)
+    Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
+    Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
 
     passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {
@@ -162,6 +167,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
                 passwordField.setText("");
                 passwordField.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
                 passwordField.setEchoChar('•'); // Restore masking when typing
+                passwordField.setBorder(focusBorder);
             }
         }
         public void focusLost(java.awt.event.FocusEvent evt) {
@@ -170,6 +176,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
                 passwordField.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
                 passwordField.setText("password");
                 passwordField.setEchoChar((char)0); // No masking for placeholder
+                passwordField.setBorder(defaultBorder);
             }
         }
     });
@@ -179,14 +186,30 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     SignUpLabel.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
         public void mouseEntered(java.awt.event.MouseEvent evt) {
-            SignUpLabel.setForeground(new java.awt.Color(255, 255, 255)); // Hover color (light blue)
+            SignUpLabel.setForeground(Color.green); // Hover color (light blue)
             SignUpLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Change cursor to hand
         }
 
         @Override
         public void mouseExited(java.awt.event.MouseEvent evt) {
-            SignUpLabel.setForeground(new java.awt.Color(255,255,0)); // Original color (green)
+            SignUpLabel.setForeground(new java.awt.Color(0,204,51)); // Original color (green)
             SignUpLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Restore cursor
+        }
+    });
+    }
+    
+    private void setupContinueAsGuestLabelHover() {
+    continueAsGuestlbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            continueAsGuestlbl.setForeground(Color.green); // Hover color (light blue)
+            continueAsGuestlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Change cursor to hand
+        }
+
+        @Override
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            continueAsGuestlbl.setForeground(new java.awt.Color(0,204,51)); // Original color (green)
+            continueAsGuestlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Restore cursor
         }
     });
     }
@@ -213,15 +236,13 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     button.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
         public void mouseEntered(java.awt.event.MouseEvent evt) {
-            loginBtn.setBackground(Color.LIGHT_GRAY); // Gray background on hover
-            loginBtn.setForeground(new java.awt.Color(0, 153, 0)); // Green text on hover
+            loginBtn.setBackground(Color.green); // green background on hover
             loginBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Optional: Hand cursor
         }
 
         @Override
         public void mouseExited(java.awt.event.MouseEvent evt) {
-            loginBtn.setBackground(new java.awt.Color(0, 204, 0)); // Restore green background
-            loginBtn.setForeground(Color.WHITE); // Restore white text
+            loginBtn.setBackground(Color.white); // Restore white background
             loginBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Restore default cursor
         }
     });
@@ -264,7 +285,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel SignUpLabel;
-    private javax.swing.JLabel continueAsGuestLabel;
+    private javax.swing.JLabel continueAsGuestlbl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPasswordField passwordField;
