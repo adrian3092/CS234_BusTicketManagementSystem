@@ -17,6 +17,10 @@ public class LoginGUI extends javax.swing.JFrame {
     public LoginGUI(LoginManager loginManager) {
         this.loginManager = loginManager;
         initComponents();
+        setupUsernameBehavior();
+        setupPasswordBehavior();
+        setLocationRelativeTo(null);
+        setAutoRequestFocus(false);
     }
 
     /**
@@ -29,8 +33,6 @@ public class LoginGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblUsername = new javax.swing.JLabel();
-        lblPassword = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
@@ -41,15 +43,16 @@ public class LoginGUI extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(215, 224, 223));
 
-        lblUsername.setText("Username");
-
-        lblPassword.setText("Password");
-
+        txtUsername.setForeground(new java.awt.Color(153, 153, 153));
+        txtUsername.setText("Username");
         txtUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsernameActionPerformed(evt);
             }
         });
+
+        txtPassword.setForeground(new java.awt.Color(153, 153, 153));
+        txtPassword.setText("password");
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -63,29 +66,24 @@ public class LoginGUI extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblPassword)
-                    .addComponent(lblUsername))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLogin)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                        .addComponent(txtUsername)))
-                .addContainerGap(63, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(61, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUsername))
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPassword))
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogin)
                 .addGap(68, 68, 68))
@@ -116,6 +114,48 @@ public class LoginGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsernameActionPerformed
 
+        // Set up focus behaviour for Username text field
+    private void setupUsernameBehavior() {
+    txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            if (txtUsername.getText().equals("Username")) {
+                txtUsername.setText("");
+                txtUsername.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+            }
+        }
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            if (txtUsername.getText().isEmpty()) {
+                txtUsername.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
+                txtUsername.setText("Username");
+            }
+        }
+    });
+    }
+    
+    // set up password focus behaviour for password field
+    private void setupPasswordBehavior() {
+    txtPassword.setEchoChar((char)0); // No masking initially (for placeholder)
+
+    txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            String pwd = new String(txtPassword.getPassword());
+            if (pwd.equals("password")) {
+                txtPassword.setText("");
+                txtPassword.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+                txtPassword.setEchoChar('•'); // Restore masking when typing
+            }
+        }
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            String pwd = new String(txtPassword.getPassword());
+            if (pwd.isEmpty()) {
+                txtPassword.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
+                txtPassword.setText("password");
+                txtPassword.setEchoChar((char)0); // No masking for placeholder
+            }
+        }
+    });
+    }
+    
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // Get username and password from text fields
         String username = txtUsername.getText();
@@ -147,7 +187,7 @@ public class LoginGUI extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -174,8 +214,6 @@ public class LoginGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblUsername;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables

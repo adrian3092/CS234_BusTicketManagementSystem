@@ -4,6 +4,9 @@
  */
 package main;
 
+import java.awt.Color;
+import javax.swing.JButton;
+
 /**
  *
  * @author Owner
@@ -15,6 +18,11 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
      */
     public UpdatePassengerProfileGUI() {
         initComponents();
+        setAutoRequestFocus(false);
+        setLocationRelativeTo(null);
+        addHoverEffect(deleteAccountBtn1, Color.WHITE, Color.GREEN);
+        addHoverEffect(saveUpdateBtn, Color.WHITE, Color.GREEN);
+
     }
 
     /**
@@ -80,18 +88,25 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
             }
         });
 
-        saveUpdateBtn.setBackground(new java.awt.Color(51, 255, 0));
+        saveUpdateBtn.setBackground(new java.awt.Color(89, 167, 65));
+        saveUpdateBtn.setForeground(new java.awt.Color(255, 255, 255));
         saveUpdateBtn.setText("Save Update");
 
-        deleteAccountBtn1.setBackground(new java.awt.Color(51, 255, 0));
+        deleteAccountBtn1.setBackground(new java.awt.Color(89, 167, 65));
+        deleteAccountBtn1.setForeground(new java.awt.Color(255, 255, 255));
         deleteAccountBtn1.setText("Delete Account");
+        deleteAccountBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteAccountBtn1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(337, 337, 337)
+                .addGap(177, 177, 177)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(saveUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,13 +114,13 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
                         .addComponent(deleteAccountBtn1))
                     .addComponent(emailUpdatetxt, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nameUpdatetxt)
-                    .addComponent(phoneNumberUpdatetxt, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(322, Short.MAX_VALUE))
+                    .addComponent(phoneNumberUpdatetxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(143, 143, 143)
+                .addGap(133, 133, 133)
                 .addComponent(nameUpdatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(phoneNumberUpdatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,7 +130,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveUpdateBtn)
                     .addComponent(deleteAccountBtn1))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,16 +138,12 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -188,6 +199,25 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
             } 
     }//GEN-LAST:event_emailUpdatetxtFocusLost
 
+    private void deleteAccountBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAccountBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteAccountBtn1ActionPerformed
+
+    private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
+    button.setOpaque(true);
+    button.setBackground(normal);
+    button.setBorderPainted(false);
+
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hover);
+        }
+
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(normal);
+        }
+    });
+    }
     /**
      * @param args the command line arguments
      */

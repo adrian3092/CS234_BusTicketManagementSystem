@@ -20,6 +20,8 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         setupSignUpLabelHover();
         setupSignUpLabelAction();
         addHoverEffect(loginBtn);
+        setLocationRelativeTo(null);
+        setAutoRequestFocus(false);
     }
 
     /**

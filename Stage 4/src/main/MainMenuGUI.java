@@ -28,10 +28,17 @@ public class MainMenuGUI extends javax.swing.JFrame {
     public MainMenuGUI(Database database) {
         initComponents();
         this.database = database;
+        setAutoRequestFocus(false);
+
+        // hover effect for buttons
+        addHoverEffect(bookTicketMainMenuBtn, Color.WHITE, Color.GREEN);
+        addHoverEffect(ViewSchedulesMainMenuBtn, Color.WHITE, Color.GREEN);
+        addHoverEffect(EmployeeLoginMainMenuBtn, Color.WHITE, Color.GREEN);
         
-        addHoverEffect(bookTicketMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
-        addHoverEffect(ViewSchedulesMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
-        addHoverEffect(EmployeeLoginMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
+        // add font setting for buttons
+        bookTicketMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        ViewSchedulesMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        EmployeeLoginMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
     }
 
     /**
@@ -58,16 +65,17 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         mainMenuContentPanel.setOpaque(false);
 
+        bookTicketMainMenuBtn.setForeground(new java.awt.Color(16, 32, 47));
         bookTicketMainMenuBtn.setText("Book Ticket");
-        bookTicketMainMenuBtn.setBorderPainted(false);
+        bookTicketMainMenuBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bookTicketMainMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookTicketMainMenuBtnActionPerformed(evt);
             }
         });
 
+        ViewSchedulesMainMenuBtn.setForeground(new java.awt.Color(16, 32, 47));
         ViewSchedulesMainMenuBtn.setText("View Schedules");
-        ViewSchedulesMainMenuBtn.setBorderPainted(false);
         ViewSchedulesMainMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ViewSchedulesMainMenuBtnActionPerformed(evt);
@@ -75,7 +83,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
         });
 
         EmployeeLoginMainMenuBtn.setText("Employee Login");
-        EmployeeLoginMainMenuBtn.setBorderPainted(false);
         EmployeeLoginMainMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EmployeeLoginMainMenuBtnActionPerformed(evt);
@@ -134,7 +141,10 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookTicketMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTicketMainMenuBtnActionPerformed
+
         new PassengerLoginGUI().setVisible(true);
+        
+        
     }//GEN-LAST:event_bookTicketMainMenuBtnActionPerformed
 
     /**
@@ -151,13 +161,21 @@ public class MainMenuGUI extends javax.swing.JFrame {
         this.scheduleManager = scheduleManager;
         this.routeManager = routeManager;
         this.depotManager = depotManager;
+        setAutoRequestFocus(false);
         
-        addHoverEffect(bookTicketMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
-        addHoverEffect(ViewSchedulesMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
-        addHoverEffect(EmployeeLoginMainMenuBtn, Color.LIGHT_GRAY, Color.GREEN);
+        // add hover effect for buttons
+        addHoverEffect(bookTicketMainMenuBtn, Color.WHITE, Color.GREEN);
+        addHoverEffect(ViewSchedulesMainMenuBtn, Color.WHITE, Color.GREEN);
+        addHoverEffect(EmployeeLoginMainMenuBtn, Color.WHITE, Color.GREEN);
+        
+        // add font setting for buttons
+        bookTicketMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        ViewSchedulesMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        EmployeeLoginMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
     }
 
     private void ViewSchedulesMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSchedulesMainMenuBtnActionPerformed
+
         if (scheduleManager != null && routeManager != null && depotManager != null) {
             new ViewScheduleGUI(scheduleManager, routeManager, depotManager).setVisible(true);
         } else {
@@ -174,7 +192,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewSchedulesMainMenuBtnActionPerformed
 
     private void EmployeeLoginMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeLoginMainMenuBtnActionPerformed
+
         new LoginGUI(database.getLoginManager()).setVisible(true);
+
     }//GEN-LAST:event_EmployeeLoginMainMenuBtnActionPerformed
     
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
@@ -189,10 +209,12 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         public void mouseExited(java.awt.event.MouseEvent evt) {
             button.setBackground(normal);
+            
         }
     });
-}   
+    }   
 
+    
     /**
      * @param args the command line arguments
      */
