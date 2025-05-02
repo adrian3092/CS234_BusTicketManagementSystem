@@ -113,6 +113,7 @@ public class Database {
         employeeManagement.saveEmployeesToCSV();
         loginManager.saveLoginsToCSV();
         ticketIssuer.saveTicketsToCSV();
+        accounting.saveExpensesToCSV();
     }
     
     
