@@ -4,12 +4,19 @@
  */
 package main;
 
+import depot.DepotManager;
+import java.awt.Color;
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+
 /**
  *
  * @author Owner
  */
 public class passengerDashboardGUI extends javax.swing.JFrame {
-
+    private ScheduleManager scheduleManager;
+    private RouteManager routeManager;
+    private DepotManager depotManager;
     /**
      * Creates new form passengerDashboardGUI
      */
@@ -147,7 +154,8 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        pack();
+        setSize(new java.awt.Dimension(890, 525));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
