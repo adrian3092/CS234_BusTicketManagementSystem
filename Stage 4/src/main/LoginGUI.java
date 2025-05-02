@@ -1,6 +1,8 @@
 package main;
 
 import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 import login.LoginManager;
         
 /**
@@ -136,17 +138,21 @@ public class LoginGUI extends javax.swing.JFrame {
 
         // Set up focus behaviour for Username text field
     private void setupUsernameBehavior() {
+    Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
+    Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
     txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {
             if (txtUsername.getText().equals("Username")) {
                 txtUsername.setText("");
                 txtUsername.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+                txtUsername.setBorder(focusBorder);
             }
         }
         public void focusLost(java.awt.event.FocusEvent evt) {
             if (txtUsername.getText().isEmpty()) {
                 txtUsername.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
                 txtUsername.setText("Username");
+                txtUsername.setBorder(defaultBorder);
             }
         }
     });
@@ -155,6 +161,8 @@ public class LoginGUI extends javax.swing.JFrame {
     // set up password focus behaviour for password field
     private void setupPasswordBehavior() {
     txtPassword.setEchoChar((char)0); // No masking initially (for placeholder)
+    Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
+    Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
 
     txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {
@@ -163,6 +171,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 txtPassword.setText("");
                 txtPassword.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
                 txtPassword.setEchoChar('•'); // Restore masking when typing
+                txtPassword.setBorder(focusBorder);
             }
         }
         public void focusLost(java.awt.event.FocusEvent evt) {
@@ -171,6 +180,7 @@ public class LoginGUI extends javax.swing.JFrame {
                 txtPassword.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
                 txtPassword.setText("password");
                 txtPassword.setEchoChar((char)0); // No masking for placeholder
+                txtPassword.setBorder(defaultBorder);
             }
         }
     });
