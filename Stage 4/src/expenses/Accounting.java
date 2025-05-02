@@ -2,10 +2,12 @@ package expenses;
 
 
 import bus.*;
+import csv.CSVHandler;
 import depot.*;
 import employees.Employee;
 import employees.EmployeeManagement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents the accounting database of the bus company. It has 5 
@@ -22,6 +24,7 @@ public class Accounting {
     private BusManager busManager;
     private DepotManager depotManager;
     private EmployeeManagement employeeManagement;
+    private static final String EXPENSES_CSV_FILE_PATH = "data/expenses.csv";
     
 
     /**
@@ -38,7 +41,11 @@ public class Accounting {
         this.depotManager = depotManager;
         this.employeeManagement = employeeManagement;
         
-    }   
+    } 
+    
+    public ArrayList<Expense> getAllExpenses() {
+        return expenses;
+    }
     
     /**
      * Adds an expense to the list of expenses
@@ -155,5 +162,83 @@ public class Accounting {
 //        } else {
 //        expenses.remove(expenseToRemove);
 //        }
-//    }       
+//    }  
+    
+    /**
+     * load expenses from CSV file
+     * 
+     */
+    public void loadExpensesFromCSV() {
+        List<String[]> data = CSVHandler.readCSV(EXPENSES_CSV_FILE_PATH);
+        
+        // clear existing expenses
+        expenses.clear();
+        
+        // skip header row if it exists
+        boolean hasHeader = data.get(0)[0].equals("expenseID");
+        int startRow = hasHeader ? 1 : 0;
+        
+        // process each row
+        for (int i = startRow; i < data.size(); i++) {
+            String[] row = data.get(i);
+            
+            int expenseID = Integer.parseInt(row[0]);
+            String type = row[1];
+            String entity = row[2];
+            String entityID = row[3];
+            float cost = Float.parseFloat(row[4]);
+            
+            // Get object from entity
+            if (type.equals("Fuel Cost")) {
+                Bus bus = busManager.findBusById(Integer.parseInt(entityID));
+                new FuelCost(this, cost, bus);
+            } else if (type.equals("Maintenance Cost")) {
+                Bus bus = busManager.findBusById(Integer.parseInt(entityID));
+                new MaintenanceCost(this, cost, bus);
+            } else if (type.equals("Salary")) {
+                Employee e = employeeManagement.getEmployeeById(entityID);
+                new Salary(this, cost, e);
+            } else if (type.equals("Utility")) {
+                Depot d = depotManager.findDepotById(Integer.parseInt(entityID));
+                new Utility(this, cost, d);
+            }
+        }
+    }
+    
+    /**
+     * save expenses to CSV file
+     */
+    public void saveExpensesToCSV() {
+        List<String[]> data = new ArrayList<>();
+        String entity = "";
+        String entityID = "";
+        
+        // add data rows
+        for (Expense expense : expenses) {
+            
+            if (expense instanceof FuelCost) {
+                entity = "Bus";
+                entityID = String.valueOf(((FuelCost) expense).getBus().getBusId());
+            } else if (expense instanceof MaintenanceCost) {
+                entity = "Bus";
+                entityID = String.valueOf(((MaintenanceCost) expense).getBus().getBusId());                
+            } else if (expense instanceof Salary) {
+                entity = "Employee";
+                entityID = ((Salary) expense).getEmployee().getEmployeeID();
+            } else if (expense instanceof Utility) {
+                entity = "Depot";
+                entityID = String.valueOf(((Utility) expense).getDepot().getDepotId());
+            }
+            
+            String[] row = new String[]{
+                String.valueOf(expense.getExpenseId()),
+                expense.getClass().getSimpleName(),
+                entity,
+                entityID,
+                String.valueOf(expense.getCost())
+            };
+            data.add(row);
+        }
+        CSVHandler.writeCSV(EXPENSES_CSV_FILE_PATH, data);
+    }
 }

@@ -51,6 +51,7 @@ public class Database {
         depotManager.loadDepotBusAssignmentsFromCSV(busManager);
         scheduleManager.loadSchedulesFromCSV(routeManager, depotManager);
         ticketIssuer.getTicketManager().loadTicketsFromCSV(passengerManager, scheduleManager);
+        accounting.loadExpensesFromCSV();
         
         // Create main menu gui
         new MainMenuGUI(this).setVisible(true);

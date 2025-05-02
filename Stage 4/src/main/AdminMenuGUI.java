@@ -50,6 +50,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         populateEmployeeTable();
         // load payments into the table
         populatePaymentsTable();
+        // load expenses into the table
+        populateExpensesTable();
     }
 
     /**
@@ -484,7 +486,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -740,9 +742,31 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     
     /**
      * populates the expenses table
+     * @author George Candal
      */
     private void populateExpensesTable() {
-        //
+        if (database == null || database.getAccounting() == null) {
+            return;
+        }
+        
+        // get all expenses from Accounting
+        java.util.ArrayList<expenses.Expense> expenses = database.getAccounting().getAllExpenses();
+        
+        // create a table model with the appropriate columns
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tableExpenses.getModel();
+        
+        // clear existing rows
+        model.setRowCount(0);
+        
+        // add each payment to the table
+        for (expenses.Expense expense: expenses) {
+            model.addRow(new Object[]{
+                expense.getExpenseId(),
+                expense.getClass().getSimpleName(),
+                "12",
+                "$" + expense.getCost()
+            });
+        }
     }
     
     /**

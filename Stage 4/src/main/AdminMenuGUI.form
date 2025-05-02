@@ -653,7 +653,7 @@
                         <Column editable="false" title="Expense ID" type="java.lang.Integer"/>
                         <Column editable="false" title="Type" type="java.lang.String"/>
                         <Column editable="false" title="Entity" type="java.lang.String"/>
-                        <Column editable="false" title="Cost" type="java.lang.Float"/>
+                        <Column editable="false" title="Cost" type="java.lang.String"/>
                       </Table>
                     </Property>
                   </Properties>
