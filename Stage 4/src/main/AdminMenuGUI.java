@@ -96,7 +96,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         tableEmployee = new javax.swing.JTable();
         panelExpenses = new javax.swing.JPanel();
         btnExpenseReport = new javax.swing.JButton();
-        btnPaymentReport = new javax.swing.JButton();
         btnManagePayments = new javax.swing.JButton();
         btnNewExpense = new javax.swing.JButton();
         btnRemoveExpense = new javax.swing.JButton();
@@ -105,6 +104,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         panelPayments = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tablePayments = new javax.swing.JTable();
+        btnPaymentReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Admin Menu");
@@ -471,8 +471,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         });
 
-        btnPaymentReport.setText("Generate Payment Report");
-
         btnManagePayments.setText("Manage Payments");
 
         btnNewExpense.setText("Add a New Expense");
@@ -515,11 +513,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(panelExpensesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnExpenseReport, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPaymentReport, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnManagePayments, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNewExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRemoveExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
@@ -531,15 +528,13 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelExpensesLayout.createSequentialGroup()
                         .addComponent(btnExpenseReport)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPaymentReport)
-                        .addGap(18, 18, 18)
+                        .addGap(59, 59, 59)
                         .addComponent(btnManagePayments)
                         .addGap(18, 18, 18)
                         .addComponent(btnNewExpense)
                         .addGap(18, 18, 18)
                         .addComponent(btnRemoveExpense)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Expenses", panelExpenses);
@@ -567,21 +562,27 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(tablePayments);
 
+        btnPaymentReport.setText("Generate Payment Report");
+
         javax.swing.GroupLayout panelPaymentsLayout = new javax.swing.GroupLayout(panelPayments);
         panelPayments.setLayout(panelPaymentsLayout);
         panelPaymentsLayout.setHorizontalGroup(
             panelPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPaymentsLayout.createSequentialGroup()
-                .addContainerGap(437, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(btnPaymentReport, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
         panelPaymentsLayout.setVerticalGroup(
             panelPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPaymentsLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addGroup(panelPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPaymentReport))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Payments", panelPayments);
