@@ -759,11 +759,27 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         model.setRowCount(0);
         
         // add each payment to the table
+        String entity = "";
+        String entityID = "";
+        
         for (expenses.Expense expense: expenses) {
+            if (expense instanceof expenses.FuelCost) {
+                entity = "Bus";
+                entityID = String.valueOf(((expenses.FuelCost) expense).getBus().getBusId());
+            } else if (expense instanceof expenses.MaintenanceCost) {
+                entity = "Bus";
+                entityID = String.valueOf(((expenses.MaintenanceCost) expense).getBus().getBusId());                
+            } else if (expense instanceof expenses.Salary) {
+                entity = "Employee";
+                entityID = ((expenses.Salary) expense).getEmployee().getEmployeeID();
+            } else if (expense instanceof expenses.Utility) {
+                entity = "Depot";
+                entityID = String.valueOf(((expenses.Utility) expense).getDepot().getDepotId());
+            }
             model.addRow(new Object[]{
                 expense.getExpenseId(),
                 expense.getClass().getSimpleName(),
-                "12",
+                entity + " " + entityID,
                 "$" + expense.getCost()
             });
         }
