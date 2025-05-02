@@ -58,13 +58,16 @@ public class Accounting {
     /**
      * Prints out an expense report with all of the expenses in the database
      */
-    public void getReport() {
-        // Print the header for the report
-        System.out.printf("%-15s %-15s %-20s %-10s%n", "Expense ID", "Type", "Entity", "Cost");
-        System.out.println("---------------------------------------------------------------");
+    public String getReport() {
+        StringBuilder report = new StringBuilder();
+        report.append(String.format("%-15s %-15s %-20s %-10s%n", "Expense ID", "Type", "Entity", "Cost"));
+        report.append("---------------------------------------------------------------\n");
+        
         for(Expense expense : expenses) {
-            System.out.println(expense);
-        }             
+            report.append(expense);
+            report.append("\n");
+        }
+        return report.toString();
     }
     
     /**

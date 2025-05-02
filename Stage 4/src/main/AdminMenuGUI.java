@@ -465,6 +465,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         panelExpenses.setBackground(new java.awt.Color(215, 224, 223));
 
         btnExpenseReport.setText("Generate Expense Report");
+        btnExpenseReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExpenseReportActionPerformed(evt);
+            }
+        });
 
         btnPaymentReport.setText("Generate Payment Report");
 
@@ -617,6 +622,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         ManageBusGUI manageBusGUI = new ManageBusGUI(this.database, this);
         manageBusGUI.setVisible(true);
     }//GEN-LAST:event_btnManageBusActionPerformed
+
+    private void btnExpenseReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpenseReportActionPerformed
+        new ExpenseReportGUI(database).setVisible(true);
+    }//GEN-LAST:event_btnExpenseReportActionPerformed
     
     /**
      * populates the bus table with data from the bus manager
