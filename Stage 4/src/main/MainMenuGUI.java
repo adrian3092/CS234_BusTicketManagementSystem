@@ -22,15 +22,21 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private DepotManager depotManager;
 
     /**
-     * Creates new form MainMenuGUI
-     * @param database
+     * Creates new form MainMenuGUI with all managers
+     * @param loginManager the login manager
+     * @param scheduleManager the schedule manager
+     * @param routeManager the route manager
+     * @param depotManager the depot manager
      */
     public MainMenuGUI(Database database) {
         initComponents();
-        this.database = database;
+        this.loginManager = database.getLoginManager();
+        this.scheduleManager = database.getScheduleManager();
+        this.routeManager = database.getRouteManager();
+        this.depotManager = database.getDepotManager();
         setAutoRequestFocus(false);
-
-        // hover effect for buttons
+        
+        // add hover effect for buttons
         addHoverEffect(bookTicketMainMenuBtn, Color.WHITE, Color.GREEN);
         addHoverEffect(ViewSchedulesMainMenuBtn, Color.WHITE, Color.GREEN);
         addHoverEffect(EmployeeLoginMainMenuBtn, Color.WHITE, Color.GREEN);
@@ -38,9 +44,8 @@ public class MainMenuGUI extends javax.swing.JFrame {
         // add font setting for buttons
         bookTicketMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
         ViewSchedulesMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
-        EmployeeLoginMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));        
+        EmployeeLoginMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,38 +152,13 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookTicketMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTicketMainMenuBtnActionPerformed
-
-        new PassengerLoginGUI(database).setVisible(true);
+        if (this.database.getPassengerManager().getPassengerLoggedInStatus()) {
+            new PassengerLoginGUI(database).setVisible(true);}
         
         
     }//GEN-LAST:event_bookTicketMainMenuBtnActionPerformed
 
-    /**
-     * Creates new form MainMenuGUI with all managers
-     * @param loginManager the login manager
-     * @param scheduleManager the schedule manager
-     * @param routeManager the route manager
-     * @param depotManager the depot manager
-     */
-    public MainMenuGUI(LoginManager loginManager, ScheduleManager scheduleManager, 
-            RouteManager routeManager, DepotManager depotManager) {
-        initComponents();
-        this.loginManager = loginManager;
-        this.scheduleManager = scheduleManager;
-        this.routeManager = routeManager;
-        this.depotManager = depotManager;
-        setAutoRequestFocus(false);
-        
-        // add hover effect for buttons
-        addHoverEffect(bookTicketMainMenuBtn, Color.WHITE, Color.GREEN);
-        addHoverEffect(ViewSchedulesMainMenuBtn, Color.WHITE, Color.GREEN);
-        addHoverEffect(EmployeeLoginMainMenuBtn, Color.WHITE, Color.GREEN);
-        
-        // add font setting for buttons
-        bookTicketMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
-        ViewSchedulesMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
-        EmployeeLoginMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
-    }
+    
 
     private void ViewSchedulesMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSchedulesMainMenuBtnActionPerformed
 

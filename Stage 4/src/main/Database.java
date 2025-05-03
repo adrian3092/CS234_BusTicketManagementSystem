@@ -115,6 +115,5 @@ public class Database {
         ticketIssuer.saveTicketsToCSV();
         accounting.saveExpensesToCSV();
     }
-    
-    
+   
 }

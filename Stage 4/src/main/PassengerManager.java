@@ -13,6 +13,7 @@ import csv.CSVHandler;
 public class PassengerManager {
     private ArrayList<Passenger> passengers; // List of passengers
     private static final String PASSENGERS_CSV_FILE_PATH = "data/passengers.csv";
+    private boolean passengerLoggedIn = false;
 
     /**
      * Constructor to initialize the passenger manager.
@@ -147,5 +148,9 @@ public class PassengerManager {
             data.add(row);
         }
         CSVHandler.writeCSV(PASSENGERS_CSV_FILE_PATH, data);
+    }
+    
+    public boolean getPassengerLoggedInStatus() {
+        return this.passengerLoggedIn;
     }
 }
