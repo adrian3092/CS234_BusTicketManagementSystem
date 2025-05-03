@@ -16,6 +16,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     private Database database;
     private PassengerManager passengerManager;
     private String passengerID;
+    
     /**
      * Creates new form PassengerLoginGUI
      */
@@ -24,6 +25,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         this.database = database;
         this.passengerManager = database.getPassengerManager();
         initComponents();
+        getRootPane().setDefaultButton(loginBtn);
         setupUsernameBehavior();
         setupPasswordBehavior();
         setupSignUpLabelHover();
@@ -32,6 +34,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         addHoverEffect(loginBtn);
         setLocationRelativeTo(null);
         setAutoRequestFocus(false);
+        
         
         loginBtn.setBackground(Color.white);
         loginBtn.setForeground(Color.black);

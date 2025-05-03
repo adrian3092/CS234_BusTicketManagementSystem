@@ -3,8 +3,15 @@ package main;
 
 import depot.DepotManager;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -30,7 +37,42 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
         this.depotManager = database.getDepotManager();
         this.passengerManager = database.getPassengerManager();
         this.passenger = passengerManager.getPassengerById(passengerID);
+        welcomelbl.setText("Welcome " + this.passenger.getPassengerName());
+        
+        // color buttons
+        addHoverEffect(ticketHistoryBtn, Color.WHITE, Color.GREEN);
+        addHoverEffect(updateProfileBtn, Color.WHITE, Color.GREEN);
+        addHoverEffect(logoutBtn, Color.WHITE, Color.GREEN);
+        addHoverEffect(bookTicketBtn, Color.WHITE, Color.GREEN);
+        // set fonts
+        ticketHistoryBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        ticketHistoryBtn.setPreferredSize(new Dimension(132, 23));
+        updateProfileBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        updateProfileBtn.setPreferredSize(new Dimension(132, 23));
+        logoutBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        logoutBtn.setPreferredSize(new Dimension(132, 23));
+        bookTicketBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        bookTicketBtn.setPreferredSize(new Dimension(132, 23));
+        welcomelbl.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 16));
+        schedulelbl.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 14));
+        
+        DefaultTableModel model = new DefaultTableModel(new Object [][] {},
+        new String [] { "Name", "Route", "Start Time", "Departure Time", "Stops" }) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Prevents editing
+            }
+        };
+        passengerScheduleTable.setModel(model);
+        passengerScheduleTable.setRowSelectionAllowed(true);
+        passengerScheduleTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        styleTable(passengerScheduleTable);
+        populateScheduleTable();
+        
+        
         setLocationRelativeTo(null);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,120 +86,107 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        ticketHistoryScrollPane = new javax.swing.JScrollPane();
-        ticketHistoryTable = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        passengerScheduleTable = new javax.swing.JTable();
+        bookTicketBtn = new javax.swing.JButton();
+        ticketHistoryBtn = new javax.swing.JButton();
+        updateProfileBtn = new javax.swing.JButton();
+        logoutBtn = new javax.swing.JButton();
+        welcomelbl = new javax.swing.JLabel();
+        schedulelbl = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Passenger Dashboard");
 
-        jPanel3.setBackground(new java.awt.Color(51, 153, 0));
+        jPanel3.setBackground(new java.awt.Color(16, 32, 47));
 
-        jButton2.setText("Book Ticket");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jScrollPane1.setBackground(new java.awt.Color(215, 224, 223));
+
+        passengerScheduleTable.setBackground(new java.awt.Color(16, 32, 47));
+        passengerScheduleTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Route", "Start Time", "Departure Time", "Stops"
+            }
+        ));
+        jScrollPane1.setViewportView(passengerScheduleTable);
+
+        bookTicketBtn.setText("Book Ticket");
+        bookTicketBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bookTicketBtnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Update Profile");
+        ticketHistoryBtn.setText("View Ticket History");
 
-        jButton4.setText("Logout");
+        updateProfileBtn.setText("Update Profile");
 
-        jButton5.setText("View History");
+        logoutBtn.setText("Logout");
+
+        welcomelbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        welcomelbl.setForeground(new java.awt.Color(255, 255, 255));
+        welcomelbl.setText("jLabel1");
+
+        schedulelbl.setForeground(new java.awt.Color(255, 255, 255));
+        schedulelbl.setText("Select a schedule to book a ticket:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(welcomelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(ticketHistoryBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updateProfileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bookTicketBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(schedulelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(32, 32, 32))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton5)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        ticketHistoryScrollPane.setBackground(new java.awt.Color(255, 255, 255));
-
-        ticketHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Name", "Route", "Start Time", "Departure Time", "Stops"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        ticketHistoryTable.setCellSelectionEnabled(true);
-        ticketHistoryScrollPane.setViewportView(ticketHistoryTable);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ticketHistoryScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(162, 162, 162))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ticketHistoryScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addComponent(welcomelbl, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
+                .addComponent(schedulelbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(ticketHistoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(updateProfileBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(bookTicketBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(logoutBtn))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, 79))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 5, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -166,22 +195,132 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void bookTicketBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTicketBtnActionPerformed
+        int selectedRow = passengerScheduleTable.getSelectedRow();
+        if (selectedRow != -1) {
+        String scheduleName = (String) passengerScheduleTable.getValueAt(selectedRow, 0);
+        // proceed to find the Schedule by name and book it
+        System.out.println("Selected schedule: " + scheduleName);
+        // You can now look it up in scheduleManager and book it
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a schedule to book.");
+        }
 
+    }//GEN-LAST:event_bookTicketBtnActionPerformed
+
+    private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
+    button.setOpaque(true);
+    button.setBackground(normal);
+    button.setBorderPainted(false);
+
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hover);
+        }
+
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(normal);
+            
+        }
+    });
+    }   
+    
+    private void styleTable(JTable table) {
+    // Header styling
+    JTableHeader header = table.getTableHeader();
+    header.setFont(new Font("Segoe UI", Font.BOLD, 13));
+    header.setBackground(new Color(16, 32, 47)); // Dark gray
+    header.setForeground(Color.white);
+    header.setReorderingAllowed(false);
+
+    // Row styling
+    table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+    table.setRowHeight(28);
+    table.setGridColor(new Color(230, 230, 230));
+
+    // Zebra striping and selection styling
+    table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable tbl, Object value, boolean isSelected,
+                                                       boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(tbl, value, isSelected, hasFocus, row, column);
+            if (isSelected) {
+                c.setBackground(new Color(102, 178, 255)); // Light blue
+                c.setForeground(Color.BLACK);
+            } else {
+                c.setBackground(row % 2 == 0 ? Color.WHITE : new Color(245, 245, 245)); // Alternating colors
+                c.setForeground(Color.BLACK);
+            }
+            return c;
+        }
+    });
+}
+
+    private void populateScheduleTable() {
+        DefaultTableModel model = (DefaultTableModel) passengerScheduleTable.getModel();
+        
+        ArrayList<Schedule> schedules = scheduleManager.getSchedules();
+        
+        for (Schedule schedule : schedules) {
+            String name = schedule.getName();
+            String routeName = schedule.getRoute() != null ? schedule.getRoute().getName() : "N/A";
+            String startTime = formatTime(schedule.getStartTime());
+            
+            // format departure times as comma-separated list
+            String departureTimes = "";
+            if (schedule.getDepartureTimes() != null && !schedule.getDepartureTimes().isEmpty()) {
+                for (int i = 0; i < schedule.getDepartureTimes().size(); i++) {
+                    departureTimes += formatTime(schedule.getDepartureTimes().get(i));
+                    if (i < schedule.getDepartureTimes().size() - 1) {
+                        departureTimes += ", ";
+                    }
+                }
+            } else {
+                departureTimes = "N/A";
+            }
+            
+            // format stops as comma-separated list
+            String stops = "";
+            if (schedule.getRoute() != null && schedule.getRoute().getStops() != null && 
+                !schedule.getRoute().getStops().isEmpty()) {
+                for (int i = 0; i < schedule.getRoute().getStops().size(); i++) {
+                    stops += schedule.getRoute().getStops().get(i).getName();
+                    if (i < schedule.getRoute().getStops().size() - 1) {
+                        stops += ", ";
+                    }
+                }
+            } else {
+                stops = "N/A";
+            }
+            
+            model.addRow(new Object[]{name, routeName, startTime, departureTimes, stops});
+        }
+    }
+    
+    /**
+     * formats a double time value to a string in the format HH:MM
+     * @param time the time as a double
+     * @return the formatted time string
+     */
+    private String formatTime(double time) {
+        int hours = (int) time;
+        int minutes = (int) (((time - hours) * 100) + 0.5);
+        
+        return String.format("%02d:%02d", hours, minutes);
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bookTicketBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane ticketHistoryScrollPane;
-    private javax.swing.JTable ticketHistoryTable;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton logoutBtn;
+    private javax.swing.JTable passengerScheduleTable;
+    private javax.swing.JLabel schedulelbl;
+    private javax.swing.JButton ticketHistoryBtn;
+    private javax.swing.JButton updateProfileBtn;
+    private javax.swing.JLabel welcomelbl;
     // End of variables declaration//GEN-END:variables
 }

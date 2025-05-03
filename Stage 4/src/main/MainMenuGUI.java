@@ -87,6 +87,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         ViewSchedulesMainMenuBtn.setText("View Schedules");
         ViewSchedulesMainMenuBtn.setBorderPainted(false);
+        ViewSchedulesMainMenuBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ViewSchedulesMainMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ViewSchedulesMainMenuBtnActionPerformed(evt);
@@ -95,6 +96,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
         EmployeeLoginMainMenuBtn.setText("Employee Login");
         EmployeeLoginMainMenuBtn.setBorderPainted(false);
+        EmployeeLoginMainMenuBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         EmployeeLoginMainMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EmployeeLoginMainMenuBtnActionPerformed(evt);
