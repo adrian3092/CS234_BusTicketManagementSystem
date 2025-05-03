@@ -42,10 +42,39 @@ public class MainMenuGUI extends javax.swing.JFrame {
         addHoverEffect(ViewSchedulesMainMenuBtn, Color.WHITE, Color.GREEN);
         addHoverEffect(EmployeeLoginMainMenuBtn, Color.WHITE, Color.GREEN);
         
+        // set consistent size for all buttons
+        int buttonWidth = 160;
+        int buttonHeight = 40;
+        
+        // set size for all buttons
+        bookTicketMainMenuBtn.setPreferredSize(new java.awt.Dimension(buttonWidth, buttonHeight));
+        bookTicketMainMenuBtn.setMinimumSize(new java.awt.Dimension(buttonWidth, buttonHeight));
+        bookTicketMainMenuBtn.setMaximumSize(new java.awt.Dimension(buttonWidth, buttonHeight));
+        
+        ViewSchedulesMainMenuBtn.setPreferredSize(new java.awt.Dimension(buttonWidth, buttonHeight));
+        ViewSchedulesMainMenuBtn.setMinimumSize(new java.awt.Dimension(buttonWidth, buttonHeight));
+        ViewSchedulesMainMenuBtn.setMaximumSize(new java.awt.Dimension(buttonWidth, buttonHeight));
+        
+        EmployeeLoginMainMenuBtn.setPreferredSize(new java.awt.Dimension(buttonWidth, buttonHeight));
+        EmployeeLoginMainMenuBtn.setMinimumSize(new java.awt.Dimension(buttonWidth, buttonHeight));
+        EmployeeLoginMainMenuBtn.setMaximumSize(new java.awt.Dimension(buttonWidth, buttonHeight));
+        
         // add font setting for buttons
-        bookTicketMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
-        ViewSchedulesMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
-        EmployeeLoginMainMenuBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        java.awt.Font buttonFont = new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12);
+        bookTicketMainMenuBtn.setFont(buttonFont);
+        ViewSchedulesMainMenuBtn.setFont(buttonFont);
+        EmployeeLoginMainMenuBtn.setFont(buttonFont);
+        
+        // set consistent text alignment and padding
+        bookTicketMainMenuBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ViewSchedulesMainMenuBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        EmployeeLoginMainMenuBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        
+        // set consistent margin for all buttons
+        java.awt.Insets buttonMargin = new java.awt.Insets(5, 10, 5, 10);
+        bookTicketMainMenuBtn.setMargin(buttonMargin);
+        ViewSchedulesMainMenuBtn.setMargin(buttonMargin);
+        EmployeeLoginMainMenuBtn.setMargin(buttonMargin);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,11 +162,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(welcomeHeader2)
                 .addGap(64, 64, 64)
-                .addComponent(bookTicketMainMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bookTicketMainMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(ViewSchedulesMainMenuBtn)
+                .addComponent(ViewSchedulesMainMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(EmployeeLoginMainMenuBtn)
+                .addComponent(EmployeeLoginMainMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(167, Short.MAX_VALUE))
         );
 
@@ -158,11 +187,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
             new PassengerLoginGUI(database).setVisible(true);
 
-        
-        
     }//GEN-LAST:event_bookTicketMainMenuBtnActionPerformed
-
-    
 
     private void ViewSchedulesMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSchedulesMainMenuBtnActionPerformed
 
@@ -218,44 +243,6 @@ public class MainMenuGUI extends javax.swing.JFrame {
         }
     });
     }   
-
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        
-        
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenuGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MainMenuGUI().setVisible(true);
-//            }
-//        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton EmployeeLoginMainMenuBtn;
