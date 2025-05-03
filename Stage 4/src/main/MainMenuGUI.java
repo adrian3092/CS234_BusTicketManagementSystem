@@ -153,11 +153,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookTicketMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTicketMainMenuBtnActionPerformed
-        if (this.database.getPassengerManager().getPassengerLoggedInStatus()) {
-            new PassengerLoginGUI(database).setVisible(true);}
-        else {
-          new passengerDashboardGUI(database, passengerDashboardGUI.passenger.getPassengerID()).setVisible(true);
-        }
+
+            new PassengerLoginGUI(database).setVisible(true);
+
         
         
     }//GEN-LAST:event_bookTicketMainMenuBtnActionPerformed
