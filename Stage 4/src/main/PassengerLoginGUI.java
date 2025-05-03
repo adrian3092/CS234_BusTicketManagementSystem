@@ -148,7 +148,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         String password = new String(passwordField.getPassword());
         
         this.passengerID = loginManager.checkCredentials(username, password);
-                    if (this.passengerID.equals("not found") || this.passengerID.equals("Admin") || this.passengerID.equals("Driver")) {
+                    if (this.passengerID.equals("not found") || this.passengerID.equals("Admin") || this.passengerID.equals("Driver") || (this.passengerManager.getPassengerById(this.passengerID) == null)) {
                         new InvalidCredentials().setVisible(true);
                         userNameField.setText("Username");
                         userNameField.setForeground(Color.LIGHT_GRAY);

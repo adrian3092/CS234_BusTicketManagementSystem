@@ -14,7 +14,7 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
     private ScheduleManager scheduleManager;
     private RouteManager routeManager;
     private DepotManager depotManager;
-    public static Passenger passenger;
+    private Passenger passenger;
     private PassengerManager passengerManager;
     /**
      * Creates new form passengerDashboardGUI
