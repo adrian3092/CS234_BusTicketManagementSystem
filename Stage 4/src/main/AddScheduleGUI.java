@@ -9,11 +9,13 @@ package main;
  * @author Owner
  */
 public class AddScheduleGUI extends javax.swing.JFrame {
-
-    /**
-     * Creates new form AddScheduleGUI
-     */
-    public AddScheduleGUI() {
+    
+    private Database database;
+    private AdminMenuGUI adminMenuGUI;
+    
+    public AddScheduleGUI(Database database, AdminMenuGUI adminMenuGUI) {
+        this.database = database;
+        this.adminMenuGUI = adminMenuGUI;
         initComponents();
     }
 
@@ -26,58 +28,69 @@ public class AddScheduleGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        addSchedulePanel = new javax.swing.JPanel();
+        nameTxt = new javax.swing.JTextField();
+        routeIdTxt = new javax.swing.JTextField();
+        depotIdTxt = new javax.swing.JTextField();
+        startTimeTxt = new javax.swing.JTextField();
+        addButton = new javax.swing.JButton();
+        departureTimesTxt = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(215, 224, 223));
+        addSchedulePanel.setBackground(new java.awt.Color(215, 224, 223));
 
-        jTextField1.setText("Name");
+        nameTxt.setText("Name");
 
-        jTextField2.setText("Route ID");
+        routeIdTxt.setText("Route ID");
 
-        jTextField3.setText("Depot ID");
+        depotIdTxt.setText("Depot ID");
 
-        jTextField4.setText("Start Time");
+        startTimeTxt.setText("Start Time");
 
-        jButton1.setText("Add");
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
+        departureTimesTxt.setText("Departure Times");
+
+        javax.swing.GroupLayout addSchedulePanelLayout = new javax.swing.GroupLayout(addSchedulePanel);
+        addSchedulePanel.setLayout(addSchedulePanelLayout);
+        addSchedulePanelLayout.setHorizontalGroup(
+            addSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addSchedulePanelLayout.createSequentialGroup()
+                .addContainerGap(235, Short.MAX_VALUE)
+                .addGroup(addSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nameTxt)
+                    .addComponent(routeIdTxt)
+                    .addComponent(depotIdTxt)
+                    .addComponent(startTimeTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                    .addComponent(departureTimesTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
+                .addContainerGap(236, Short.MAX_VALUE))
+            .addGroup(addSchedulePanelLayout.createSequentialGroup()
+                .addGap(263, 263, 263)
+                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(268, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(263, 263, 263))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        addSchedulePanelLayout.setVerticalGroup(
+            addSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addSchedulePanelLayout.createSequentialGroup()
                 .addGap(86, 86, 86)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(routeIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(depotIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(startTimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addComponent(departureTimesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(addButton)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -86,19 +99,52 @@ public class AddScheduleGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addSchedulePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addSchedulePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * create a new schedule, and add it to the schedule manager
+     * @param evt 
+     */
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        String scheduleName = nameTxt.getText();
+        String routeId = routeIdTxt.getText();
+        int depotId = Integer.parseInt(depotIdTxt.getText());
+        double startTime = Double.parseDouble(startTimeTxt.getText());
+        String departureTimes = departureTimesTxt.getText();
+        
+        Route route = database.getRouteManager().getRouteById(routeId);
+        depot.Depot depot = database.getDepotManager().findDepotById(depotId);
+        Schedule schedule = new Schedule(route, depot, startTime);
+        schedule.setName(scheduleName);
+        
+        // process departure times (comma-separated)
+            String[] timeStrings = departureTimes.split(",");
+            for (String timeStr : timeStrings) {
+                double time = Double.parseDouble(timeStr.trim());
+                schedule.getDepartureTimes().add(time);
+            }
+        
+        database.getScheduleManager().addSchedule(schedule);
+        
+        // refresh the schedule table in AdminMenuGUI
+        if (adminMenuGUI != null) {
+            adminMenuGUI.populateScheduleTable();
+        }
+        
+        this.dispose();
+    }//GEN-LAST:event_addButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -130,17 +176,18 @@ public class AddScheduleGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddScheduleGUI().setVisible(true);
+        //        new AddScheduleGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JButton addButton;
+    private javax.swing.JPanel addSchedulePanel;
+    private javax.swing.JTextField departureTimesTxt;
+    private javax.swing.JTextField depotIdTxt;
+    private javax.swing.JTextField nameTxt;
+    private javax.swing.JTextField routeIdTxt;
+    private javax.swing.JTextField startTimeTxt;
     // End of variables declaration//GEN-END:variables
 }

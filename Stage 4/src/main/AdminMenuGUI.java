@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+import main.Schedule;
 
 /**
  *
@@ -42,6 +43,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         
         // load buses into the table
         populateBusTable();
+        // load schedules into the table
+        populateScheduleTable();
         // load routes into the table
         populateRouteTable();
         // load depots into the table
@@ -193,6 +196,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         panelSchedule.setBackground(new java.awt.Color(215, 224, 223));
 
         btnAddSchedule.setText("Add a New Schedule");
+        btnAddSchedule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddScheduleActionPerformed(evt);
+            }
+        });
 
         btnRemoveSchedule.setText("Remove an Existing Schedule");
 
@@ -630,6 +638,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private void btnNewExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewExpenseActionPerformed
         new AddExpenseGUI(database).setVisible(true);
     }//GEN-LAST:event_btnNewExpenseActionPerformed
+
+    private void btnAddScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddScheduleActionPerformed
+        AddScheduleGUI addScheduleGUI = new AddScheduleGUI(this.database, this);
+        addScheduleGUI.setVisible(true);
+    }//GEN-LAST:event_btnAddScheduleActionPerformed
     
     /**
      * populates the bus table with data from the bus manager
@@ -664,8 +677,58 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     /**
      * populates the schedule table with data from the schedule manager
      */
-    private void populateScheduleTable() {
-        //
+    public void populateScheduleTable() {
+        DefaultTableModel model = (DefaultTableModel) tableSchedule.getModel();
+        model.setRowCount(0); // clear existing rows
+        
+        ArrayList<Schedule> schedules = database.getScheduleManager().getSchedules();
+        
+        for (Schedule schedule : schedules) {
+            String name = schedule.getName();
+            String routeName = schedule.getRoute() != null ? schedule.getRoute().getName() : "N/A";
+            String startTime = formatTime(schedule.getStartTime());
+            
+            // format departure times as comma-separated list
+            String departureTimes = "";
+            if (schedule.getDepartureTimes() != null && !schedule.getDepartureTimes().isEmpty()) {
+                for (int i = 0; i < schedule.getDepartureTimes().size(); i++) {
+                    departureTimes += formatTime(schedule.getDepartureTimes().get(i));
+                    if (i < schedule.getDepartureTimes().size() - 1) {
+                        departureTimes += ", ";
+                    }
+                }
+            } else {
+                departureTimes = "N/A";
+            }
+            
+            // format stops as comma-separated list
+            String stops = "";
+            if (schedule.getRoute() != null && schedule.getRoute().getStops() != null && 
+                !schedule.getRoute().getStops().isEmpty()) {
+                for (int i = 0; i < schedule.getRoute().getStops().size(); i++) {
+                    stops += schedule.getRoute().getStops().get(i).getName();
+                    if (i < schedule.getRoute().getStops().size() - 1) {
+                        stops += ", ";
+                    }
+                }
+            } else {
+                stops = "N/A";
+            }
+            
+            model.addRow(new Object[]{name, routeName, startTime, departureTimes, stops});
+        }
+    }
+    
+    /**
+     * formats a double time value to a string in the format HH:MM
+     * @param time the time as a double
+     * @return the formatted time string
+     */
+    private String formatTime(double time) {
+        int hours = (int) time;
+        int minutes = (int) (((time - hours) * 100) + 0.5);
+        
+        return String.format("%02d:%02d", hours, minutes);
     }
     
     /**
