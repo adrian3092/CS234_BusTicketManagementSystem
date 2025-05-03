@@ -4,6 +4,9 @@
  */
 package main;
 
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+
 /**
  *
  * @author Owner
@@ -20,6 +23,105 @@ public class ManageBusGUI extends javax.swing.JFrame {
         this.database = database;
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
+        
+        // add a TableModelListener to watch for edits to the mileage + capacity column
+        busInfoTable.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent event) {
+                // only handle updates (not inserts or deletes)
+                if (event.getType() == TableModelEvent.UPDATE) {
+                    int row = event.getFirstRow();
+                    int column = event.getColumn();
+                    
+                    // check if the mileage column was edited
+                    if (column == 3) {
+                        updateBusMileage(row);
+                    }
+                    // check if the seating capacity column was edited
+                    else if (column == 4) {
+                        updateBusCapacity(row);
+                    }
+                }
+            }
+        });
+    }
+    
+    /**
+     * update the bus mileage when the mileage column is edited
+     * @param row the row that was edited
+     */
+    private void updateBusMileage(int row) {
+        // get the table model
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) busInfoTable.getModel();
+
+        // get the bus ID from the text field
+        int busId = Integer.parseInt(busIDTxt.getText());
+
+        // get the bus from the database
+        bus.Bus bus = database.getBusManager().findBusById(busId);
+
+        if (bus != null) {
+            // get the new mileage value from the table
+            Object value = model.getValueAt(row, 3);
+            int mileage;
+
+            // convert the value to an integer
+            if (value instanceof Integer) {
+                mileage = (Integer) value;
+            } else {
+                mileage = Integer.parseInt(value.toString());
+            }
+
+            // update the bus mileage
+            bus.setMileage(mileage);
+
+            // save changes to CSV
+            database.getBusManager().saveBusesToCSV();
+
+            // fefresh the bus table in AdminMenuGUI
+            if (adminMenuGUI != null) {
+                adminMenuGUI.populateBusTable();
+            }
+        }
+    }
+    
+    /**
+     * update the bus capacity when the capacity column is edited
+     * @param row the row that was edited
+     */
+    private void updateBusCapacity(int row) {
+        // get the table model
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) busInfoTable.getModel();
+
+        // get the bus ID from the text field
+        int busId = Integer.parseInt(busIDTxt.getText());
+
+        // get the bus from the database
+        bus.Bus bus = database.getBusManager().findBusById(busId);
+
+        if (bus != null) {
+            // get the new capacity value from the table
+            Object value = model.getValueAt(row, 4);
+            int capacity;
+
+            // convert the value to an integer
+            if (value instanceof Integer) {
+                capacity = (Integer) value;
+            } else {
+                capacity = Integer.parseInt(value.toString());
+            }
+
+            // update the bus capacity
+            bus.setCapacity(capacity);
+
+            // save changes to CSV
+            database.getBusManager().saveBusesToCSV();
+
+            // refresh the bus table in AdminMenuGUI
+            if (adminMenuGUI != null) {
+                adminMenuGUI.populateBusTable();
+            }
+        }
     }
 
     /**
@@ -112,9 +214,16 @@ public class ManageBusGUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(busInfoTable);
@@ -160,6 +269,8 @@ public class ManageBusGUI extends javax.swing.JFrame {
         if (adminMenuGUI != null) {
             adminMenuGUI.populateBusTable();
         }
+        
+        this.dispose();
     }//GEN-LAST:event_deleteBusButtonActionPerformed
     
     /**
@@ -218,7 +329,6 @@ public class ManageBusGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-        //        new ManageBusGUI().setVisible(true);
             }
         });
     }
