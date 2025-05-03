@@ -96,9 +96,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Make"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="makeTxtActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="modelTxt">
           <Properties>
@@ -107,9 +104,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Model"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modelTxtActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="mileageTxt">
           <Properties>
@@ -118,9 +112,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Mileage"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mileageTxtActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="seatingCapacityTxt">
           <Properties>
@@ -129,9 +120,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Seating Capacity"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seatingCapacityTxtActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="addBtn">
           <Properties>

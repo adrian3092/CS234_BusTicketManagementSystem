@@ -51,35 +51,15 @@ public class AddBusGUI extends javax.swing.JFrame {
 
         makeTxt.setForeground(new java.awt.Color(153, 153, 153));
         makeTxt.setText("Make");
-        makeTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                makeTxtActionPerformed(evt);
-            }
-        });
 
         modelTxt.setForeground(new java.awt.Color(153, 153, 153));
         modelTxt.setText("Model");
-        modelTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modelTxtActionPerformed(evt);
-            }
-        });
 
         mileageTxt.setForeground(new java.awt.Color(153, 153, 153));
         mileageTxt.setText("Mileage");
-        mileageTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mileageTxtActionPerformed(evt);
-            }
-        });
 
         seatingCapacityTxt.setForeground(new java.awt.Color(153, 153, 153));
         seatingCapacityTxt.setText("Seating Capacity");
-        seatingCapacityTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seatingCapacityTxtActionPerformed(evt);
-            }
-        });
 
         addBtn.setText("Add");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -127,22 +107,6 @@ public class AddBusGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void makeTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_makeTxtActionPerformed
-
-    private void modelTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modelTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modelTxtActionPerformed
-
-    private void mileageTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mileageTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mileageTxtActionPerformed
-
-    private void seatingCapacityTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seatingCapacityTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_seatingCapacityTxtActionPerformed
 
     /**
      * create a new bus, and add it to the bus manager
