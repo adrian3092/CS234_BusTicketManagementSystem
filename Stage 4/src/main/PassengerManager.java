@@ -14,6 +14,7 @@ public class PassengerManager {
     private ArrayList<Passenger> passengers; // List of passengers
     private static final String PASSENGERS_CSV_FILE_PATH = "data/passengers.csv";
 
+
     /**
      * Constructor to initialize the passenger manager.
      */
@@ -148,4 +149,6 @@ public class PassengerManager {
         }
         CSVHandler.writeCSV(PASSENGERS_CSV_FILE_PATH, data);
     }
+    
+
 }

@@ -208,8 +208,10 @@ public class LoginGUI extends javax.swing.JFrame {
                         dispose();
                     } else {
                         new InvalidCredentials().setVisible(true);
-                        txtUsername.setText("");
-                        txtPassword.setText("");
+                        txtUsername.setText("Username");
+                        txtUsername.setForeground(Color.LIGHT_GRAY);
+                        txtUsername.setText("Password");
+                        txtUsername.setForeground(Color.LIGHT_GRAY);
                     }
     }//GEN-LAST:event_btnLoginActionPerformed
 
