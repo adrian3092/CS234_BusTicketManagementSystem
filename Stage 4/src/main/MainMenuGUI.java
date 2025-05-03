@@ -148,7 +148,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
 
     private void bookTicketMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTicketMainMenuBtnActionPerformed
 
-        new PassengerLoginGUI().setVisible(true);
+        new PassengerLoginGUI(database).setVisible(true);
         
         
     }//GEN-LAST:event_bookTicketMainMenuBtnActionPerformed

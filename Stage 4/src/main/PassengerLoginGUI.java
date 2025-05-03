@@ -5,17 +5,24 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.border.Border;
+import login.LoginManager;
 
 /**
  *
  * @author Owner
  */
 public class PassengerLoginGUI extends javax.swing.JFrame {
-
+    private LoginManager loginManager;
+    private Database database;
+    private PassengerManager passengerManager;
+    private String passengerID;
     /**
      * Creates new form PassengerLoginGUI
      */
-    public PassengerLoginGUI() {
+    public PassengerLoginGUI(Database database) {
+        this.loginManager = database.getLoginManager();
+        this.database = database;
+        this.passengerManager = database.getPassengerManager();
         initComponents();
         setupUsernameBehavior();
         setupPasswordBehavior();
@@ -63,13 +70,18 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         loginBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         loginBtn.setText("Login");
         loginBtn.setBorderPainted(false);
+        loginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBtnActionPerformed(evt);
+            }
+        });
 
         SignUpLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         SignUpLabel.setForeground(new java.awt.Color(0, 204, 51));
         SignUpLabel.setText("Sign up");
 
         passwordField.setForeground(new java.awt.Color(153, 153, 153));
-        passwordField.setText("password");
+        passwordField.setText("Password");
         passwordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +142,25 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     private void userNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameFieldActionPerformed
+
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        String username = userNameField.getText();
+        String password = new String(passwordField.getPassword());
+        
+        this.passengerID = loginManager.checkCredentials(username, password);
+                    if (this.passengerID.equals("not found") || this.passengerID.equals("Admin") || this.passengerID.equals("Driver")) {
+                        new InvalidCredentials().setVisible(true);
+                        userNameField.setText("Username");
+                        userNameField.setForeground(Color.LIGHT_GRAY);
+                        passwordField.setText("Password");
+                        passwordField.setForeground(Color.LIGHT_GRAY);
+                        }
+                    else {
+                        new passengerDashboardGUI(database, this.passengerID).setVisible(true);
+                        dispose();
+                    }
+                       
+    }//GEN-LAST:event_loginBtnActionPerformed
     
     
     // Set up focus behaviour for Username text field
@@ -163,7 +194,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     passwordField.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {
             String pwd = new String(passwordField.getPassword());
-            if (pwd.equals("password")) {
+            if (pwd.equals("Password")) {
                 passwordField.setText("");
                 passwordField.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
                 passwordField.setEchoChar('•'); // Restore masking when typing
@@ -174,7 +205,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
             String pwd = new String(passwordField.getPassword());
             if (pwd.isEmpty()) {
                 passwordField.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
-                passwordField.setText("password");
+                passwordField.setText("Password");
                 passwordField.setEchoChar((char)0); // No masking for placeholder
                 passwordField.setBorder(defaultBorder);
             }
@@ -276,11 +307,11 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PassengerLoginGUI().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new PassengerLoginGUI().setVisible(true);
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
