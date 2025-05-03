@@ -96,7 +96,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         tableEmployee = new javax.swing.JTable();
         panelExpenses = new javax.swing.JPanel();
         btnExpenseReport = new javax.swing.JButton();
-        btnManagePayments = new javax.swing.JButton();
         btnNewExpense = new javax.swing.JButton();
         btnRemoveExpense = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -471,9 +470,12 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         });
 
-        btnManagePayments.setText("Manage Payments");
-
         btnNewExpense.setText("Add a New Expense");
+        btnNewExpense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewExpenseActionPerformed(evt);
+            }
+        });
 
         btnRemoveExpense.setText("Remove an Existing Expense");
 
@@ -513,7 +515,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(panelExpensesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnExpenseReport, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManagePayments, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNewExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRemoveExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
@@ -528,8 +529,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelExpensesLayout.createSequentialGroup()
                         .addComponent(btnExpenseReport)
-                        .addGap(59, 59, 59)
-                        .addComponent(btnManagePayments)
                         .addGap(18, 18, 18)
                         .addComponent(btnNewExpense)
                         .addGap(18, 18, 18)
@@ -627,6 +626,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private void btnExpenseReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpenseReportActionPerformed
         new ExpenseReportGUI(database).setVisible(true);
     }//GEN-LAST:event_btnExpenseReportActionPerformed
+
+    private void btnNewExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewExpenseActionPerformed
+        new AddExpenseGUI(database).setVisible(true);
+    }//GEN-LAST:event_btnNewExpenseActionPerformed
     
     /**
      * populates the bus table with data from the bus manager
@@ -833,7 +836,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnAddSchedule, btnRemoveSchedule, btnManageSchedule,
         btnAddRoute, btnManageRoute, btnRouteAssignment,
         btnAddEmployee, btnDeleteEmployee, btnUpdateEmployee,
-        btnExpenseReport, btnPaymentReport, btnManagePayments,
+        btnExpenseReport, btnPaymentReport, 
         btnNewExpense, btnRemoveExpense
     };
 
@@ -905,7 +908,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnAddSchedule, btnRemoveSchedule, btnManageSchedule,
         btnAddRoute, btnManageRoute, btnRouteAssignment,
         btnAddEmployee, btnDeleteEmployee, btnUpdateEmployee,
-        btnExpenseReport, btnPaymentReport, btnManagePayments,
+        btnExpenseReport, btnPaymentReport,
         btnNewExpense, btnRemoveExpense
     };
 
@@ -946,7 +949,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteEmployee;
     private javax.swing.JButton btnExpenseReport;
     private javax.swing.JButton btnManageBus;
-    private javax.swing.JButton btnManagePayments;
     private javax.swing.JButton btnManageRoute;
     private javax.swing.JButton btnManageSchedule;
     private javax.swing.JButton btnNewExpense;

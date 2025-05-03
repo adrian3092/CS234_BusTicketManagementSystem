@@ -579,7 +579,6 @@
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnExpenseReport" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="btnManagePayments" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
                           <Component id="btnNewExpense" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
                           <Component id="btnRemoveExpense" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
                       </Group>
@@ -597,9 +596,7 @@
                           <Component id="jScrollPane4" min="-2" pref="246" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="btnExpenseReport" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                              <Component id="btnManagePayments" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnNewExpense" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnRemoveExpense" min="-2" max="-2" attributes="0"/>
@@ -619,15 +616,13 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExpenseReportActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnManagePayments">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Manage Payments"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="btnNewExpense">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add a New Expense"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewExpenseActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnRemoveExpense">
               <Properties>
