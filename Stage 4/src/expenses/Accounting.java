@@ -192,10 +192,10 @@ public class Accounting {
             float cost = Float.parseFloat(row[4]);
             
             // Get object from entity
-            if (type.equals("Fuel Cost")) {
+            if (type.equals("FuelCost")) {
                 Bus bus = busManager.findBusById(Integer.parseInt(entityID));
                 new FuelCost(this, cost, bus);
-            } else if (type.equals("Maintenance Cost")) {
+            } else if (type.equals("MaintenanceCost")) {
                 Bus bus = busManager.findBusById(Integer.parseInt(entityID));
                 new MaintenanceCost(this, cost, bus);
             } else if (type.equals("Salary")) {
