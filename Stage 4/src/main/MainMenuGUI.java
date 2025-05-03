@@ -28,8 +28,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
      * @param routeManager the route manager
      * @param depotManager the depot manager
      */
-    public MainMenuGUI(Database database) {
+    public MainMenuGUI(Database initialDatabase) {
         initComponents();
+        this.database = initialDatabase;
         this.loginManager = database.getLoginManager();
         this.scheduleManager = database.getScheduleManager();
         this.routeManager = database.getRouteManager();
@@ -154,6 +155,9 @@ public class MainMenuGUI extends javax.swing.JFrame {
     private void bookTicketMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTicketMainMenuBtnActionPerformed
         if (this.database.getPassengerManager().getPassengerLoggedInStatus()) {
             new PassengerLoginGUI(database).setVisible(true);}
+        else {
+          new passengerDashboardGUI(database, passengerDashboardGUI.passenger.getPassengerID()).setVisible(true);
+        }
         
         
     }//GEN-LAST:event_bookTicketMainMenuBtnActionPerformed
