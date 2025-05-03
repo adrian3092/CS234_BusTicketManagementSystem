@@ -811,7 +811,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 employee.getJobTitle(),
                 employee.getEmail(),
                 employee.getPhoneNumber(),
-                "$" + employee.getSalary()
+                String.format("$%.2f", employee.getSalary())
+
             });
         }
     }
@@ -856,7 +857,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 expense.getExpenseId(),
                 expense.getClass().getSimpleName(),
                 entity + " " + entityID,
-                "$" + expense.getCost()
+                String.format("$%.2f", expense.getCost())
+
             });
         }
     }
@@ -884,7 +886,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             model.addRow(new Object[]{
                 payment.getPaymentId(),
                 payment.getPassenger().getPassengerName(),
-                "$" + payment.getPaymentAmount()
+                String.format("$%.2f", payment.getPaymentAmount())
+
             });
         }
     }
