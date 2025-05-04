@@ -18,12 +18,14 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
     private Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
     private Passenger passenger;
     private PassengerManager passengerManager;
+    private passengerDashboardGUI passengerDashboard;
     /**
      * Creates new form UpdatePassengerProfileGUI
      */
-    public UpdatePassengerProfileGUI(Passenger initPassenger,PassengerManager pm) {
+    public UpdatePassengerProfileGUI(Passenger initPassenger,PassengerManager pm, passengerDashboardGUI dashboard) {
         this.passenger = initPassenger;
         this.passengerManager = pm;
+        this.passengerDashboard = dashboard;
         initComponents();
         setAutoRequestFocus(false);
         setLocationRelativeTo(null);
@@ -226,10 +228,13 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         
         passengerManager.updatePassenger(this.passenger.getPassengerID(), name, email, phoneNumber);
         passengerManager.savePassengersToCSV();
+        passengerDashboard.updateWelcomelbl();
+        this.dispose();
     }//GEN-LAST:event_saveUpdateBtnActionPerformed
 
     private void deleteAccountBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAccountBtn1ActionPerformed
-        // TODO add your handling code here:
+        this.passengerManager.deletePassenger(this.passenger.getPassengerID());
+        this.passengerManager.savePassengersToCSV();
     }//GEN-LAST:event_deleteAccountBtn1ActionPerformed
 
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {

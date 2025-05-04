@@ -223,7 +223,7 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void updateProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProfileBtnActionPerformed
-        new UpdatePassengerProfileGUI(this.passenger, this.passengerManager).setVisible(true);
+        new UpdatePassengerProfileGUI(this.passenger, this.passengerManager, this).setVisible(true);
     }//GEN-LAST:event_updateProfileBtnActionPerformed
 
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
@@ -242,6 +242,10 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
         }
     });
     }   
+    
+    void updateWelcomelbl() {
+        welcomelbl.setText("Welcome " + this.passenger.getPassengerName());
+    }
     
     private void styleTable(JTable table) {
     // Header styling
