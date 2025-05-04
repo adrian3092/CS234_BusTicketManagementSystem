@@ -262,7 +262,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     
     private void openSignUpForm() {
 
-    PassengerSignUpGUI signUpForm = new PassengerSignUpGUI(); 
+    PassengerSignUpGUI signUpForm = new PassengerSignUpGUI(this.database); 
     signUpForm.setVisible(true);
     }
     
