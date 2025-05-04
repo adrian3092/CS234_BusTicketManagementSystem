@@ -69,7 +69,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="welcomeHeader2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                  <Component id="bookTicketMainMenuBtn" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="bookTicketMainMenuBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="ViewSchedulesMainMenuBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>

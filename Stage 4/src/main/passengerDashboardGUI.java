@@ -125,8 +125,18 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
         ticketHistoryBtn.setText("View Ticket History");
 
         updateProfileBtn.setText("Update Profile");
+        updateProfileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateProfileBtnActionPerformed(evt);
+            }
+        });
 
         logoutBtn.setText("Logout");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         welcomelbl.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         welcomelbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -207,6 +217,14 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_bookTicketBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void updateProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProfileBtnActionPerformed
+        new UpdatePassengerProfileGUI(this.passenger).setVisible(true);
+    }//GEN-LAST:event_updateProfileBtnActionPerformed
 
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
     button.setOpaque(true);

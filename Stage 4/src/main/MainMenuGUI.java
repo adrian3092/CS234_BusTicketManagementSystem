@@ -44,7 +44,7 @@ public class MainMenuGUI extends javax.swing.JFrame {
         
         // set consistent size for all buttons
         int buttonWidth = 160;
-        int buttonHeight = 40;
+        int buttonHeight = 23;
         
         // set size for all buttons
         bookTicketMainMenuBtn.setPreferredSize(new java.awt.Dimension(buttonWidth, buttonHeight));
@@ -162,11 +162,11 @@ public class MainMenuGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(welcomeHeader2)
                 .addGap(64, 64, 64)
-                .addComponent(bookTicketMainMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bookTicketMainMenuBtn)
                 .addGap(18, 18, 18)
-                .addComponent(ViewSchedulesMainMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ViewSchedulesMainMenuBtn)
                 .addGap(18, 18, 18)
-                .addComponent(EmployeeLoginMainMenuBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(EmployeeLoginMainMenuBtn)
                 .addContainerGap(167, Short.MAX_VALUE))
         );
 
