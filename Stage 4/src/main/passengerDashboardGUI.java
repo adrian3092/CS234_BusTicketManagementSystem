@@ -223,7 +223,7 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void updateProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProfileBtnActionPerformed
-        new UpdatePassengerProfileGUI(this.passenger).setVisible(true);
+        new UpdatePassengerProfileGUI(this.passenger, this.passengerManager).setVisible(true);
     }//GEN-LAST:event_updateProfileBtnActionPerformed
 
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {

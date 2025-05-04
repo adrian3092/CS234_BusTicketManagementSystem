@@ -17,11 +17,13 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
     private Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
     private Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
     private Passenger passenger;
+    private PassengerManager passengerManager;
     /**
      * Creates new form UpdatePassengerProfileGUI
      */
-    public UpdatePassengerProfileGUI(Passenger initPassenger) {
+    public UpdatePassengerProfileGUI(Passenger initPassenger,PassengerManager pm) {
         this.passenger = initPassenger;
+        this.passengerManager = pm;
         initComponents();
         setAutoRequestFocus(false);
         setLocationRelativeTo(null);
@@ -100,6 +102,11 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         });
 
         saveUpdateBtn.setText("Save Update");
+        saveUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveUpdateBtnActionPerformed(evt);
+            }
+        });
 
         deleteAccountBtn1.setText("Delete Account");
         deleteAccountBtn1.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +218,15 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
                 emailUpdatetxt.setBorder(defaultBorder);
             } 
     }//GEN-LAST:event_emailUpdatetxtFocusLost
+
+    private void saveUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveUpdateBtnActionPerformed
+        String name = nameUpdatetxt.getText();
+        String phoneNumber = phoneNumberUpdatetxt.getText();
+        String email = emailUpdatetxt.getText();
+        
+        passengerManager.updatePassenger(this.passenger.getPassengerID(), name, email, phoneNumber);
+        passengerManager.savePassengersToCSV();
+    }//GEN-LAST:event_saveUpdateBtnActionPerformed
 
     private void deleteAccountBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAccountBtn1ActionPerformed
         // TODO add your handling code here:
