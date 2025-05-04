@@ -4,17 +4,216 @@
  */
 package main;
 
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+
 /**
  *
- * @author Owner
+ * @author Adrian Zielinski
  */
 public class manageScheduleGUI extends javax.swing.JFrame {
 
+    private Database database;
+    private AdminMenuGUI adminMenuGUI;
+    
     /**
      * Creates new form manageScheduleGUI
      */
-    public manageScheduleGUI() {
+    public manageScheduleGUI(Database database, AdminMenuGUI adminMenuGUI) {
+        this.database = database;
+        this.adminMenuGUI = adminMenuGUI;
         initComponents();
+        
+        // add action listener to the text field
+        scheduleNameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                scheduleNameTxtActionPerformed(evt);
+            }
+        });
+        
+        // add a TableModelListener to watch for edits to the schedule table
+        scheduleTable.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent event) {
+                // only handle updates (not inserts or deletes)
+                if (event.getType() == TableModelEvent.UPDATE) {
+                    int row = event.getFirstRow();
+                    int column = event.getColumn();
+                    
+                    // check if the name column was edited
+                    if (column == 0) {
+                        updateScheduleName(row);
+                    }
+                    // check if the route ID column was edited
+                    else if (column == 1) {
+                        updateScheduleRoute(row);
+                    }
+                    // check if the depot ID column was edited
+                    else if (column == 2) {
+                        updateScheduleDepot(row);
+                    }
+                    // check if the start time column was edited
+                    else if (column == 3) {
+                        updateScheduleStartTime(row);
+                    }
+                }
+            }
+        });
+    }
+    
+    /**
+     * update the schedule route when the route ID column is edited
+     * @param row the row that was edited
+     */
+    private void updateScheduleRoute(int row) {
+        // get the table model
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) scheduleTable.getModel();
+
+        // get the schedule name from the text field
+        String scheduleName = scheduleNameTxt.getText();
+
+        // get the schedule from the database
+        Schedule schedule = database.getScheduleManager().getScheduleByName(scheduleName);
+
+        if (schedule != null) {
+            // get the new route ID value from the table
+            Object value = model.getValueAt(row, 1);
+            String routeId = value.toString();
+
+            // find the route by ID
+            Route route = database.getRouteManager().getRouteById(routeId);
+            
+            if (route != null) {
+                // update the schedule route
+                schedule.setRoute(route);
+
+                // save changes to CSV
+                database.getScheduleManager().saveSchedulesToCSV();
+
+                // refresh the schedule table in AdminMenuGUI
+                if (adminMenuGUI != null) {
+                    adminMenuGUI.populateScheduleTable();
+                }
+            }
+        }
+    }
+    
+    /**
+     * update the schedule depot when the depot ID column is edited
+     * @param row the row that was edited
+     */
+    private void updateScheduleDepot(int row) {
+        // get the table model
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) scheduleTable.getModel();
+
+        // get the schedule name from the text field
+        String scheduleName = scheduleNameTxt.getText();
+
+        // get the schedule from the database
+        Schedule schedule = database.getScheduleManager().getScheduleByName(scheduleName);
+
+        if (schedule != null) {
+            // get the new depot ID value from the table
+            Object value = model.getValueAt(row, 2);
+            int depotId;
+
+            // convert the value to an integer
+            if (value instanceof Integer) {
+                depotId = (Integer) value;
+            } else {
+                depotId = Integer.parseInt(value.toString());
+            }
+
+            // find the depot by ID
+            depot.Depot depot = database.getDepotManager().findDepotById(depotId);
+            
+            if (depot != null) {
+                // update the schedule depot
+                schedule.setDepot(depot);
+
+                // save changes to CSV
+                database.getScheduleManager().saveSchedulesToCSV();
+
+                // refresh the schedule table in AdminMenuGUI
+                if (adminMenuGUI != null) {
+                    adminMenuGUI.populateScheduleTable();
+                }
+            }
+        }
+    }
+    
+    /**
+     * update the schedule name when the name column is edited
+     * @param row the row that was edited
+     */
+    private void updateScheduleName(int row) {
+        // get the table model
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) scheduleTable.getModel();
+
+        // get the old schedule name from the text field
+        String oldScheduleName = scheduleNameTxt.getText();
+
+        // get the schedule from the database
+        Schedule schedule = database.getScheduleManager().getScheduleByName(oldScheduleName);
+
+        if (schedule != null) {
+            // get the new name value from the table
+            Object value = model.getValueAt(row, 0);
+            String newName = value.toString();
+
+            // update the schedule name
+            schedule.setName(newName);
+            
+            // update the text field with the new name
+            scheduleNameTxt.setText(newName);
+
+            // save changes to CSV
+            database.getScheduleManager().saveSchedulesToCSV();
+
+            // refresh the schedule table in AdminMenuGUI
+            if (adminMenuGUI != null) {
+                adminMenuGUI.populateScheduleTable();
+            }
+        }
+    }
+    
+    /**
+     * update the schedule start time when the start time column is edited
+     * @param row the row that was edited
+     */
+    private void updateScheduleStartTime(int row) {
+        // get the table model
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) scheduleTable.getModel();
+
+        // get the schedule name from the text field
+        String scheduleName = scheduleNameTxt.getText();
+
+        // get the schedule from the database
+        Schedule schedule = database.getScheduleManager().getScheduleByName(scheduleName);
+
+        if (schedule != null) {
+            // get the new start time value from the table
+            Object value = model.getValueAt(row, 3);
+            double startTime;
+
+            // convert the value to a double
+            if (value instanceof Double) {
+                startTime = (Double) value;
+            } else {
+                startTime = Double.parseDouble(value.toString());
+            }
+
+            // update the schedule start time
+            schedule.setStartTime(startTime);
+
+            // save changes to CSV
+            database.getScheduleManager().saveSchedulesToCSV();
+
+            // refresh the schedule table in AdminMenuGUI
+            if (adminMenuGUI != null) {
+                adminMenuGUI.populateScheduleTable();
+            }
+        }
     }
 
     /**
@@ -26,47 +225,46 @@ public class manageScheduleGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        manageSchedulePanel = new javax.swing.JPanel();
+        scheduleNameLbl = new javax.swing.JLabel();
+        scheduleNameTxt = new javax.swing.JTextField();
+        scheduleTablePanel = new javax.swing.JPanel();
+        scheduleTablePane = new javax.swing.JScrollPane();
+        scheduleTable = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(215, 224, 223));
 
-        jLabel1.setText("Enter Schedule Name:");
+        manageSchedulePanel.setBackground(new java.awt.Color(215, 224, 223));
 
-        jTextField1.setText("Schedule Name");
+        scheduleNameLbl.setText("Enter Schedule Name:");
 
-        jButton1.setText("Delete Schedule");
+        scheduleNameTxt.setText("Schedule Name");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout manageSchedulePanelLayout = new javax.swing.GroupLayout(manageSchedulePanel);
+        manageSchedulePanel.setLayout(manageSchedulePanelLayout);
+        manageSchedulePanelLayout.setHorizontalGroup(
+            manageSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageSchedulePanelLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(manageSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scheduleNameLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(scheduleNameTxt))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        manageSchedulePanelLayout.setVerticalGroup(
+            manageSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageSchedulePanelLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jLabel1)
+                .addComponent(scheduleNameLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(scheduleNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        scheduleTablePanel.setBackground(new java.awt.Color(215, 224, 223));
+
+        scheduleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -80,25 +278,32 @@ public class manageScheduleGUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-        });
-        jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scheduleTablePane.setViewportView(scheduleTable);
+
+        javax.swing.GroupLayout scheduleTablePanelLayout = new javax.swing.GroupLayout(scheduleTablePanel);
+        scheduleTablePanel.setLayout(scheduleTablePanelLayout);
+        scheduleTablePanelLayout.setHorizontalGroup(
+            scheduleTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleTablePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                .addComponent(scheduleTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        scheduleTablePanelLayout.setVerticalGroup(
+            scheduleTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scheduleTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,9 +312,9 @@ public class manageScheduleGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(manageSchedulePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(scheduleTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -117,14 +322,45 @@ public class manageScheduleGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manageSchedulePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(scheduleTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    
+    /**
+     * populate schedule info table
+     * @param evt 
+     */
+    private void scheduleNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scheduleNameTxtActionPerformed
+        String scheduleName = scheduleNameTxt.getText();
+        
+        // get the schedule from the ScheduleManager
+        Schedule schedule = database.getScheduleManager().getScheduleByName(scheduleName);
+        
+        if (schedule != null) {
+            // create a table model with the appropriate columns
+            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) scheduleTable.getModel();
+            
+            // clear existing rows
+            model.setRowCount(0);
+            
+            // add schedule info to the table
+            String routeId = schedule.getRoute() != null ? schedule.getRoute().getRouteID() : "";
+            int depotId = schedule.getDepot() != null ? schedule.getDepot().getDepotId() : 0;
+            
+            model.addRow(new Object[]{
+                schedule.getName(),
+                routeId,
+                depotId,
+                schedule.getStartTime()
+            });
+        }
+    }//GEN-LAST:event_scheduleNameTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -156,18 +392,17 @@ public class manageScheduleGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new manageScheduleGUI().setVisible(true);
+                // new manageScheduleGUI().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel manageSchedulePanel;
+    private javax.swing.JLabel scheduleNameLbl;
+    private javax.swing.JTextField scheduleNameTxt;
+    private javax.swing.JTable scheduleTable;
+    private javax.swing.JScrollPane scheduleTablePane;
+    private javax.swing.JPanel scheduleTablePanel;
     // End of variables declaration//GEN-END:variables
 }

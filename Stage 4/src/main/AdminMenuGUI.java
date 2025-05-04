@@ -17,10 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.UIDefaults;
-import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
-import main.Schedule;
 
 /**
  *
@@ -76,7 +73,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnAddSchedule = new javax.swing.JButton();
         btnRemoveSchedule = new javax.swing.JButton();
         btnManageSchedule = new javax.swing.JButton();
-        jScrollPane7 = new javax.swing.JScrollPane();
+        schedulePane = new javax.swing.JScrollPane();
         tableSchedule = new javax.swing.JTable();
         panelRoute = new javax.swing.JPanel();
         btnAddRoute = new javax.swing.JButton();
@@ -203,8 +200,18 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         });
 
         btnRemoveSchedule.setText("Remove an Existing Schedule");
+        btnRemoveSchedule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveScheduleActionPerformed(evt);
+            }
+        });
 
         btnManageSchedule.setText("Manage an Existing Schedule");
+        btnManageSchedule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageScheduleActionPerformed(evt);
+            }
+        });
 
         tableSchedule.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -232,7 +239,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane7.setViewportView(tableSchedule);
+        schedulePane.setViewportView(tableSchedule);
 
         javax.swing.GroupLayout panelScheduleLayout = new javax.swing.GroupLayout(panelSchedule);
         panelSchedule.setLayout(panelScheduleLayout);
@@ -245,7 +252,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnRemoveSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnManageSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(schedulePane, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
         panelScheduleLayout.setVerticalGroup(
@@ -253,7 +260,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             .addGroup(panelScheduleLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(schedulePane, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelScheduleLayout.createSequentialGroup()
                         .addComponent(btnAddSchedule)
                         .addGap(18, 18, 18)
@@ -644,6 +651,38 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         addScheduleGUI.setVisible(true);
     }//GEN-LAST:event_btnAddScheduleActionPerformed
     
+    private void btnManageScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageScheduleActionPerformed
+        manageScheduleGUI manageScheduleGUI = new manageScheduleGUI(this.database, this);
+        manageScheduleGUI.setVisible(true);
+    }//GEN-LAST:event_btnManageScheduleActionPerformed
+    
+    private void btnRemoveScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveScheduleActionPerformed
+        // get the selected row from the schedule table
+        int selectedRow = tableSchedule.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            // get the schedule name from the selected row
+            String scheduleName = (String) tableSchedule.getValueAt(selectedRow, 0);
+            
+            // find the schedule by name
+            Schedule schedule = database.getScheduleManager().getScheduleByName(scheduleName);
+            
+            if (schedule != null) {
+                // remove the schedule
+                database.getScheduleManager().removeSchedule(schedule);
+                
+                // refresh the schedule table
+                populateScheduleTable();
+            }
+        } else {
+            // if no row is selected, show a message
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Please select a schedule to remove.", 
+                "No Schedule Selected", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRemoveScheduleActionPerformed
+    
     /**
      * populates the bus table with data from the bus manager
      * @author Adrian Zielinski
@@ -1030,7 +1069,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JPanel panelBus;
     private javax.swing.JPanel panelDepot;
     private javax.swing.JPanel panelEmployee;
@@ -1038,6 +1076,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPanel panelPayments;
     private javax.swing.JPanel panelRoute;
     private javax.swing.JPanel panelSchedule;
+    private javax.swing.JScrollPane schedulePane;
     private javax.swing.JTabbedPane tabAdmin;
     private javax.swing.JTable tableBus;
     private javax.swing.JTable tableDepot;
