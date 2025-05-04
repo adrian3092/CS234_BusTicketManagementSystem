@@ -10,6 +10,7 @@ import depot.Depot;
 import depot.DepotManager;
 import employees.Employee;
 import employees.EmployeeManagement;
+import expenses.*;
 import java.util.ArrayList;
 
 /**
@@ -21,16 +22,20 @@ public class AddExpenseGUI extends javax.swing.JFrame {
     private BusManager busManager;
     private DepotManager depotManager;
     private EmployeeManagement employeeManagement;
+    private Accounting accounting;
+    private AdminMenuGUI adminMenuGUI;
 
     /**
      * Creates new form AddExpenseGUI
      */
-    public AddExpenseGUI(Database database) {
+    public AddExpenseGUI(Database database, AdminMenuGUI adminMenuGUI) {
         initComponents();
         this.database = database;
         this.busManager = database.getBusManager();
         this.depotManager = database.getDepotManager();
         this.employeeManagement = database.getEmployeeManagement();
+        this.accounting = database.getAccounting();
+        this.adminMenuGUI = adminMenuGUI;
         
     }
 
@@ -73,6 +78,11 @@ public class AddExpenseGUI extends javax.swing.JFrame {
         lblCost.setText("Cost");
 
         btnAddExpense.setText("Add");
+        btnAddExpense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddExpenseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,6 +166,53 @@ public class AddExpenseGUI extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_comboBoxTypeActionPerformed
+
+    private void btnAddExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddExpenseActionPerformed
+        String type = (String) comboBoxType.getSelectedItem();
+        String entity = "";
+        String id = "";
+        int i = 0;
+        float cost = Float.parseFloat(txtCost.getText());
+        Bus bus;
+        
+        
+        switch (type) {
+            case "Fuel":
+                entity = (String) comboBoxEntity.getSelectedItem();
+                i = entity.indexOf(" ");
+                id = entity.substring(i + 1);
+                bus = busManager.findBusById(Integer.parseInt(id));
+                new FuelCost(accounting, cost, bus);
+                break;
+                
+            case "Maintenance":
+                entity = (String) comboBoxEntity.getSelectedItem();
+                i = entity.indexOf(" ");
+                id = entity.substring(i + 1);
+                bus = busManager.findBusById(Integer.parseInt(id));
+                new MaintenanceCost(accounting, cost, bus);
+                break;
+                
+            case "Salary":
+                entity = (String) comboBoxEntity.getSelectedItem();
+                i = entity.indexOf(" ");
+                id = entity.substring(0, i);
+                Employee e = employeeManagement.getEmployeeById(id);
+                new Salary(accounting, cost, e);
+                break;
+                
+            case "Utility":
+                entity = (String) comboBoxEntity.getSelectedItem();
+                i = entity.indexOf(" ");
+                id = entity.substring(i + 1);
+                Depot d = depotManager.findDepotById(Integer.parseInt(id));
+                new Utility(accounting, cost, d);
+                break;
+                
+        }
+        
+        adminMenuGUI.populateExpensesTable();
+    }//GEN-LAST:event_btnAddExpenseActionPerformed
 
     /**
      * @param args the command line arguments
