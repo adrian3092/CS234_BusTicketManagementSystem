@@ -52,6 +52,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         populatePaymentsTable();
         // load expenses into the table
         populateExpensesTable();
+        // passenger table
+        populatePassengerTable();
     }
 
     /**
@@ -108,6 +110,12 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnPaymentReport = new javax.swing.JButton();
         btnAddPayment = new javax.swing.JButton();
         btnManagePayment = new javax.swing.JButton();
+        panelPassenger = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPassengers = new javax.swing.JTable();
+        btnAddPassenger = new javax.swing.JButton();
+        btnManagePassenger = new javax.swing.JButton();
+        btnDeletePassenger = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Admin Menu");
@@ -183,7 +191,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnManageBus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                     .addComponent(btnAddBus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDeleteBus, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -199,7 +207,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                         .addComponent(btnManageBus)
                         .addGap(18, 18, 18)
                         .addComponent(btnDeleteBus)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Bus", panelBus);
@@ -265,7 +273,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnAddSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRemoveSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnManageSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(schedulePane, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
@@ -281,7 +289,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                         .addComponent(btnManageSchedule)
                         .addGap(18, 18, 18)
                         .addComponent(btnRemoveSchedule)))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Schedule", panelSchedule);
@@ -355,7 +363,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnManageRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(routePane, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
@@ -373,7 +381,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                         .addComponent(btnDeleteRoute)
                         .addGap(18, 18, 18)
                         .addComponent(btnRouteAssignment)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Route", panelRoute);
@@ -422,7 +430,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnUnassignBus, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         panelDepotLayout.setVerticalGroup(
             panelDepotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -438,7 +446,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                         .addComponent(btnAssignBus)
                         .addGap(18, 18, 18)
                         .addComponent(btnUnassignBus)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Depot", panelDepot);
@@ -489,7 +497,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdateEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -505,7 +513,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                         .addComponent(btnDeleteEmployee)
                         .addGap(18, 18, 18)
                         .addComponent(btnUpdateEmployee)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Employee", panelEmployee);
@@ -668,6 +676,81 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         );
 
         tabAdmin.addTab("Payments", panelPayments);
+
+        tblPassengers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Passenger ID", "Name", "Email", "Phone Number"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblPassengers);
+
+        btnAddPassenger.setText("Add a New Passenger");
+        btnAddPassenger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPassengerActionPerformed(evt);
+            }
+        });
+
+        btnManagePassenger.setText("Manage Passenger");
+        btnManagePassenger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManagePassengerActionPerformed(evt);
+            }
+        });
+
+        btnDeletePassenger.setText("Delete Passenger");
+
+        javax.swing.GroupLayout panelPassengerLayout = new javax.swing.GroupLayout(panelPassenger);
+        panelPassenger.setLayout(panelPassengerLayout);
+        panelPassengerLayout.setHorizontalGroup(
+            panelPassengerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPassengerLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(panelPassengerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAddPassenger, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                    .addComponent(btnManagePassenger, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeletePassenger, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+        );
+        panelPassengerLayout.setVerticalGroup(
+            panelPassengerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPassengerLayout.createSequentialGroup()
+                .addContainerGap(45, Short.MAX_VALUE)
+                .addGroup(panelPassengerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelPassengerLayout.createSequentialGroup()
+                        .addComponent(btnAddPassenger)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnManagePassenger)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeletePassenger))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68))
+        );
+
+        tabAdmin.addTab("Passenger", panelPassenger);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -948,6 +1031,14 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 javax.swing.JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteBusActionPerformed
+
+    private void btnAddPassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPassengerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddPassengerActionPerformed
+
+    private void btnManagePassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePassengerActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManagePassengerActionPerformed
     
     /**
      * populates the bus table with data from the bus manager
@@ -1219,6 +1310,34 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             });
         }
     }
+    /**
+     * populate the passenger table
+     */
+    public void populatePassengerTable() {
+        if (database == null || database.getPaymentManager() == null) {
+            return;
+        }
+        
+        // get all passengers from PassengerManager
+        java.util.ArrayList<Passenger> passengers = database.getPassengerManager().getPassengers();
+        
+        // create a table model with the appropriate columns
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblPassengers.getModel();
+        
+        // clear existing rows
+        model.setRowCount(0);
+        
+        // add each payment to the table
+        for (Passenger passenger: passengers) {
+            model.addRow(new Object[]{
+                passenger.getPassengerID(),
+                passenger.getPassengerName(),
+                passenger.getEmail(),
+                passenger.getPhoneNumber()
+
+            });
+        }
+    }
 
     private void styleAdminButtons() {
     Color bg = Color.WHITE;
@@ -1336,6 +1455,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnAddBus;
     private javax.swing.JButton btnAddDepot;
     private javax.swing.JButton btnAddEmployee;
+    private javax.swing.JButton btnAddPassenger;
     private javax.swing.JButton btnAddPayment;
     private javax.swing.JButton btnAddRoute;
     private javax.swing.JButton btnAddSchedule;
@@ -1343,9 +1463,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteBus;
     private javax.swing.JButton btnDeleteDepot;
     private javax.swing.JButton btnDeleteEmployee;
+    private javax.swing.JButton btnDeletePassenger;
     private javax.swing.JButton btnDeleteRoute;
     private javax.swing.JButton btnExpenseReport;
     private javax.swing.JButton btnManageBus;
+    private javax.swing.JButton btnManagePassenger;
     private javax.swing.JButton btnManagePayment;
     private javax.swing.JButton btnManageRoute;
     private javax.swing.JButton btnManageSchedule;
@@ -1356,6 +1478,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnRouteAssignment;
     private javax.swing.JButton btnUnassignBus;
     private javax.swing.JButton btnUpdateEmployee;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1365,6 +1488,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPanel panelDepot;
     private javax.swing.JPanel panelEmployee;
     private javax.swing.JPanel panelExpenses;
+    private javax.swing.JPanel panelPassenger;
     private javax.swing.JPanel panelPayments;
     private javax.swing.JPanel panelRoute;
     private javax.swing.JPanel panelSchedule;
@@ -1378,5 +1502,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JTable tablePayments;
     private javax.swing.JTable tableRoute;
     private javax.swing.JTable tableSchedule;
+    private javax.swing.JTable tblPassengers;
     // End of variables declaration//GEN-END:variables
 }
