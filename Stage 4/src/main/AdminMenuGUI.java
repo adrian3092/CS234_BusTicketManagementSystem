@@ -481,6 +481,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         });
 
         btnDeleteEmployee.setText("Delete Employee");
+        btnDeleteEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteEmployeeActionPerformed(evt);
+            }
+        });
 
         btnUpdateEmployee.setText("Update Employee Information");
 
@@ -1165,42 +1170,35 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     "Assign Bus to Depot",
                     javax.swing.JOptionPane.QUESTION_MESSAGE);
                 
-                if (busIdStr != null && !busIdStr.trim().isEmpty()) {
-                    try {
-                        // parse the bus ID
-                        int busId = Integer.parseInt(busIdStr.trim());
-                    
-                        // find the bus by ID
-                        bus.Bus bus = database.getBusManager().findBusById(busId);
-                        
-                        if (bus != null) {
-                            // assign the bus to the depot
-                            boolean success = database.getDepotManager().assignBusToDepot(depotId, bus);
-                            
-                            if (success) {
-                                javax.swing.JOptionPane.showMessageDialog(this, 
-                                    "Bus " + bus.getBusId() + " assigned to depot #" + depotId + " successfully!", 
-                                    "Assignment Successful", 
-                                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                                
-                                // refresh the depot table
-                                populateDepotTable();
-                            } else {
-                                javax.swing.JOptionPane.showMessageDialog(this, 
-                                    "Failed to assign bus to depot. The bus may already be assigned to this depot.", 
-                                    "Assignment Failed", 
-                                    javax.swing.JOptionPane.ERROR_MESSAGE);
-                            }
+            if (busIdStr != null && !busIdStr.trim().isEmpty()) {
+                    // parse the bus ID
+                    int busId = Integer.parseInt(busIdStr.trim());
+
+                    // find the bus by ID
+                    bus.Bus bus = database.getBusManager().findBusById(busId);
+
+                    if (bus != null) {
+                        // assign the bus to the depot
+                        boolean success = database.getDepotManager().assignBusToDepot(depotId, bus);
+
+                        if (success) {
+                            javax.swing.JOptionPane.showMessageDialog(this, 
+                                "Bus " + bus.getBusId() + " assigned to depot #" + depotId + " successfully!", 
+                                "Assignment Successful", 
+                                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+                            // refresh the depot table
+                            populateDepotTable();
                         } else {
                             javax.swing.JOptionPane.showMessageDialog(this, 
-                                "Bus with ID " + busId + " not found.", 
-                                "Bus Not Found", 
-                                javax.swing.JOptionPane.WARNING_MESSAGE);
+                                "Failed to assign bus to depot. The bus may already be assigned to this depot.", 
+                                "Assignment Failed", 
+                                javax.swing.JOptionPane.ERROR_MESSAGE);
                         }
-                    } catch (NumberFormatException e) {
+                    } else {
                         javax.swing.JOptionPane.showMessageDialog(this, 
-                            "Please enter a valid bus ID (numeric value).", 
-                            "Invalid Input", 
+                            "Bus with ID " + busId + " not found.", 
+                            "Bus Not Found", 
                             javax.swing.JOptionPane.WARNING_MESSAGE);
                     }
                 }
@@ -1300,6 +1298,61 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         AddEmployeeGUI addEmployeeGUI = new AddEmployeeGUI(this.database, this);
         addEmployeeGUI.setVisible(true);
     }//GEN-LAST:event_btnAddEmployeeActionPerformed
+
+    private void btnDeleteEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEmployeeActionPerformed
+        // get the selected employee from the table
+        int selectedRow = tableEmployee.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            // get the employee ID from the selected row
+            String employeeId = (String) tableEmployee.getValueAt(selectedRow, 1);
+            
+            // find the employee by ID
+            employees.Employee selectedEmployee = database.getEmployeeManagement().getEmployeeById(employeeId);
+            
+            if (selectedEmployee != null) {
+                // confirm deletion
+                int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+                        "Are you sure you want to delete employee " + selectedEmployee.getName() + " (" + 
+                        selectedEmployee.getEmployeeID() + ")?",
+                        "Confirm Deletion",
+                        javax.swing.JOptionPane.YES_NO_OPTION);
+                
+                if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                    // remove the employee's login
+                    login.LoginManager loginManager = database.getLoginManager();
+                    java.util.ArrayList<login.Login> logins = loginManager.getLogins();
+                    
+                    // find and remove the login associated with this employee
+                    for (int i = logins.size() - 1; i >= 0; i--) {
+                        login.Login login = logins.get(i);
+                        if (login.getEmployee() != null && login.getEmployee().getEmployeeID().equals(employeeId)) {
+                            logins.remove(i);
+                        }
+                    }
+                    
+                    // save the updated logins
+                    loginManager.saveLoginsToCSV();
+                    
+                    // delete the employee
+                    database.getEmployeeManagement().deleteEmployee(selectedEmployee);
+                    
+                    // refresh the employee table
+                    populateEmployeeTable();
+                    
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Employee deleted successfully!", 
+                            "Success", 
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Please select an employee to delete.", 
+                "No Employee Selected", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteEmployeeActionPerformed
     
     /**
      * populates the bus table with data from the bus manager

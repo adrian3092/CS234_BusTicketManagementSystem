@@ -71,17 +71,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="First Name"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="firstNameTxtActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="lastNameTxt">
       <Properties>
         <Property name="text" type="java.lang.String" value="Last Name"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lastNameTxtActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jobTitleComboBox">
       <Properties>
@@ -105,22 +99,19 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Phone Number"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="phoneNumberTxtActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="salaryTxt">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salary"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salaryTxtActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="addEmployeeButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Add"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addEmployeeButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
