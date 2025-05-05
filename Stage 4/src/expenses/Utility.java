@@ -45,7 +45,7 @@ public class Utility extends Expense {
      */
     @Override
     public String toString() {
-        return String.format("%-15s %-15s %-20s $%-10.2f", 
+        return String.format("%-20s %-20s %-20s $%-20.2f", 
             super.getExpenseId(), "Utilities", "Depot " + depot.getDepotId(), this.getCost());
     }
 }

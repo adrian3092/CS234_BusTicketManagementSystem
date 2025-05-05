@@ -60,8 +60,8 @@ public class Accounting {
      */
     public String getReport() {
         StringBuilder report = new StringBuilder();
-        report.append(String.format("%-15s %-15s %-20s %-10s%n", "Expense ID", "Type", "Entity", "Cost"));
-        report.append("---------------------------------------------------------------\n");
+        report.append(String.format("%-20s %-20s %-20s %-20s%n", "Expense ID", "Type", "Entity", "Cost"));
+        report.append("-------------------------------------------------------------------------\n");
         
         for(Expense expense : expenses) {
             report.append(expense);
