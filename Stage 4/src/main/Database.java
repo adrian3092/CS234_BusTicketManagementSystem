@@ -45,6 +45,7 @@ public class Database {
         this.ticketIssuer = new TicketIssuer();
         
         // load data from CSV
+        passengerManager.loadPassengersFromCSV();
         paymentManager.loadPaymentsFromCSV(passengerManager);
         employeeManagement.loadEmployeesFromCSV(loginManager);
         loginManager.loadLoginsFromCSV(employeeManagement, passengerManager);

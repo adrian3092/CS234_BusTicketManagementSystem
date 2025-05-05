@@ -105,7 +105,7 @@ public class PassengerManager {
     /**
      * load passengers from CSV file
      */
-    private void loadPassengersFromCSV() {
+    public void loadPassengersFromCSV() {
         List<String[]> data = CSVHandler.readCSV(PASSENGERS_CSV_FILE_PATH);
         
         // clear existing passengers

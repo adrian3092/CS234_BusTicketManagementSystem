@@ -51,6 +51,23 @@ public class Passenger {
             IdGenerator.updatePassengerIdIfHigher(idNumber);
         }
     }
+    
+    /**
+     * Constructor that includes PassengerManager and adds this passenger to the
+     * list of passengers
+     * @author George Candal
+     * @param name
+     * @param email
+     * @param phone
+     * @param passengerManager 
+     */
+    public Passenger(String name, String email, String phone, PassengerManager passengerManager) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phone;
+        this.passengerID = IdGenerator.generatePassengerId(); // Generate unique ID
+        passengerManager.addPassenger(this);
+    }
 
     /**
      * Gets the passenger's unique ID.

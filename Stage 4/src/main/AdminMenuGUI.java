@@ -104,6 +104,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         tablePayments = new javax.swing.JTable();
         btnPaymentReport = new javax.swing.JButton();
+        btnAddPayment = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Admin Menu");
@@ -569,9 +570,16 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane5.setViewportView(tablePayments);
@@ -583,13 +591,22 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         });
 
+        btnAddPayment.setText("Add a New Payment");
+        btnAddPayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddPaymentActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelPaymentsLayout = new javax.swing.GroupLayout(panelPayments);
         panelPayments.setLayout(panelPaymentsLayout);
         panelPaymentsLayout.setHorizontalGroup(
             panelPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPaymentsLayout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(btnPaymentReport, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPaymentReport, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                    .addComponent(btnAddPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
@@ -600,7 +617,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addGroup(panelPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPaymentReport))
+                    .addGroup(panelPaymentsLayout.createSequentialGroup()
+                        .addComponent(btnPaymentReport)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAddPayment)))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
@@ -691,6 +711,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private void btnPaymentReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentReportActionPerformed
         new PaymentReportGUI(database).setVisible(true);
     }//GEN-LAST:event_btnPaymentReportActionPerformed
+
+    private void btnAddPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPaymentActionPerformed
+        new AddPaymentGUI(database, this).setVisible(true);
+    }//GEN-LAST:event_btnAddPaymentActionPerformed
     
     /**
      * populates the bus table with data from the bus manager
@@ -915,7 +939,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
      * populates the payments table with data from the payment manager
      * @author Adrian Zielinski
      */
-    private void populatePaymentsTable() {
+    public void populatePaymentsTable() {
         if (database == null || database.getPaymentManager() == null) {
             return;
         }
@@ -1056,6 +1080,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnAddBus;
     private javax.swing.JButton btnAddDepot;
     private javax.swing.JButton btnAddEmployee;
+    private javax.swing.JButton btnAddPayment;
     private javax.swing.JButton btnAddRoute;
     private javax.swing.JButton btnAddSchedule;
     private javax.swing.JButton btnAssignBus;
