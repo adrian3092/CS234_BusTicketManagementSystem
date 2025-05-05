@@ -124,7 +124,7 @@ public class AddExpenseGUI extends javax.swing.JFrame {
         );
 
         setSize(new java.awt.Dimension(441, 360));
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(adminMenuGUI);
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboBoxEntityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxEntityActionPerformed

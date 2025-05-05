@@ -27,7 +27,7 @@ public class AddBusGUI extends javax.swing.JFrame {
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
         setAutoRequestFocus(false);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(adminMenuGUI);
         addHoverEffect(addBtn, Color.WHITE, Color.GREEN);
         addBtn.setPreferredSize(new java.awt.Dimension(160, 23));
         setupYearBehavior();
@@ -57,8 +57,9 @@ public class AddBusGUI extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add a New Bus");
         setBackground(new java.awt.Color(215, 224, 223));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new java.awt.BorderLayout());
 
         addBusPanel.setBackground(new java.awt.Color(215, 224, 223));
 
@@ -124,7 +125,7 @@ public class AddBusGUI extends javax.swing.JFrame {
                 .addContainerGap(107, Short.MAX_VALUE))
         );
 
-        getContentPane().add(addBusPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 380));
+        getContentPane().add(addBusPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

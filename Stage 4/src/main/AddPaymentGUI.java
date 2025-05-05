@@ -108,7 +108,7 @@ public class AddPaymentGUI extends javax.swing.JFrame {
         );
 
         setSize(new java.awt.Dimension(415, 335));
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(adminMenuGUI);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPaymentActionPerformed

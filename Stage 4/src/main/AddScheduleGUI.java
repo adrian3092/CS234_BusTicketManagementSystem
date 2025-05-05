@@ -17,6 +17,7 @@ public class AddScheduleGUI extends javax.swing.JFrame {
         this.database = database;
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
+        setLocationRelativeTo(adminMenuGUI);
     }
 
     /**
@@ -37,6 +38,7 @@ public class AddScheduleGUI extends javax.swing.JFrame {
         departureTimesTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add a New Schedule");
 
         addSchedulePanel.setBackground(new java.awt.Color(215, 224, 223));
 

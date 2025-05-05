@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 public class AddEmployeeGUI extends javax.swing.JFrame {
     
     private Database database;
-    private AdminMenuGUI parentFrame;
+    private AdminMenuGUI adminMenuGUI;
     
     /**
      * Creates new form AddEmployeeGUI with database and parent frame
@@ -23,10 +23,10 @@ public class AddEmployeeGUI extends javax.swing.JFrame {
      */
     public AddEmployeeGUI(Database database, AdminMenuGUI parentFrame) {
         initComponents();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(adminMenuGUI);
         
         this.database = database;
-        this.parentFrame = parentFrame;
+        this.adminMenuGUI = parentFrame;
         
         // set up job title combo box
         cmbJobTitle.addItem("Admin");
@@ -144,8 +144,8 @@ public class AddEmployeeGUI extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
             
             // refresh employee table in parent frame if available
-            if (parentFrame != null) {
-                parentFrame.populateEmployeeTable();
+            if (adminMenuGUI != null) {
+                adminMenuGUI.populateEmployeeTable();
             }
             
             // close the form

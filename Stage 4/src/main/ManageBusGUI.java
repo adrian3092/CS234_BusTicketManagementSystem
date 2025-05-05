@@ -23,6 +23,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
         this.database = database;
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
+        setLocationRelativeTo(adminMenuGUI);
         
         // add a TableModelListener to watch for edits to the mileage + capacity column
         busInfoTable.getModel().addTableModelListener(new TableModelListener() {
@@ -40,6 +41,10 @@ public class ManageBusGUI extends javax.swing.JFrame {
                     // check if the seating capacity column was edited
                     else if (column == 4) {
                         updateBusCapacity(row);
+                    }
+                    // check if the status column was edited
+                    else if (column == 5) {
+                        updateBusStatus(row);
                     }
                 }
             }
@@ -78,7 +83,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
             // save changes to CSV
             database.getBusManager().saveBusesToCSV();
 
-            // fefresh the bus table in AdminMenuGUI
+            // refresh the bus table in AdminMenuGUI
             if (adminMenuGUI != null) {
                 adminMenuGUI.populateBusTable();
             }
@@ -123,6 +128,38 @@ public class ManageBusGUI extends javax.swing.JFrame {
             }
         }
     }
+    
+    /**
+     * update the bus status when the status column is edited
+     * @param row the row that was edited
+     */
+    private void updateBusStatus(int row) {
+        // get the table model
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) busInfoTable.getModel();
+
+        // get the bus ID from the text field
+        int busId = Integer.parseInt(busIDTxt.getText());
+
+        // get the bus from the database
+        bus.Bus bus = database.getBusManager().findBusById(busId);
+
+        if (bus != null) {
+            // get the new status value from the table
+            Object value = model.getValueAt(row, 5);
+            String status = value.toString();
+
+            // update the bus status
+            bus.setStatus(status);
+
+            // save changes to CSV
+            database.getBusManager().saveBusesToCSV();
+
+            // refresh the bus table in AdminMenuGUI
+            if (adminMenuGUI != null) {
+                adminMenuGUI.populateBusTable();
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,6 +178,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
         busInfoTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Manage Bus");
         setBackground(new java.awt.Color(215, 224, 223));
 
         jPanel1.setBackground(new java.awt.Color(215, 224, 223));
@@ -182,7 +220,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 12, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,20 +229,20 @@ public class ManageBusGUI extends javax.swing.JFrame {
 
         busInfoTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Year", "Make", "Model", "Mileage", "Seating Capacity"
+                "Year", "Make", "Model", "Mileage", "Seating Capacity", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true
+                false, false, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -227,7 +265,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -267,7 +305,8 @@ public class ManageBusGUI extends javax.swing.JFrame {
                 bus.getMake(),
                 bus.getModel(),
                 bus.getMileage(),
-                bus.getCapacity()
+                bus.getCapacity(),
+                bus.getStatus()
             });
     }//GEN-LAST:event_busIDTxtActionPerformed
 

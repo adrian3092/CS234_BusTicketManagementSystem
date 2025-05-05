@@ -59,7 +59,7 @@ public class AddRouteGUI extends javax.swing.JFrame {
         distanceTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Add New Route");
+        setTitle("Add a New Route");
 
         addRoutePanel.setBackground(new java.awt.Color(215, 224, 223));
 

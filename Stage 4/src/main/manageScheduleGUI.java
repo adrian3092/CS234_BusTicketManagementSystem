@@ -23,6 +23,7 @@ public class manageScheduleGUI extends javax.swing.JFrame {
         this.database = database;
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
+        setLocationRelativeTo(adminMenuGUI);
         
         // add action listener to the text field
         scheduleNameTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -233,9 +234,7 @@ public class manageScheduleGUI extends javax.swing.JFrame {
         scheduleTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(215, 224, 223));
-
-        manageSchedulePanel.setBackground(new java.awt.Color(215, 224, 223));
+        setTitle("Manage Schedule");
 
         scheduleNameLbl.setText("Enter Schedule Name:");
 
@@ -259,10 +258,8 @@ public class manageScheduleGUI extends javax.swing.JFrame {
                 .addComponent(scheduleNameLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(scheduleNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
-
-        scheduleTablePanel.setBackground(new java.awt.Color(215, 224, 223));
 
         scheduleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -278,16 +275,9 @@ public class manageScheduleGUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
-            boolean[] canEdit = new boolean [] {
-                true, true, true, true
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         scheduleTablePane.setViewportView(scheduleTable);

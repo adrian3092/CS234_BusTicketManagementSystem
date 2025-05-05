@@ -99,7 +99,7 @@ public class AddPassengerGUI extends javax.swing.JFrame {
         );
 
         setSize(new java.awt.Dimension(416, 325));
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(adminMenuGUI);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddPassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPassengerActionPerformed
