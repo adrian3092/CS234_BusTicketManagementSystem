@@ -488,6 +488,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         });
 
         btnUpdateEmployee.setText("Update Employee Information");
+        btnUpdateEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateEmployeeActionPerformed(evt);
+            }
+        });
 
         tableEmployee.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -834,7 +839,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddScheduleActionPerformed
     
     private void btnManageScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageScheduleActionPerformed
-        manageScheduleGUI manageScheduleGUI = new manageScheduleGUI(this.database, this);
+        ManageScheduleGUI manageScheduleGUI = new ManageScheduleGUI(this.database, this);
         manageScheduleGUI.setVisible(true);
     }//GEN-LAST:event_btnManageScheduleActionPerformed
     
@@ -1353,6 +1358,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 javax.swing.JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteEmployeeActionPerformed
+
+    private void btnUpdateEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateEmployeeActionPerformed
+        ManageEmployeeGUI manageEmployeeGUI = new ManageEmployeeGUI(this.database, this);
+        manageEmployeeGUI.setVisible(true);
+    }//GEN-LAST:event_btnUpdateEmployeeActionPerformed
     
     /**
      * populates the bus table with data from the bus manager
@@ -1745,9 +1755,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     updateTabStyles(); // Apply to initial tab
     
 }
-
-
-
 
     private void normalizeButtonFonts() {
     Font plainFont = new Font("Segoe UI", Font.PLAIN, 12); // or any preferred font

@@ -11,7 +11,7 @@ import javax.swing.event.TableModelListener;
  *
  * @author Adrian Zielinski
  */
-public class manageScheduleGUI extends javax.swing.JFrame {
+public class ManageScheduleGUI extends javax.swing.JFrame {
 
     private Database database;
     private AdminMenuGUI adminMenuGUI;
@@ -19,7 +19,7 @@ public class manageScheduleGUI extends javax.swing.JFrame {
     /**
      * Creates new form manageScheduleGUI
      */
-    public manageScheduleGUI(Database database, AdminMenuGUI adminMenuGUI) {
+    public ManageScheduleGUI(Database database, AdminMenuGUI adminMenuGUI) {
         this.database = database;
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
@@ -369,14 +369,15 @@ public class manageScheduleGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(manageScheduleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageScheduleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(manageScheduleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageScheduleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(manageScheduleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageScheduleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(manageScheduleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManageScheduleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
