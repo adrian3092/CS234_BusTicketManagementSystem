@@ -79,7 +79,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnAddRoute = new javax.swing.JButton();
         btnManageRoute = new javax.swing.JButton();
         btnRouteAssignment = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        routePane = new javax.swing.JScrollPane();
         tableRoute = new javax.swing.JTable();
         panelDepot = new javax.swing.JPanel();
         btnAddDepot = new javax.swing.JButton();
@@ -311,7 +311,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableRoute);
+        routePane.setViewportView(tableRoute);
 
         javax.swing.GroupLayout panelRouteLayout = new javax.swing.GroupLayout(panelRoute);
         panelRoute.setLayout(panelRouteLayout);
@@ -324,7 +324,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnManageRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(routePane, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
         panelRouteLayout.setVerticalGroup(
@@ -332,7 +332,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             .addGroup(panelRouteLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(panelRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(routePane, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelRouteLayout.createSequentialGroup()
                         .addComponent(btnAddRoute)
                         .addGap(18, 18, 18)
@@ -1063,7 +1063,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnRouteAssignment;
     private javax.swing.JButton btnUnassignBus;
     private javax.swing.JButton btnUpdateEmployee;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1076,6 +1075,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JPanel panelPayments;
     private javax.swing.JPanel panelRoute;
     private javax.swing.JPanel panelSchedule;
+    private javax.swing.JScrollPane routePane;
     private javax.swing.JScrollPane schedulePane;
     private javax.swing.JTabbedPane tabAdmin;
     private javax.swing.JTable tableBus;

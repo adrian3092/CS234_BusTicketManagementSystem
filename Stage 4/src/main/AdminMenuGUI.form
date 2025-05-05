@@ -204,11 +204,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Remove an Existing Schedule"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveScheduleActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnManageSchedule">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage an Existing Schedule"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageScheduleActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="schedulePane">
               <AuxValues>
@@ -259,7 +265,7 @@
                           <Component id="btnAddRoute" min="-2" pref="251" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="48" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="531" max="-2" attributes="0"/>
+                      <Component id="routePane" min="-2" pref="531" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -269,7 +275,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" min="-2" pref="237" max="-2" attributes="0"/>
+                          <Component id="routePane" min="-2" pref="237" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="btnAddRoute" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -302,7 +308,7 @@
                 <Property name="text" type="java.lang.String" value="Manage Route Assignment"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+            <Container class="javax.swing.JScrollPane" name="routePane">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
