@@ -747,6 +747,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Generate Payment Report"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPaymentReportActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

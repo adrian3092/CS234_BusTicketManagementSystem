@@ -4,24 +4,28 @@
  */
 package main;
 
-import expenses.Accounting;
+import payment.PaymentManager;
 
 /**
  *
  * @author George Candal
  */
-public class ExpenseReportGUI extends javax.swing.JFrame {
-    
-    private Accounting accounting;
+public class PaymentReportGUI extends javax.swing.JFrame {
+
+    private PaymentManager paymentManager;
     
     /**
-     * Creates new form ExpenseReportGUI
+     * Creates new form PaymentReportGUI
      */
-    public ExpenseReportGUI(Database database) {
+    public PaymentReportGUI() {
         initComponents();
-        this.accounting = database.getAccounting();
-        String expenseReport = accounting.getReport();
-        txtAreaExpenseReport.setText(expenseReport);
+    }
+    
+    public PaymentReportGUI(Database database) {
+        initComponents();
+        this.paymentManager = database.getPaymentManager();
+        String paymentReport = paymentManager.getReport();
+        txtAreaPaymentReport.setText(paymentReport);
     }
 
     /**
@@ -34,33 +38,33 @@ public class ExpenseReportGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaExpenseReport = new javax.swing.JTextArea();
+        txtAreaPaymentReport = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        txtAreaExpenseReport.setColumns(20);
-        txtAreaExpenseReport.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
-        txtAreaExpenseReport.setRows(5);
-        jScrollPane1.setViewportView(txtAreaExpenseReport);
+        txtAreaPaymentReport.setColumns(20);
+        txtAreaPaymentReport.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
+        txtAreaPaymentReport.setRows(5);
+        jScrollPane1.setViewportView(txtAreaPaymentReport);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(689, 449));
+        setSize(new java.awt.Dimension(686, 451));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -75,32 +79,32 @@ public class ExpenseReportGUI extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ExpenseReportGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaymentReportGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ExpenseReportGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaymentReportGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ExpenseReportGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaymentReportGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ExpenseReportGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PaymentReportGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new ExpenseReportGUI().setVisible(true);
-//            }
-//        });
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new PaymentReportGUI().setVisible(true);
+            }
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea txtAreaExpenseReport;
+    private javax.swing.JTextArea txtAreaPaymentReport;
     // End of variables declaration//GEN-END:variables
 }

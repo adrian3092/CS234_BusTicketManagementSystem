@@ -577,6 +577,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         jScrollPane5.setViewportView(tablePayments);
 
         btnPaymentReport.setText("Generate Payment Report");
+        btnPaymentReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPaymentReportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPaymentsLayout = new javax.swing.GroupLayout(panelPayments);
         panelPayments.setLayout(panelPaymentsLayout);
@@ -682,6 +687,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 javax.swing.JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnRemoveScheduleActionPerformed
+
+    private void btnPaymentReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentReportActionPerformed
+        new PaymentReportGUI(database).setVisible(true);
+    }//GEN-LAST:event_btnPaymentReportActionPerformed
     
     /**
      * populates the bus table with data from the bus manager

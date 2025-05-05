@@ -120,13 +120,17 @@ public class PaymentManager {
     /**
      * Prints out an expense report with all of the expenses in the database
      */
-    public void getReport() {
-        // Print the header for the report
-        System.out.printf("%-15s %-15s %-10s%n", "Payment ID", "Name", "Cost");
-        System.out.println("--------------------------------------------------");
+    public String getReport() {
+        StringBuilder report = new StringBuilder();
+        report.append(String.format("%-15s %-15s %-10s%n", "Payment ID", "Name", "Cost"));
+        report.append("--------------------------------------------------\n");
+        
         for(Payment payment : payments) {
-            System.out.println(payment);
-        }             
+            report.append(payment);
+            report.append("\n");
+        }
+        
+        return report.toString();
     }
     
     /**
