@@ -66,8 +66,7 @@
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="busIDTxt" max="32767" attributes="0"/>
-                      <Component id="busIDlbl" max="32767" attributes="0"/>
-                      <Component id="deleteBusButton" pref="158" max="32767" attributes="0"/>
+                      <Component id="busIDlbl" pref="158" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
@@ -80,9 +79,7 @@
                   <Component id="busIDlbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="busIDTxt" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="deleteBusButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="66" max="32767" attributes="0"/>
+                  <EmptySpace pref="101" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -103,14 +100,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Enter a bus Id:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="deleteBusButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Delete Bus"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteBusButtonActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

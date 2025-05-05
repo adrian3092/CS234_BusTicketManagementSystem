@@ -69,6 +69,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnManageBus = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableBus = new javax.swing.JTable();
+        btnDeleteBus = new javax.swing.JButton();
         panelSchedule = new javax.swing.JPanel();
         btnAddSchedule = new javax.swing.JButton();
         btnRemoveSchedule = new javax.swing.JButton();
@@ -81,6 +82,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnRouteAssignment = new javax.swing.JButton();
         routePane = new javax.swing.JScrollPane();
         tableRoute = new javax.swing.JTable();
+        btnDeleteRoute = new javax.swing.JButton();
         panelDepot = new javax.swing.JPanel();
         btnAddDepot = new javax.swing.JButton();
         btnDeleteDepot = new javax.swing.JButton();
@@ -129,7 +131,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         });
 
-        btnManageBus.setText("Manage an Existing Bus");
+        btnManageBus.setText("Manage Bus");
         btnManageBus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageBusActionPerformed(evt);
@@ -164,6 +166,13 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tableBus);
 
+        btnDeleteBus.setText("Delete Bus");
+        btnDeleteBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteBusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBusLayout = new javax.swing.GroupLayout(panelBus);
         panelBus.setLayout(panelBusLayout);
         panelBusLayout.setHorizontalGroup(
@@ -172,8 +181,9 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(panelBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnManageBus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(btnAddBus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                    .addComponent(btnAddBus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeleteBus, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
@@ -186,8 +196,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addGroup(panelBusLayout.createSequentialGroup()
                         .addComponent(btnAddBus)
                         .addGap(18, 18, 18)
-                        .addComponent(btnManageBus)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addComponent(btnManageBus)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeleteBus)))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Bus", panelBus);
@@ -201,14 +213,14 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         });
 
-        btnRemoveSchedule.setText("Remove an Existing Schedule");
+        btnRemoveSchedule.setText("Delete Schedule");
         btnRemoveSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoveScheduleActionPerformed(evt);
             }
         });
 
-        btnManageSchedule.setText("Manage an Existing Schedule");
+        btnManageSchedule.setText("Manage Schedule");
         btnManageSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageScheduleActionPerformed(evt);
@@ -253,7 +265,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnAddSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRemoveSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnManageSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(schedulePane, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
@@ -266,10 +278,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addGroup(panelScheduleLayout.createSequentialGroup()
                         .addComponent(btnAddSchedule)
                         .addGap(18, 18, 18)
-                        .addComponent(btnRemoveSchedule)
+                        .addComponent(btnManageSchedule)
                         .addGap(18, 18, 18)
-                        .addComponent(btnManageSchedule)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                        .addComponent(btnRemoveSchedule)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Schedule", panelSchedule);
@@ -284,8 +296,18 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         });
 
         btnManageRoute.setText("Manage Route");
+        btnManageRoute.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageRouteActionPerformed(evt);
+            }
+        });
 
         btnRouteAssignment.setText("Manage Route Assignment");
+        btnRouteAssignment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRouteAssignmentActionPerformed(evt);
+            }
+        });
 
         tableRoute.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -315,6 +337,13 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         });
         routePane.setViewportView(tableRoute);
 
+        btnDeleteRoute.setText("Delete Route");
+        btnDeleteRoute.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteRouteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelRouteLayout = new javax.swing.GroupLayout(panelRoute);
         panelRoute.setLayout(panelRouteLayout);
         panelRouteLayout.setHorizontalGroup(
@@ -324,8 +353,9 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 .addGroup(panelRouteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnRouteAssignment, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnManageRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAddRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                    .addComponent(btnAddRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeleteRoute, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(routePane, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
         );
@@ -340,8 +370,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnManageRoute)
                         .addGap(18, 18, 18)
+                        .addComponent(btnDeleteRoute)
+                        .addGap(18, 18, 18)
                         .addComponent(btnRouteAssignment)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Route", panelRoute);
@@ -653,7 +685,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRouteActionPerformed
-        // TODO add your handling code here:
+        AddRouteGUI addRouteGUI = new AddRouteGUI(this.database, this);
+        addRouteGUI.setVisible(true);
     }//GEN-LAST:event_btnAddRouteActionPerformed
 
     private void tabAdminStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabAdminStateChanged
@@ -673,7 +706,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         ManageBusGUI manageBusGUI = new ManageBusGUI(this.database, this);
         manageBusGUI.setVisible(true);
     }//GEN-LAST:event_btnManageBusActionPerformed
-
+    
     private void btnExpenseReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpenseReportActionPerformed
         new ExpenseReportGUI(database).setVisible(true);
     }//GEN-LAST:event_btnExpenseReportActionPerformed
@@ -704,11 +737,24 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             Schedule schedule = database.getScheduleManager().getScheduleByName(scheduleName);
             
             if (schedule != null) {
-                // remove the schedule
-                database.getScheduleManager().removeSchedule(schedule);
+                // confirm deletion
+                int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+                        "Are you sure you want to delete schedule '" + schedule.getName() + "'?",
+                        "Confirm Deletion",
+                        javax.swing.JOptionPane.YES_NO_OPTION);
                 
-                // refresh the schedule table
-                populateScheduleTable();
+                if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                    // remove the schedule
+                    database.getScheduleManager().removeSchedule(schedule);
+                    
+                    // refresh the schedule table
+                    populateScheduleTable();
+                    
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Schedule deleted successfully!", 
+                            "Success", 
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
             }
         } else {
             // if no row is selected, show a message
@@ -730,6 +776,178 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private void btnManagePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePaymentActionPerformed
         new ManagePaymentGUI(database, this).setVisible(true);
     }//GEN-LAST:event_btnManagePaymentActionPerformed
+    
+    private void btnManageRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageRouteActionPerformed
+        ManageRouteGUI manageRouteGUI = new ManageRouteGUI(this.database, this);
+        manageRouteGUI.setVisible(true);
+    }//GEN-LAST:event_btnManageRouteActionPerformed
+    
+    private void btnDeleteRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteRouteActionPerformed
+        // get the selected route from the table
+        int selectedRow = tableRoute.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            // get the route ID from the selected row
+            String routeId = (String) tableRoute.getValueAt(selectedRow, 0);
+            
+            // find the route by ID
+            Route selectedRoute = database.getRouteManager().getRouteById(routeId);
+            
+            if (selectedRoute != null) {
+                // confirm deletion
+                int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+                        "Are you sure you want to delete route '" + selectedRoute.getName() + "'?",
+                        "Confirm Deletion",
+                        javax.swing.JOptionPane.YES_NO_OPTION);
+                
+                if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                    // check if the route has a bus assigned to it
+                    bus.Bus assignedBus = database.getDispatcher().getBusForRoute(selectedRoute);
+                    
+                    if (assignedBus != null) {
+                        // remove the bus assignment first
+                        database.getDispatcher().removeBusFromRoute(selectedRoute);
+                        
+                        // refresh the bus table
+                        populateBusTable();
+                    }
+                    
+                    // remove the route
+                    database.getRouteManager().removeRoute(selectedRoute);
+                    
+                    // refresh the route table
+                    populateRouteTable();
+                    
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Route deleted successfully!", 
+                            "Success", 
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Please select a route to delete.", 
+                "No Route Selected", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteRouteActionPerformed
+    
+    private void btnRouteAssignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRouteAssignmentActionPerformed
+        // get the selected route from the table
+        int selectedRow = tableRoute.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            // get the route ID from the selected row
+            String routeId = (String) tableRoute.getValueAt(selectedRow, 0);
+            
+            // find the route by ID
+            Route selectedRoute = database.getRouteManager().getRouteById(routeId);
+            
+            if (selectedRoute != null) {
+                // show input dialog for bus ID
+                String busIdStr = javax.swing.JOptionPane.showInputDialog(
+                    this,
+                    "Enter the ID of the bus to assign to route " + selectedRoute.getName() + ":",
+                    "Assign Bus to Route",
+                    javax.swing.JOptionPane.QUESTION_MESSAGE);
+                
+                if (busIdStr != null && !busIdStr.trim().isEmpty()) {
+                    // parse the bus ID
+                    int busId = Integer.parseInt(busIdStr.trim());
+                
+                    // find the bus by ID
+                    bus.Bus bus = database.getBusManager().findBusById(busId);
+                    
+                    if (bus != null) {
+                        // check if the bus is available
+                        if (!bus.getStatus().equals("Available")) {
+                            javax.swing.JOptionPane.showMessageDialog(this, 
+                                "Bus " + busId + " is not available for assignment. Current status: " + bus.getStatus(), 
+                                "Bus Not Available", 
+                                javax.swing.JOptionPane.WARNING_MESSAGE);
+                            return;
+                        }
+                        
+                        // assign the bus to the route
+                        boolean success = database.getDispatcher().assignBusToRoute(bus, selectedRoute);
+                        
+                        if (success) {
+                            javax.swing.JOptionPane.showMessageDialog(this, 
+                                "Bus " + bus.getBusId() + " assigned to route " + selectedRoute.getName() + " successfully!", 
+                                "Assignment Successful", 
+                                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            
+                            // refresh the bus table
+                            populateBusTable();
+                        } else {
+                            javax.swing.JOptionPane.showMessageDialog(this, 
+                                "Failed to assign bus to route. The bus or route may already be assigned.", 
+                                "Assignment Failed", 
+                                javax.swing.JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Bus with ID " + busId + " not found.", 
+                            "Bus Not Found", 
+                            javax.swing.JOptionPane.WARNING_MESSAGE);
+                    }
+            }
+        }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Please select a route to assign a bus to.", 
+                "No Route Selected", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRouteAssignmentActionPerformed
+
+    private void btnDeleteBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBusActionPerformed
+        // get the selected bus from the table
+        int selectedRow = tableBus.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            // get the bus ID from the selected row
+            int busId = (int) tableBus.getValueAt(selectedRow, 0);
+            
+            // find the bus by ID
+            bus.Bus selectedBus = database.getBusManager().findBusById(busId);
+            
+            if (selectedBus != null) {
+                // confirm deletion
+                int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+                        "Are you sure you want to delete bus #" + selectedBus.getBusId() + " (" + 
+                        selectedBus.getYear() + " " + selectedBus.getMake() + " " + selectedBus.getModel() + ")?",
+                        "Confirm Deletion",
+                        javax.swing.JOptionPane.YES_NO_OPTION);
+                
+                if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                    // check if the bus is assigned to a route
+                    Route assignedRoute = database.getDispatcher().getRouteForBus(selectedBus);
+                    
+                    if (assignedRoute != null) {
+                        // remove the bus assignment first
+                        database.getDispatcher().removeBusFromRoute(assignedRoute);
+                    }
+                    
+                    // remove the bus
+                    database.getBusManager().removeBus(selectedBus);
+                    
+                    // refresh the bus table
+                    populateBusTable();
+                    
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Bus deleted successfully!", 
+                            "Success", 
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Please select a bus to delete.", 
+                "No Bus Selected", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteBusActionPerformed
     
     /**
      * populates the bus table with data from the bus manager
@@ -804,6 +1022,29 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             
             model.addRow(new Object[]{name, routeName, startTime, departureTimes, stops});
         }
+        
+        // Set column widths for the schedule table
+        javax.swing.table.TableColumnModel columnModel = tableSchedule.getColumnModel();
+        
+        // Set preferred widths for each column
+        columnModel.getColumn(0).setPreferredWidth(80);  // Name column
+        columnModel.getColumn(1).setPreferredWidth(80);  // Route column
+        columnModel.getColumn(2).setPreferredWidth(60);  // Start Time column
+        columnModel.getColumn(3).setPreferredWidth(120); // Departure Times column
+        columnModel.getColumn(4).setPreferredWidth(180); // Stops column
+        
+        // Optionally set minimum and maximum widths to control resizing
+        for (int i = 0; i < columnModel.getColumnCount(); i++) {
+            javax.swing.table.TableColumn column = columnModel.getColumn(i);
+            column.setMinWidth(50);  // Minimum width for all columns
+            
+            // Set maximum width based on column index
+            if (i == 0 || i == 1) {
+                column.setMaxWidth(100);  // Name and Route columns
+            } else if (i == 2) {
+                column.setMaxWidth(80);   // Start Time column
+            }
+        }
     }
     
     /**
@@ -822,7 +1063,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
      * populates the route table with data from the route manager
      * @author Adrian Zielinski
      */
-    private void populateRouteTable() {
+    public void populateRouteTable() {
         if (database == null || database.getRouteManager() == null) {
             return;
         }
@@ -984,10 +1225,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     Color fg = Color.BLACK;
 
     JButton[] buttons = {
-        btnAddBus, btnManageBus,
+        btnAddBus, btnManageBus, btnDeleteBus,
         btnAddDepot, btnDeleteDepot, btnAssignBus, btnUnassignBus,
         btnAddSchedule, btnRemoveSchedule, btnManageSchedule,
-        btnAddRoute, btnManageRoute, btnRouteAssignment,
+        btnAddRoute, btnManageRoute, btnDeleteRoute, btnRouteAssignment,
         btnAddEmployee, btnDeleteEmployee, btnUpdateEmployee,
         btnExpenseReport, btnPaymentReport, 
         btnNewExpense, btnRemoveExpense
@@ -1056,10 +1297,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private void normalizeButtonFonts() {
     Font plainFont = new Font("Segoe UI", Font.PLAIN, 12); // or any preferred font
     JButton[] buttons = {
-        btnAddBus, btnManageBus,
+        btnAddBus, btnManageBus, btnDeleteBus,
         btnAddDepot, btnDeleteDepot, btnAssignBus, btnUnassignBus,
         btnAddSchedule, btnRemoveSchedule, btnManageSchedule,
-        btnAddRoute, btnManageRoute, btnRouteAssignment,
+        btnAddRoute, btnManageRoute, btnDeleteRoute, btnRouteAssignment,
         btnAddEmployee, btnDeleteEmployee, btnUpdateEmployee,
         btnExpenseReport, btnPaymentReport,
         btnNewExpense, btnRemoveExpense
@@ -1099,8 +1340,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnAddRoute;
     private javax.swing.JButton btnAddSchedule;
     private javax.swing.JButton btnAssignBus;
+    private javax.swing.JButton btnDeleteBus;
     private javax.swing.JButton btnDeleteDepot;
     private javax.swing.JButton btnDeleteEmployee;
+    private javax.swing.JButton btnDeleteRoute;
     private javax.swing.JButton btnExpenseReport;
     private javax.swing.JButton btnManageBus;
     private javax.swing.JButton btnManagePayment;

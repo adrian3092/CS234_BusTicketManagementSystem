@@ -77,8 +77,9 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnManageBus" alignment="1" pref="210" max="32767" attributes="0"/>
                           <Component id="btnAddBus" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnDeleteBus" alignment="0" pref="210" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="37" max="32767" attributes="0"/>
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="599" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
@@ -94,9 +95,11 @@
                               <Component id="btnAddBus" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnManageBus" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnDeleteBus" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="51" max="32767" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -112,7 +115,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnManageBus">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Manage an Existing Bus"/>
+                <Property name="text" type="java.lang.String" value="Manage Bus"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageBusActionPerformed"/>
@@ -140,6 +143,14 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="btnDeleteBus">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Delete Bus"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteBusActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="panelSchedule">
@@ -166,7 +177,7 @@
                           <Component id="btnRemoveSchedule" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                           <Component id="btnManageSchedule" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="44" max="32767" attributes="0"/>
+                      <EmptySpace pref="56" max="32767" attributes="0"/>
                       <Component id="schedulePane" min="-2" pref="526" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   </Group>
@@ -181,12 +192,12 @@
                           <Group type="102" attributes="0">
                               <Component id="btnAddSchedule" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnRemoveSchedule" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnManageSchedule" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnRemoveSchedule" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="54" max="32767" attributes="0"/>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -202,7 +213,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnRemoveSchedule">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Remove an Existing Schedule"/>
+                <Property name="text" type="java.lang.String" value="Delete Schedule"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRemoveScheduleActionPerformed"/>
@@ -210,7 +221,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnManageSchedule">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Manage an Existing Schedule"/>
+                <Property name="text" type="java.lang.String" value="Manage Schedule"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageScheduleActionPerformed"/>
@@ -263,8 +274,9 @@
                           <Component id="btnRouteAssignment" min="-2" pref="251" max="-2" attributes="0"/>
                           <Component id="btnManageRoute" min="-2" pref="251" max="-2" attributes="0"/>
                           <Component id="btnAddRoute" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="btnDeleteRoute" min="-2" pref="251" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="48" max="32767" attributes="0"/>
+                      <EmptySpace pref="60" max="32767" attributes="0"/>
                       <Component id="routePane" min="-2" pref="531" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
@@ -281,10 +293,12 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnManageRoute" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnDeleteRoute" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnRouteAssignment" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                      <EmptySpace pref="34" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -302,11 +316,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Route"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageRouteActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnRouteAssignment">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Route Assignment"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRouteAssignmentActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="routePane">
               <AuxValues>
@@ -327,6 +347,14 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="btnDeleteRoute">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Delete Route"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteRouteActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="panelDepot">

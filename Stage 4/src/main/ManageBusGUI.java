@@ -136,7 +136,6 @@ public class ManageBusGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         busIDTxt = new javax.swing.JTextField();
         busIDlbl = new javax.swing.JLabel();
-        deleteBusButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         busInfoTable = new javax.swing.JTable();
@@ -156,13 +155,6 @@ public class ManageBusGUI extends javax.swing.JFrame {
         busIDlbl.setLabelFor(busIDTxt);
         busIDlbl.setText("Enter a bus Id:");
 
-        deleteBusButton.setText("Delete Bus");
-        deleteBusButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteBusButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -171,8 +163,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(busIDTxt)
-                    .addComponent(busIDlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(deleteBusButton, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
+                    .addComponent(busIDlbl, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -182,9 +173,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
                 .addComponent(busIDlbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(busIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(deleteBusButton)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(215, 224, 223));
@@ -255,24 +244,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * delete a specific bus by id
-     * @param evt 
-     */
-    private void deleteBusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBusButtonActionPerformed
-        int busId = Integer.parseInt(busIDTxt.getText());
-        
-        bus.Bus bus = database.getBusManager().findBusById(busId);
-        database.getBusManager().removeBus(bus);
-        
-        // refresh the bus table in AdminMenuGUI
-        if (adminMenuGUI != null) {
-            adminMenuGUI.populateBusTable();
-        }
-        
-        this.dispose();
-    }//GEN-LAST:event_deleteBusButtonActionPerformed
-    
+   
     /**
      * populate bus info table
      * @param evt 
@@ -337,7 +309,6 @@ public class ManageBusGUI extends javax.swing.JFrame {
     private javax.swing.JTextField busIDTxt;
     private javax.swing.JLabel busIDlbl;
     private javax.swing.JTable busInfoTable;
-    private javax.swing.JButton deleteBusButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
