@@ -1033,7 +1033,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteBusActionPerformed
 
     private void btnAddPassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPassengerActionPerformed
-        // TODO add your handling code here:
+        new AddPassengerGUI(database, this).setVisible(true);
     }//GEN-LAST:event_btnAddPassengerActionPerformed
 
     private void btnManagePassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePassengerActionPerformed
