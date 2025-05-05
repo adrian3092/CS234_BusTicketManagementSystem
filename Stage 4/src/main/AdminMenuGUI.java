@@ -1489,6 +1489,17 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 route.getName()
             });
         }
+        
+        // set column widths for the route table
+        javax.swing.table.TableColumnModel columnModel = tableRoute.getColumnModel();
+        
+        // make the Route ID column smaller
+        columnModel.getColumn(0).setPreferredWidth(60);  // Route ID column
+        columnModel.getColumn(1).setPreferredWidth(200); // Name column
+        
+        // set minimum and maximum widths to control resizing
+        columnModel.getColumn(0).setMinWidth(50);
+        columnModel.getColumn(0).setMaxWidth(80);  // Restrict maximum width for Route ID
     }
     
     /**
@@ -1516,6 +1527,17 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 depot.getDepotAddress()
             });
         }
+        
+        // set column widths for the depot table
+        javax.swing.table.TableColumnModel columnModel = tableDepot.getColumnModel();
+        
+        // make the Depot ID column smaller
+        columnModel.getColumn(0).setPreferredWidth(60);  // Depot ID column
+        columnModel.getColumn(1).setPreferredWidth(200); // Address column
+        
+        // set minimum and maximum widths to control resizing
+        columnModel.getColumn(0).setMinWidth(50);
+        columnModel.getColumn(0).setMaxWidth(80);  // Restrict maximum width for Depot ID
     }
     
     /**
