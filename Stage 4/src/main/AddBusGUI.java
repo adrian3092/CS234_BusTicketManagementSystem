@@ -4,6 +4,11 @@
  */
 package main;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.border.Border;
+
 /**
  *
  * @author Owner
@@ -12,7 +17,8 @@ public class AddBusGUI extends javax.swing.JFrame {
     
     private Database database;
     private AdminMenuGUI adminMenuGUI;
-    
+    private Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
+    private Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
     /**
      * Creates new form AddBusGUI
      */
@@ -21,8 +27,18 @@ public class AddBusGUI extends javax.swing.JFrame {
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
         setAutoRequestFocus(false);
+        setLocationRelativeTo(null);
+        addHoverEffect(addBtn, Color.WHITE, Color.GREEN);
+        addBtn.setPreferredSize(new java.awt.Dimension(160, 23));
+        setupYearBehavior();
+        setupMakeBehavior();
+        setupModelBehavior();
+        setupMileageBehavior();
+        setupSeatingCapacityBehavior();
+        addBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +56,7 @@ public class AddBusGUI extends javax.swing.JFrame {
         seatingCapacityTxt = new javax.swing.JTextField();
         addBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(215, 224, 223));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -48,18 +64,23 @@ public class AddBusGUI extends javax.swing.JFrame {
 
         yearTxt.setForeground(new java.awt.Color(153, 153, 153));
         yearTxt.setText("Year");
+        yearTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         makeTxt.setForeground(new java.awt.Color(153, 153, 153));
         makeTxt.setText("Make");
+        makeTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         modelTxt.setForeground(new java.awt.Color(153, 153, 153));
         modelTxt.setText("Model");
+        modelTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         mileageTxt.setForeground(new java.awt.Color(153, 153, 153));
         mileageTxt.setText("Mileage");
+        mileageTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         seatingCapacityTxt.setForeground(new java.awt.Color(153, 153, 153));
         seatingCapacityTxt.setText("Seating Capacity");
+        seatingCapacityTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         addBtn.setText("Add");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +94,7 @@ public class AddBusGUI extends javax.swing.JFrame {
         addBusPanelLayout.setHorizontalGroup(
             addBusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addBusPanelLayout.createSequentialGroup()
-                .addContainerGap(128, Short.MAX_VALUE)
+                .addContainerGap(138, Short.MAX_VALUE)
                 .addGroup(addBusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(yearTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(makeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,10 +121,10 @@ public class AddBusGUI extends javax.swing.JFrame {
                 .addComponent(seatingCapacityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(addBtn)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
-        getContentPane().add(addBusPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 380));
+        getContentPane().add(addBusPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,6 +151,119 @@ public class AddBusGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_addBtnActionPerformed
 
+    private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
+    button.setOpaque(true);
+    button.setBackground(normal);
+    button.setBorderPainted(false);
+
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hover);
+        }
+
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(normal);
+        }
+    });
+    }
+    
+    private void setupYearBehavior() {
+    yearTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            if (yearTxt.getText().equals("Year")) {
+                yearTxt.setText("");
+                yearTxt.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+                yearTxt.setBorder(focusBorder);
+            }
+        }
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            if (yearTxt.getText().isEmpty()) {
+                yearTxt.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
+                yearTxt.setText("Year");
+                yearTxt.setBorder(defaultBorder);
+            }
+        }
+    });
+    }
+    
+    private void setupMakeBehavior() {
+    makeTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            if (makeTxt.getText().equals("Make")) {
+                makeTxt.setText("");
+                makeTxt.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+                makeTxt.setBorder(focusBorder);
+            }
+        }
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            if (makeTxt.getText().isEmpty()) {
+                makeTxt.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
+                makeTxt.setText("Make");
+                makeTxt.setBorder(defaultBorder);
+            }
+        }
+    });
+    }
+    
+    private void setupModelBehavior() {
+    modelTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            if (modelTxt.getText().equals("Model")) {
+                modelTxt.setText("");
+                modelTxt.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+                modelTxt.setBorder(focusBorder);
+            }
+        }
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            if (modelTxt.getText().isEmpty()) {
+                modelTxt.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
+                modelTxt.setText("Model");
+                modelTxt.setBorder(defaultBorder);
+            }
+        }
+    });
+    }
+    
+    private void setupMileageBehavior() {
+    mileageTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            if (mileageTxt.getText().equals("Mileage")) {
+                mileageTxt.setText("");
+                mileageTxt.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+                mileageTxt.setBorder(focusBorder);
+            }
+        }
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            if (mileageTxt.getText().isEmpty()) {
+                mileageTxt.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
+                mileageTxt.setText("Mileage");
+                mileageTxt.setBorder(defaultBorder);
+            }
+        }
+    });
+    }
+    
+    private void setupSeatingCapacityBehavior() {
+    seatingCapacityTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            if (seatingCapacityTxt.getText().equals("Seating Capacity")) {
+                seatingCapacityTxt.setText("");
+                seatingCapacityTxt.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+                seatingCapacityTxt.setBorder(focusBorder);
+            }
+        }
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            if (seatingCapacityTxt.getText().isEmpty()) {
+                seatingCapacityTxt.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
+                seatingCapacityTxt.setText("Seating Capacity");
+                seatingCapacityTxt.setBorder(defaultBorder);
+            }
+        }
+    });
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */

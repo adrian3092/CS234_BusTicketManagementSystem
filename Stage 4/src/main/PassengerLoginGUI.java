@@ -38,6 +38,9 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         
         loginBtn.setBackground(Color.white);
         loginBtn.setForeground(Color.black);
+        loginBtn.setPreferredSize(new java.awt.Dimension(160, 23));
+        loginBtn.setMinimumSize(new java.awt.Dimension(160, 23));
+        loginBtn.setMaximumSize(new java.awt.Dimension(160, 23));
     }
 
     /**
@@ -73,6 +76,8 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         loginBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         loginBtn.setText("Login");
         loginBtn.setBorderPainted(false);
+        loginBtn.setMaximumSize(new java.awt.Dimension(160, 23));
+        loginBtn.setMinimumSize(new java.awt.Dimension(72, 23));
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
@@ -80,7 +85,6 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         });
 
         SignUpLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        SignUpLabel.setForeground(new java.awt.Color(0, 204, 51));
         SignUpLabel.setText("Sign up");
 
         passwordField.setForeground(new java.awt.Color(153, 153, 153));
@@ -93,7 +97,6 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         });
 
         continueAsGuestlbl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        continueAsGuestlbl.setForeground(new java.awt.Color(0, 204, 51));
         continueAsGuestlbl.setText("Continue As Guest");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -125,12 +128,12 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(loginBtn)
+                .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(SignUpLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(continueAsGuestlbl)
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -220,13 +223,13 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     SignUpLabel.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
         public void mouseEntered(java.awt.event.MouseEvent evt) {
-            SignUpLabel.setForeground(Color.green); // Hover color (light blue)
+            SignUpLabel.setForeground(Color.green); // Hover color 
             SignUpLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); // Change cursor to hand
         }
 
         @Override
         public void mouseExited(java.awt.event.MouseEvent evt) {
-            SignUpLabel.setForeground(new java.awt.Color(0,204,51)); // Original color (green)
+            SignUpLabel.setForeground(Color.black); // Original color (green)
             SignUpLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Restore cursor
         }
     });
@@ -242,7 +245,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
 
         @Override
         public void mouseExited(java.awt.event.MouseEvent evt) {
-            continueAsGuestlbl.setForeground(new java.awt.Color(0,204,51)); // Original color (green)
+            continueAsGuestlbl.setForeground(Color.black); // Original color (green)
             continueAsGuestlbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Restore cursor
         }
     });
@@ -258,12 +261,9 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     }
     
     private void openSignUpForm() {
-    // Open the signup form
-    //SignUpFormGUI signUpForm = new SignUpFormGUI(); // Assuming you create this JFrame
-    //signUpForm.setVisible(true);
 
-    // Optional: Close or hide the current login window if you want
-    // this.dispose();
+    PassengerSignUpGUI signUpForm = new PassengerSignUpGUI(this.database); 
+    signUpForm.setVisible(true);
     }
     
     private void addHoverEffect(final JButton button) {

@@ -643,7 +643,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExpenseReportActionPerformed
 
     private void btnNewExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewExpenseActionPerformed
-        new AddExpenseGUI(database).setVisible(true);
+        new AddExpenseGUI(database, this).setVisible(true);
     }//GEN-LAST:event_btnNewExpenseActionPerformed
 
     private void btnAddScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddScheduleActionPerformed
@@ -860,7 +860,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
      * populates the expenses table
      * @author George Candal
      */
-    private void populateExpensesTable() {
+    public void populateExpensesTable() {
         if (database == null || database.getAccounting() == null) {
             return;
         }

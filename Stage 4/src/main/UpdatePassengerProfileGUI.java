@@ -14,11 +14,18 @@ import javax.swing.border.Border;
  * @author Owner
  */
 public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
-
+    private Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
+    private Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
+    private Passenger passenger;
+    private PassengerManager passengerManager;
+    private passengerDashboardGUI passengerDashboard;
     /**
      * Creates new form UpdatePassengerProfileGUI
      */
-    public UpdatePassengerProfileGUI() {
+    public UpdatePassengerProfileGUI(Passenger initPassenger,PassengerManager pm, passengerDashboardGUI dashboard) {
+        this.passenger = initPassenger;
+        this.passengerManager = pm;
+        this.passengerDashboard = dashboard;
         initComponents();
         setAutoRequestFocus(false);
         setLocationRelativeTo(null);
@@ -46,12 +53,13 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         saveUpdateBtn = new javax.swing.JButton();
         deleteAccountBtn1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(215, 224, 223));
 
         nameUpdatetxt.setForeground(new java.awt.Color(153, 153, 153));
         nameUpdatetxt.setText("Update Name");
+        nameUpdatetxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         nameUpdatetxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 nameUpdatetxtFocusGained(evt);
@@ -68,6 +76,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
 
         phoneNumberUpdatetxt.setForeground(new java.awt.Color(153, 153, 153));
         phoneNumberUpdatetxt.setText("Update Phone Number");
+        phoneNumberUpdatetxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         phoneNumberUpdatetxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 phoneNumberUpdatetxtFocusGained(evt);
@@ -84,6 +93,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
 
         emailUpdatetxt.setForeground(new java.awt.Color(153, 153, 153));
         emailUpdatetxt.setText("Update Email");
+        emailUpdatetxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         emailUpdatetxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 emailUpdatetxtFocusGained(evt);
@@ -94,6 +104,11 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         });
 
         saveUpdateBtn.setText("Save Update");
+        saveUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveUpdateBtnActionPerformed(evt);
+            }
+        });
 
         deleteAccountBtn1.setText("Delete Account");
         deleteAccountBtn1.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +173,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         if (nameUpdatetxt.getText().equals("Update Name")) {
                 nameUpdatetxt.setText("");
                 nameUpdatetxt.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+                nameUpdatetxt.setBorder(focusBorder);
             }       
     }//GEN-LAST:event_nameUpdatetxtFocusGained
 
@@ -169,6 +185,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         if (nameUpdatetxt.getText().isEmpty()) {
                 nameUpdatetxt.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
                 nameUpdatetxt.setText("Update Name");
+                nameUpdatetxt.setBorder(defaultBorder);
             } 
     }//GEN-LAST:event_nameUpdatetxtFocusLost
 
@@ -176,6 +193,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         if (phoneNumberUpdatetxt.getText().equals("Update Phone Number")) {
                 phoneNumberUpdatetxt.setText("");
                 phoneNumberUpdatetxt.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+                phoneNumberUpdatetxt.setBorder(focusBorder);
             }   
     }//GEN-LAST:event_phoneNumberUpdatetxtFocusGained
 
@@ -183,6 +201,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         if (phoneNumberUpdatetxt.getText().isEmpty()) {
                 phoneNumberUpdatetxt.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
                 phoneNumberUpdatetxt.setText("Update Phone Number");
+                phoneNumberUpdatetxt.setBorder(defaultBorder);
             } 
     }//GEN-LAST:event_phoneNumberUpdatetxtFocusLost
 
@@ -190,6 +209,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         if (emailUpdatetxt.getText().equals("Update Email")) {
                 emailUpdatetxt.setText("");
                 emailUpdatetxt.setForeground(new java.awt.Color(0, 0, 0)); // Typing color
+                emailUpdatetxt.setBorder(focusBorder);
             }
     }//GEN-LAST:event_emailUpdatetxtFocusGained
 
@@ -197,11 +217,24 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         if (emailUpdatetxt.getText().isEmpty()) {
                 emailUpdatetxt.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
                 emailUpdatetxt.setText("Update Email");
+                emailUpdatetxt.setBorder(defaultBorder);
             } 
     }//GEN-LAST:event_emailUpdatetxtFocusLost
 
+    private void saveUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveUpdateBtnActionPerformed
+        String name = nameUpdatetxt.getText();
+        String phoneNumber = phoneNumberUpdatetxt.getText();
+        String email = emailUpdatetxt.getText();
+        
+        passengerManager.updatePassenger(this.passenger.getPassengerID(), name, email, phoneNumber);
+        passengerManager.savePassengersToCSV();
+        passengerDashboard.updateWelcomelbl();
+        this.dispose();
+    }//GEN-LAST:event_saveUpdateBtnActionPerformed
+
     private void deleteAccountBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAccountBtn1ActionPerformed
-        // TODO add your handling code here:
+        this.passengerManager.deletePassenger(this.passenger.getPassengerID());
+        this.passengerManager.savePassengersToCSV();
     }//GEN-LAST:event_deleteAccountBtn1ActionPerformed
 
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
@@ -222,37 +255,6 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UpdatePassengerProfileGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UpdatePassengerProfileGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UpdatePassengerProfileGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UpdatePassengerProfileGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UpdatePassengerProfileGUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteAccountBtn1;
