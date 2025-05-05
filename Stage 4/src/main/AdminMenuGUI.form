@@ -80,7 +80,7 @@
                           <Component id="btnDeleteBus" alignment="0" pref="210" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="33" max="32767" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" pref="599" max="-2" attributes="0"/>
+                      <Component id="busScrollPane" min="-2" pref="599" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -90,7 +90,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane3" min="-2" pref="242" max="-2" attributes="0"/>
+                          <Component id="busScrollPane" min="-2" pref="242" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="btnAddBus" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -121,7 +121,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageBusActionPerformed"/>
               </Events>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+            <Container class="javax.swing.JScrollPane" name="busScrollPane">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>
@@ -414,21 +414,33 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add a New Depot"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddDepotActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnDeleteDepot">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Delete an Existing Depot"/>
+                <Property name="text" type="java.lang.String" value="Delete Depot"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteDepotActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnAssignBus">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Assign a Bus to a Depot"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAssignBusActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnUnassignBus">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Unassign a Bus From a Depot"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUnassignBusActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">
               <AuxValues>
@@ -522,10 +534,13 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add a New Employee"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddEmployeeActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnDeleteEmployee">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Delete an Existing Employee"/>
+                <Property name="text" type="java.lang.String" value="Delete Employee"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnUpdateEmployee">

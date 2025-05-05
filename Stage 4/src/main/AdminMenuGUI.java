@@ -69,7 +69,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         panelBus = new javax.swing.JPanel();
         btnAddBus = new javax.swing.JButton();
         btnManageBus = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        busScrollPane = new javax.swing.JScrollPane();
         tableBus = new javax.swing.JTable();
         btnDeleteBus = new javax.swing.JButton();
         panelSchedule = new javax.swing.JPanel();
@@ -172,7 +172,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(tableBus);
+        busScrollPane.setViewportView(tableBus);
 
         btnDeleteBus.setText("Delete Bus");
         btnDeleteBus.addActionListener(new java.awt.event.ActionListener() {
@@ -192,7 +192,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addComponent(btnAddBus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDeleteBus, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(busScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );
         panelBusLayout.setVerticalGroup(
@@ -200,7 +200,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             .addGroup(panelBusLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(panelBusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(busScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelBusLayout.createSequentialGroup()
                         .addComponent(btnAddBus)
                         .addGap(18, 18, 18)
@@ -389,12 +389,32 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         panelDepot.setBackground(new java.awt.Color(215, 224, 223));
 
         btnAddDepot.setText("Add a New Depot");
+        btnAddDepot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddDepotActionPerformed(evt);
+            }
+        });
 
-        btnDeleteDepot.setText("Delete an Existing Depot");
+        btnDeleteDepot.setText("Delete Depot");
+        btnDeleteDepot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteDepotActionPerformed(evt);
+            }
+        });
 
         btnAssignBus.setText("Assign a Bus to a Depot");
+        btnAssignBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignBusActionPerformed(evt);
+            }
+        });
 
         btnUnassignBus.setText("Unassign a Bus From a Depot");
+        btnUnassignBus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnassignBusActionPerformed(evt);
+            }
+        });
 
         tableDepot.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -454,8 +474,13 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         panelEmployee.setBackground(new java.awt.Color(215, 224, 223));
 
         btnAddEmployee.setText("Add a New Employee");
+        btnAddEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddEmployeeActionPerformed(evt);
+            }
+        });
 
-        btnDeleteEmployee.setText("Delete an Existing Employee");
+        btnDeleteEmployee.setText("Delete Employee");
 
         btnUpdateEmployee.setText("Update Employee Information");
 
@@ -1040,6 +1065,242 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnManagePassengerActionPerformed
     
+    private void btnAddDepotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDepotActionPerformed
+        // show input dialog for depot address
+        String address = javax.swing.JOptionPane.showInputDialog(
+            this,
+            "Enter the address for the new depot:",
+            "Add New Depot",
+            javax.swing.JOptionPane.QUESTION_MESSAGE);
+        
+        if (address != null && !address.trim().isEmpty()) {
+            // create a new depot
+            depot.Depot newDepot = new depot.Depot(address.trim());
+            
+            // add the depot to the depot manager
+            database.getDepotManager().addDepot(newDepot);
+            
+            // refresh the depot table
+            populateDepotTable();
+            
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Depot added successfully! Depot ID: " + newDepot.getDepotId(), 
+                "Success", 
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAddDepotActionPerformed
+    
+    private void btnDeleteDepotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDepotActionPerformed
+        // get the selected depot from the table
+        int selectedRow = tableDepot.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            // get the depot ID from the selected row
+            int depotId = (int) tableDepot.getValueAt(selectedRow, 0);
+            
+            // find the depot by ID
+            depot.Depot selectedDepot = database.getDepotManager().findDepotById(depotId);
+            
+            if (selectedDepot != null) {
+                // confirm deletion
+                int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+                        "Are you sure you want to delete depot #" + selectedDepot.getDepotId() + " at " + 
+                        selectedDepot.getDepotAddress() + "?",
+                        "Confirm Deletion",
+                        javax.swing.JOptionPane.YES_NO_OPTION);
+                
+                if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                    // check if the depot has buses assigned to it
+                    java.util.ArrayList<bus.Bus> assignedBuses = selectedDepot.getBuses();
+                    
+                    if (!assignedBuses.isEmpty()) {
+                        // show warning about assigned buses
+                        int confirmWithBuses = javax.swing.JOptionPane.showConfirmDialog(this,
+                                "This depot has " + assignedBuses.size() + " buses assigned to it. " +
+                                "Deleting the depot will unassign all buses. Continue?",
+                                "Buses Assigned",
+                                javax.swing.JOptionPane.YES_NO_OPTION);
+                        
+                        if (confirmWithBuses != javax.swing.JOptionPane.YES_OPTION) {
+                            return;
+                        }
+                    }
+                    
+                    // remove the depot
+                    database.getDepotManager().removeDepot(selectedDepot);
+                    
+                    // refresh the depot table
+                    populateDepotTable();
+                    
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Depot deleted successfully!", 
+                            "Success", 
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Please select a depot to delete.", 
+                "No Depot Selected", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteDepotActionPerformed
+    
+    private void btnAssignBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignBusActionPerformed
+        // get the selected depot from the table
+        int selectedRow = tableDepot.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            // get the depot ID from the selected row
+            int depotId = (int) tableDepot.getValueAt(selectedRow, 0);
+            
+            // find the depot by ID
+            depot.Depot selectedDepot = database.getDepotManager().findDepotById(depotId);
+            
+            if (selectedDepot != null) {
+                // show input dialog for bus ID
+                String busIdStr = javax.swing.JOptionPane.showInputDialog(
+                    this,
+                    "Enter the ID of the bus to assign to depot #" + selectedDepot.getDepotId() + ":",
+                    "Assign Bus to Depot",
+                    javax.swing.JOptionPane.QUESTION_MESSAGE);
+                
+                if (busIdStr != null && !busIdStr.trim().isEmpty()) {
+                    try {
+                        // parse the bus ID
+                        int busId = Integer.parseInt(busIdStr.trim());
+                    
+                        // find the bus by ID
+                        bus.Bus bus = database.getBusManager().findBusById(busId);
+                        
+                        if (bus != null) {
+                            // assign the bus to the depot
+                            boolean success = database.getDepotManager().assignBusToDepot(depotId, bus);
+                            
+                            if (success) {
+                                javax.swing.JOptionPane.showMessageDialog(this, 
+                                    "Bus " + bus.getBusId() + " assigned to depot #" + depotId + " successfully!", 
+                                    "Assignment Successful", 
+                                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                                
+                                // refresh the depot table
+                                populateDepotTable();
+                            } else {
+                                javax.swing.JOptionPane.showMessageDialog(this, 
+                                    "Failed to assign bus to depot. The bus may already be assigned to this depot.", 
+                                    "Assignment Failed", 
+                                    javax.swing.JOptionPane.ERROR_MESSAGE);
+                            }
+                        } else {
+                            javax.swing.JOptionPane.showMessageDialog(this, 
+                                "Bus with ID " + busId + " not found.", 
+                                "Bus Not Found", 
+                                javax.swing.JOptionPane.WARNING_MESSAGE);
+                        }
+                    } catch (NumberFormatException e) {
+                        javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Please enter a valid bus ID (numeric value).", 
+                            "Invalid Input", 
+                            javax.swing.JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Please select a depot to assign a bus to.", 
+                "No Depot Selected", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAssignBusActionPerformed
+    
+    private void btnUnassignBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnassignBusActionPerformed
+        // get the selected depot from the table
+        int selectedRow = tableDepot.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            // get the depot ID from the selected row
+            int depotId = (int) tableDepot.getValueAt(selectedRow, 0);
+            
+            // find the depot by ID
+            depot.Depot selectedDepot = database.getDepotManager().findDepotById(depotId);
+            
+            if (selectedDepot != null) {
+                // get the buses assigned to this depot
+                java.util.ArrayList<bus.Bus> assignedBuses = selectedDepot.getBuses();
+                
+                if (assignedBuses.isEmpty()) {
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                        "This depot has no buses assigned to it.", 
+                        "No Buses Assigned", 
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+                
+                // create a list of bus IDs for the combo box
+                String[] busOptions = new String[assignedBuses.size()];
+                for (int i = 0; i < assignedBuses.size(); i++) {
+                    bus.Bus bus = assignedBuses.get(i);
+                    busOptions[i] = "Bus #" + bus.getBusId() + " (" + bus.getYear() + " " + 
+                                    bus.getMake() + " " + bus.getModel() + ")";
+                }
+                
+                // show selection dialog for which bus to unassign
+                String selectedBusOption = (String) javax.swing.JOptionPane.showInputDialog(
+                    this,
+                    "Select the bus to unassign from depot #" + depotId + ":",
+                    "Unassign Bus from Depot",
+                    javax.swing.JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    busOptions,
+                    busOptions[0]);
+                
+                if (selectedBusOption != null) {
+                    // find the index of the selected bus
+                    int selectedBusIndex = -1;
+                    for (int i = 0; i < busOptions.length; i++) {
+                        if (busOptions[i].equals(selectedBusOption)) {
+                            selectedBusIndex = i;
+                            break;
+                        }
+                    }
+                    
+                    if (selectedBusIndex >= 0) {
+                        // get the selected bus
+                        bus.Bus selectedBus = assignedBuses.get(selectedBusIndex);
+                        
+                        // unassign the bus from the depot
+                        boolean success = database.getDepotManager().removeBusFromDepot(depotId, selectedBus);
+                        
+                        if (success) {
+                            javax.swing.JOptionPane.showMessageDialog(this, 
+                                "Bus " + selectedBus.getBusId() + " unassigned from depot #" + depotId + " successfully!", 
+                                "Unassignment Successful", 
+                                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                            
+                            // refresh the depot table
+                            populateDepotTable();
+                        } else {
+                            javax.swing.JOptionPane.showMessageDialog(this, 
+                                "Failed to unassign bus from depot.", 
+                                "Unassignment Failed", 
+                                javax.swing.JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Please select a depot to unassign a bus from.", 
+                "No Depot Selected", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnUnassignBusActionPerformed
+
+    private void btnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmployeeActionPerformed
+        AddEmployeeGUI addEmployeeGUI = new AddEmployeeGUI(this.database, this);
+        addEmployeeGUI.setVisible(true);
+    }//GEN-LAST:event_btnAddEmployeeActionPerformed
+    
     /**
      * populates the bus table with data from the bus manager
      * @author Adrian Zielinski
@@ -1208,7 +1469,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
      * populates the employee table with data from EmployeeManagement
      * @author Adrian Zielinski
      */
-    private void populateEmployeeTable() {
+    public void populateEmployeeTable() {
         if (database == null || database.getEmployeeManagement() == null) {
             return;
         }
@@ -1478,9 +1739,9 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnRouteAssignment;
     private javax.swing.JButton btnUnassignBus;
     private javax.swing.JButton btnUpdateEmployee;
+    private javax.swing.JScrollPane busScrollPane;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
