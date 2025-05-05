@@ -140,6 +140,14 @@ public class Payment {
     public Passenger getPassenger() {
         return passenger;
     }
+    
+    /**
+     * set the passenger
+     * @param passenger 
+     */
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
+    }
 
     /**
      * get the card number used for payment

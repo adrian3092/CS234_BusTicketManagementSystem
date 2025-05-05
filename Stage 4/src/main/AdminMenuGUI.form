@@ -683,6 +683,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnPaymentReport" pref="251" max="32767" attributes="0"/>
                           <Component id="btnAddPayment" max="32767" attributes="0"/>
+                          <Component id="btnManagePayment" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="39" max="32767" attributes="0"/>
                       <Component id="jScrollPane5" min="-2" pref="562" max="-2" attributes="0"/>
@@ -700,6 +701,8 @@
                               <Component id="btnPaymentReport" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnAddPayment" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnManagePayment" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="70" max="32767" attributes="0"/>
@@ -764,6 +767,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddPaymentActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnManagePayment">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Manage an Existing Payment"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManagePaymentActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
