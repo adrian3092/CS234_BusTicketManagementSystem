@@ -1007,6 +1007,29 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             
             model.addRow(new Object[]{name, routeName, startTime, departureTimes, stops});
         }
+        
+        // Set column widths for the schedule table
+        javax.swing.table.TableColumnModel columnModel = tableSchedule.getColumnModel();
+        
+        // Set preferred widths for each column
+        columnModel.getColumn(0).setPreferredWidth(80);  // Name column
+        columnModel.getColumn(1).setPreferredWidth(80);  // Route column
+        columnModel.getColumn(2).setPreferredWidth(60);  // Start Time column
+        columnModel.getColumn(3).setPreferredWidth(120); // Departure Times column
+        columnModel.getColumn(4).setPreferredWidth(180); // Stops column
+        
+        // Optionally set minimum and maximum widths to control resizing
+        for (int i = 0; i < columnModel.getColumnCount(); i++) {
+            javax.swing.table.TableColumn column = columnModel.getColumn(i);
+            column.setMinWidth(50);  // Minimum width for all columns
+            
+            // Set maximum width based on column index
+            if (i == 0 || i == 1) {
+                column.setMaxWidth(100);  // Name and Route columns
+            } else if (i == 2) {
+                column.setMaxWidth(80);   // Start Time column
+            }
+        }
     }
     
     /**
@@ -1187,7 +1210,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     Color fg = Color.BLACK;
 
     JButton[] buttons = {
-        btnAddBus, btnManageBus,
+        btnAddBus, btnManageBus, btnDeleteBus,
         btnAddDepot, btnDeleteDepot, btnAssignBus, btnUnassignBus,
         btnAddSchedule, btnRemoveSchedule, btnManageSchedule,
         btnAddRoute, btnManageRoute, btnDeleteRoute, btnRouteAssignment,
