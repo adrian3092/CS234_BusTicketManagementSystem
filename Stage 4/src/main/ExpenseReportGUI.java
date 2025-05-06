@@ -39,6 +39,7 @@ public class ExpenseReportGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
 
+        txtAreaExpenseReport.setEditable(false);
         txtAreaExpenseReport.setColumns(20);
         txtAreaExpenseReport.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         txtAreaExpenseReport.setRows(5);
