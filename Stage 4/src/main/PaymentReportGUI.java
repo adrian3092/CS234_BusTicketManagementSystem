@@ -42,6 +42,7 @@ public class PaymentReportGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        txtAreaPaymentReport.setEditable(false);
         txtAreaPaymentReport.setColumns(20);
         txtAreaPaymentReport.setFont(new java.awt.Font("Courier New", 0, 12)); // NOI18N
         txtAreaPaymentReport.setRows(5);
