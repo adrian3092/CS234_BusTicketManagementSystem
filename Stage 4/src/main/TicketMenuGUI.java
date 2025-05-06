@@ -5,6 +5,10 @@
 package main;
 
 import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import payment.Payment;
+import ticket.*;
 
 /**
  *
@@ -24,9 +28,62 @@ public class TicketMenuGUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setAutoRequestFocus(false);
-        payBtn.setBackground(Color.white);
+
+        // Placeholder behavior
+        setUpFieldFocus(cardNumberField, "Card number");
+        setUpFieldFocus(expirationDateField, "Expiration date");
+        setUpFieldFocus(cvvField, "Cvv");
+
+        // Button styling
+        payBtn.setBackground(Color.WHITE);
         payBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        payBtn.setPreferredSize(new java.awt.Dimension(cardNumberField.getPreferredSize().width, 30));
+        addHoverEffect(payBtn, Color.WHITE, Color.green); // white to green
+
+        ticketSelectedlbl.setText("Ticket Selected: " + schedule); 
     }
+    
+    private void setUpFieldFocus(javax.swing.JTextField field, String placeholder) {
+    field.setForeground(new Color(102, 102, 102));
+    field.setText(placeholder);
+
+    field.addFocusListener(new java.awt.event.FocusAdapter() {
+        Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
+        Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            if (field.getText().equals(placeholder)) {
+                field.setText("");
+                field.setForeground(Color.BLACK);
+                field.setBorder(focusBorder);
+            }
+        }
+
+        public void focusLost(java.awt.event.FocusEvent evt) {
+            if (field.getText().isEmpty()) {
+                field.setText(placeholder);
+                field.setForeground(new Color(102, 102, 102));
+                field.setBorder(defaultBorder);
+            }
+        }
+    });
+}
+
+    private void addHoverEffect(final javax.swing.JButton button, final Color normal, final Color hover) {
+    button.setOpaque(true);
+    button.setBackground(normal);
+    button.setBorderPainted(false);
+
+    button.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            button.setBackground(hover);
+        }
+
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            button.setBackground(normal);
+        }
+    });
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +103,7 @@ public class TicketMenuGUI extends javax.swing.JFrame {
         cvvField = new javax.swing.JTextField();
         payBtn = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(16, 32, 47));
 
@@ -61,6 +118,7 @@ public class TicketMenuGUI extends javax.swing.JFrame {
 
         cardNumberField.setForeground(new java.awt.Color(102, 102, 102));
         cardNumberField.setText("Card number");
+        cardNumberField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         cardNumberField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cardNumberFieldActionPerformed(evt);
@@ -69,11 +127,18 @@ public class TicketMenuGUI extends javax.swing.JFrame {
 
         expirationDateField.setForeground(new java.awt.Color(102, 102, 102));
         expirationDateField.setText("Expiration date");
+        expirationDateField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         cvvField.setForeground(new java.awt.Color(102, 102, 102));
         cvvField.setText("Cvv");
+        cvvField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
         payBtn.setText("Pay");
+        payBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,8 +153,8 @@ public class TicketMenuGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(cvvField, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(expirationDateField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                        .addComponent(cardNumberField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(payBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(payBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cardNumberField, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,11 +167,11 @@ public class TicketMenuGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(fillInInfolbl)
                 .addGap(18, 18, 18)
-                .addComponent(cardNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cardNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(expirationDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(expirationDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cvvField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cvvField, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(payBtn)
                 .addContainerGap(73, Short.MAX_VALUE))
@@ -129,6 +194,29 @@ public class TicketMenuGUI extends javax.swing.JFrame {
     private void cardNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardNumberFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cardNumberFieldActionPerformed
+
+    private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payBtnActionPerformed
+        String card = cardNumberField.getText().trim();
+        String expiration = expirationDateField.getText().trim();
+        String cvv = cvvField.getText().trim();
+
+        // Check if any field is empty
+        if (card.isEmpty() || expiration.isEmpty() || cvv.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please fill in all payment fields.", "Missing Information", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return; // Stop execution if fields are incomplete
+        }
+
+        // Proceed with booking and payment
+        Ticket ticket = database.getTicketIssuer().bookTicket(passenger, database.getScheduleManager().getScheduleByName(scheduleName));
+        database.getTicketIssuer().getTicketManager().addTicket(ticket);
+        database.getTicketIssuer().getTicketManager().saveTicketsToCSV();
+
+        Payment payment = database.getPaymentManager().processPayment(passenger, 3.00, card, expiration, database.getPaymentManager());
+        database.getPaymentManager().addPayment(payment);
+
+        javax.swing.JOptionPane.showMessageDialog(this, "Payment Successful!");
+        this.dispose();
+    }//GEN-LAST:event_payBtnActionPerformed
 
 
 
