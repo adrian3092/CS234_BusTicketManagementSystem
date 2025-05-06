@@ -54,6 +54,18 @@ public class TicketManager {
         saveTicketsToCSV();
     }
     
+    public String getTicketHistory(Passenger passenger) {
+        StringBuilder report = new StringBuilder();
+        report.append(String.format("%-20s %-20s %-20s %-20s%n", "Ticket Number", "Passenger Name", "Schedule", "Status"));
+        report.append("-------------------------------------------------------------------------------\n");
+        for (Ticket ticket : allTickets) {
+                    if (ticket.getPassenger().getPassengerID().equals(passenger.getPassengerID())) {
+                        report.append(ticket);
+                        report.append("\n");}
+                }
+        return report.toString();
+    }
+    
     /**
      * load tickets from CSV file
      * @param passengerManager the passenger manager to use for finding passengers by ID

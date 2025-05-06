@@ -125,6 +125,11 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
         });
 
         ticketHistoryBtn.setText("View Ticket History");
+        ticketHistoryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ticketHistoryBtnActionPerformed(evt);
+            }
+        });
 
         updateProfileBtn.setText("Update Profile");
         updateProfileBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +231,10 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
     private void updateProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProfileBtnActionPerformed
         new UpdatePassengerProfileGUI(this.passenger, this.passengerManager, this).setVisible(true);
     }//GEN-LAST:event_updateProfileBtnActionPerformed
+
+    private void ticketHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ticketHistoryBtnActionPerformed
+        new TicketHistoryGUI(db, passenger).setVisible(true);
+    }//GEN-LAST:event_ticketHistoryBtnActionPerformed
 
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
     button.setOpaque(true);

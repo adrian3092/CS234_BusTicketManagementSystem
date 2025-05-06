@@ -1,7 +1,11 @@
 
 package ticket;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import main.BusStop;
 import main.Passenger;
+import main.Route;
 import main.Schedule;
 
 /**
@@ -89,10 +93,34 @@ public class Ticket {
      * schedule, and the status of the ticket.
      */
     @Override
-    public String toString() {       
-        return  "\nTicket Number: " + ticketNumber +
-                "\nPassenger Name: " + passenger.getPassengerName() +
-                "\nSchedule: " + schedule.getName() +
-                "\nStatus: " + status;
+    public String toString() {
+        return String.format(
+            "🎫 Ticket #%d | Name: %s | Route: %s | Status: %s | Departure: %s | Stops: %s",
+            ticketNumber,
+            passenger.getPassengerName(),
+            schedule.getRoute() != null ? schedule.getRoute().getName() : "N/A",
+            status,
+            formatTime(schedule.getStartTime()),
+            formatStops(schedule.getRoute())
+    );
     }
+    
+    private String formatTime(double time) {
+        int hours = (int) time;
+        int minutes = (int) (((time - hours) * 100) + 0.5);
+        return String.format("%02d:%02d", hours, minutes);
+}
+
+    private String formatStops(Route route) {
+        List<BusStop> stops = route.getStops();
+        String formattedStops = "N/A";
+
+        if (stops != null && !stops.isEmpty()) {
+        formattedStops = stops.stream()
+                          .map(BusStop::getName)
+                          .collect(Collectors.joining(", "));
+}       return formattedStops;
+}
+
+
 }
