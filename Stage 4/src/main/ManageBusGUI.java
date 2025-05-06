@@ -25,7 +25,7 @@ public class ManageBusGUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(adminMenuGUI);
         
-        // add a TableModelListener to watch for edits to the mileage + capacity column
+        // add a TableModelListener to watch for edits to the mileage, capacity and status column
         busInfoTable.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent event) {
