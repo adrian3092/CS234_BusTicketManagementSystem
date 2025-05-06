@@ -70,14 +70,14 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="fillInInfolbl" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="cardNumberField" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="cardNumberField" min="-2" pref="23" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="expirationDateField" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="expirationDateField" min="-2" pref="23" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="cvvField" min="-2" pref="22" max="-2" attributes="0"/>
+                  <Component id="cvvField" min="-2" pref="23" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="payBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="73" max="32767" attributes="0"/>
+                  <EmptySpace pref="70" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

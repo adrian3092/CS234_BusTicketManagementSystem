@@ -2,8 +2,13 @@ package main;
 
 import depot.DepotManager;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
 
 /**
  * GUI for viewing all available schedules
@@ -21,10 +26,6 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
     public ViewScheduleGUI() {
         initComponents();
         setLocationRelativeTo(null);
-        
-        returnButton.setBackground(Color.white);
-        returnButton.setForeground(Color.black);
-        returnButton.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
     }
     
     /**
@@ -39,26 +40,54 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
         this.routeManager = routeManager;
         this.depotManager = depotManager;
         
-        // style return button
-        returnButton.setBackground(Color.white);
-        returnButton.setForeground(Color.black);
-        returnButton.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
         
-        // set row height to better display content
-        tableSchedule.setRowHeight(40);
-        
+        DefaultTableModel model = new DefaultTableModel(new Object [][] {},
+        new String [] { "Name", "Route", "Start Time", "Departure Time", "Stops" }) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Prevents editing
+            }
+        };
+        tableSchedule.setModel(model);
+        tableSchedule.setRowSelectionAllowed(true);
+        tableSchedule.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        styleTable(tableSchedule);
         populateScheduleTable();
-        
-        // set preferred column widths after populating data
-        tableSchedule.getColumnModel().getColumn(0).setPreferredWidth(100); // name
-        tableSchedule.getColumnModel().getColumn(1).setPreferredWidth(100); // route
-        tableSchedule.getColumnModel().getColumn(2).setPreferredWidth(80);  // start time
-        tableSchedule.getColumnModel().getColumn(3).setPreferredWidth(150); // departure times
-        tableSchedule.getColumnModel().getColumn(4).setPreferredWidth(200); // stops
         
         setLocationRelativeTo(null);
     }
     
+    private void styleTable(JTable table) {
+    // Header styling
+    JTableHeader header = table.getTableHeader();
+    header.setFont(new Font("Segoe UI", Font.BOLD, 13));
+    header.setBackground(new Color(16, 32, 47)); // Dark gray
+    header.setForeground(Color.white);
+    header.setReorderingAllowed(false);
+
+    // Row styling
+    table.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+    table.setRowHeight(28);
+    table.setGridColor(new Color(230, 230, 230));
+
+    // Zebra striping and selection styling
+    table.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable tbl, Object value, boolean isSelected,
+                                                       boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(tbl, value, isSelected, hasFocus, row, column);
+            if (isSelected) {
+                c.setBackground(new Color(102, 178, 255)); // Light blue
+                c.setForeground(Color.BLACK);
+            } else {
+                c.setBackground(row % 2 == 0 ? Color.WHITE : new Color(245, 245, 245)); // Alternating colors
+                c.setForeground(Color.BLACK);
+            }
+            return c;
+        }
+    });
+    }
     /**
      * populates the schedule table with data from the schedule manager
      */
@@ -128,10 +157,9 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
         panelSchedule = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        labelAvailableSchedules = new javax.swing.JLabel();
         scrollPaneSchedule = new javax.swing.JScrollPane();
         tableSchedule = new javax.swing.JTable();
-        returnButton = new javax.swing.JButton();
+        labelAvailableSchedules = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Available Schedules");
@@ -141,8 +169,6 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(215, 224, 223));
 
         jPanel2.setBackground(new java.awt.Color(215, 224, 223));
-
-        labelAvailableSchedules.setText("Available Schedules");
 
         tableSchedule.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,42 +191,21 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
         });
         scrollPaneSchedule.setViewportView(tableSchedule);
 
-        returnButton.setText("Return to Main Menu");
-        returnButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        returnButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                returnButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(scrollPaneSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 885, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(394, 394, 394)
-                        .addComponent(labelAvailableSchedules))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(352, 352, 352)
-                        .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(scrollPaneSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 918, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(labelAvailableSchedules, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scrollPaneSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(returnButton, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(scrollPaneSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        labelAvailableSchedules.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        labelAvailableSchedules.setText("Available Schedules:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -208,15 +213,19 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 57, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(106, 106, 106))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelAvailableSchedules)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(251, 251, 251))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
+                .addComponent(labelAvailableSchedules, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelScheduleLayout = new javax.swing.GroupLayout(panelSchedule);
@@ -231,9 +240,9 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
         panelScheduleLayout.setVerticalGroup(
             panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelScheduleLayout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(170, 170, 170))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -244,15 +253,11 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelSchedule, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 399, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_returnButtonActionPerformed
 
    
     /**
@@ -303,7 +308,6 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelAvailableSchedules;
     private javax.swing.JPanel panelSchedule;
-    private javax.swing.JButton returnButton;
     private javax.swing.JScrollPane scrollPaneSchedule;
     private javax.swing.JTable tableSchedule;
     // End of variables declaration//GEN-END:variables
