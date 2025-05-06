@@ -177,7 +177,6 @@ public class PassengerSignUpGUI extends javax.swing.JFrame {
             database.getPassengerManager().addPassenger(passenger);
             database.getPassengerManager().savePassengersToCSV();
             Login login = new Login(passenger, database.getLoginManager(), email, password);
-            database.getLoginManager().addLogin(login);
             database.getLoginManager().saveLoginsToCSV();
             javax.swing.JOptionPane.showMessageDialog(this, "Sign Up Succesfull!.");
         }

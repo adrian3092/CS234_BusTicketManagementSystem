@@ -79,10 +79,6 @@ public class LoginManager {
         return logins;
     }
     
-    public void addLogin(Login login) {
-        logins.add(login);
-    } 
-    
     /**
      * load logins from CSV file
      * @param employeeManagement the employee management to use for finding employees by ID
