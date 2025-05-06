@@ -501,10 +501,10 @@
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnAddEmployee" alignment="0" min="-2" pref="263" max="-2" attributes="0"/>
-                          <Component id="btnDeleteEmployee" alignment="0" min="-2" pref="263" max="-2" attributes="0"/>
                           <Component id="btnUpdateEmployee" alignment="0" min="-2" pref="263" max="-2" attributes="0"/>
+                          <Component id="btnDeleteEmployee" min="-2" pref="263" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="52" max="32767" attributes="0"/>
                       <Component id="jScrollPane6" min="-2" pref="533" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
@@ -519,12 +519,12 @@
                           <Group type="102" attributes="0">
                               <Component id="btnAddEmployee" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnDeleteEmployee" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnUpdateEmployee" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnDeleteEmployee" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="46" max="32767" attributes="0"/>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -548,7 +548,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnUpdateEmployee">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Update Employee Information"/>
+                <Property name="text" type="java.lang.String" value="Manage Employee"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateEmployeeActionPerformed"/>
