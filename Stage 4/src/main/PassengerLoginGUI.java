@@ -60,7 +60,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Passenger Login");
 
-        jPanel1.setBackground(new java.awt.Color(215, 224, 223));
+        jPanel1.setBackground(new java.awt.Color(16, 32, 47));
 
         userNameField.setForeground(new java.awt.Color(153, 153, 153));
         userNameField.setText("Username");
@@ -83,6 +83,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         });
 
         SignUpLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        SignUpLabel.setForeground(new java.awt.Color(255, 255, 255));
         SignUpLabel.setText("Sign up");
 
         passwordField.setForeground(new java.awt.Color(153, 153, 153));
@@ -221,7 +222,7 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
 
         @Override
         public void mouseExited(java.awt.event.MouseEvent evt) {
-            SignUpLabel.setForeground(Color.black); // Original color (green)
+            SignUpLabel.setForeground(Color.white); // Original color (green)
             SignUpLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); // Restore cursor
         }
     });
