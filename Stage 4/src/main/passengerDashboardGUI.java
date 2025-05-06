@@ -23,6 +23,7 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
     private DepotManager depotManager;
     private Passenger passenger;
     private PassengerManager passengerManager;
+    private Database db;
     /**
      * Creates new form passengerDashboardGUI
      */
@@ -32,6 +33,7 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
 
     public passengerDashboardGUI(Database database, String passengerID) {
         initComponents();
+        this.db = database;
         this.scheduleManager = database.getScheduleManager();
         this.routeManager = database.getRouteManager();
         this.depotManager = database.getDepotManager();
@@ -209,8 +211,7 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
         int selectedRow = passengerScheduleTable.getSelectedRow();
         if (selectedRow != -1) {
         String scheduleName = (String) passengerScheduleTable.getValueAt(selectedRow, 0);
-        // proceed to find the Schedule by name and book it
-        System.out.println("Selected schedule: " + scheduleName);
+        new TicketMenuGUI(db, passenger, scheduleName).setVisible(true);
         // You can now look it up in scheduleManager and book it
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Please select a schedule to book.");

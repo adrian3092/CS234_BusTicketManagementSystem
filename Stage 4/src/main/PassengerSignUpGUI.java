@@ -3,17 +3,19 @@ package main;
 
 import java.awt.Color;
 import javax.swing.BorderFactory;
+import login.Login;
 
 /**
  *
  * @author Owner
  */
 public class PassengerSignUpGUI extends javax.swing.JFrame {
-
+    private Database database;
     /**
      * Creates new form PassengerSignUpGUI
      */
     public PassengerSignUpGUI(Database db) {
+        this.database = db;
         initComponents();
         setLocationRelativeTo(null);
         setAutoRequestFocus(false);
@@ -91,6 +93,11 @@ public class PassengerSignUpGUI extends javax.swing.JFrame {
                 signUpBtnFocusLost(evt);
             }
         });
+        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -158,6 +165,26 @@ public class PassengerSignUpGUI extends javax.swing.JFrame {
     private void signUpBtnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_signUpBtnFocusLost
         signUpBtn.setBackground(Color.white);
     }//GEN-LAST:event_signUpBtnFocusLost
+
+    private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
+        String name = nameField.getText();
+        String phone = phoneField.getText();
+        String email = emailField.getText();
+        String password = new String(passwordField.getPassword());
+        String confirmPassword = new String(confirmPasswordField.getPassword());
+        if (password.equals(confirmPassword)) {
+            Passenger passenger = new Passenger(name, email, phone);
+            database.getPassengerManager().addPassenger(passenger);
+            database.getPassengerManager().savePassengersToCSV();
+            Login login = new Login(passenger, database.getLoginManager(), email, password);
+            database.getLoginManager().addLogin(login);
+            database.getLoginManager().saveLoginsToCSV();
+            javax.swing.JOptionPane.showMessageDialog(this, "Sign Up Succesfull!.");
+        }
+        else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Passwords do not match, please try again");
+        }
+    }//GEN-LAST:event_signUpBtnActionPerformed
 
     private void setUpFieldFocus(javax.swing.text.JTextComponent field, String placeholder, boolean isPassword) {
     field.addFocusListener(new java.awt.event.FocusAdapter() {
