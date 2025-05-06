@@ -755,6 +755,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         });
 
         btnDeletePassenger.setText("Delete Passenger");
+        btnDeletePassenger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletePassengerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelPassengerLayout = new javax.swing.GroupLayout(panelPassenger);
         panelPassenger.setLayout(panelPassengerLayout);
@@ -1363,6 +1368,47 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         ManageEmployeeGUI manageEmployeeGUI = new ManageEmployeeGUI(this.database, this);
         manageEmployeeGUI.setVisible(true);
     }//GEN-LAST:event_btnUpdateEmployeeActionPerformed
+
+    private void btnDeletePassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePassengerActionPerformed
+        // get the selected passenger from the table
+        int selectedRow = tblPassengers.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            // get the passenger ID from the selected row
+            String passengerId = (String) tblPassengers.getValueAt(selectedRow, 0);
+            
+            // find the passenger by ID
+            Passenger p = database.getPassengerManager().getPassengerById(passengerId);
+            
+            if (p != null) {
+                // confirm deletion
+                int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+                        "Are you sure you want to delete passenger " + passengerId + " (" + 
+                        p.getPassengerName() + ")?",
+                        "Confirm Deletion",
+                        javax.swing.JOptionPane.YES_NO_OPTION);
+                
+                if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                                       
+                    // remove the passenger
+                    database.getPassengerManager().removePassenger(p);
+                    
+                    // refresh the bus table
+                    populatePassengerTable();
+                    
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Passenger deleted successfully!", 
+                            "Success", 
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Please select a passenger to delete.", 
+                "No passenger selected", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeletePassengerActionPerformed
     
     /**
      * populates the bus table with data from the bus manager
