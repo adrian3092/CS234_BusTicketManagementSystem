@@ -5,6 +5,7 @@
 package main;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.border.Border;
@@ -31,9 +32,16 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         deleteAccountBtn1.setBackground(Color.white);
         saveUpdateBtn.setForeground(Color.black);
+        deleteAccountBtn1.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        saveUpdateBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
         
         addHoverEffect(deleteAccountBtn1, Color.WHITE, Color.GREEN);
         addHoverEffect(saveUpdateBtn, Color.WHITE, Color.GREEN);
+        
+        nameUpdatetxt.setPreferredSize(new Dimension(240, 23));
+        phoneNumberUpdatetxt.setPreferredSize(new Dimension(240, 23));
+        emailUpdatetxt.setPreferredSize(new Dimension(240, 23));
+
 
     }
 
@@ -77,6 +85,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         phoneNumberUpdatetxt.setForeground(new java.awt.Color(153, 153, 153));
         phoneNumberUpdatetxt.setText("Update Phone Number");
         phoneNumberUpdatetxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        phoneNumberUpdatetxt.setPreferredSize(new java.awt.Dimension(77, 18));
         phoneNumberUpdatetxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 phoneNumberUpdatetxtFocusGained(evt);
@@ -94,6 +103,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         emailUpdatetxt.setForeground(new java.awt.Color(153, 153, 153));
         emailUpdatetxt.setText("Update Email");
         emailUpdatetxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        emailUpdatetxt.setPreferredSize(new java.awt.Dimension(77, 18));
         emailUpdatetxt.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 emailUpdatetxtFocusGained(evt);
@@ -128,9 +138,9 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
                         .addComponent(saveUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(deleteAccountBtn1))
-                    .addComponent(emailUpdatetxt, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nameUpdatetxt)
-                    .addComponent(phoneNumberUpdatetxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(emailUpdatetxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(phoneNumberUpdatetxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameUpdatetxt, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
