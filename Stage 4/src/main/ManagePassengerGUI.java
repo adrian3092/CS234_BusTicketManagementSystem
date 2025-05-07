@@ -172,7 +172,7 @@ public class ManagePassengerGUI extends javax.swing.JFrame {
         // clear existing rows
         model.setRowCount(0);
         
-        // add bus info to the table
+        // add passenger info to the table
         model.addRow(new Object[]{
                 p.getPassengerID(),
                 p.getPassengerName(),
