@@ -16,8 +16,8 @@ import depot.DepotManager;
 public class ScheduleManager {
 
     private final ArrayList<Schedule> schedules;
-    private static final String SCHEDULES_CSV_FILE_PATH = "data/schedules.csv";
-    private static final String DEPARTURE_TIMES_CSV_FILE_PATH = "data/departure_times.csv";
+    private static final String SCHEDULES_CSV_FILE_PATH = "dist/data/schedules.csv";
+    private static final String DEPARTURE_TIMES_CSV_FILE_PATH = "dist/data/departure_times.csv";
 
     /**
      * default constructor

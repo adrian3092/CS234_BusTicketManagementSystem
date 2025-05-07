@@ -23,7 +23,7 @@ public class LoginManager {
     private ArrayList<Login> logins;
     private String enteredUsername;
     private String enteredPassword;
-    private static final String LOGINS_CSV_FILE_PATH = "data/logins.csv";
+    private static final String LOGINS_CSV_FILE_PATH = "dist/data/logins.csv";
 
     /**
      * Constructor for the class. Initializes the database of logins.

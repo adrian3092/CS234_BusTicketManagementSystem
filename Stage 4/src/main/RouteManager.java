@@ -14,8 +14,8 @@ import csv.CSVHandler;
 public class RouteManager {
     
     private ArrayList<Route> routes;// List of routes
-    private static final String ROUTES_CSV_FILE_PATH = "data/routes.csv";
-    private static final String BUS_STOPS_CSV_FILE_PATH = "data/bus_stops.csv";
+    private static final String ROUTES_CSV_FILE_PATH = "dist/data/routes.csv";
+    private static final String BUS_STOPS_CSV_FILE_PATH = "dist/data/bus_stops.csv";
     
     /**
      * Constructor for the class. Initializes the array list of routes.

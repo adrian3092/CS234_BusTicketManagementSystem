@@ -15,8 +15,8 @@ import login.LoginManager;
 public class EmployeeManagement {
     private ArrayList<Employee> employees; // List to store employees
     private ArrayList<Driver> drivers; // List to store all drivers
-    private static final String EMPLOYEES_CSV_FILE_PATH = "data/employees.csv";
-    private static final String DRIVERS_CSV_FILE_PATH = "data/drivers.csv";
+    private static final String EMPLOYEES_CSV_FILE_PATH = "dist/data/employees.csv";
+    private static final String DRIVERS_CSV_FILE_PATH = "dist/data/drivers.csv";
 
     /**
      * Constructor to initialize the employee and driver lists.
