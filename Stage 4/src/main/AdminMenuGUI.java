@@ -18,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
+import payment.Payment;
 
 /**
  *
@@ -109,6 +110,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnPaymentReport = new javax.swing.JButton();
         btnAddPayment = new javax.swing.JButton();
         btnManagePayment = new javax.swing.JButton();
+        btnDeletePayment = new javax.swing.JButton();
         panelPassenger = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPassengers = new javax.swing.JTable();
@@ -675,6 +677,13 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         });
 
+        btnDeletePayment.setText("Delete Payment");
+        btnDeletePayment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletePaymentActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelPaymentsLayout = new javax.swing.GroupLayout(panelPayments);
         panelPayments.setLayout(panelPaymentsLayout);
         panelPaymentsLayout.setHorizontalGroup(
@@ -684,7 +693,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 .addGroup(panelPaymentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnPaymentReport, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                     .addComponent(btnAddPayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnManagePayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnManagePayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDeletePayment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
@@ -700,7 +710,9 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnAddPayment)
                         .addGap(18, 18, 18)
-                        .addComponent(btnManagePayment)))
+                        .addComponent(btnManagePayment)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeletePayment)))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
@@ -1403,6 +1415,49 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 javax.swing.JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnDeletePassengerActionPerformed
+
+    private void btnDeletePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePaymentActionPerformed
+        // get the selected payment from the table
+        int selectedRow = tablePayments.getSelectedRow();
+        
+        if (selectedRow >= 0) {
+            // get the payment ID from the selected row
+            int paymentId = (int) tablePayments.getValueAt(selectedRow, 0);
+            
+            // find the payment by ID
+            Payment payment = database.getPaymentManager().findPaymentById(paymentId);
+            
+            if (payment != null) {
+                // confirm deletion
+                int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+                        "Are you sure you want to delete payment #" + paymentId + "?",
+                        "Confirm Deletion",
+                        javax.swing.JOptionPane.YES_NO_OPTION);
+                
+                if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+                                        
+                    // remove the payment
+                    database.getPaymentManager().removePayment(payment);
+                    
+                    // refresh the payment table
+                    populatePaymentsTable();
+                    
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Payment deleted successfully!", 
+                            "Success", 
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Please select a payment to delete.", 
+                "No Payment Selected", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+        }
+                      
+        database.getPaymentManager().savePaymentsToCSV();
+        
+    }//GEN-LAST:event_btnDeletePaymentActionPerformed
     
     /**
      * populates the bus table with data from the bus manager
@@ -1847,6 +1902,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnDeleteDepot;
     private javax.swing.JButton btnDeleteEmployee;
     private javax.swing.JButton btnDeletePassenger;
+    private javax.swing.JButton btnDeletePayment;
     private javax.swing.JButton btnDeleteRoute;
     private javax.swing.JButton btnExpenseReport;
     private javax.swing.JButton btnManageBus;
