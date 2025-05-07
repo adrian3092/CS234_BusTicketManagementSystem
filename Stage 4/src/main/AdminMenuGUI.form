@@ -638,7 +638,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnExpenseReport" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
                           <Component id="btnNewExpense" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="btnRemoveExpense" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="39" max="32767" attributes="0"/>
                       <Component id="jScrollPane4" min="-2" pref="541" max="-2" attributes="0"/>
@@ -656,8 +655,6 @@
                               <Component id="btnExpenseReport" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnNewExpense" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="btnRemoveExpense" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="44" max="32767" attributes="0"/>
@@ -681,11 +678,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewExpenseActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="btnRemoveExpense">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Remove an Existing Expense"/>
-              </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane4">
               <AuxValues>

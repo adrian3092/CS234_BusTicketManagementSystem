@@ -101,7 +101,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         panelExpenses = new javax.swing.JPanel();
         btnExpenseReport = new javax.swing.JButton();
         btnNewExpense = new javax.swing.JButton();
-        btnRemoveExpense = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tableExpenses = new javax.swing.JTable();
         panelPayments = new javax.swing.JPanel();
@@ -221,17 +220,17 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         });
 
-        btnManageSchedule.setText("Manage Schedule");
-        btnManageSchedule.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageScheduleActionPerformed(evt);
-            }
-        });
-
         btnRemoveSchedule.setText("Delete Schedule");
         btnRemoveSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoveScheduleActionPerformed(evt);
+            }
+        });
+
+        btnManageSchedule.setText("Manage Schedule");
+        btnManageSchedule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageScheduleActionPerformed(evt);
             }
         });
 
@@ -268,28 +267,28 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         panelScheduleLayout.setHorizontalGroup(
             panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelScheduleLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnManageSchedule, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-                    .addComponent(btnAddSchedule, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnRemoveSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addComponent(schedulePane, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(37, 37, 37)
+                .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAddSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRemoveSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(schedulePane, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
         panelScheduleLayout.setVerticalGroup(
             panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelScheduleLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(panelScheduleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(schedulePane, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(schedulePane, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelScheduleLayout.createSequentialGroup()
                         .addComponent(btnAddSchedule)
                         .addGap(18, 18, 18)
                         .addComponent(btnManageSchedule)
                         .addGap(18, 18, 18)
                         .addComponent(btnRemoveSchedule)))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         tabAdmin.addTab("Schedule", panelSchedule);
@@ -569,8 +568,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             }
         });
 
-        btnRemoveExpense.setText("Remove an Existing Expense");
-
         tableExpenses.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -607,8 +604,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(panelExpensesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnExpenseReport, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNewExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnRemoveExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNewExpense, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
@@ -622,9 +618,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                     .addGroup(panelExpensesLayout.createSequentialGroup()
                         .addComponent(btnExpenseReport)
                         .addGap(18, 18, 18)
-                        .addComponent(btnNewExpense)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRemoveExpense)))
+                        .addComponent(btnNewExpense)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -1742,7 +1736,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnAddRoute, btnManageRoute, btnDeleteRoute, btnRouteAssignment,
         btnAddEmployee, btnDeleteEmployee, btnUpdateEmployee,
         btnExpenseReport, btnPaymentReport, 
-        btnNewExpense, btnRemoveExpense
+        btnNewExpense, 
     };
 
     for (JButton button : buttons) {
@@ -1811,7 +1805,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnAddRoute, btnManageRoute, btnDeleteRoute, btnRouteAssignment,
         btnAddEmployee, btnDeleteEmployee, btnUpdateEmployee,
         btnExpenseReport, btnPaymentReport,
-        btnNewExpense, btnRemoveExpense
+        btnNewExpense,
     };
 
     for (JButton btn : buttons) {
@@ -1862,7 +1856,6 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnManageSchedule;
     private javax.swing.JButton btnNewExpense;
     private javax.swing.JButton btnPaymentReport;
-    private javax.swing.JButton btnRemoveExpense;
     private javax.swing.JButton btnRemoveSchedule;
     private javax.swing.JButton btnRouteAssignment;
     private javax.swing.JButton btnUnassignBus;
