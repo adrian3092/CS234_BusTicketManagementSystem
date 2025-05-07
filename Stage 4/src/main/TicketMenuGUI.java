@@ -207,12 +207,12 @@ public class TicketMenuGUI extends javax.swing.JFrame {
         }
 
         // Proceed with booking and payment
-        Ticket ticket = database.getTicketIssuer().bookTicket(passenger, database.getScheduleManager().getScheduleByName(scheduleName));
-        database.getTicketIssuer().getTicketManager().addTicket(ticket);
+        database.getTicketIssuer().bookTicket(passenger, database.getScheduleManager().getScheduleByName(scheduleName));
+        
         database.getTicketIssuer().getTicketManager().saveTicketsToCSV();
 
-        Payment payment = database.getPaymentManager().processPayment(passenger, 3.00, card, expiration, database.getPaymentManager());
-        database.getPaymentManager().addPayment(payment);
+        database.getPaymentManager().processPayment(passenger, 3.00, card, expiration, database.getPaymentManager());
+
 
         javax.swing.JOptionPane.showMessageDialog(this, "Payment Successful!");
         this.dispose();
