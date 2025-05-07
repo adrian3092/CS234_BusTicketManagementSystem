@@ -200,38 +200,6 @@ public class ManageEmployeeGUI extends javax.swing.JFrame {
     }
     
     /**
-     * find and display employee information based on the entered employee ID
-     */
-    private void findEmployee() {
-        String employeeId = employeeIdField.getText().trim();
-        
-        if (employeeId.isEmpty()) {
-            JOptionPane.showMessageDialog(this, 
-                "Please enter an employee ID", 
-                "Input Error", 
-                JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        // find the employee by ID
-        currentEmployee = database.getEmployeeManagement().getEmployeeById(employeeId);
-        
-        if (currentEmployee == null) {
-            JOptionPane.showMessageDialog(this, 
-                "No employee found with ID: " + employeeId, 
-                "Employee Not Found", 
-                JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        // display the employee information in the table
-        displayEmployeeInfo();
-        
-        // enable the save button now that we have an employee to update
-        saveButton.setEnabled(true);
-    }
-    
-    /**
      * display the current employee's information in the table
      */
     private void displayEmployeeInfo() {
@@ -251,60 +219,6 @@ public class ManageEmployeeGUI extends javax.swing.JFrame {
             String.format("%.2f", currentEmployee.getSalary())
         });
     }
-    
-    /**
-     * save the updated employee information
-     */
-    private void saveEmployeeInfo() {
-        if (currentEmployee == null) {
-            return;
-        }
-        
-        DefaultTableModel model = (DefaultTableModel) employeeTable.getModel();
-        
-        if (model.getRowCount() > 0) {
-            // get the updated values from the table
-            String name = (String) model.getValueAt(0, 0);
-            String jobTitle = (String) model.getValueAt(0, 1);
-            String email = (String) model.getValueAt(0, 2);
-            String phoneNumber = (String) model.getValueAt(0, 3);
-            String salaryStr = (String) model.getValueAt(0, 4);
-            
-            // parse the salary
-            salaryStr = salaryStr.replace("$", "").trim();
-            float salary = Float.parseFloat(salaryStr);
-            
-            // update the employee information
-            String[] nameParts = name.split(" ");
-            String firstName = nameParts[0];
-            String lastName = nameParts.length > 1 ? nameParts[1] : "";
-            
-            // update employee information using EmployeeManagement methods
-            database.getEmployeeManagement().updateName(currentEmployee, firstName, lastName);
-            database.getEmployeeManagement().setJobTitle(currentEmployee, jobTitle);
-            database.getEmployeeManagement().updateEmail(currentEmployee, email);
-            database.getEmployeeManagement().updatePhoneNumber(currentEmployee, phoneNumber);
-            database.getEmployeeManagement().updateSalary(currentEmployee, salary);
-            
-            // save changes to CSV
-            database.getEmployeeManagement().saveEmployeesToCSV();
-            
-            // refresh the employee table in AdminMenuGUI
-            adminMenuGUI.populateEmployeeTable();
-            
-            JOptionPane.showMessageDialog(this, 
-                "Employee information updated successfully!", 
-                "Update Successful", 
-                JOptionPane.INFORMATION_MESSAGE);
-            
-            // clear the form for next use
-            employeeIdField.setText("");
-            currentEmployee = null;
-            DefaultTableModel tableModel = (DefaultTableModel) employeeTable.getModel();
-            tableModel.setRowCount(0);
-            saveButton.setEnabled(false);
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -319,8 +233,6 @@ public class ManageEmployeeGUI extends javax.swing.JFrame {
         employeeTable = new javax.swing.JTable();
         employeeIdField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        findButton = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Update Employee Information");
@@ -357,23 +269,6 @@ public class ManageEmployeeGUI extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Enter employee ID:");
-        
-        findButton = new javax.swing.JButton();
-        findButton.setText("Find Employee");
-        findButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                findButtonActionPerformed(evt);
-            }
-        });
-        
-        saveButton = new javax.swing.JButton();
-        saveButton.setText("Save Changes");
-        saveButton.setEnabled(false);
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -383,9 +278,7 @@ public class ManageEmployeeGUI extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(employeeIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(findButton)
-                    .addComponent(saveButton))
+                    .addComponent(employeeIdField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -401,10 +294,6 @@ public class ManageEmployeeGUI extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(employeeIdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(findButton)
-                .addGap(18, 18, 18)
-                .addComponent(saveButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -412,23 +301,36 @@ public class ManageEmployeeGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void employeeIdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeIdFieldActionPerformed
-        findEmployee();
+        // Get the employee ID from the text field
+        String employeeId = employeeIdField.getText().trim();
+        
+        if (employeeId.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                "Please enter an employee ID", 
+                "Input Error", 
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // find the employee by ID
+        currentEmployee = database.getEmployeeManagement().getEmployeeById(employeeId);
+        
+        if (currentEmployee == null) {
+            JOptionPane.showMessageDialog(this, 
+                "No employee found with ID: " + employeeId, 
+                "Employee Not Found", 
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // display the employee information in the table
+        displayEmployeeInfo();
     }//GEN-LAST:event_employeeIdFieldActionPerformed
-    
-    private void findButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findButtonActionPerformed
-        findEmployee();
-    }//GEN-LAST:event_findButtonActionPerformed
-    
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        saveEmployeeInfo();
-    }//GEN-LAST:event_saveButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField employeeIdField;
     private javax.swing.JTable employeeTable;
-    private javax.swing.JButton findButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }

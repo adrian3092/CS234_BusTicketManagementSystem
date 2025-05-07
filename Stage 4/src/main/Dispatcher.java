@@ -2,9 +2,11 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import bus.Bus;
 import bus.BusManager;
+import csv.CSVHandler;
 import employees.Driver;
 
 /**
@@ -16,6 +18,8 @@ public class Dispatcher {
     private ArrayList<RouteAssignment> routeAssignments;
     private ArrayList<DriverAssignment> driverAssignments;
     private BusManager busManager;
+    private RouteManager routeManager;
+    private static final String ROUTE_ASSIGNMENTS_CSV_FILE_PATH = "dist/data/route_assignments.csv";
     
     /**
      * default constructor
@@ -25,6 +29,31 @@ public class Dispatcher {
         this.routeAssignments = new ArrayList<>();
         this.driverAssignments = new ArrayList<>();
         this.busManager = busManager;
+        this.routeManager = null;
+    }
+    
+    /**
+     * constructor with route manager
+     * @param busManager the bus manager to use
+     * @param routeManager the route manager to use
+     */
+    public Dispatcher(BusManager busManager, RouteManager routeManager) {
+        this.routeAssignments = new ArrayList<>();
+        this.driverAssignments = new ArrayList<>();
+        this.busManager = busManager;
+        this.routeManager = routeManager;
+        loadRouteAssignmentsFromCSV();
+    }
+    
+    /**
+     * set the route manager
+     * @param routeManager the route manager to use
+     */
+    public void setRouteManager(RouteManager routeManager) {
+        this.routeManager = routeManager;
+        if (routeManager != null) {
+            loadRouteAssignmentsFromCSV();
+        }
     }
     
     /**
@@ -50,6 +79,9 @@ public class Dispatcher {
         
         // update the bus status
         bus.setStatus("In Use");
+        
+        // save the assignments to CSV
+        saveRouteAssignmentsToCSV();
         
         return true;
     }
@@ -129,6 +161,9 @@ public class Dispatcher {
         // remove the assignment
         routeAssignments.remove(assignment);
         
+        // save the assignments to CSV
+        saveRouteAssignmentsToCSV();
+        
         return true;
     }
     
@@ -196,6 +231,66 @@ public class Dispatcher {
             }
         }
         return null;
+    }
+    
+    /**
+     * save route assignments to CSV file
+     */
+    public void saveRouteAssignmentsToCSV() {
+        List<String[]> data = new ArrayList<>();
+        
+        // add header row
+        data.add(new String[]{"busId", "routeId"});
+        
+        // add data rows
+        for (RouteAssignment assignment : routeAssignments) {
+            String[] row = new String[]{
+                String.valueOf(assignment.getBus().getBusId()),
+                assignment.getRoute().getRouteID()
+            };
+            data.add(row);
+        }
+        
+        CSVHandler.writeCSV(ROUTE_ASSIGNMENTS_CSV_FILE_PATH, data);
+    }
+    
+    /**
+     * load route assignments from CSV file
+     */
+    private void loadRouteAssignmentsFromCSV() {
+        if (routeManager == null) {
+            return; // can't load without route manager
+        }
+        
+        List<String[]> data = CSVHandler.readCSV(ROUTE_ASSIGNMENTS_CSV_FILE_PATH);
+        
+        // clear existing assignments
+        routeAssignments.clear();
+        
+        // skip header row if it exists
+        boolean hasHeader = data.size() > 0 && data.get(0)[0].equals("busId");
+        int startRow = hasHeader ? 1 : 0;
+        
+        // process each row
+        for (int i = startRow; i < data.size(); i++) {
+            String[] row = data.get(i);
+            
+            int busId = Integer.parseInt(row[0]);
+            String routeId = row[1];
+            
+            // find the bus and route
+            Bus bus = busManager.findBusById(busId);
+            Route route = routeManager.getRouteById(routeId);
+            
+            if (bus != null && route != null) {
+                // create the assignment
+                RouteAssignment assignment = new RouteAssignment(bus, route);
+                routeAssignments.add(assignment);
+                
+                // update the bus status
+                bus.setStatus("In Use");
+            }
+        }
     }
     
     /**
