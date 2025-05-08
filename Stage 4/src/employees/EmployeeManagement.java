@@ -137,13 +137,14 @@ public class EmployeeManagement {
      * @return The driver with the specified ID, or null if not found.
      */
     public Driver getDriverById(String employeeId) {
-        for (Driver driver : drivers) {
-            if (driver.getEmployeeID().equals(employeeId)) {
-                return driver;
-            }
+    for (Employee employee : employees) {
+        if (employee instanceof Driver && employee.getEmployeeID().equals(employeeId)) {
+            return (Driver) employee;
         }
-        return null; // Driver not found
     }
+    return null; // No matching driver found
+}
+
 
     /**
      * Retrieves an employee by their employee ID.

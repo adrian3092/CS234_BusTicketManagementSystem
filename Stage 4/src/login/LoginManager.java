@@ -54,6 +54,9 @@ public class LoginManager {
                 if (login.getPassword().equals(enteredPassword)) {
                     if (login.getEmployee() != null) { 
                     accessLevel = login.getEmployee().getJobTitle();
+                        if (accessLevel.equals("Driver")) {
+                            accessLevel = login.getEmployee().getEmployeeID();
+                        }
                     } else {
                         accessLevel = login.getPassenger().getPassengerID();
                     }

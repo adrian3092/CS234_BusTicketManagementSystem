@@ -201,7 +201,7 @@ public class TicketMenuGUI extends javax.swing.JFrame {
         String cvv = cvvField.getText().trim();
 
         // Check if any field is empty
-        if (card.isEmpty() || expiration.isEmpty() || cvv.isEmpty()) {
+        if (card.equals("Card number") || expiration.equals("Expiration date") || cvv.equals("Cvv")) {
             javax.swing.JOptionPane.showMessageDialog(this, "Please fill in all payment fields.", "Missing Information", javax.swing.JOptionPane.WARNING_MESSAGE);
             return; // Stop execution if fields are incomplete
         }

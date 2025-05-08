@@ -1,5 +1,7 @@
 package main;
 
+import employees.Driver;
+import employees.EmployeeManagement;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
@@ -13,7 +15,7 @@ public class LoginGUI extends javax.swing.JFrame {
     
     private LoginManager loginManager;
     private Database database;
-    
+
     /**
      * creates new form LoginGUI with database
      */
@@ -207,15 +209,17 @@ public class LoginGUI extends javax.swing.JFrame {
                         
                         new AdminMenuGUI(db).setVisible(true);
                         dispose();
-                    } else if (accessLevel.equals("Driver")) {
-                        // create driver menu
-                        dispose();
-                    } else {
+                    } else if (accessLevel.equals("not found")) {
                         new InvalidCredentials().setVisible(true);
                         txtUsername.setText("Username");
                         txtUsername.setForeground(Color.LIGHT_GRAY);
                         txtUsername.setText("Password");
                         txtUsername.setForeground(Color.LIGHT_GRAY);
+                    } else {
+                        Driver driver = database.getEmployeeManagement().getDriverById(accessLevel);
+                        System.out.println("driver name: " + driver.getName());
+                        new DriverMenuGUI(this.database, accessLevel).setVisible(true);
+                        dispose();
                     }
     }//GEN-LAST:event_btnLoginActionPerformed
 
