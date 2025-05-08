@@ -199,28 +199,31 @@ public class LoginGUI extends javax.swing.JFrame {
         
         
         String accessLevel = loginManager.checkCredentials(username, password);
-                    if (accessLevel.equals("Admin")) {
-                        // get the database instance
-                        Database db = database;
-                        if (db == null) {
-                            // if database is not set, create a new one
-                            db = new Database();
-                        }
-                        
-                        new AdminMenuGUI(db).setVisible(true);
-                        dispose();
-                    } else if (accessLevel.equals("not found")) {
-                        new InvalidCredentials().setVisible(true);
-                        txtUsername.setText("Username");
-                        txtUsername.setForeground(Color.LIGHT_GRAY);
-                        txtUsername.setText("Password");
-                        txtUsername.setForeground(Color.LIGHT_GRAY);
-                    } else {
-                        Driver driver = database.getEmployeeManagement().getDriverById(accessLevel);
-                        System.out.println("driver name: " + driver.getName());
-                        new DriverMenuGUI(this.database, accessLevel).setVisible(true);
-                        dispose();
-                    }
+        switch (accessLevel) {
+            case "Admin":
+                // get the database instance
+                Database db = database;
+                if (db == null) {
+                    // if database is not set, create a new one
+                    db = new Database();
+                }
+                new AdminMenuGUI(db).setVisible(true);
+                dispose();
+                break;
+            case "not found":
+                new InvalidCredentials().setVisible(true);
+                txtUsername.setText("Username");
+                txtUsername.setForeground(Color.LIGHT_GRAY);
+                txtPassword.setText("Password");
+                txtPassword.setForeground(Color.LIGHT_GRAY);
+                break;
+            default:
+                Driver driver = database.getEmployeeManagement().getDriverById(accessLevel);
+                System.out.println("driver name: " + driver.getName());
+                new DriverMenuGUI(this.database, accessLevel).setVisible(true);
+                dispose();
+                break;
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLoginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnLoginFocusGained
