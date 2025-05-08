@@ -24,7 +24,7 @@ public class Accounting {
     private BusManager busManager;
     private DepotManager depotManager;
     private EmployeeManagement employeeManagement;
-    private static final String EXPENSES_CSV_FILE_PATH = "dist/data/expenses.csv";
+    private static final String EXPENSES_CSV_FILE_PATH = "data/expenses.csv";
     
 
     /**
