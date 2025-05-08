@@ -35,11 +35,9 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnAddExpense" pref="136" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="comboBoxType" pref="136" max="32767" attributes="0"/>
-                      <Component id="comboBoxEntity" max="32767" attributes="0"/>
-                      <Component id="txtCost" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="comboBoxType" pref="136" max="32767" attributes="0"/>
+                  <Component id="comboBoxEntity" max="32767" attributes="0"/>
+                  <Component id="txtCost" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="156" max="32767" attributes="0"/>
           </Group>
@@ -96,9 +94,6 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBoxEntityActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>

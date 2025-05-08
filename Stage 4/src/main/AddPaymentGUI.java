@@ -10,7 +10,7 @@ import payment.*;
 
 
 /**
- *
+ * Creates a GUI window used to add a new payment
  * @author George Candal
  */
 public class AddPaymentGUI extends javax.swing.JFrame {
@@ -26,6 +26,11 @@ public class AddPaymentGUI extends javax.swing.JFrame {
         initComponents();
     }
     
+    /**
+     * Creates AddPaymentGUI with parameters
+     * @param database
+     * @param adminMenuGUI 
+     */
     public AddPaymentGUI(Database database, AdminMenuGUI adminMenuGUI) {
         initComponents();
         this.passengerManager = database.getPassengerManager();
@@ -57,12 +62,6 @@ public class AddPaymentGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Payment");
-
-        txtPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPriceActionPerformed(evt);
-            }
-        });
 
         lblName.setText("Name");
 
@@ -108,9 +107,13 @@ public class AddPaymentGUI extends javax.swing.JFrame {
         );
 
         setSize(new java.awt.Dimension(415, 335));
-        setLocationRelativeTo(adminMenuGUI);
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Creates a new payment when add payment button is clicked
+     * @param evt 
+     */
     private void btnAddPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPaymentActionPerformed
         String name = txtName.getText();
         float cost = Float.parseFloat(txtPrice.getText());
@@ -134,10 +137,6 @@ public class AddPaymentGUI extends javax.swing.JFrame {
         txtName.setText("");
         txtPrice.setText("");
     }//GEN-LAST:event_btnAddPaymentActionPerformed
-
-    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPriceActionPerformed
 
     /**
      * @param args the command line arguments

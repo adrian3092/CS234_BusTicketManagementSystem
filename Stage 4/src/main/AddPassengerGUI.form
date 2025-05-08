@@ -35,11 +35,9 @@
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnAddPassenger" pref="201" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtAddPassengerName" pref="201" max="32767" attributes="0"/>
-                      <Component id="txtAddPassengerEmail" alignment="0" max="32767" attributes="0"/>
-                      <Component id="txtAddPassengerPhone" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="txtAddPassengerName" pref="201" max="32767" attributes="0"/>
+                  <Component id="txtAddPassengerEmail" alignment="0" max="32767" attributes="0"/>
+                  <Component id="txtAddPassengerPhone" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="96" max="32767" attributes="0"/>
           </Group>
