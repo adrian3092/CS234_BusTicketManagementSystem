@@ -4,9 +4,20 @@
  */
 package main;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  * GUI for adding a new route
@@ -33,6 +44,16 @@ public class AddRouteGUI extends javax.swing.JFrame {
         // initialize the list model for bus stops
         stopsListModel = new DefaultListModel<>();
         stopsList.setModel(stopsListModel);
+        
+        applyTextFieldEffects(routeNameTxt, "Route Name");
+        applyTextFieldEffects(stopNameTxt, "Stop Name");
+        applyTextFieldEffects(distanceTxt, "Distance to Next Stop (miles)");
+
+        styleButton(addStopButton);
+        styleButton(removeStopButton);
+        styleButton(addRouteButton);
+        
+        stopsLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
     }
 
     /**
@@ -45,7 +66,6 @@ public class AddRouteGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         addRoutePanel = new javax.swing.JPanel();
-        routeNameLabel = new javax.swing.JLabel();
         routeNameTxt = new javax.swing.JTextField();
         stopsLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -53,9 +73,7 @@ public class AddRouteGUI extends javax.swing.JFrame {
         addStopButton = new javax.swing.JButton();
         removeStopButton = new javax.swing.JButton();
         addRouteButton = new javax.swing.JButton();
-        stopNameLabel = new javax.swing.JLabel();
         stopNameTxt = new javax.swing.JTextField();
-        distanceLabel = new javax.swing.JLabel();
         distanceTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -63,7 +81,8 @@ public class AddRouteGUI extends javax.swing.JFrame {
 
         addRoutePanel.setBackground(new java.awt.Color(215, 224, 223));
 
-        routeNameLabel.setText("Route Name:");
+        routeNameTxt.setForeground(new java.awt.Color(153, 153, 153));
+        routeNameTxt.setText("Route Name");
 
         stopsLabel.setText("Bus Stops:");
 
@@ -90,73 +109,62 @@ public class AddRouteGUI extends javax.swing.JFrame {
             }
         });
 
-        stopNameLabel.setText("Stop Name:");
+        stopNameTxt.setForeground(new java.awt.Color(153, 153, 153));
+        stopNameTxt.setText("Stop Name");
 
-        distanceLabel.setText("Distance to Next Stop (miles):");
+        distanceTxt.setForeground(new java.awt.Color(153, 153, 153));
+        distanceTxt.setText("Distance to Next Stop (miles)");
 
         javax.swing.GroupLayout addRoutePanelLayout = new javax.swing.GroupLayout(addRoutePanel);
         addRoutePanel.setLayout(addRoutePanelLayout);
         addRoutePanelLayout.setHorizontalGroup(
             addRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addRoutePanelLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(addRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addRoutePanelLayout.createSequentialGroup()
-                        .addComponent(routeNameLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(routeNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(addRoutePanelLayout.createSequentialGroup()
-                        .addGroup(addRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(stopsLabel)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
-                        .addGroup(addRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(stopNameLabel)
-                            .addComponent(stopNameTxt)
-                            .addComponent(distanceLabel)
-                            .addComponent(distanceTxt)
-                            .addComponent(addStopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(removeStopButton, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
+                        .addComponent(stopsLabel))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addRoutePanelLayout.createSequentialGroup()
+                        .addContainerGap(32, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addGroup(addRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(stopNameTxt)
+                    .addComponent(distanceTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(addStopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removeStopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(routeNameTxt)
+                    .addComponent(addRouteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addRoutePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addRouteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(170, 170, 170))
         );
         addRoutePanelLayout.setVerticalGroup(
             addRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addRoutePanelLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(addRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(routeNameLabel)
-                    .addComponent(routeNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(addRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stopsLabel)
-                    .addComponent(stopNameLabel))
+                .addGap(29, 29, 29)
+                .addComponent(stopsLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(addRoutePanelLayout.createSequentialGroup()
-                        .addComponent(stopNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(routeNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(distanceLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(distanceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(stopNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(distanceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(addStopButton)
                         .addGap(18, 18, 18)
-                        .addComponent(removeStopButton))
+                        .addComponent(removeStopButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(addRouteButton))
                     .addComponent(jScrollPane1))
-                .addGap(30, 30, 30)
-                .addComponent(addRouteButton)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(addRoutePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(addRoutePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,52 +240,65 @@ public class AddRouteGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_addRouteButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void applyTextFieldEffects(JTextField field, String placeholder) {
+        field.setForeground(Color.GRAY);
+        field.setText(placeholder);
+        field.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                // new AddRouteGUI().setVisible(true);
+        field.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (field.getText().equals(placeholder)) {
+                    field.setText("");
+                    field.setForeground(Color.BLACK);
+                }
+                field.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (field.getText().isEmpty()) {
+                    field.setText(placeholder);
+                    field.setForeground(Color.GRAY);
+                }
+                field.setBorder(BorderFactory.createLineBorder(Color.WHITE));
             }
         });
     }
+
+    private void styleButton(JButton button) {
+        button.setBackground(Color.WHITE);
+        button.setForeground(Color.BLACK);
+        button.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        button.setPreferredSize(new Dimension(160, 23));
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        Color hover = Color.green;
+
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                button.setBackground(hover);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                button.setBackground(Color.WHITE);
+            }
+        });
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addRouteButton;
     private javax.swing.JPanel addRoutePanel;
     private javax.swing.JButton addStopButton;
-    private javax.swing.JLabel distanceLabel;
     private javax.swing.JTextField distanceTxt;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton removeStopButton;
-    private javax.swing.JLabel routeNameLabel;
     private javax.swing.JTextField routeNameTxt;
-    private javax.swing.JLabel stopNameLabel;
     private javax.swing.JTextField stopNameTxt;
     private javax.swing.JLabel stopsLabel;
     private javax.swing.JList<String> stopsList;

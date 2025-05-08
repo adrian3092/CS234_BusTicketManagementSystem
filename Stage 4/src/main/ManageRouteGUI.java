@@ -1,12 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package main;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  * GUI for managing an existing route
@@ -35,6 +43,14 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         
         // populate the route combo box
         populateRouteComboBox();
+        
+        applyTextFieldEffects(routeNameTxt, "Route Name");
+        applyTextFieldEffects(stopNameTxt, "Stop Name");
+        applyTextFieldEffects(distanceTxt, "Distance to Next Stop(miles)");
+
+        styleButton(addStopButton);
+        styleButton(removeStopButton);
+        styleButton(updateRouteButton);
     }
 
     /**
@@ -49,7 +65,6 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         manageRoutePanel = new javax.swing.JPanel();
         routeLabel = new javax.swing.JLabel();
         routeComboBox = new javax.swing.JComboBox<>();
-        routeNameLabel = new javax.swing.JLabel();
         routeNameTxt = new javax.swing.JTextField();
         stopsLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -57,10 +72,7 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         addStopButton = new javax.swing.JButton();
         removeStopButton = new javax.swing.JButton();
         updateRouteButton = new javax.swing.JButton();
-        deleteRouteButton = new javax.swing.JButton();
-        stopNameLabel = new javax.swing.JLabel();
         stopNameTxt = new javax.swing.JTextField();
-        distanceLabel = new javax.swing.JLabel();
         distanceTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -76,7 +88,8 @@ public class ManageRouteGUI extends javax.swing.JFrame {
             }
         });
 
-        routeNameLabel.setText("Route Name:");
+        routeNameTxt.setForeground(new java.awt.Color(153, 153, 153));
+        routeNameTxt.setText("Route Name");
 
         stopsLabel.setText("Bus Stops:");
 
@@ -103,81 +116,65 @@ public class ManageRouteGUI extends javax.swing.JFrame {
             }
         });
 
-        deleteRouteButton.setText("Delete Route");
-        deleteRouteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteRouteButtonActionPerformed(evt);
-            }
-        });
+        stopNameTxt.setForeground(new java.awt.Color(153, 153, 153));
+        stopNameTxt.setText("Stop Name");
 
-        stopNameLabel.setText("Stop Name:");
-
-        distanceLabel.setText("Distance to Next Stop (miles):");
+        distanceTxt.setForeground(new java.awt.Color(153, 153, 153));
+        distanceTxt.setText("Distance to Next Stop(miles)");
 
         javax.swing.GroupLayout manageRoutePanelLayout = new javax.swing.GroupLayout(manageRoutePanel);
         manageRoutePanel.setLayout(manageRoutePanelLayout);
         manageRoutePanelLayout.setHorizontalGroup(
             manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageRoutePanelLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(manageRoutePanelLayout.createSequentialGroup()
-                        .addComponent(routeLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(routeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(manageRoutePanelLayout.createSequentialGroup()
-                        .addComponent(routeNameLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(routeNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(manageRoutePanelLayout.createSequentialGroup()
                         .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(stopsLabel)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(stopNameLabel)
-                            .addComponent(stopNameTxt)
-                            .addComponent(distanceLabel)
-                            .addComponent(distanceTxt)
-                            .addComponent(addStopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(removeStopButton, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
-                .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageRoutePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(updateRouteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(170, 170, 170))
+                            .addGroup(manageRoutePanelLayout.createSequentialGroup()
+                                .addComponent(routeLabel)
+                                .addGap(10, 10, 10)
+                                .addComponent(routeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(stopsLabel))
+                        .addGap(20, 20, 20))
+                    .addGroup(manageRoutePanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addGap(18, 18, 18)))
+                .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addStopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removeStopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateRouteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(distanceTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(stopNameTxt)
+                    .addComponent(routeNameTxt))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         manageRoutePanelLayout.setVerticalGroup(
             manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(manageRoutePanelLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(routeLabel)
-                    .addComponent(routeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(routeNameLabel)
-                    .addComponent(routeNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stopsLabel)
-                    .addComponent(stopNameLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(manageRoutePanelLayout.createSequentialGroup()
-                        .addComponent(stopNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(routeNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(distanceLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(distanceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(stopNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(distanceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(addStopButton)
                         .addGap(18, 18, 18)
-                        .addComponent(removeStopButton))
-                    .addComponent(jScrollPane1))
-                .addGap(30, 30, 30)
-                .addComponent(updateRouteButton)
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addComponent(removeStopButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(updateRouteButton))
+                    .addGroup(manageRoutePanelLayout.createSequentialGroup()
+                        .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(routeLabel)
+                            .addComponent(routeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(stopsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -423,19 +420,64 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         });
     }
 
+    private void applyTextFieldEffects(JTextField field, String placeholder) {
+        field.setForeground(Color.GRAY);
+        field.setText(placeholder);
+        field.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+        field.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (field.getText().equals(placeholder)) {
+                    field.setText("");
+                    field.setForeground(Color.BLACK);
+                }
+                field.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (field.getText().isEmpty()) {
+                    field.setText(placeholder);
+                    field.setForeground(Color.GRAY);
+                }
+                field.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+            }
+        });
+    }
+    
+    private void styleButton(JButton button) {
+        button.setBackground(Color.WHITE);
+        button.setForeground(Color.BLACK);
+        button.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        button.setPreferredSize(new Dimension(160, 23));
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        Color hover = Color.green;
+
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                button.setBackground(hover);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                button.setBackground(Color.WHITE);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addStopButton;
-    private javax.swing.JButton deleteRouteButton;
-    private javax.swing.JLabel distanceLabel;
     private javax.swing.JTextField distanceTxt;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel manageRoutePanel;
     private javax.swing.JButton removeStopButton;
     private javax.swing.JComboBox<String> routeComboBox;
     private javax.swing.JLabel routeLabel;
-    private javax.swing.JLabel routeNameLabel;
     private javax.swing.JTextField routeNameTxt;
-    private javax.swing.JLabel stopNameLabel;
     private javax.swing.JTextField stopNameTxt;
     private javax.swing.JLabel stopsLabel;
     private javax.swing.JList<String> stopsList;

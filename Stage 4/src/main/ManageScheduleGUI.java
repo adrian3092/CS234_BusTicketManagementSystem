@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package main;
 
+import java.awt.Color;
+import javax.swing.JTextField;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
@@ -24,6 +22,9 @@ public class ManageScheduleGUI extends javax.swing.JFrame {
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
         setLocationRelativeTo(adminMenuGUI);
+        applyPlaceholderEffect(scheduleNameTxt, "Schedule Name");
+        scheduleNameLbl.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+
         
         // add action listener to the text field
         scheduleNameTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -229,37 +230,18 @@ public class ManageScheduleGUI extends javax.swing.JFrame {
         manageSchedulePanel = new javax.swing.JPanel();
         scheduleNameLbl = new javax.swing.JLabel();
         scheduleNameTxt = new javax.swing.JTextField();
-        scheduleTablePanel = new javax.swing.JPanel();
         scheduleTablePane = new javax.swing.JScrollPane();
         scheduleTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Manage Schedule");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        manageSchedulePanel.setBackground(new java.awt.Color(215, 224, 223));
 
         scheduleNameLbl.setText("Enter Schedule Name:");
 
         scheduleNameTxt.setText("Schedule Name");
-
-        javax.swing.GroupLayout manageSchedulePanelLayout = new javax.swing.GroupLayout(manageSchedulePanel);
-        manageSchedulePanel.setLayout(manageSchedulePanelLayout);
-        manageSchedulePanelLayout.setHorizontalGroup(
-            manageSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(manageSchedulePanelLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(manageSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scheduleNameLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addComponent(scheduleNameTxt))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        manageSchedulePanelLayout.setVerticalGroup(
-            manageSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(manageSchedulePanelLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(scheduleNameLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scheduleNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
 
         scheduleTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -282,41 +264,34 @@ public class ManageScheduleGUI extends javax.swing.JFrame {
         });
         scheduleTablePane.setViewportView(scheduleTable);
 
-        javax.swing.GroupLayout scheduleTablePanelLayout = new javax.swing.GroupLayout(scheduleTablePanel);
-        scheduleTablePanel.setLayout(scheduleTablePanelLayout);
-        scheduleTablePanelLayout.setHorizontalGroup(
-            scheduleTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, scheduleTablePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(scheduleTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
-                .addContainerGap())
+        javax.swing.GroupLayout manageSchedulePanelLayout = new javax.swing.GroupLayout(manageSchedulePanel);
+        manageSchedulePanel.setLayout(manageSchedulePanelLayout);
+        manageSchedulePanelLayout.setHorizontalGroup(
+            manageSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageSchedulePanelLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(manageSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scheduleNameLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                    .addComponent(scheduleNameTxt))
+                .addGap(35, 35, 35)
+                .addComponent(scheduleTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
-        scheduleTablePanelLayout.setVerticalGroup(
-            scheduleTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scheduleTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        manageSchedulePanelLayout.setVerticalGroup(
+            manageSchedulePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(manageSchedulePanelLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(scheduleNameLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scheduleNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manageSchedulePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(scheduleTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(manageSchedulePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(scheduleTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(manageSchedulePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(scheduleTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
-        );
+        getContentPane().add(manageSchedulePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -6, 860, 200));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -351,6 +326,32 @@ public class ManageScheduleGUI extends javax.swing.JFrame {
             });
         }
     }//GEN-LAST:event_scheduleNameTxtActionPerformed
+
+    private void applyPlaceholderEffect(JTextField field, String placeholder) {
+    field.setText(placeholder);
+    field.setForeground(Color.GRAY);
+    field.setBorder(javax.swing.BorderFactory.createLineBorder(Color.WHITE, 1));
+
+    field.addFocusListener(new java.awt.event.FocusAdapter() {
+        @Override
+        public void focusGained(java.awt.event.FocusEvent e) {
+            if (field.getText().equals(placeholder)) {
+                field.setText("");
+                field.setForeground(Color.BLACK);
+            }
+            field.setBorder(javax.swing.BorderFactory.createLineBorder(Color.GREEN, 2));
+        }
+
+        @Override
+        public void focusLost(java.awt.event.FocusEvent e) {
+            if (field.getText().isEmpty()) {
+                field.setText(placeholder);
+                field.setForeground(Color.GRAY);
+            }
+            field.setBorder(javax.swing.BorderFactory.createLineBorder(Color.WHITE, 1));
+        }
+    });
+}
 
     /**
      * @param args the command line arguments
@@ -394,6 +395,5 @@ public class ManageScheduleGUI extends javax.swing.JFrame {
     private javax.swing.JTextField scheduleNameTxt;
     private javax.swing.JTable scheduleTable;
     private javax.swing.JScrollPane scheduleTablePane;
-    private javax.swing.JPanel scheduleTablePanel;
     // End of variables declaration//GEN-END:variables
 }
