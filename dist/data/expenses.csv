@@ -1,0 +1,15 @@
+1000,Salary,Employee,A-1000,2000.0
+1001,FuelCost,Bus,1000,500.0
+1002,MaintenanceCost,Bus,1000,650.0
+1003,FuelCost,Bus,1004,65.0
+1004,FuelCost,Bus,1003,65.0
+1005,FuelCost,Bus,1002,100.0
+1006,FuelCost,Bus,1001,100.0
+1007,MaintenanceCost,Bus,1004,2500.0
+1008,Salary,Employee,A-1002,10000.0
+1009,Salary,Employee,A-1000,500.0
+1010,Salary,Employee,D-1000,500.0
+1011,Salary,Employee,D-1001,500.0
+1012,Salary,Employee,A-1001,500.0
+1013,Utility,Depot,1000,588.0
+1014,Utility,Depot,1001,565.0
