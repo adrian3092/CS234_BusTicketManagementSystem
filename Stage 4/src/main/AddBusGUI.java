@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package main;
 
 import java.awt.Color;
@@ -10,8 +7,8 @@ import javax.swing.JButton;
 import javax.swing.border.Border;
 
 /**
- *
- * @author Owner
+ * 
+ * @author Handsome Onojerame
  */
 public class AddBusGUI extends javax.swing.JFrame {
     
@@ -19,8 +16,9 @@ public class AddBusGUI extends javax.swing.JFrame {
     private AdminMenuGUI adminMenuGUI;
     private Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
     private Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
+    
     /**
-     * Creates new form AddBusGUI
+     * creates new form AddBusGUI
      */
     public AddBusGUI(Database database, AdminMenuGUI adminMenuGUI) {
         this.database = database;
@@ -36,7 +34,6 @@ public class AddBusGUI extends javax.swing.JFrame {
         setupMileageBehavior();
         setupSeatingCapacityBehavior();
         addBtn.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
-        
     }
     
     /**
@@ -265,43 +262,6 @@ public class AddBusGUI extends javax.swing.JFrame {
     });
     }
     
-    
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddBusGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddBusGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddBusGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddBusGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-         //       new AddBusGUI(Database database).setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JPanel addBusPanel;
