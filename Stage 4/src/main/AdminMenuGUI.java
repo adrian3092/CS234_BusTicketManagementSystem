@@ -22,16 +22,17 @@ import javax.swing.table.DefaultTableModel;
 import payment.Payment;
 
 /**
- *
+ * This creates a new Admin Menu GUI
  * @author George Candal
  */
 public class AdminMenuGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdminMenuGUI
-     */
     private Database database;
     
+    /**
+     * Constructor for the class. Populates all of the tables
+     * @param database 
+     */
     public AdminMenuGUI(Database database) {
         this.database = database;
 
@@ -821,11 +822,19 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Creates a new AddRouteGUI when the add route button is clicked
+     * @param evt 
+     */
     private void btnAddRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRouteActionPerformed
         AddRouteGUI addRouteGUI = new AddRouteGUI(this.database, this);
         addRouteGUI.setVisible(true);
     }//GEN-LAST:event_btnAddRouteActionPerformed
 
+    /**
+     * repopulates the bus table if the bus tab is clicked
+     * @param evt 
+     */
     private void tabAdminStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabAdminStateChanged
         // refresh the appropriate table based on the selected tab
         int selectedTab = tabAdmin.getSelectedIndex();
@@ -834,34 +843,63 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tabAdminStateChanged
 
+    /**
+     * Creates a new AddBusGUI if the Add Bus button is clicked
+     * @param evt 
+     */
     private void btnAddBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBusActionPerformed
         AddBusGUI addBusGUI = new AddBusGUI(this.database, this);
         addBusGUI.setVisible(true);
     }//GEN-LAST:event_btnAddBusActionPerformed
 
+    /**
+     * Creates a new ManageBusGUI if the Manage Bus button is clicked
+     * @param evt 
+     */
     private void btnManageBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageBusActionPerformed
         ManageBusGUI manageBusGUI = new ManageBusGUI(this.database, this);
         manageBusGUI.setVisible(true);
     }//GEN-LAST:event_btnManageBusActionPerformed
     
+    /**
+     * Creates a new ExpenseReportGUI if the generate expense report button is
+     * clicked
+     * @param evt 
+     */
     private void btnExpenseReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpenseReportActionPerformed
         new ExpenseReportGUI(database).setVisible(true);
     }//GEN-LAST:event_btnExpenseReportActionPerformed
 
+    /**
+     * Creates a new AddExpenseGUI if the Add Expense button is clicked
+     * @param evt 
+     */
     private void btnNewExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewExpenseActionPerformed
         new AddExpenseGUI(database, this).setVisible(true);
     }//GEN-LAST:event_btnNewExpenseActionPerformed
 
+    /**
+     * Creates a new AddScheduleGUI if the add schedule button is clicked
+     * @param evt 
+     */
     private void btnAddScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddScheduleActionPerformed
         AddScheduleGUI addScheduleGUI = new AddScheduleGUI(this.database, this);
         addScheduleGUI.setVisible(true);
     }//GEN-LAST:event_btnAddScheduleActionPerformed
     
+    /**
+     * Creates a new ManageScheduleGUI if the Manage Schedule button is clicked
+     * @param evt 
+     */
     private void btnManageScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageScheduleActionPerformed
         ManageScheduleGUI manageScheduleGUI = new ManageScheduleGUI(this.database, this);
         manageScheduleGUI.setVisible(true);
     }//GEN-LAST:event_btnManageScheduleActionPerformed
     
+    /**
+     * Removes the selected schedule when the Remove Schedule button is clicked
+     * @param evt 
+     */
     private void btnRemoveScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveScheduleActionPerformed
         // get the selected row from the schedule table
         int selectedRow = tableSchedule.getSelectedRow();
@@ -902,23 +940,44 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRemoveScheduleActionPerformed
 
+    /**
+     * Creates a new PaymentReportGUI when the generate payment report button is
+     * clicked
+     * @param evt 
+     */
     private void btnPaymentReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentReportActionPerformed
         new PaymentReportGUI(database).setVisible(true);
     }//GEN-LAST:event_btnPaymentReportActionPerformed
 
+    /**
+     * Creates a new AddPaymentGUI when the Add Payment button is clicked
+     * @param evt 
+     */
     private void btnAddPaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPaymentActionPerformed
         new AddPaymentGUI(database, this).setVisible(true);
     }//GEN-LAST:event_btnAddPaymentActionPerformed
 
+    /**
+     * Creates a new ManagePaymentGUI when the manage payment button is clicked
+     * @param evt 
+     */
     private void btnManagePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePaymentActionPerformed
         new ManagePaymentGUI(database, this).setVisible(true);
     }//GEN-LAST:event_btnManagePaymentActionPerformed
     
+    /**
+     * Creates a new ManagePaymentGUI when the manage payment button is clicked
+     * @param evt 
+     */
     private void btnManageRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageRouteActionPerformed
         ManageRouteGUI manageRouteGUI = new ManageRouteGUI(this.database, this);
         manageRouteGUI.setVisible(true);
     }//GEN-LAST:event_btnManageRouteActionPerformed
     
+    /**
+     * Deletes the selected route when the Delete Route button is clicked
+     * @param evt 
+     */
     private void btnDeleteRouteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteRouteActionPerformed
         // get the selected route from the table
         int selectedRow = tableRoute.getSelectedRow();
@@ -969,6 +1028,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteRouteActionPerformed
     
+    /**
+     * Assigns a bus to the selected route when the Manage Route Assignment 
+     * button is clicked
+     * @param evt 
+     */
     private void btnRouteAssignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRouteAssignmentActionPerformed
         // get the selected route from the table
         int selectedRow = tableRoute.getSelectedRow();
@@ -1038,6 +1102,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnRouteAssignmentActionPerformed
 
+    /**
+     * Deletes the selected bus when the Delete Bus button is clicked
+     * @param evt 
+     */
     private void btnDeleteBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBusActionPerformed
         // get the selected bus from the table
         int selectedRow = tableBus.getSelectedRow();
@@ -1086,14 +1154,27 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteBusActionPerformed
 
+    /**
+     * Creates an AddPassengerGUI when the Add Passenger button is clicked
+     * @param evt 
+     */
     private void btnAddPassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPassengerActionPerformed
         new AddPassengerGUI(database, this).setVisible(true);
     }//GEN-LAST:event_btnAddPassengerActionPerformed
 
+    /**
+     * Creates a ManagePassengerGUI when the Manage Passenger button is clicked
+     * @param evt 
+     */
     private void btnManagePassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagePassengerActionPerformed
         new ManagePassengerGUI(database, this).setVisible(true);
     }//GEN-LAST:event_btnManagePassengerActionPerformed
     
+    /**
+     * Creates a new depot with Address input from the user when the Add
+     * Depot button is clicked
+     * @param evt 
+     */
     private void btnAddDepotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDepotActionPerformed
         // show input dialog for depot address
         String address = javax.swing.JOptionPane.showInputDialog(
@@ -1119,6 +1200,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAddDepotActionPerformed
     
+    /**
+     * Deletes the selected depot when the Remove Depot button is clicked
+     * @param evt 
+     */
     private void btnDeleteDepotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDepotActionPerformed
         // get the selected depot from the table
         int selectedRow = tableDepot.getSelectedRow();
@@ -1175,6 +1260,11 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteDepotActionPerformed
     
+    /**
+     * Asks the user for a Bus ID and assignes that bus to the selected depot
+     * in the table when the Assign Bus to Depot button is clicked
+     * @param evt 
+     */
     private void btnAssignBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignBusActionPerformed
         // get the selected depot from the table
         int selectedRow = tableDepot.getSelectedRow();
@@ -1235,6 +1325,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAssignBusActionPerformed
     
+    /**
+     * Used to unassign a bus from a depot
+     * @param evt 
+     */
     private void btnUnassignBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnassignBusActionPerformed
         // get the selected depot from the table
         int selectedRow = tableDepot.getSelectedRow();
@@ -1318,11 +1412,19 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUnassignBusActionPerformed
 
+    /**
+     * Creates an AddEmployeeGUI when the Add Employee button is clicked
+     * @param evt 
+     */
     private void btnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmployeeActionPerformed
         AddEmployeeGUI addEmployeeGUI = new AddEmployeeGUI(this.database, this);
         addEmployeeGUI.setVisible(true);
     }//GEN-LAST:event_btnAddEmployeeActionPerformed
 
+    /**
+     * Deletes the selected employee when the Delete Employee button is clicked
+     * @param evt 
+     */
     private void btnDeleteEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEmployeeActionPerformed
         // get the selected employee from the table
         int selectedRow = tableEmployee.getSelectedRow();
@@ -1378,11 +1480,20 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteEmployeeActionPerformed
 
+    /**
+     * Creates a ManageEmployeeGUI when the Manage Employee button is clicked
+     * @param evt 
+     */
     private void btnUpdateEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateEmployeeActionPerformed
         ManageEmployeeGUI manageEmployeeGUI = new ManageEmployeeGUI(this.database, this);
         manageEmployeeGUI.setVisible(true);
     }//GEN-LAST:event_btnUpdateEmployeeActionPerformed
 
+    /**
+     * Deletes the selected passenger when the Delete Passenger button is 
+     * clicked
+     * @param evt 
+     */
     private void btnDeletePassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePassengerActionPerformed
         // get the selected passenger from the table
         int selectedRow = tblPassengers.getSelectedRow();
@@ -1424,6 +1535,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeletePassengerActionPerformed
 
+    /**
+     * Deletes the selected Payment when the Delete Payment button is clicked
+     * @param evt 
+     */
     private void btnDeletePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePaymentActionPerformed
         // get the selected payment from the table
         int selectedRow = tablePayments.getSelectedRow();
@@ -1788,6 +1903,9 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Styling for the buttons
+     */
     private void styleAdminButtons() {
         Color bg = Color.WHITE;
         Color fg = Color.BLACK;
@@ -1830,7 +1948,9 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     }
 
 
-    
+    /**
+     * Styling for the tab headers
+     */
     private void customizeTabHeaders() {
     for (int i = 0; i < tabAdmin.getTabCount(); i++) {
         String title = tabAdmin.getTitleAt(i);
@@ -1880,6 +2000,9 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     
 }
 
+    /**
+     * Styling for the buttons 
+     */
     private void normalizeButtonFonts() {
     Font plainFont = new Font("Segoe UI", Font.PLAIN, 12); // or any preferred font
     JButton[] buttons = {
@@ -1897,6 +2020,9 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     }
 }
     
+    /**
+     * Updates the styling for the tab headers
+     */
     private void updateTabStyles() {
     for (int i = 0; i < tabAdmin.getTabCount(); i++) {
         Component c = tabAdmin.getTabComponentAt(i);
