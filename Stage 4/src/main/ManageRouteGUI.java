@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -36,6 +37,7 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         this.database = database;
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
+        setAutoRequestFocus(false);
         
         // initialize the list model for bus stops
         stopsListModel = new DefaultListModel<>();
@@ -51,6 +53,9 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         styleButton(addStopButton);
         styleButton(removeStopButton);
         styleButton(updateRouteButton);
+        
+        styleComboBox(routeComboBox);
+
     }
 
     /**
@@ -469,6 +474,28 @@ public class ManageRouteGUI extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void styleComboBox(JComboBox<?> comboBox) {
+    comboBox.setBackground(Color.WHITE);
+    comboBox.setForeground(Color.BLACK);
+    comboBox.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+    comboBox.setPreferredSize(new Dimension(160, 23));
+    comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    comboBox.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+    comboBox.addFocusListener(new FocusAdapter() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            comboBox.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            comboBox.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+        }
+    });
+}
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addStopButton;
     private javax.swing.JTextField distanceTxt;
