@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -1781,26 +1782,47 @@ public class AdminMenuGUI extends javax.swing.JFrame {
     }
 
     private void styleAdminButtons() {
-    Color bg = Color.WHITE;
-    Color fg = Color.BLACK;
+        Color bg = Color.WHITE;
+        Color fg = Color.BLACK;
+        Color hover = Color.green; // Light green hover
+        Font buttonFont = new Font("Segoe UI", Font.PLAIN, 12);
+        Dimension buttonSize = new Dimension(160, 23);
 
-    JButton[] buttons = {
-        btnAddBus, btnManageBus, btnDeleteBus,
-        btnAddDepot, btnDeleteDepot, btnAssignBus, btnUnassignBus,
-        btnAddSchedule, btnRemoveSchedule, btnManageSchedule,
-        btnAddRoute, btnManageRoute, btnDeleteRoute, btnRouteAssignment,
-        btnAddEmployee, btnDeleteEmployee, btnUpdateEmployee,
-        btnExpenseReport, btnPaymentReport, 
-        btnNewExpense, 
-    };
+        JButton[] buttons = {
+            btnAddBus, btnManageBus, btnDeleteBus,
+            btnAddDepot, btnDeleteDepot, btnAssignBus, btnUnassignBus,
+            btnAddSchedule, btnRemoveSchedule, btnManageSchedule,
+            btnAddRoute, btnManageRoute, btnDeleteRoute, btnRouteAssignment,
+            btnAddEmployee, btnDeleteEmployee, btnUpdateEmployee,
+            btnExpenseReport, btnPaymentReport,
+            btnNewExpense, btnAddPayment, btnManagePayment, btnDeletePayment,
+            btnAddPassenger, btnManagePassenger, btnDeletePassenger
+        };
 
-    for (JButton button : buttons) {
-        button.setBackground(bg);
-        button.setForeground(fg);
-        button.setOpaque(true);  // important for background color to show
-        button.setBorderPainted(false); // optional for a cleaner look
+        for (JButton button : buttons) {
+            button.setBackground(bg);
+            button.setForeground(fg);
+            button.setOpaque(true);
+            button.setBorderPainted(false);
+            button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            button.setFont(buttonFont);
+            button.setPreferredSize(buttonSize);
+
+            button.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    button.setBackground(hover);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    button.setBackground(bg);
+                }
+            });
+        }
     }
-}
+
+
     
     private void customizeTabHeaders() {
     for (int i = 0; i < tabAdmin.getTabCount(); i++) {
