@@ -54,6 +54,8 @@ public class Database {
         ticketIssuer.getTicketManager().loadTicketsFromCSV(passengerManager, scheduleManager);
         accounting.loadExpensesFromCSV();
         
+        
+        
         // Create main menu gui
         new MainMenuGUI(this).setVisible(true);
         

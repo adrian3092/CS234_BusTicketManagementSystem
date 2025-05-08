@@ -38,4 +38,10 @@ public class DriverAssignment {
     public Bus getBus() {
         return bus;
     }
+    @Override
+    public String toString() {
+        return "Driver: " + driver.getName() +
+             ", Bus: " + bus.getMake() + " " + bus.getModel() +
+             " (ID: " + bus.getBusId() + ")";
+}
 }
