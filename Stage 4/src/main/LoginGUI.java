@@ -1,7 +1,6 @@
 package main;
 
 import employees.Driver;
-import employees.EmployeeManagement;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
@@ -60,28 +59,20 @@ public class LoginGUI extends javax.swing.JFrame {
         txtUsername.setText("Username");
         txtUsername.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         txtUsername.setOpaque(true);
-        txtUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtUsernameActionPerformed(evt);
-            }
-        });
 
         txtPassword.setForeground(new java.awt.Color(153, 153, 153));
         txtPassword.setText("password");
         txtPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         txtPassword.setOpaque(true);
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
 
         btnLogin.setText("Login");
         btnLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLogin.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                btnLoginFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                btnLoginFocusLost(evt);
-            }
-        });
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btnLoginMouseEntered(evt);
@@ -138,11 +129,9 @@ public class LoginGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameActionPerformed
-
-        // Set up focus behaviour for Username text field
+    /**
+     * Set up behavior for username text field
+     */
     private void setupUsernameBehavior() {
     Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
     Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
@@ -164,7 +153,9 @@ public class LoginGUI extends javax.swing.JFrame {
     });
     }
     
-    // set up password focus behaviour for password field
+    /**
+     * set up password focus behaviour for password field
+     */
     private void setupPasswordBehavior() {
     txtPassword.setEchoChar((char)0); // No masking initially (for placeholder)
     Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
@@ -192,6 +183,10 @@ public class LoginGUI extends javax.swing.JFrame {
     });
     }
     
+    /**
+     * Checks credentials when Login button is clicked
+     * @param evt 
+     */
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // Get username and password from text fields
         String username = txtUsername.getText();
@@ -226,56 +221,30 @@ public class LoginGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void btnLoginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnLoginFocusGained
-
-    }//GEN-LAST:event_btnLoginFocusGained
-
-    private void btnLoginFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_btnLoginFocusLost
-
-    }//GEN-LAST:event_btnLoginFocusLost
-
+    /**
+     * Hover effect for login button
+     * @param evt 
+     */
     private void btnLoginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseEntered
         btnLogin.setBackground(Color.green);
     }//GEN-LAST:event_btnLoginMouseEntered
 
+    /**
+     * Hover effect for login button
+     * @param evt 
+     */
     private void btnLoginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseExited
         btnLogin.setBackground(Color.white);
     }//GEN-LAST:event_btnLoginMouseExited
 
     /**
-     * @param args the command line arguments
+     * When enter is pressed in password field it will call the method when 
+     * login is clicked
+     * @param evt 
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new LoginGUI(loginManager).setVisible(true);
-//            }
-//        });
-    }
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        btnLoginActionPerformed(evt);
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
