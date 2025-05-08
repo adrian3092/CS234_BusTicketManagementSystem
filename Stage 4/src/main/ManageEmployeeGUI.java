@@ -11,7 +11,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Creates the Manage Employee GUI
  * @author Adrian Zielinski
  */
 public class ManageEmployeeGUI extends javax.swing.JFrame {
@@ -411,14 +411,26 @@ public class ManageEmployeeGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Calls findEmployee() when enter is hit in the Employee ID field
+     * @param evt 
+     */
     private void employeeIdFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeIdFieldActionPerformed
         findEmployee();
     }//GEN-LAST:event_employeeIdFieldActionPerformed
     
+    /**
+     * Calls findEmployee() when the find button is clicked
+     * @param evt 
+     */
     private void findButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findButtonActionPerformed
         findEmployee();
     }//GEN-LAST:event_findButtonActionPerformed
     
+    /**
+     * Calls saveEmployeeInfo when the save button is clicked
+     * @param evt 
+     */
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         saveEmployeeInfo();
     }//GEN-LAST:event_saveButtonActionPerformed

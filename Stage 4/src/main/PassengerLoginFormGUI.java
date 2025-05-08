@@ -4,8 +4,8 @@ package main;
 import java.awt.Color;
 
 /**
- *
- * @author Owner
+ * GUI for Passenger Sign up
+ * @author Handsome Onojerame
  */
 public class PassengerLoginFormGUI extends javax.swing.JFrame {
 
@@ -48,25 +48,10 @@ public class PassengerLoginFormGUI extends javax.swing.JFrame {
         phoneNumberTxt.setText("Phone Number");
 
         emailTxt.setText("Email");
-        emailTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTxtActionPerformed(evt);
-            }
-        });
 
         passwordTxt.setText("Password");
-        passwordTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordTxtActionPerformed(evt);
-            }
-        });
 
         confirmPasswordtxt.setText("Confirm Password");
-        confirmPasswordtxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmPasswordtxtActionPerformed(evt);
-            }
-        });
 
         signUpBtn.setText("Sign Up");
 
@@ -134,18 +119,9 @@ public class PassengerLoginFormGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void emailTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailTxtActionPerformed
-
-    private void passwordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordTxtActionPerformed
-
-    private void confirmPasswordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordtxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmPasswordtxtActionPerformed
-
+    /**
+     * Sets up placeholder behavior for text fields
+     */
     private void setupPlaceholderBehavior() {
     setupFieldPlaceholder(nameTxt, "Name");
     setupFieldPlaceholder(phoneNumberTxt, "Phone Number");
@@ -154,70 +130,84 @@ public class PassengerLoginFormGUI extends javax.swing.JFrame {
     setupPasswordFieldPlaceholder(confirmPasswordtxt, "Confirm Password");
 }
 
-private void setupFieldPlaceholder(final javax.swing.JTextField field, final String placeholder) {
-    field.setForeground(new java.awt.Color(153, 153, 153));
+    /**
+     * Sets up field placeholder
+     * @param field
+     * @param placeholder 
+     */
+    private void setupFieldPlaceholder(final javax.swing.JTextField field, final String placeholder) {
+        field.setForeground(new java.awt.Color(153, 153, 153));
 
-    field.addFocusListener(new java.awt.event.FocusAdapter() {
-        @Override
-        public void focusGained(java.awt.event.FocusEvent evt) {
-            if (field.getText().equals(placeholder)) {
-                field.setText("");
-                field.setForeground(new java.awt.Color(0, 0, 0));
+        field.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                if (field.getText().equals(placeholder)) {
+                    field.setText("");
+                    field.setForeground(new java.awt.Color(0, 0, 0));
+                }
             }
-        }
-        @Override
-        public void focusLost(java.awt.event.FocusEvent evt) {
-            if (field.getText().isEmpty()) {
-                field.setForeground(new java.awt.Color(153, 153, 153));
-                field.setText(placeholder);
+            @Override
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                if (field.getText().isEmpty()) {
+                    field.setForeground(new java.awt.Color(153, 153, 153));
+                    field.setText(placeholder);
+                }
             }
-        }
-    });
-}
+        });
+    }
 
-private void setupPasswordFieldPlaceholder(final javax.swing.JPasswordField field, final String placeholder) {
-    field.setForeground(new java.awt.Color(153, 153, 153));
-    field.setEchoChar((char)0); // No bullet dots for placeholder
+    /**
+     * Sets up password field placeholder
+     * @param field
+     * @param placeholder 
+     */
+    private void setupPasswordFieldPlaceholder(final javax.swing.JPasswordField field, final String placeholder) {
+        field.setForeground(new java.awt.Color(153, 153, 153));
+        field.setEchoChar((char)0); // No bullet dots for placeholder
 
-    field.addFocusListener(new java.awt.event.FocusAdapter() {
-        @Override
-        public void focusGained(java.awt.event.FocusEvent evt) {
-            String pwd = new String(field.getPassword());
-            if (pwd.equals(placeholder)) {
-                field.setText("");
-                field.setForeground(new java.awt.Color(0, 0, 0));
-                field.setEchoChar('•'); // Dots appear when typing real password
+        field.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                String pwd = new String(field.getPassword());
+                if (pwd.equals(placeholder)) {
+                    field.setText("");
+                    field.setForeground(new java.awt.Color(0, 0, 0));
+                    field.setEchoChar('•'); // Dots appear when typing real password
+                }
             }
-        }
-        @Override
-        public void focusLost(java.awt.event.FocusEvent evt) {
-            String pwd = new String(field.getPassword());
-            if (pwd.isEmpty()) {
-                field.setForeground(new java.awt.Color(153, 153, 153));
-                field.setText(placeholder);
-                field.setEchoChar((char)0); // No masking for placeholder
+            @Override
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                String pwd = new String(field.getPassword());
+                if (pwd.isEmpty()) {
+                    field.setForeground(new java.awt.Color(153, 153, 153));
+                    field.setText(placeholder);
+                    field.setEchoChar((char)0); // No masking for placeholder
+                }
             }
-        }
-    });
-}
+        });
+    }
+    
+    /**
+     * Sets up password matching
+     */
     private void setupPasswordMatching() {
-    // When user clicks SignUp button, check passwords
-    signUpBtn.addActionListener(new java.awt.event.ActionListener() {
-        @Override
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            String password = new String(passwordTxt.getPassword());
-            String confirmPassword = new String(confirmPasswordtxt.getPassword());
+        // When user clicks SignUp button, check passwords
+        signUpBtn.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                String password = new String(passwordTxt.getPassword());
+                String confirmPassword = new String(confirmPasswordtxt.getPassword());
 
-            if (password.equals(confirmPassword)) {
-                passwordMismatchLbl.setForeground(new java.awt.Color(0, 153, 0)); // Green for match
-                passwordMismatchLbl.setText("Passwords are a match!");
-            } else {
-                passwordMismatchLbl.setForeground(Color.RED);
-                passwordMismatchLbl.setText("Oops! Passwords do not match.");
+                if (password.equals(confirmPassword)) {
+                    passwordMismatchLbl.setForeground(new java.awt.Color(0, 153, 0)); // Green for match
+                    passwordMismatchLbl.setText("Passwords are a match!");
+                } else {
+                    passwordMismatchLbl.setForeground(Color.RED);
+                    passwordMismatchLbl.setText("Oops! Passwords do not match.");
+                }
             }
-        }
-    });
-}
+        });
+    }
 
     /**
      * @param args the command line arguments

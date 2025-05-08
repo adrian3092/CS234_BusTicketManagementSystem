@@ -6,7 +6,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 /**
- *
+ * GUI for managing schedules
  * @author Adrian Zielinski
  */
 public class ManageScheduleGUI extends javax.swing.JFrame {
@@ -327,6 +327,11 @@ public class ManageScheduleGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_scheduleNameTxtActionPerformed
 
+    /**
+     * Styling for text fields
+     * @param field
+     * @param placeholder 
+     */
     private void applyPlaceholderEffect(JTextField field, String placeholder) {
     field.setText(placeholder);
     field.setForeground(Color.GRAY);

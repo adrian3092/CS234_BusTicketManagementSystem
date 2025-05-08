@@ -113,25 +113,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Email"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailTxtActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordTxt">
           <Properties>
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordTxtActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="confirmPasswordtxt">
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirm Password"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmPasswordtxtActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="signUpBtn">
           <Properties>

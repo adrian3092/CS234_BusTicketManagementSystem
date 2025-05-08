@@ -8,7 +8,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 /**
- *
+ * This is the GUI for managing passengers
  * @author George Candal
  */
 public class ManagePassengerGUI extends javax.swing.JFrame {
@@ -23,6 +23,11 @@ public class ManagePassengerGUI extends javax.swing.JFrame {
         initComponents();
     }
     
+    /**
+     * Constructor with parameters
+     * @param database
+     * @param adminMenuGUI 
+     */
     public ManagePassengerGUI(Database database, AdminMenuGUI adminMenuGUI) {
         initComponents();
         this.database = database;
@@ -160,6 +165,11 @@ public class ManagePassengerGUI extends javax.swing.JFrame {
         setBounds(500, 100, 850, 224);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Changes passenger attributes when enter is hit after changing a value in 
+     * the table
+     * @param evt 
+     */
     private void txtManagePassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtManagePassengerActionPerformed
         String passengerID = txtManagePassenger.getText();
         
