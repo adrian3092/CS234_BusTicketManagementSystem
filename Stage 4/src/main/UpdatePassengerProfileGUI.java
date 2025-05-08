@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.border.Border;
 
 /**
- *
- * @author Owner
+ * GUI to update passenger info
+ * @author Handsome Onojerame
  */
 public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
     private Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
@@ -20,6 +20,7 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
     private Passenger passenger;
     private PassengerManager passengerManager;
     private passengerDashboardGUI passengerDashboard;
+    
     /**
      * Creates new form UpdatePassengerProfileGUI
      */
@@ -76,11 +77,6 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
                 nameUpdatetxtFocusLost(evt);
             }
         });
-        nameUpdatetxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameUpdatetxtActionPerformed(evt);
-            }
-        });
 
         phoneNumberUpdatetxt.setForeground(new java.awt.Color(153, 153, 153));
         phoneNumberUpdatetxt.setText("Update Phone Number");
@@ -92,11 +88,6 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 phoneNumberUpdatetxtFocusLost(evt);
-            }
-        });
-        phoneNumberUpdatetxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneNumberUpdatetxtActionPerformed(evt);
             }
         });
 
@@ -175,10 +166,10 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void phoneNumberUpdatetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNumberUpdatetxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneNumberUpdatetxtActionPerformed
-
+    /**
+     * focus effect for name text field
+     * @param evt 
+     */
     private void nameUpdatetxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameUpdatetxtFocusGained
         if (nameUpdatetxt.getText().equals("Update Name")) {
                 nameUpdatetxt.setText("");
@@ -187,10 +178,10 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
             }       
     }//GEN-LAST:event_nameUpdatetxtFocusGained
 
-    private void nameUpdatetxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameUpdatetxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameUpdatetxtActionPerformed
-
+    /**
+     * focus effect for name text field
+     * @param evt 
+     */
     private void nameUpdatetxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nameUpdatetxtFocusLost
         if (nameUpdatetxt.getText().isEmpty()) {
                 nameUpdatetxt.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
@@ -199,6 +190,9 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
             } 
     }//GEN-LAST:event_nameUpdatetxtFocusLost
 
+    /**
+    * Focus effect for phone number text field
+    */
     private void phoneNumberUpdatetxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneNumberUpdatetxtFocusGained
         if (phoneNumberUpdatetxt.getText().equals("Update Phone Number")) {
                 phoneNumberUpdatetxt.setText("");
@@ -207,6 +201,10 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
             }   
     }//GEN-LAST:event_phoneNumberUpdatetxtFocusGained
 
+    /**
+     * Focus effect for phone number text field
+     * @param evt 
+     */
     private void phoneNumberUpdatetxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_phoneNumberUpdatetxtFocusLost
         if (phoneNumberUpdatetxt.getText().isEmpty()) {
                 phoneNumberUpdatetxt.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
@@ -215,6 +213,10 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
             } 
     }//GEN-LAST:event_phoneNumberUpdatetxtFocusLost
 
+    /**
+     * Focus effect for email text field
+     * @param evt 
+     */
     private void emailUpdatetxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailUpdatetxtFocusGained
         if (emailUpdatetxt.getText().equals("Update Email")) {
                 emailUpdatetxt.setText("");
@@ -223,6 +225,10 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_emailUpdatetxtFocusGained
 
+    /**
+     * Focus effect for email text field
+     * @param evt 
+     */
     private void emailUpdatetxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailUpdatetxtFocusLost
         if (emailUpdatetxt.getText().isEmpty()) {
                 emailUpdatetxt.setForeground(new java.awt.Color(153, 153, 153)); // Placeholder color
@@ -231,6 +237,10 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
             } 
     }//GEN-LAST:event_emailUpdatetxtFocusLost
 
+    /**
+     * Updates passenger info when save update button is clicked
+     * @param evt 
+     */
     private void saveUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveUpdateBtnActionPerformed
         String name = nameUpdatetxt.getText();
         String phoneNumber = phoneNumberUpdatetxt.getText();
@@ -242,29 +252,36 @@ public class UpdatePassengerProfileGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_saveUpdateBtnActionPerformed
 
+    /**
+     * deletes account when delete button is clicked
+     * @param evt 
+     */
     private void deleteAccountBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAccountBtn1ActionPerformed
         this.passengerManager.deletePassenger(this.passenger.getPassengerID());
         this.passengerManager.savePassengersToCSV();
     }//GEN-LAST:event_deleteAccountBtn1ActionPerformed
 
-    private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
-    button.setOpaque(true);
-    button.setBackground(normal);
-    button.setBorderPainted(false);
-
-    button.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseEntered(java.awt.event.MouseEvent evt) {
-            button.setBackground(hover);
-        }
-
-        public void mouseExited(java.awt.event.MouseEvent evt) {
-            button.setBackground(normal);
-        }
-    });
-    }
     /**
-     * @param args the command line arguments
+     * Adds hover effect to buttons
+     * @param button
+     * @param normal
+     * @param hover 
      */
+    private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
+        button.setOpaque(true);
+        button.setBackground(normal);
+        button.setBorderPainted(false);
+
+        button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                button.setBackground(hover);
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                button.setBackground(normal);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteAccountBtn1;

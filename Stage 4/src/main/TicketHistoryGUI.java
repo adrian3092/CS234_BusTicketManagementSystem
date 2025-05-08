@@ -10,12 +10,13 @@ import javax.swing.DefaultListModel;
 import ticket.Ticket;
 
 /**
- *
- * @author Owner
+ * GUI for ticket history
+ * @author Handsome Onojerame
  */
 public class TicketHistoryGUI extends javax.swing.JFrame {
     private Database db;
     private Passenger passenger;
+    
     /**
      * Creates new form TicketHistoryGUI
      */

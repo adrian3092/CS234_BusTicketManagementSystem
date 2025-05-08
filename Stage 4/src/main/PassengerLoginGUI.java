@@ -8,8 +8,8 @@ import javax.swing.border.Border;
 import login.LoginManager;
 
 /**
- *
- * @author Owner
+ * GUI for Passenger Login
+ * @author Handsome Onojerame
  */
 public class PassengerLoginGUI extends javax.swing.JFrame {
     private LoginManager loginManager;
@@ -142,6 +142,10 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userNameFieldActionPerformed
 
+    /**
+     * Checks credentials when Login Button is pressed
+     * @param evt 
+     */
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         String username = userNameField.getText();
         String password = new String(passwordField.getPassword());
@@ -162,7 +166,9 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBtnActionPerformed
     
     
-    // Set up focus behaviour for Username text field
+    /**
+     * Set up focus behavior for Username text field
+     */
     private void setupUsernameBehavior() {
     Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
     Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
@@ -184,7 +190,9 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     });
     }
     
-    // set up password focus behaviour for password field
+    /**
+     * set up password focus behavior for password field
+     */
     private void setupPasswordBehavior() {
     passwordField.setEchoChar((char)0); // No masking initially (for placeholder)
     Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
@@ -212,6 +220,9 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     });
     }
     
+    /**
+     * Hover effect for sign up label
+     */
     private void setupSignUpLabelHover() {
     SignUpLabel.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
@@ -228,7 +239,9 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     });
     }
     
-    
+    /**
+     * Calls openSignUpForm() when sign up is clicked
+     */
     private void setupSignUpLabelAction() {
     SignUpLabel.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override
@@ -238,12 +251,19 @@ public class PassengerLoginGUI extends javax.swing.JFrame {
     });
     }
     
+    /**
+     * Creates new PassengerSignUpGUI
+     */
     private void openSignUpForm() {
 
     PassengerSignUpGUI signUpForm = new PassengerSignUpGUI(this.database); 
     signUpForm.setVisible(true);
     }
     
+    /**
+     * Adds hover effects to buttons
+     * @param button 
+     */
     private void addHoverEffect(final JButton button) {
     button.addMouseListener(new java.awt.event.MouseAdapter() {
         @Override

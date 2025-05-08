@@ -5,11 +5,12 @@ import javax.swing.BorderFactory;
 import login.Login;
 
 /**
- *
- * @author Owner
+ * GUI for Passenger Sign up
+ * @author Handsome Onojerame
  */
 public class PassengerSignUpGUI extends javax.swing.JFrame {
     private Database database;
+    
     /**
      * Creates new form PassengerSignUpGUI
      */
@@ -53,11 +54,6 @@ public class PassengerSignUpGUI extends javax.swing.JFrame {
         nameField.setForeground(new java.awt.Color(102, 102, 102));
         nameField.setText("Name");
         nameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        nameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameFieldActionPerformed(evt);
-            }
-        });
 
         phoneField.setForeground(new java.awt.Color(102, 102, 102));
         phoneField.setText("Phone Number");
@@ -66,11 +62,6 @@ public class PassengerSignUpGUI extends javax.swing.JFrame {
         emailField.setForeground(new java.awt.Color(102, 102, 102));
         emailField.setText("Email");
         emailField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        emailField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailFieldActionPerformed(evt);
-            }
-        });
 
         passwordField.setForeground(new java.awt.Color(102, 102, 102));
         passwordField.setText("Password");
@@ -145,22 +136,26 @@ public class PassengerSignUpGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameFieldActionPerformed
-
-    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailFieldActionPerformed
-
+    /**
+     * Focus effect for sign up button
+     * @param evt 
+     */
     private void signUpBtnFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_signUpBtnFocusGained
         signUpBtn.setBackground(Color.green);
     }//GEN-LAST:event_signUpBtnFocusGained
 
+    /**
+     * Focus effect when mouse is not on sign up button
+     * @param evt 
+     */
     private void signUpBtnFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_signUpBtnFocusLost
         signUpBtn.setBackground(Color.white);
     }//GEN-LAST:event_signUpBtnFocusLost
 
+    /**
+     * Creates a new passenger when sign up button is clicked
+     * @param evt 
+     */
     private void signUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpBtnActionPerformed
         String name = nameField.getText();
         String phone = phoneField.getText();
@@ -181,6 +176,12 @@ public class PassengerSignUpGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_signUpBtnActionPerformed
 
+    /**
+     * Sets up focus effect for text fields
+     * @param field
+     * @param placeholder
+     * @param isPassword 
+     */
     private void setUpFieldFocus(javax.swing.text.JTextComponent field, String placeholder, boolean isPassword) {
     field.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {

@@ -99,7 +99,6 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nameUpdatetxtFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="nameUpdatetxtFocusLost"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameUpdatetxtActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="phoneNumberUpdatetxt">
@@ -122,7 +121,6 @@
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="phoneNumberUpdatetxtFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="phoneNumberUpdatetxtFocusLost"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="phoneNumberUpdatetxtActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="emailUpdatetxt">
