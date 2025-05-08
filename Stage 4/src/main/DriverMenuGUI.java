@@ -14,7 +14,7 @@ import main.RouteAssignment;
 import ticket.Ticket;
 
 /**
- *
+ * This creates the Driver Menu GUI
  * @author Handsome Onojerame
  */
 public class DriverMenuGUI extends javax.swing.JFrame {
@@ -259,10 +259,18 @@ public class DriverMenuGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_assignmentBtnActionPerformed
 
+    /**
+     * Closes the window when the log out button is clicked
+     * @param evt 
+     */
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
+    /**
+     * Creates a ViewScheduleGUI
+     * @param evt 
+     */
     private void schedulesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schedulesBtnActionPerformed
         if (database.getScheduleManager() != null && database.getRouteManager() != null && database.getDepotManager() != null) {
             new ViewScheduleGUI(database.getScheduleManager(), database.getRouteManager(), database.getDepotManager()).setVisible(true);
@@ -279,6 +287,10 @@ public class DriverMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_schedulesBtnActionPerformed
 
+    /**
+     * Shows the passengers that bought tickets for the Driver's assigned route
+     * @param evt 
+     */
     private void passengersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passengersBtnActionPerformed
         StringBuilder output = new StringBuilder();
     output.append("Passengers Assigned to This Route:\n\n");
@@ -326,10 +338,13 @@ public class DriverMenuGUI extends javax.swing.JFrame {
     jTextPane1.setText(output.toString());
     }//GEN-LAST:event_passengersBtnActionPerformed
 
+    
     /**
-     * @param args the command line arguments
+     * Adds hover effect for buttons
+     * @param button
+     * @param normal
+     * @param hover 
      */
-
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
     button.setOpaque(true);
     button.setBackground(normal);

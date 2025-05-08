@@ -8,7 +8,7 @@ import javax.swing.border.Border;
 import login.LoginManager;
         
 /**
- *
+ * This is the Login GUI for the employee sign in 
  * @author George Candal
  */
 public class LoginGUI extends javax.swing.JFrame {
