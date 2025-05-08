@@ -43,6 +43,10 @@ public class Accounting {
         
     } 
     
+    /**
+     * Getter for the array list of expenses
+     * @return array list of expenses
+     */
     public ArrayList<Expense> getAllExpenses() {
         return expenses;
     }
@@ -71,75 +75,6 @@ public class Accounting {
     }
     
     /**
-     * Asks the user for a bus ID and adds either a fuel cost or a maintenance 
-     * cost to that bus
-     * @param busManager BusManager object 
-     * @param type Either "fuel" or "maintenance" for the type of cost to add
-     */
-//    public void addBusCost(BusManager busManager, String type) {
-//        System.out.print("Enter the ID of the bus associated with this cost: ");
-//        int busId = in.nextInt();
-//        Bus selectedBus = busManager.findBusById(busId);
-//        
-//        if (selectedBus == null) {
-//            System.out.println("Bus with ID " + busId + " not found.");
-//            return;
-//        } 
-//        
-//        System.out.print("Enter the amount: ");
-//        float cost = in.nextFloat();
-//        
-//        if (type.equals("fuel")) {
-//            new FuelCost(this, cost, selectedBus);  
-//        } else if (type.equals("maintenance")) {
-//            new MaintenanceCost(this, cost, selectedBus);  
-//        }
-//    }
-    
-    /**
-     * Asks the user for a depot ID and adds a utility cost associated with that
-     * depot.
-     * @param depotManager DepotManager
-     */
-//    public void addUtilityCost(DepotManager depotManager) {
-//        System.out.print("Enter the ID of the Depot associated with this cost: ");
-//        int depotId = in.nextInt();
-//        Depot selectedDepot = depotManager.findDepotById(depotId);
-//        
-//        if (selectedDepot == null) {
-//            System.out.println("Depot with ID " + depotId + " not found.");
-//            return;
-//        } 
-//        
-//        System.out.print("Enter the amount: ");
-//        float cost = in.nextFloat();
-//        
-//        new Utility(this, cost, selectedDepot);
-//    }
-    
-    /**
-     * Asks the user for an employee ID and a dollar amount. Then it adds a 
-     * salary of that amount linked to that employee to the list of expenses
-     * @param employeeManagement 
-     */
-//    public void addSalary(EmployeeManagement employeeManagement) {
-//        System.out.print("Enter the ID of the employee: ");
-//        in.nextLine();
-//        String employeeId = in.next();
-//        Employee selectedEmployee = employeeManagement.getEmployeeById(employeeId);
-//        
-//        if (selectedEmployee == null) {
-//            System.out.println("Employee with ID " + employeeId + " not found.");
-//            return;
-//        } 
-//        
-//        System.out.print("Enter the amount: ");
-//        float cost = in.nextFloat();
-//        
-//        new Salary(this, cost, selectedEmployee);
-//    }
-    
-    /**
      * Searches through the expenses by ID and if the ID is found returns the
      * expense with that ID.
      * @param expenseId The ID of the expense
@@ -152,21 +87,7 @@ public class Accounting {
         }
         return null;
     }
-    
-    /**
-     * Asks the user for an expense ID and removes that expense from the list
-     */
-//    public void removeExpense() {
-//        System.out.print("Enter the ID of the expense you want to remove: ");
-//        int expenseId = in.nextInt();
-//        Expense expenseToRemove = findExpenseById(expenseId);
-//        if (expenseToRemove == null) {
-//            System.out.println("Expense ID not found");
-//        } else {
-//        expenses.remove(expenseToRemove);
-//        }
-//    }  
-    
+        
     /**
      * load expenses from CSV file
      * 
