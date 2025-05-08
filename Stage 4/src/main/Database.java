@@ -41,7 +41,7 @@ public class Database {
         this.busManager = new BusManager(depotManager);
         this.scheduleManager = new ScheduleManager();
         this.accounting = new Accounting(busManager, depotManager, employeeManagement);
-        this.dispatcher = new Dispatcher(busManager, routeManager);
+        this.dispatcher = new Dispatcher(busManager, routeManager, employeeManagement);
         this.ticketIssuer = new TicketIssuer();
         
         // load data from CSV

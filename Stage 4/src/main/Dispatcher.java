@@ -10,7 +10,7 @@ import employees.Driver;
 import csv.CSVHandler;
 
 /**
- * This class is used to assign drivers and routes with buses.
+ * this class is used to assign drivers and routes with buses
  * @author Adrian Zielinski
  */
 public class Dispatcher {
@@ -19,7 +19,9 @@ public class Dispatcher {
     private ArrayList<DriverAssignment> driverAssignments;
     private BusManager busManager;
     private RouteManager routeManager;
+    private employees.EmployeeManagement employeeManagement;
     private static final String ROUTE_ASSIGNMENTS_CSV_FILE_PATH = "data/route_assignments.csv";
+    private static final String DRIVER_ASSIGNMENTS_CSV_FILE_PATH = "data/driver_assignments.csv";
     
     /**
      * default constructor
@@ -30,6 +32,7 @@ public class Dispatcher {
         this.driverAssignments = new ArrayList<>();
         this.busManager = busManager;
         this.routeManager = null;
+        this.employeeManagement = null;
     }
     
     /**
@@ -42,7 +45,25 @@ public class Dispatcher {
         this.driverAssignments = new ArrayList<>();
         this.busManager = busManager;
         this.routeManager = routeManager;
+        this.employeeManagement = null;
         loadRouteAssignmentsFromCSV();
+        loadDriverAssignmentsFromCSV();
+    }
+    
+    /**
+     * constructor with route manager and employee management
+     * @param busManager the bus manager to use
+     * @param routeManager the route manager to use
+     * @param employeeManagement the employee management to use
+     */
+    public Dispatcher(BusManager busManager, RouteManager routeManager, employees.EmployeeManagement employeeManagement) {
+        this.routeAssignments = new ArrayList<>();
+        this.driverAssignments = new ArrayList<>();
+        this.busManager = busManager;
+        this.routeManager = routeManager;
+        this.employeeManagement = employeeManagement;
+        loadRouteAssignmentsFromCSV();
+        loadDriverAssignmentsFromCSV();
     }
     
     /**
@@ -53,6 +74,17 @@ public class Dispatcher {
         this.routeManager = routeManager;
         if (routeManager != null) {
             loadRouteAssignmentsFromCSV();
+        }
+    }
+    
+    /**
+     * set the employee management
+     * @param employeeManagement the employee management to use
+     */
+    public void setEmployeeManagement(employees.EmployeeManagement employeeManagement) {
+        this.employeeManagement = employeeManagement;
+        if (employeeManagement != null) {
+            loadDriverAssignmentsFromCSV();
         }
     }
     
@@ -111,6 +143,9 @@ public class Dispatcher {
         driver.setBus(bus);
         driver.setAvailability(false);
         
+        // save the assignments to CSV
+        saveDriverAssignmentsToCSV();
+        
         return true;
     }
     
@@ -135,9 +170,9 @@ public class Dispatcher {
     }
     
     /**
-     * Gets the driver assigned to a bus
+     * gets the driver assigned to a bus
      * @param bus the bus to check
-     * @return The driver assigned to the bus, or null if no driver is assigned
+     * @return the driver assigned to the bus, or null if no driver is assigned
      */
     public Driver getDriverForBus(Bus bus) {
         DriverAssignment assignment = getBusDriverAssignment(bus);
@@ -186,6 +221,9 @@ public class Dispatcher {
         // remove the assignment
         driverAssignments.remove(assignment);
         
+        // save the assignments to CSV
+        saveDriverAssignmentsToCSV();
+        
         return true;
     }
     
@@ -198,7 +236,7 @@ public class Dispatcher {
     }
     
     /**
-     * gets all driver assignments.
+     * gets all driver assignments
      * @return a list of all driver assignments
      */
     public ArrayList<DriverAssignment> getAllDriverAssignments() {
@@ -220,7 +258,7 @@ public class Dispatcher {
     }
     
     /**
-     * find a route assignment for a given route.
+     * find a route assignment for a given route
      * @param route the route to find an assignment for
      * @return the route assignment, or null if not found
      */
@@ -234,7 +272,7 @@ public class Dispatcher {
     }
     
     /**
-     * find a driver assignment for a given bus.
+     * find a driver assignment for a given bus
      * @param bus the bus to find an assignment for
      * @return the driver assignment, or null if not found
      */
@@ -305,5 +343,79 @@ public class Dispatcher {
                 bus.setStatus("In Use");
             }
         }
+    }
+    
+    /**
+     * save driver assignments to CSV file
+     */
+    public void saveDriverAssignmentsToCSV() {
+        List<String[]> data = new ArrayList<>();
+        
+        // add header row
+        data.add(new String[]{"driverId", "busId"});
+        
+        // add data rows
+        for (DriverAssignment assignment : driverAssignments) {
+            String[] row = new String[]{
+                String.valueOf(assignment.getDriver().getEmployeeID()),
+                String.valueOf(assignment.getBus().getBusId())
+            };
+            data.add(row);
+        }
+        
+        CSVHandler.writeCSV(DRIVER_ASSIGNMENTS_CSV_FILE_PATH, data);
+    }
+    
+    /**
+     * load driver assignments from CSV file
+     */
+    private void loadDriverAssignmentsFromCSV() {
+        List<String[]> data = CSVHandler.readCSV(DRIVER_ASSIGNMENTS_CSV_FILE_PATH);
+        
+        // clear existing assignments
+        driverAssignments.clear();
+        
+        // skip header row if it exists
+        boolean hasHeader = data.size() > 0 && data.get(0)[0].equals("driverId");
+        int startRow = hasHeader ? 1 : 0;
+        
+        // process each row
+        for (int i = startRow; i < data.size(); i++) {
+            String[] row = data.get(i);
+            
+            int driverId = Integer.parseInt(row[0]);
+            int busId = Integer.parseInt(row[1]);
+            
+            // find the driver and bus
+            Driver driver = findDriverById(driverId);
+            Bus bus = busManager.findBusById(busId);
+            
+            if (driver != null && bus != null) {
+                // create the assignment
+                DriverAssignment assignment = new DriverAssignment(driver, bus);
+                driverAssignments.add(assignment);
+                
+                // update the driver
+                driver.setBus(bus);
+                driver.setAvailability(false);
+            }
+        }
+    }
+    
+    /**
+     * helper method to find a driver by ID
+     * @param driverId the ID of the driver to find
+     * @return the driver with the given ID, or null if not found
+     */
+    private Driver findDriverById(int driverId) {
+        if (employeeManagement == null) {
+            return null;
+        }
+        
+        // convert the numeric ID to the format used in the system (e.g., "D-123")
+        String driverIdStr = "D-" + driverId;
+        
+        // use the employee management to find the driver
+        return employeeManagement.getDriverById(driverIdStr);
     }
 }

@@ -53,6 +53,8 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         styleButton(addStopButton);
         styleButton(removeStopButton);
         styleButton(updateRouteButton);
+        styleButton(assignDriverButton);
+        styleButton(unassignDriverButton);
         
         styleComboBox(routeComboBox);
 
@@ -79,6 +81,8 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         updateRouteButton = new javax.swing.JButton();
         stopNameTxt = new javax.swing.JTextField();
         distanceTxt = new javax.swing.JTextField();
+        assignDriverButton = new javax.swing.JButton();
+        unassignDriverButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Manage Route");
@@ -126,6 +130,20 @@ public class ManageRouteGUI extends javax.swing.JFrame {
 
         distanceTxt.setForeground(new java.awt.Color(153, 153, 153));
         distanceTxt.setText("Distance to Next Stop(miles)");
+        
+        assignDriverButton.setText("Assign Driver");
+        assignDriverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignDriverButtonActionPerformed(evt);
+            }
+        });
+        
+        unassignDriverButton.setText("Unassign Driver");
+        unassignDriverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unassignDriverButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout manageRoutePanelLayout = new javax.swing.GroupLayout(manageRoutePanel);
         manageRoutePanel.setLayout(manageRoutePanelLayout);
@@ -149,6 +167,8 @@ public class ManageRouteGUI extends javax.swing.JFrame {
                     .addComponent(addStopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(removeStopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(updateRouteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(assignDriverButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(unassignDriverButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(distanceTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(stopNameTxt)
                     .addComponent(routeNameTxt))
@@ -170,7 +190,11 @@ public class ManageRouteGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(removeStopButton)
                         .addGap(18, 18, 18)
-                        .addComponent(updateRouteButton))
+                        .addComponent(updateRouteButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(assignDriverButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(unassignDriverButton))
                     .addGroup(manageRoutePanelLayout.createSequentialGroup()
                         .addGroup(manageRoutePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(routeLabel)
@@ -196,6 +220,7 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
 
     private void routeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeComboBoxActionPerformed
         // get the selected route
@@ -361,6 +386,164 @@ public class ManageRouteGUI extends javax.swing.JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_deleteRouteButtonActionPerformed
+    
+    /**
+     * handles the assign driver button click event
+     * assigns a driver to the bus assigned to the selected route
+     * @param evt the action event
+     */
+    private void assignDriverButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if (selectedRoute == null) {
+            JOptionPane.showMessageDialog(this, 
+                    "Please select a route first.", 
+                    "No Route Selected", 
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // get the bus assigned to this route
+        bus.Bus bus = database.getDispatcher().getBusForRoute(selectedRoute);
+        
+        if (bus == null) {
+            JOptionPane.showMessageDialog(this, 
+                    "No bus is assigned to this route. Please assign a bus first.", 
+                    "No Bus Assigned", 
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // check if the bus already has a driver
+        employees.Driver currentDriver = database.getDispatcher().getDriverForBus(bus);
+        if (currentDriver != null) {
+            JOptionPane.showMessageDialog(this, 
+                    "This bus already has a driver assigned: " + currentDriver.getName(), 
+                    "Driver Already Assigned", 
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // get all available drivers
+        java.util.ArrayList<employees.Driver> availableDrivers = new java.util.ArrayList<>();
+        for (employees.Employee employee : database.getEmployeeManagement().getAllEmployees()) {
+            if (employee instanceof employees.Driver) {
+                employees.Driver driver = (employees.Driver) employee;
+                if (driver.getAvailability()) {
+                    availableDrivers.add(driver);
+                }
+            }
+        }
+        
+        // if there are no available drivers, show a message
+        if (availableDrivers.isEmpty()) {
+            JOptionPane.showMessageDialog(this, 
+                    "No available drivers found.", 
+                    "Assign Driver", 
+                    JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        // create a dialog to select a driver
+        String[] driverNames = new String[availableDrivers.size()];
+        for (int i = 0; i < availableDrivers.size(); i++) {
+            driverNames[i] = availableDrivers.get(i).getName() + " (ID: " + availableDrivers.get(i).getEmployeeID() + ")";
+        }
+        
+        String selectedDriverName = (String) JOptionPane.showInputDialog(
+                this,
+                "Select a driver to assign to bus " + bus.getMake() + " " + bus.getModel() + " (ID: " + bus.getBusId() + ") for route " + selectedRoute.getName() + ":",
+                "Assign Driver",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                driverNames,
+                driverNames[0]);
+        
+        // if a driver was selected, assign them to the bus
+        if (selectedDriverName != null) {
+            int selectedIndex = -1;
+            for (int i = 0; i < driverNames.length; i++) {
+                if (driverNames[i].equals(selectedDriverName)) {
+                    selectedIndex = i;
+                    break;
+                }
+            }
+            
+            if (selectedIndex >= 0) {
+                employees.Driver selectedDriver = availableDrivers.get(selectedIndex);
+                boolean success = database.getDispatcher().assignDriverToBus(selectedDriver, bus);
+                
+                if (success) {
+                    JOptionPane.showMessageDialog(this, 
+                            "Driver " + selectedDriver.getName() + " assigned to bus successfully.", 
+                            "Assign Driver", 
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, 
+                            "Failed to assign driver to bus.", 
+                            "Assign Driver", 
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }
+    
+    /**
+     * handles the unassign driver button click event
+     * removes a driver from the bus assigned to the selected route
+     * @param evt the action event
+     */
+    private void unassignDriverButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if (selectedRoute == null) {
+            JOptionPane.showMessageDialog(this, 
+                    "Please select a route first.", 
+                    "No Route Selected", 
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // get the bus assigned to this route
+        bus.Bus bus = database.getDispatcher().getBusForRoute(selectedRoute);
+        
+        if (bus == null) {
+            JOptionPane.showMessageDialog(this, 
+                    "No bus is assigned to this route.", 
+                    "No Bus Assigned", 
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // check if the bus has a driver
+        employees.Driver driver = database.getDispatcher().getDriverForBus(bus);
+        if (driver == null) {
+            JOptionPane.showMessageDialog(this, 
+                    "No driver is assigned to this bus.", 
+                    "No Driver Assigned", 
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // confirm unassignment
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to unassign driver " + driver.getName() + " from bus " + bus.getMake() + " " + bus.getModel() + " (ID: " + bus.getBusId() + ")?",
+                "Confirm Unassignment",
+                JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == JOptionPane.YES_OPTION) {
+            // remove the driver from the bus
+            boolean success = database.getDispatcher().removeDriverFromBus(bus);
+            
+            if (success) {
+                JOptionPane.showMessageDialog(this, 
+                        "Driver unassigned from bus successfully.", 
+                        "Unassign Driver", 
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                        "Failed to unassign driver from bus.", 
+                        "Unassign Driver", 
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
     /**
      * populates the route combo box with all available routes
@@ -425,6 +608,11 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * applies placeholder text and styling effects to a text field
+     * @param field the text field to apply effects to
+     * @param placeholder the placeholder text to display when the field is empty
+     */
     private void applyTextFieldEffects(JTextField field, String placeholder) {
         field.setForeground(Color.GRAY);
         field.setText(placeholder);
@@ -451,6 +639,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * applies styling to a button including colors, font, and hover effects
+     * @param button the button to style
+     */
     private void styleButton(JButton button) {
         button.setBackground(Color.WHITE);
         button.setForeground(Color.BLACK);
@@ -475,6 +667,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * applies styling to a combo box including colors, font, and focus effects
+     * @param comboBox the combo box to style
+     */
     private void styleComboBox(JComboBox<?> comboBox) {
     comboBox.setBackground(Color.WHITE);
     comboBox.setForeground(Color.BLACK);
@@ -498,6 +694,7 @@ public class ManageRouteGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addStopButton;
+    private javax.swing.JButton assignDriverButton;
     private javax.swing.JTextField distanceTxt;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel manageRoutePanel;
@@ -508,6 +705,7 @@ public class ManageRouteGUI extends javax.swing.JFrame {
     private javax.swing.JTextField stopNameTxt;
     private javax.swing.JLabel stopsLabel;
     private javax.swing.JList<String> stopsList;
+    private javax.swing.JButton unassignDriverButton;
     private javax.swing.JButton updateRouteButton;
     // End of variables declaration//GEN-END:variables
 }

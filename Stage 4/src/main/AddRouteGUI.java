@@ -188,9 +188,11 @@ public class AddRouteGUI extends javax.swing.JFrame {
         // add to the list model
         stopsListModel.addElement(stopName + " (Distance: " + distance + " miles)");
 
-        // clear the input fields
-        stopNameTxt.setText("");
-        distanceTxt.setText("");
+        // reset the input fields to their placeholder values
+        stopNameTxt.setText("Stop Name");
+        stopNameTxt.setForeground(Color.GRAY);
+        distanceTxt.setText("Distance to Next Stop (miles)");
+        distanceTxt.setForeground(Color.GRAY);
     }//GEN-LAST:event_addStopButtonActionPerformed
 
     private void removeStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStopButtonActionPerformed
