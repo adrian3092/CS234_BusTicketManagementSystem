@@ -4,7 +4,6 @@
  */
 package main;
 
-import javax.swing.JOptionPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
@@ -289,52 +288,26 @@ public class ManageBusGUI extends javax.swing.JFrame {
      * @param evt 
      */
     private void busIDTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busIDTxtActionPerformed
-        // get the bus ID from the text field
-        String busIdText = busIDTxt.getText().trim();
+        int busId = Integer.parseInt(busIDTxt.getText());
         
-        if (busIdText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, 
-                "Please enter a bus ID", 
-                "Input Error", 
-                JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
+        // get all buses from the BusManager
+        bus.Bus bus = database.getBusManager().findBusById(busId);
         
-        try {
-            int busId = Integer.parseInt(busIdText);
-            
-            // get the bus from the BusManager
-            bus.Bus bus = database.getBusManager().findBusById(busId);
-            
-            if (bus == null) {
-                JOptionPane.showMessageDialog(this, 
-                    "No bus found with ID: " + busId, 
-                    "Bus Not Found", 
-                    JOptionPane.INFORMATION_MESSAGE);
-                return;
-            }
-            
-            // create a table model with the appropriate columns
-            javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) busInfoTable.getModel();
-            
-            // clear existing rows
-            model.setRowCount(0);
-            
-            // add bus info to the table
-            model.addRow(new Object[]{
-                    bus.getYear(),
-                    bus.getMake(),
-                    bus.getModel(),
-                    bus.getMileage(),
-                    bus.getCapacity(),
-                    bus.getStatus()
-                });
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, 
-                "Invalid bus ID format. Please enter a valid number.", 
-                "Input Error", 
-                JOptionPane.ERROR_MESSAGE);
-        }
+        // create a table model with the appropriate columns
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) busInfoTable.getModel();
+        
+        // clear existing rows
+        model.setRowCount(0);
+        
+        // add bus info to the table
+        model.addRow(new Object[]{
+                bus.getYear(),
+                bus.getMake(),
+                bus.getModel(),
+                bus.getMileage(),
+                bus.getCapacity(),
+                bus.getStatus()
+            });
     }//GEN-LAST:event_busIDTxtActionPerformed
 
     /**

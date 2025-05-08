@@ -319,7 +319,7 @@ public class ManageEmployeeGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, 
                 "No employee found with ID: " + employeeId, 
                 "Employee Not Found", 
-                JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.ERROR_MESSAGE);
             return;
         }
         
