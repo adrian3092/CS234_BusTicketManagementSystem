@@ -62,7 +62,7 @@ public class LoginManager {
                     }
                 } else {
                     System.out.println("Invalid password");
-                    return "invalid";
+                    //return "invalid";
                 }
             }
         }

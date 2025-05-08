@@ -1,9 +1,14 @@
 package main;
 
+import bus.Bus;
+import depot.DepotManager;
 import employees.Driver;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JButton;
+import main.DriverAssignment;
+import main.RouteAssignment;
 
 /**
  *
@@ -13,6 +18,9 @@ public class DriverMenuGUI extends javax.swing.JFrame {
     private Database database;
     private String driverId;
     private Driver driver;
+    private Dispatcher dispatcher;
+    private ArrayList <DriverAssignment> driverAssignment;
+    private ArrayList <RouteAssignment> routeAssignment;
     /**
      * Creates new form DriverMenuGUI
      */
@@ -21,6 +29,9 @@ public class DriverMenuGUI extends javax.swing.JFrame {
         this.database = db;
         this.driverId = driverID;
         this.driver = db.getEmployeeManagement().getDriverById(driverID);
+        this.dispatcher = db.getDispatcher();
+        this.driverAssignment = this.dispatcher.getAllDriverAssignments();
+        this.routeAssignment = this.dispatcher.getAllRouteAssignments();
 
         setLocationRelativeTo(null);
         
@@ -43,6 +54,14 @@ public class DriverMenuGUI extends javax.swing.JFrame {
         addHoverEffect(passengersBtn, Color.WHITE, Color.GREEN);
         addHoverEffect(logoutBtn, Color.WHITE, Color.GREEN);
         addHoverEffect(schedulesBtn, Color.WHITE, Color.GREEN);
+        
+        txtArea.setEditable(false);
+        txtArea.setLineWrap(true);
+        txtArea.setWrapStyleWord(true);
+        txtArea.setBackground(new java.awt.Color(16, 32, 47));
+        txtArea.setForeground(java.awt.Color.WHITE);
+        txtArea.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 13));
+        jScrollPane1.setViewportView(txtArea);
 
     }
 
@@ -65,7 +84,7 @@ public class DriverMenuGUI extends javax.swing.JFrame {
         schedulesBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtField = new javax.swing.JTextField();
+        txtArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,7 +108,7 @@ public class DriverMenuGUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(headerIDlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(headerNamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(436, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,21 +121,32 @@ public class DriverMenuGUI extends javax.swing.JFrame {
         );
 
         assignmentBtn.setText("View Assignment");
+        assignmentBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignmentBtnActionPerformed(evt);
+            }
+        });
 
         passengersBtn.setText("View Passengers");
 
         logoutBtn.setText("Logout");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         schedulesBtn.setText("View All Schedules");
+        schedulesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                schedulesBtnActionPerformed(evt);
+            }
+        });
 
-        txtField.setBackground(new java.awt.Color(16, 32, 47));
-        txtField.setForeground(new java.awt.Color(255, 255, 255));
-        txtField.setText("jTextField1");
-        txtField.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        txtField.setDisabledTextColor(new java.awt.Color(255, 255, 255));
-        txtField.setEnabled(false);
-        txtField.setFocusable(false);
-        jScrollPane1.setViewportView(txtField);
+        txtArea.setBackground(new java.awt.Color(16, 32, 47));
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -133,7 +163,6 @@ public class DriverMenuGUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -141,9 +170,12 @@ public class DriverMenuGUI extends javax.swing.JFrame {
                     .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                     .addComponent(schedulesBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                     .addComponent(assignmentBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,6 +209,76 @@ public class DriverMenuGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void assignmentBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignmentBtnActionPerformed
+                                              
+        StringBuilder output = new StringBuilder();
+
+        // Find the driver's bus assignment
+        Bus assignedBus = null;
+        for (DriverAssignment da : driverAssignment) {
+            if (da.getDriver().getEmployeeID().equals(driver.getEmployeeID())) {
+                assignedBus = da.getBus();
+                output.append("🚍 Bus Assignment:\n");
+                output.append("• Bus ID: ").append(assignedBus.getBusId()).append("\n");
+                output.append("• Make/Model: ").append(assignedBus.getMake())
+                    .append(" ").append(assignedBus.getModel()).append("\n\n");
+                break;
+            }
+        }
+
+        // Find the route assigned to the same bus
+        if (assignedBus != null) {
+         for (RouteAssignment ra : routeAssignment) {
+            if (ra.getBus().getBusId() == assignedBus.getBusId()) {
+                Route route = ra.getRoute();
+                output.append("🗺️ Route Assignment:\n");
+                output.append("• Route ID: ").append(route.getRouteID()).append("\n");
+                output.append("• Name: ").append(route.getName()).append("\n");
+
+                if (route.getStops() != null && !route.getStops().isEmpty()) {
+                    output.append("• Stops: ");
+                    for (int i = 0; i < route.getStops().size(); i++) {
+                        output.append(route.getStops().get(i).getName());
+                        if (i < route.getStops().size() - 1) output.append(", ");
+                    }
+                    output.append("\n");
+                } else {
+                    output.append("• No stops assigned.\n");
+                }
+                break;
+            }
+        }
+        }
+
+        if (output.length() == 0) {
+        output.append("No assignment found for this driver.");
+        }
+
+        txtArea.setText(output.toString());
+
+
+    }//GEN-LAST:event_assignmentBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void schedulesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_schedulesBtnActionPerformed
+        if (database.getScheduleManager() != null && database.getRouteManager() != null && database.getDepotManager() != null) {
+            new ViewScheduleGUI(database.getScheduleManager(), database.getRouteManager(), database.getDepotManager()).setVisible(true);
+        } else {
+            // Create new instances if not provided
+            ScheduleManager sm = new ScheduleManager();
+            RouteManager rm = new RouteManager();
+            DepotManager dm = new DepotManager();
+            
+            // Load data
+            sm.loadSchedulesFromCSV(rm, dm);
+            
+            new ViewScheduleGUI(sm, rm, dm).setVisible(true);
+        }
+    }//GEN-LAST:event_schedulesBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -209,6 +311,6 @@ public class DriverMenuGUI extends javax.swing.JFrame {
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton passengersBtn;
     private javax.swing.JButton schedulesBtn;
-    private javax.swing.JTextField txtField;
+    private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
 }
