@@ -41,7 +41,7 @@ public class Database {
         this.busManager = new BusManager(depotManager);
         this.scheduleManager = new ScheduleManager();
         this.accounting = new Accounting(busManager, depotManager, employeeManagement);
-        this.dispatcher = new Dispatcher(busManager, routeManager);
+        this.dispatcher = new Dispatcher(busManager);
         this.ticketIssuer = new TicketIssuer();
         
         // load data from CSV
@@ -115,7 +115,6 @@ public class Database {
         loginManager.saveLoginsToCSV();
         ticketIssuer.saveTicketsToCSV();
         accounting.saveExpensesToCSV();
-        dispatcher.saveRouteAssignmentsToCSV();
     }
    
 }
