@@ -1,0 +1,1 @@
+For this stage I made: LoginGUI, AdminMenuGUI (just the basic outline and the passenger, expenses, and payment sections), the database, and the User Guide. This was a great group to be in and we worked on a lot of things collaboratively as a team.
