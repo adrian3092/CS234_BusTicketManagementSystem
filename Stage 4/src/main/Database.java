@@ -38,7 +38,6 @@ public class Database {
         this.busManager = new BusManager(depotManager);
         this.scheduleManager = new ScheduleManager();
         this.accounting = new Accounting(busManager, depotManager, employeeManagement);
-        this.dispatcher = new Dispatcher(busManager, routeManager, employeeManagement);
         this.ticketIssuer = new TicketIssuer();
         
         // load data from CSV
@@ -51,7 +50,8 @@ public class Database {
         ticketIssuer.getTicketManager().loadTicketsFromCSV(passengerManager, scheduleManager);
         accounting.loadExpensesFromCSV();
         
-        
+        // Create dispatcher after loading employees
+        this.dispatcher = new Dispatcher(busManager, routeManager, employeeManagement);
         
         // Create main menu gui
         new MainMenuGUI(this).setVisible(true);

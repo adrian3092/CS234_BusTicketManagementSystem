@@ -10,8 +10,8 @@ import javax.swing.JButton;
 import javax.swing.border.Border;
 
 /**
- *
- * @author Owner
+ * This class creates a GUI window to add a new bus
+ * @author Handsome Onojerame
  */
 public class AddBusGUI extends javax.swing.JFrame {
     
@@ -19,6 +19,7 @@ public class AddBusGUI extends javax.swing.JFrame {
     private AdminMenuGUI adminMenuGUI;
     private Border defaultBorder = BorderFactory.createLineBorder(Color.white, 1);
     private Border focusBorder = BorderFactory.createLineBorder(new Color(0, 204, 51), 2);
+    
     /**
      * Creates new form AddBusGUI
      */
@@ -154,6 +155,12 @@ public class AddBusGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_addBtnActionPerformed
 
+    /**
+     * Adds a hover effect to buttons when the mouse is over it
+     * @param button The button 
+     * @param normal The normal color of the button
+     * @param hover The changed style of the button when the mouse is over it
+     */
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
     button.setOpaque(true);
     button.setBackground(normal);
@@ -170,6 +177,9 @@ public class AddBusGUI extends javax.swing.JFrame {
     });
     }
     
+    /**
+     * Focus listener for the Year text field
+     */
     private void setupYearBehavior() {
     yearTxt.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {
@@ -189,6 +199,9 @@ public class AddBusGUI extends javax.swing.JFrame {
     });
     }
     
+    /**
+     * Focus Listener for the Make text field
+     */
     private void setupMakeBehavior() {
     makeTxt.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {
@@ -208,6 +221,9 @@ public class AddBusGUI extends javax.swing.JFrame {
     });
     }
     
+    /**
+     * Focus listener for the Model text field
+     */
     private void setupModelBehavior() {
     modelTxt.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {
@@ -227,6 +243,9 @@ public class AddBusGUI extends javax.swing.JFrame {
     });
     }
     
+    /**
+     * Focus listener for the Mileage text field
+     */
     private void setupMileageBehavior() {
     mileageTxt.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {
@@ -246,6 +265,9 @@ public class AddBusGUI extends javax.swing.JFrame {
     });
     }
     
+    /**
+     * Focus listener for the seating capacity text field
+     */
     private void setupSeatingCapacityBehavior() {
     seatingCapacityTxt.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {

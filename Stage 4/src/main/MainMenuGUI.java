@@ -10,8 +10,8 @@ import javax.swing.JButton;
 import login.LoginManager;
 
 /**
- *
- * @author Owner
+ * Creates the Main Menu GUI
+ * @author Handsome Onojerame
  */
 public class MainMenuGUI extends javax.swing.JFrame {
     
@@ -183,12 +183,20 @@ public class MainMenuGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Creates a new PassengerLoginGUI when book ticket is clicked
+     * @param evt 
+     */
     private void bookTicketMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookTicketMainMenuBtnActionPerformed
 
-            new PassengerLoginGUI(database).setVisible(true);
+        new PassengerLoginGUI(database).setVisible(true);
 
     }//GEN-LAST:event_bookTicketMainMenuBtnActionPerformed
 
+    /**
+     * Creates a new ViewScheduleGUI when the View Schedules button is clicked
+     * @param evt 
+     */
     private void ViewSchedulesMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSchedulesMainMenuBtnActionPerformed
 
         if (scheduleManager != null && routeManager != null && depotManager != null) {
@@ -206,15 +214,22 @@ public class MainMenuGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ViewSchedulesMainMenuBtnActionPerformed
 
+    /**
+     * Creates a LoginGUI when Employee Login is clicked
+     * @param evt 
+     */
     private void EmployeeLoginMainMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmployeeLoginMainMenuBtnActionPerformed
 
         new LoginGUI(database).setVisible(true);
 
     }//GEN-LAST:event_EmployeeLoginMainMenuBtnActionPerformed
 
+    /**
+     * Saves all data to CSV and exits program when window is closed
+     * @param evt 
+     */
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // Save data to CSV when window is closed
-        
         database.saveData();
         System.exit(0);
     }//GEN-LAST:event_formWindowClosing
@@ -227,6 +242,12 @@ public class MainMenuGUI extends javax.swing.JFrame {
         return database;
     }
     
+    /**
+     * Adds hover effect to buttons
+     * @param button
+     * @param normal
+     * @param hover 
+     */
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
     button.setOpaque(true);
     button.setBackground(normal);

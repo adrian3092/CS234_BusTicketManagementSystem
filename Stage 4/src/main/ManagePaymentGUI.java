@@ -11,7 +11,7 @@ import javax.swing.event.TableModelListener;
 import payment.Payment;
 
 /**
- *
+ * GUI to manage payments
  * @author George Candal
  */
 public class ManagePaymentGUI extends javax.swing.JFrame {
@@ -26,6 +26,11 @@ public class ManagePaymentGUI extends javax.swing.JFrame {
         initComponents();
     }
     
+    /**
+     * Constructor with parameters
+     * @param database
+     * @param adminMenuGUI 
+     */
     public ManagePaymentGUI(Database database, AdminMenuGUI adminMenuGUI) {
         initComponents();
         this.database = database;

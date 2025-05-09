@@ -16,14 +16,19 @@ import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Owner
+ * Creates a GUI window that is used to Add a schedule
+ * @author Handsome Onojerame
  */
 public class AddScheduleGUI extends javax.swing.JFrame {
     
     private Database database;
     private AdminMenuGUI adminMenuGUI;
     
+    /**
+     * Constructor for the class
+     * @param database
+     * @param adminMenuGUI 
+     */
     public AddScheduleGUI(Database database, AdminMenuGUI adminMenuGUI) {
         this.database = database;
         this.adminMenuGUI = adminMenuGUI;
@@ -157,6 +162,11 @@ public class AddScheduleGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_addButtonActionPerformed
 
+    /**
+     * Adds styling for the text fields
+     * @param field
+     * @param placeholder 
+     */
     private void addPlaceholderBehavior(JTextField field, String placeholder) {
     field.setText(placeholder);
     field.setForeground(Color.GRAY);
@@ -180,7 +190,9 @@ public class AddScheduleGUI extends javax.swing.JFrame {
     });
 }
 
-    
+    /**
+     * Adds styling to the components
+     */
     private void styleComponents() {
     Font fieldFont = new Font("Segoe UI", Font.PLAIN, 12);
     JTextField[] fields = {

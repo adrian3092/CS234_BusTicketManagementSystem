@@ -13,7 +13,7 @@ import javax.swing.event.TableModelListener;
 
 /**
  *
- * @author Owner
+ * @author Handsome Onojerame
  */
 public class ManageBusGUI extends javax.swing.JFrame {
     
@@ -330,6 +330,11 @@ public class ManageBusGUI extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Styling for text fields
+     * @param field
+     * @param placeholder 
+     */
     private void styleTextField(JTextField field, String placeholder) {
         field.setForeground(Color.GRAY);
         field.setText(placeholder);
@@ -356,6 +361,10 @@ public class ManageBusGUI extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Styling for the labels
+     * @param label 
+     */
     private void styleLabel(JLabel label) {
         label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         label.setForeground(Color.DARK_GRAY);

@@ -14,7 +14,7 @@ import expenses.*;
 import java.util.ArrayList;
 
 /**
- *
+ * GUI window to add a new expense
  * @author George Candal
  */
 public class AddExpenseGUI extends javax.swing.JFrame {
@@ -65,12 +65,6 @@ public class AddExpenseGUI extends javax.swing.JFrame {
             }
         });
 
-        comboBoxEntity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxEntityActionPerformed(evt);
-            }
-        });
-
         lblType.setText("Type");
 
         lblEntity.setText("Entity");
@@ -97,10 +91,9 @@ public class AddExpenseGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnAddExpense, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(comboBoxType, 0, 136, Short.MAX_VALUE)
-                        .addComponent(comboBoxEntity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtCost)))
+                    .addComponent(comboBoxType, 0, 136, Short.MAX_VALUE)
+                    .addComponent(comboBoxEntity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCost))
                 .addContainerGap(156, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,13 +117,13 @@ public class AddExpenseGUI extends javax.swing.JFrame {
         );
 
         setSize(new java.awt.Dimension(441, 360));
-        setLocationRelativeTo(adminMenuGUI);
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboBoxEntityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxEntityActionPerformed
-        
-    }//GEN-LAST:event_comboBoxEntityActionPerformed
-
+    /**
+     * Fills the entity combo box whenever the type combo box is changed
+     * @param evt 
+     */
     private void comboBoxTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxTypeActionPerformed
         String type = (String) comboBoxType.getSelectedItem();
         comboBoxEntity.removeAllItems();
@@ -167,6 +160,10 @@ public class AddExpenseGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_comboBoxTypeActionPerformed
 
+    /**
+     * Creates a new expense when the Add Expense button is clicked
+     * @param evt 
+     */
     private void btnAddExpenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddExpenseActionPerformed
         String type = (String) comboBoxType.getSelectedItem();
         String entity = "";

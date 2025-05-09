@@ -6,7 +6,7 @@ package main;
 
 /**
  *
- * @author georg
+ * @author George Candal
  */
 public class AddPassengerGUI extends javax.swing.JFrame {
     
@@ -20,6 +20,11 @@ public class AddPassengerGUI extends javax.swing.JFrame {
         initComponents();
     }
     
+    /**
+     * Creates a AddPassengerGUI with database and adminmenuGUI parameters
+     * @param database
+     * @param adminMenuGUI 
+     */
     public AddPassengerGUI(Database database, AdminMenuGUI adminMenuGUI) {
         initComponents();
         this.database = database;
@@ -102,6 +107,10 @@ public class AddPassengerGUI extends javax.swing.JFrame {
         setLocationRelativeTo(adminMenuGUI);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Creates a new passenger when the add passenger button is clicked
+     * @param evt 
+     */
     private void btnAddPassengerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPassengerActionPerformed
         String name = txtAddPassengerName.getText();
         String email = txtAddPassengerEmail.getText();

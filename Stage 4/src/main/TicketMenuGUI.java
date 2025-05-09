@@ -11,13 +11,14 @@ import payment.Payment;
 import ticket.*;
 
 /**
- *
- * @author Owner
+ * GUI for the ticket menu
+ * @author Handsome Onojerame
  */
 public class TicketMenuGUI extends javax.swing.JFrame {
     private Database database;
     private Passenger passenger;
     private String scheduleName;
+    
     /**
      * Creates new form TicketMenuGUI
      */
@@ -43,6 +44,11 @@ public class TicketMenuGUI extends javax.swing.JFrame {
         ticketSelectedlbl.setText("Ticket Selected: " + schedule); 
     }
     
+    /**
+     * Sets up focus effects for the text fields
+     * @param field
+     * @param placeholder 
+     */
     private void setUpFieldFocus(javax.swing.JTextField field, String placeholder) {
     field.setForeground(new Color(102, 102, 102));
     field.setText(placeholder);
@@ -68,6 +74,12 @@ public class TicketMenuGUI extends javax.swing.JFrame {
     });
 }
 
+    /**
+     * Adds hover effects to buttons
+     * @param button
+     * @param normal
+     * @param hover 
+     */
     private void addHoverEffect(final javax.swing.JButton button, final Color normal, final Color hover) {
     button.setOpaque(true);
     button.setBackground(normal);
@@ -119,11 +131,6 @@ public class TicketMenuGUI extends javax.swing.JFrame {
         cardNumberField.setForeground(new java.awt.Color(102, 102, 102));
         cardNumberField.setText("Card number");
         cardNumberField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        cardNumberField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardNumberFieldActionPerformed(evt);
-            }
-        });
 
         expirationDateField.setForeground(new java.awt.Color(102, 102, 102));
         expirationDateField.setText("Expiration date");
@@ -191,10 +198,10 @@ public class TicketMenuGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cardNumberFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardNumberFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cardNumberFieldActionPerformed
-
+    /**
+     * processes the payment and books ticket when Pay button is clicked
+     * @param evt 
+     */
     private void payBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payBtnActionPerformed
         String card = cardNumberField.getText().trim();
         String expiration = expirationDateField.getText().trim();

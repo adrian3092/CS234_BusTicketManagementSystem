@@ -5,8 +5,8 @@
 package main;
 
 /**
- *
- * @author georg
+ * This creates a pop up window that says Invalid Credentials
+ * @author George Candal
  */
 public class InvalidCredentials extends javax.swing.JFrame {
 

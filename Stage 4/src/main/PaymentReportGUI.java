@@ -7,7 +7,7 @@ package main;
 import payment.PaymentManager;
 
 /**
- *
+ * GUI for the payment report
  * @author George Candal
  */
 public class PaymentReportGUI extends javax.swing.JFrame {
@@ -21,6 +21,10 @@ public class PaymentReportGUI extends javax.swing.JFrame {
         initComponents();
     }
     
+    /**
+     * Constructor with database parameter
+     * @param database 
+     */
     public PaymentReportGUI(Database database) {
         initComponents();
         this.paymentManager = database.getPaymentManager();

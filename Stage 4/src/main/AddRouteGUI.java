@@ -175,6 +175,10 @@ public class AddRouteGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Adds a new bus stop when the Add Stop button is clicked
+     * @param evt 
+     */
     private void addStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStopButtonActionPerformed
         String stopName = stopNameTxt.getText().trim();
         String distanceStr = distanceTxt.getText().trim();
@@ -195,6 +199,10 @@ public class AddRouteGUI extends javax.swing.JFrame {
         distanceTxt.setForeground(Color.GRAY);
     }//GEN-LAST:event_addStopButtonActionPerformed
 
+    /**
+     * Removes bus stop when the Remove Stop button is clicked
+     * @param evt 
+     */
     private void removeStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStopButtonActionPerformed
         int selectedIndex = stopsList.getSelectedIndex();
         
@@ -210,6 +218,10 @@ public class AddRouteGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_removeStopButtonActionPerformed
 
+    /**
+     * Creates a new route when the add route button is clicked
+     * @param evt 
+     */
     private void addRouteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRouteButtonActionPerformed
         String routeName = routeNameTxt.getText().trim();
         
@@ -242,6 +254,11 @@ public class AddRouteGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_addRouteButtonActionPerformed
 
+    /**
+     * Adds styling to the text fields
+     * @param field
+     * @param placeholder 
+     */
     private void applyTextFieldEffects(JTextField field, String placeholder) {
         field.setForeground(Color.GRAY);
         field.setText(placeholder);
@@ -268,6 +285,10 @@ public class AddRouteGUI extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Adds hover effects to the buttons
+     * @param button 
+     */
     private void styleButton(JButton button) {
         button.setBackground(Color.WHITE);
         button.setForeground(Color.BLACK);
