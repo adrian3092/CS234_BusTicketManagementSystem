@@ -1,0 +1,3 @@
+For this stage, I contributed to writing a lot of the methods found in the AdminMenuGUI. This includes Bus, Schedule, Route, 
+Depot, and Employee.  I also created ViewScheduleGUI, made several contributions to the updated UML diagram, and created the 
+readme.txt file.
