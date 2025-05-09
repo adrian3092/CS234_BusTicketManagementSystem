@@ -1,4 +1,3 @@
-
 package main;
 
 import java.awt.Color;
@@ -225,7 +224,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
+    /**
+     * Details the action to take when an option in the combo box is selected
+     * @param evt 
+     */
     private void routeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeComboBoxActionPerformed
         // get the selected route
         String selectedItem = (String) routeComboBox.getSelectedItem();
