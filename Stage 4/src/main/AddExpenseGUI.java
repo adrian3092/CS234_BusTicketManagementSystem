@@ -11,7 +11,19 @@ import depot.DepotManager;
 import employees.Employee;
 import employees.EmployeeManagement;
 import expenses.*;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
 
 /**
  * GUI window to add a new expense
@@ -37,6 +49,16 @@ public class AddExpenseGUI extends javax.swing.JFrame {
         this.accounting = database.getAccounting();
         this.adminMenuGUI = adminMenuGUI;
         
+        setLocationRelativeTo(adminMenuGUI);
+        
+        // style components
+        applyTextFieldEffects(txtCost, "Cost");
+        styleButton(btnAddExpense);
+        styleComboBox(comboBoxType);
+        styleComboBox(comboBoxEntity);
+        lblType.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        lblEntity.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        
     }
 
     /**
@@ -48,15 +70,30 @@ public class AddExpenseGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        comboBoxType = new javax.swing.JComboBox<>();
-        comboBoxEntity = new javax.swing.JComboBox<>();
-        txtCost = new javax.swing.JTextField();
-        lblType = new javax.swing.JLabel();
-        lblEntity = new javax.swing.JLabel();
-        lblCost = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         btnAddExpense = new javax.swing.JButton();
+        txtCost = new javax.swing.JTextField();
+        comboBoxEntity = new javax.swing.JComboBox<>();
+        lblEntity = new javax.swing.JLabel();
+        comboBoxType = new javax.swing.JComboBox<>();
+        lblType = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(215, 224, 223));
+
+        btnAddExpense.setText("Add");
+        btnAddExpense.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddExpenseActionPerformed(evt);
+            }
+        });
+
+        txtCost.setForeground(new java.awt.Color(153, 153, 153));
+        txtCost.setText("Cost");
+
+        lblEntity.setText("Entity");
 
         comboBoxType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Fuel", "Maintenance", "Salary", "Utility" }));
         comboBoxType.addActionListener(new java.awt.event.ActionListener() {
@@ -67,56 +104,44 @@ public class AddExpenseGUI extends javax.swing.JFrame {
 
         lblType.setText("Type");
 
-        lblEntity.setText("Entity");
-
-        lblCost.setText("Cost");
-
-        btnAddExpense.setText("Add");
-        btnAddExpense.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddExpenseActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblType)
-                    .addComponent(lblEntity)
-                    .addComponent(lblCost))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnAddExpense, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addComponent(comboBoxType, 0, 136, Short.MAX_VALUE)
-                    .addComponent(comboBoxEntity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCost))
-                .addContainerGap(156, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblType))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboBoxEntity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblEntity))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCost))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnAddExpense, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboBoxEntity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboBoxType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxType, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblType))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboBoxEntity, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEntity))
+                .addGap(18, 18, 18)
+                .addComponent(txtCost, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnAddExpense)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(441, 360));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        setSize(new java.awt.Dimension(402, 287));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,45 +237,93 @@ public class AddExpenseGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddExpenseActionPerformed
 
     /**
-     * @param args the command line arguments
+     * applies text field effects
+     * @param field
+     * @param placeholder 
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddExpenseGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddExpenseGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddExpenseGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddExpenseGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void applyTextFieldEffects(JTextField field, String placeholder) {
+        field.setForeground(Color.GRAY);
+        field.setText(placeholder);
+        field.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new AddExpenseGUI().setVisible(true);
-//            }
-//        });
+        field.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (field.getText().equals(placeholder)) {
+                    field.setText("");
+                    field.setForeground(Color.BLACK);
+                }
+                field.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (field.getText().isEmpty()) {
+                    field.setText(placeholder);
+                    field.setForeground(Color.GRAY);
+                }
+                field.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+            }
+        });
     }
 
+    /**
+     * Styles any buttons passed as a parameter
+     * @param button 
+     */
+    private void styleButton(JButton button) {
+        button.setBackground(Color.WHITE);
+        button.setForeground(Color.BLACK);
+        button.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        button.setPreferredSize(new Dimension(160, 23));
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        Color hover = Color.green;
+
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                button.setBackground(hover);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                button.setBackground(Color.WHITE);
+            }
+        });
+    }
+    
+    /**
+     * Styles the combo box it receives as a parameter
+     * @param comboBox 
+     */
+    private void styleComboBox(JComboBox<?> comboBox) {
+    comboBox.setBackground(Color.WHITE);
+    comboBox.setForeground(Color.BLACK);
+    comboBox.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+    comboBox.setPreferredSize(new Dimension(160, 23));
+    comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    comboBox.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+    comboBox.addFocusListener(new FocusAdapter() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            comboBox.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            comboBox.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+        }
+    });
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddExpense;
     private javax.swing.JComboBox<String> comboBoxEntity;
     private javax.swing.JComboBox<String> comboBoxType;
-    private javax.swing.JLabel lblCost;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblEntity;
     private javax.swing.JLabel lblType;
     private javax.swing.JTextField txtCost;

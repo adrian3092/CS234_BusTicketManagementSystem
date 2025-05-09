@@ -5,6 +5,14 @@
 package main;
 
 import employees.*;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import login.LoginManager;
 import javax.swing.*;
 
@@ -26,8 +34,19 @@ public class AddEmployeeGUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(adminMenuGUI);
         
+        // initialize instance variables
         this.database = database;
         this.adminMenuGUI = adminMenuGUI;
+        
+        // style components
+        styleComboBox(jobTitleComboBox);
+        styleButton(addEmployeeButton);      
+        applyTextFieldEffects(firstNameTxt, "First Name");
+        applyTextFieldEffects(lastNameTxt, "Last Name");
+        applyTextFieldEffects(phoneNumberTxt, "Phone Number");
+        applyTextFieldEffects(salaryTxt, "Phone Number");      
+        jobTitleLbl.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+        
     }
 
     /**
@@ -39,27 +58,33 @@ public class AddEmployeeGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         firstNameTxt = new javax.swing.JTextField();
         lastNameTxt = new javax.swing.JTextField();
         jobTitleComboBox = new javax.swing.JComboBox<>();
-        jobTitleLbl = new javax.swing.JLabel();
         phoneNumberTxt = new javax.swing.JTextField();
         salaryTxt = new javax.swing.JTextField();
         addEmployeeButton = new javax.swing.JButton();
+        jobTitleLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Employee");
 
+        jPanel1.setBackground(new java.awt.Color(215, 224, 223));
+
+        firstNameTxt.setForeground(new java.awt.Color(153, 153, 153));
         firstNameTxt.setText("First Name");
 
+        lastNameTxt.setForeground(new java.awt.Color(153, 153, 153));
         lastNameTxt.setText("Last Name");
 
+        jobTitleComboBox.setForeground(new java.awt.Color(153, 153, 153));
         jobTitleComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Driver" }));
 
-        jobTitleLbl.setText("Job Title");
-
+        phoneNumberTxt.setForeground(new java.awt.Color(153, 153, 153));
         phoneNumberTxt.setText("Phone Number");
 
+        salaryTxt.setForeground(new java.awt.Color(153, 153, 153));
         salaryTxt.setText("Salary");
 
         addEmployeeButton.setText("Add");
@@ -69,43 +94,54 @@ public class AddEmployeeGUI extends javax.swing.JFrame {
             }
         });
 
+        jobTitleLbl.setText("Job Title");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jobTitleLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addEmployeeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(salaryTxt)
+                    .addComponent(phoneNumberTxt)
+                    .addComponent(firstNameTxt)
+                    .addComponent(lastNameTxt)
+                    .addComponent(jobTitleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(124, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(firstNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jobTitleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jobTitleLbl))
+                .addGap(16, 16, 16)
+                .addComponent(phoneNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(salaryTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(addEmployeeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(jobTitleLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(firstNameTxt)
-                    .addComponent(phoneNumberTxt)
-                    .addComponent(lastNameTxt)
-                    .addComponent(jobTitleComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(salaryTxt)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(addEmployeeButton)))
-                .addContainerGap(146, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(firstNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lastNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jobTitleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jobTitleLbl))
-                .addGap(18, 18, 18)
-                .addComponent(phoneNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(salaryTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(addEmployeeButton)
-                .addContainerGap(55, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -148,9 +184,93 @@ public class AddEmployeeGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_addEmployeeButtonActionPerformed
 
+    /**
+     * styles the combo box
+     * @param comboBox 
+     */
+    private void styleComboBox(JComboBox<?> comboBox) {
+    comboBox.setBackground(Color.WHITE);
+    comboBox.setForeground(Color.BLACK);
+    comboBox.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+    comboBox.setPreferredSize(new Dimension(160, 23));
+    comboBox.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    comboBox.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+    comboBox.addFocusListener(new FocusAdapter() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            comboBox.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            comboBox.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+        }
+    });
+    }
+    
+    /**
+     * styles the buttons
+     * @param button 
+     */
+    private void styleButton(JButton button) {
+        button.setBackground(Color.WHITE);
+        button.setForeground(Color.BLACK);
+        button.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        button.setPreferredSize(new Dimension(160, 23));
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        Color hover = Color.green;
+
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                button.setBackground(hover);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                button.setBackground(Color.WHITE);
+            }
+        });
+    }
+    
+    /**
+     * styles the text fields
+     * @param field
+     * @param placeholder 
+     */
+    private void applyTextFieldEffects(JTextField field, String placeholder) {
+        field.setForeground(Color.GRAY);
+        field.setText(placeholder);
+        field.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+        field.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (field.getText().equals(placeholder)) {
+                    field.setText("");
+                    field.setForeground(Color.BLACK);
+                }
+                field.setBorder(BorderFactory.createLineBorder(Color.GREEN));
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (field.getText().isEmpty()) {
+                    field.setText(placeholder);
+                    field.setForeground(Color.GRAY);
+                }
+                field.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addEmployeeButton;
     private javax.swing.JTextField firstNameTxt;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> jobTitleComboBox;
     private javax.swing.JLabel jobTitleLbl;
     private javax.swing.JTextField lastNameTxt;
