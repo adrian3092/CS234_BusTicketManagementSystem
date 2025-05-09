@@ -1,4 +1,3 @@
-
 package main;
 
 import java.awt.Color;
@@ -33,9 +32,12 @@ public class ManageRouteGUI extends javax.swing.JFrame {
      * @param adminMenuGUI the parent AdminMenuGUI
      */
     public ManageRouteGUI(Database database, AdminMenuGUI adminMenuGUI) {
+        // initialize instance variables
         this.database = database;
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
+        
+        // set focus setting on load
         setAutoRequestFocus(false);
         
         // initialize the list data for bus stops
@@ -44,16 +46,19 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         // populate the route combo box
         populateRouteComboBox();
         
+        // style text fields
         applyTextFieldEffects(routeNameTxt, "Route Name");
         applyTextFieldEffects(stopNameTxt, "Stop Name");
         applyTextFieldEffects(distanceTxt, "Distance to Next Stop(miles)");
 
+        // style buttons
         styleButton(addStopButton);
         styleButton(removeStopButton);
         styleButton(updateRouteButton);
         styleButton(assignDriverButton);
         styleButton(unassignDriverButton);
         
+        // style combo box
         styleComboBox(routeComboBox);
 
     }
@@ -219,7 +224,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
+    /**
+     * Details the action to take when an option in the combo box is selected
+     * @param evt 
+     */
     private void routeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeComboBoxActionPerformed
         // get the selected route
         String selectedItem = (String) routeComboBox.getSelectedItem();
@@ -240,7 +248,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_routeComboBoxActionPerformed
-
+    /**
+     * Details the action to take when the add stop button is clicked
+     * @param evt 
+     */
     private void addStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStopButtonActionPerformed
         if (selectedRoute == null) {
             JOptionPane.showMessageDialog(this, 
@@ -275,7 +286,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         distanceTxt.setText("");
             
     }//GEN-LAST:event_addStopButtonActionPerformed
-
+/**
+ * Details the action to take when the remove button is clicked
+ * @param evt 
+ */
     private void removeStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStopButtonActionPerformed
         if (selectedRoute == null) {
             JOptionPane.showMessageDialog(this, 
@@ -307,6 +321,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_removeStopButtonActionPerformed
 
+    /**
+     * Details the action to take when the update button is clicked
+     * @param evt 
+     */
     private void updateRouteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateRouteButtonActionPerformed
         if (selectedRoute == null) {
             JOptionPane.showMessageDialog(this, 

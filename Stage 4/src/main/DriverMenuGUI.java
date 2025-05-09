@@ -5,12 +5,7 @@ import depot.DepotManager;
 import employees.Driver;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.text.html.HTMLEditorKit;
-import javax.swing.text.html.StyleSheet;
-import main.DriverAssignment;
-import main.RouteAssignment;
 import ticket.Ticket;
 
 /**
@@ -34,7 +29,6 @@ public class DriverMenuGUI extends javax.swing.JFrame {
         this.driver = db.getEmployeeManagement().getDriverById(driverID);
         this.dispatcher = db.getDispatcher();
         
-
         setLocationRelativeTo(null);
         
         headerNamelbl.setText(this.driver.getName());
@@ -65,9 +59,6 @@ public class DriverMenuGUI extends javax.swing.JFrame {
         
         dispatcher.assignBusToRoute(database.getBusManager().findBusById(1000), database.getRouteManager().getRouteById("R-1000"));
         dispatcher.assignDriverToBus(this.driver, database.getBusManager().findBusById(1000));
-        
-        
-
     }
 
     /**
@@ -254,9 +245,6 @@ public class DriverMenuGUI extends javax.swing.JFrame {
         }
 
         jTextPane1.setText(text.toString());
-    
-
-
     }//GEN-LAST:event_assignmentBtnActionPerformed
 
     /**
@@ -338,7 +326,6 @@ public class DriverMenuGUI extends javax.swing.JFrame {
     jTextPane1.setText(output.toString());
     }//GEN-LAST:event_passengersBtnActionPerformed
 
-    
     /**
      * Adds hover effect for buttons
      * @param button
