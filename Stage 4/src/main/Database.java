@@ -103,7 +103,6 @@ public class Database {
     }
     
     public void saveData() {
-                
         busManager.saveBusesToCSV();
         depotManager.saveDepotsToCSV();
         routeManager.saveRoutesToCSV();
@@ -114,6 +113,7 @@ public class Database {
         loginManager.saveLoginsToCSV();
         ticketIssuer.saveTicketsToCSV();
         accounting.saveExpensesToCSV();
+        dispatcher.saveDriverAssignmentsToCSV();
+        dispatcher.saveRouteAssignmentsToCSV();
     }
-   
 }

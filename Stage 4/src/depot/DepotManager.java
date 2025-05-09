@@ -99,7 +99,7 @@ public class DepotManager {
     }
     
     /**
-     * Load depots from CSV file
+     * load depots from CSV file
      */
     private void loadDepotsFromCSV() {
         List<String[]> data = CSVHandler.readCSV(CSV_FILE_PATH);

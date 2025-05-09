@@ -119,8 +119,13 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnManagePassenger = new javax.swing.JButton();
         btnDeletePassenger = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Admin Menu");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         tabAdmin.setBackground(new java.awt.Color(16, 32, 47));
         tabAdmin.setForeground(new java.awt.Color(215, 224, 223));
@@ -321,20 +326,20 @@ public class AdminMenuGUI extends javax.swing.JFrame {
 
         tableRoute.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Route ID", "Name"
+                "Route ID", "Name", "Assigned Bus", "Assigned Driver"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -831,6 +836,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         int selectedTab = tabAdmin.getSelectedIndex();
         if (selectedTab == 0) { // bus tab
             populateBusTable();
+        } else if (selectedTab == 2) { // route tab
+            populateRouteTable();
         }
     }//GEN-LAST:event_tabAdminStateChanged
 
@@ -981,62 +988,385 @@ public class AdminMenuGUI extends javax.swing.JFrame {
             Route selectedRoute = database.getRouteManager().getRouteById(routeId);
             
             if (selectedRoute != null) {
-                // show input dialog for bus ID
-                String busIdStr = javax.swing.JOptionPane.showInputDialog(
-                    this,
-                    "Enter the ID of the bus to assign to route " + selectedRoute.getName() + ":",
+                // create a custom dialog for route assignment options
+                javax.swing.JDialog dialog = new javax.swing.JDialog(this, "Route Assignment", true);
+                dialog.setLayout(new java.awt.BorderLayout());
+                
+                // create a panel for the message
+                javax.swing.JPanel messagePanel = new javax.swing.JPanel();
+                messagePanel.setBackground(new java.awt.Color(215, 224, 223));
+                messagePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(15, 15, 15, 15));
+                
+                javax.swing.JLabel messageLabel = new javax.swing.JLabel("Select an action for route " + selectedRoute.getName() + ":");
+                messageLabel.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+                messagePanel.add(messageLabel);
+                
+                // create a panel for the buttons
+                javax.swing.JPanel buttonPanel = new javax.swing.JPanel();
+                buttonPanel.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
+                buttonPanel.setBackground(new java.awt.Color(215, 224, 223));
+                buttonPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 15, 15, 15));
+                
+                // create styled buttons for each option
+                String[] optionTexts = {
                     "Assign Bus to Route",
-                    javax.swing.JOptionPane.QUESTION_MESSAGE);
+                    "Unassign Bus from Route",
+                    "Assign Driver to Bus",
+                    "Unassign Driver from Bus",
+                    "Cancel"
+                };
                 
-                if (busIdStr != null && !busIdStr.trim().isEmpty()) {
-                    // parse the bus ID
-                    int busId = Integer.parseInt(busIdStr.trim());
+                // variable to store the selected choice
+                final int[] choice = {-1};
                 
-                    // find the bus by ID
-                    bus.Bus bus = database.getBusManager().findBusById(busId);
+                for (int i = 0; i < optionTexts.length; i++) {
+                    final int optionIndex = i;
+                    javax.swing.JButton optionButton = new javax.swing.JButton(optionTexts[i]);
                     
-                    if (bus != null) {
-                        // check if the bus is available
-                        if (!bus.getStatus().equals("Available")) {
-                            javax.swing.JOptionPane.showMessageDialog(this, 
-                                "Bus " + busId + " is not available for assignment. Current status: " + bus.getStatus(), 
-                                "Bus Not Available", 
-                                javax.swing.JOptionPane.WARNING_MESSAGE);
-                            return;
+                    // apply the same styling as other buttons
+                    optionButton.setBackground(java.awt.Color.WHITE);
+                    optionButton.setForeground(java.awt.Color.BLACK);
+                    optionButton.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+                    optionButton.setOpaque(true);
+                    optionButton.setBorderPainted(false);
+                    optionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+                    
+                    // add hover effect
+                    optionButton.addMouseListener(new java.awt.event.MouseAdapter() {
+                        @Override
+                        public void mouseEntered(java.awt.event.MouseEvent e) {
+                            optionButton.setBackground(java.awt.Color.GREEN);
                         }
                         
-                        // assign the bus to the route
-                        boolean success = database.getDispatcher().assignBusToRoute(bus, selectedRoute);
-                        
-                        if (success) {
-                            javax.swing.JOptionPane.showMessageDialog(this, 
-                                "Bus " + bus.getBusId() + " assigned to route " + selectedRoute.getName() + " successfully!", 
-                                "Assignment Successful", 
-                                javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                            
-                            // refresh the bus table
-                            populateBusTable();
-                        } else {
-                            javax.swing.JOptionPane.showMessageDialog(this, 
-                                "Failed to assign bus to route. The bus or route may already be assigned.", 
-                                "Assignment Failed", 
-                                javax.swing.JOptionPane.ERROR_MESSAGE);
+                        @Override
+                        public void mouseExited(java.awt.event.MouseEvent e) {
+                            optionButton.setBackground(java.awt.Color.WHITE);
                         }
-                    } else {
-                        javax.swing.JOptionPane.showMessageDialog(this, 
-                            "Bus with ID " + busId + " not found.", 
-                            "Bus Not Found", 
-                            javax.swing.JOptionPane.WARNING_MESSAGE);
-                    }
+                    });
+                    
+                    // add action listener
+                    optionButton.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
+                        public void actionPerformed(java.awt.event.ActionEvent e) {
+                            choice[0] = optionIndex;
+                            dialog.dispose();
+                        }
+                    });
+                    
+                    buttonPanel.add(optionButton);
+                }
+                
+                // add panels to dialog
+                dialog.add(messagePanel, java.awt.BorderLayout.NORTH);
+                dialog.add(buttonPanel, java.awt.BorderLayout.CENTER);
+                
+                // set dialog properties
+                dialog.pack();
+                dialog.setLocationRelativeTo(this);
+                dialog.setResizable(false);
+                
+                // show dialog and wait for user selection
+                dialog.setVisible(true);
+                
+                // get the user's choice
+                int choice_value = choice[0];
+                
+                switch (choice_value) {
+                    case 0: // assign bus to route
+                        assignBusToRoute(selectedRoute);
+                        break;
+                    case 1: // unassign bus from route
+                        unassignBusFromRoute(selectedRoute);
+                        break;
+                    case 2: // assign driver to bus
+                        assignDriverToBus(selectedRoute);
+                        break;
+                    case 3: // unassign driver from bus
+                        unassignDriverFromBus(selectedRoute);
+                        break;
+                    default:
+                        // Cancel or closed dialog
+                        break;
+                }
             }
-        }
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, 
-                "Please select a route to assign a bus to.", 
+                "Please select a route first.", 
                 "No Route Selected", 
                 javax.swing.JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnRouteAssignmentActionPerformed
+    
+    /**
+     * assigns a bus to a route
+     * @param selectedRoute the route to assign a bus to
+     */
+    private void assignBusToRoute(Route selectedRoute) {
+        // show input dialog for bus ID
+        String busIdStr = javax.swing.JOptionPane.showInputDialog(
+            this,
+            "Enter the ID of the bus to assign to route " + selectedRoute.getName() + ":",
+            "Assign Bus to Route",
+            javax.swing.JOptionPane.QUESTION_MESSAGE);
+        
+        if (busIdStr != null && !busIdStr.trim().isEmpty()) {
+            try {
+                // parse the bus ID
+                int busId = Integer.parseInt(busIdStr.trim());
+            
+                // find the bus by ID
+                bus.Bus bus = database.getBusManager().findBusById(busId);
+                
+                if (bus != null) {
+                    // check if the bus is available
+                    if (!bus.getStatus().equals("Available")) {
+                        javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Bus " + busId + " is not available for assignment. Current status: " + bus.getStatus(), 
+                            "Bus Not Available", 
+                            javax.swing.JOptionPane.WARNING_MESSAGE);
+                        return;
+                    }
+                    
+                    // assign the bus to the route
+                    boolean success = database.getDispatcher().assignBusToRoute(bus, selectedRoute);
+                    
+                    if (success) {
+                        javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Bus " + bus.getBusId() + " assigned to route " + selectedRoute.getName() + " successfully!", 
+                            "Assignment Successful", 
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                        
+                        // refresh the bus table
+                        populateBusTable();
+                    } else {
+                        javax.swing.JOptionPane.showMessageDialog(this, 
+                            "Failed to assign bus to route. The bus or route may already be assigned.", 
+                            "Assignment Failed", 
+                            javax.swing.JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                        "Bus with ID " + busId + " not found.", 
+                        "Bus Not Found", 
+                        javax.swing.JOptionPane.WARNING_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Please enter a valid bus ID (numeric value).", 
+                    "Invalid Input", 
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }
+    
+    /**
+     * assigns a driver to the bus assigned to a route
+     * @param selectedRoute the route whose bus will get a driver assigned
+     */
+    private void assignDriverToBus(Route selectedRoute) {
+        // get the bus assigned to this route
+        bus.Bus bus = database.getDispatcher().getBusForRoute(selectedRoute);
+        
+        if (bus == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "No bus is assigned to route " + selectedRoute.getName() + ". Please assign a bus first.", 
+                "No Bus Assigned", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // check if the bus already has a driver
+        employees.Driver currentDriver = database.getDispatcher().getDriverForBus(bus);
+        if (currentDriver != null) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "This bus already has a driver assigned: " + currentDriver.getName(), 
+                "Driver Already Assigned", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // get all available drivers
+        java.util.ArrayList<employees.Driver> availableDrivers = new java.util.ArrayList<>();
+        for (employees.Employee employee : database.getEmployeeManagement().getAllEmployees()) {
+            if (employee instanceof employees.Driver) {
+                employees.Driver driver = (employees.Driver) employee;
+                if (driver.getAvailability()) {
+                    availableDrivers.add(driver);
+                }
+            }
+        }
+        
+        // if there are no available drivers, show a message
+        if (availableDrivers.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "No available drivers found.", 
+                "Assign Driver", 
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        // create a dialog to select a driver
+        String[] driverNames = new String[availableDrivers.size()];
+        for (int i = 0; i < availableDrivers.size(); i++) {
+            driverNames[i] = availableDrivers.get(i).getName() + " (ID: " + availableDrivers.get(i).getEmployeeID() + ")";
+        }
+        
+        String selectedDriverName = (String) javax.swing.JOptionPane.showInputDialog(
+            this,
+            "Select a driver to assign to bus " + bus.getMake() + " " + bus.getModel() + " (ID: " + bus.getBusId() + ") for route " + selectedRoute.getName() + ":",
+            "Assign Driver",
+            javax.swing.JOptionPane.QUESTION_MESSAGE,
+            null,
+            driverNames,
+            driverNames[0]);
+        
+        // if a driver was selected, assign them to the bus
+        if (selectedDriverName != null) {
+            int selectedIndex = -1;
+            for (int i = 0; i < driverNames.length; i++) {
+                if (driverNames[i].equals(selectedDriverName)) {
+                    selectedIndex = i;
+                    break;
+                }
+            }
+            
+            if (selectedIndex >= 0) {
+                employees.Driver selectedDriver = availableDrivers.get(selectedIndex);
+                boolean success = database.getDispatcher().assignDriverToBus(selectedDriver, bus);
+                
+                if (success) {
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                        "Driver " + selectedDriver.getName() + " assigned to bus successfully.", 
+                        "Assign Driver", 
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    
+                    // refresh the employee table and route table
+                    populateEmployeeTable();
+                    populateRouteTable();
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this, 
+                        "Failed to assign driver to bus.", 
+                        "Assign Driver", 
+                        javax.swing.JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }
+    
+    /**
+     * unassigns a bus from a route
+     * @param selectedRoute the route to unassign a bus from
+     */
+    private void unassignBusFromRoute(Route selectedRoute) {
+        // get the bus assigned to this route
+        bus.Bus bus = database.getDispatcher().getBusForRoute(selectedRoute);
+        
+        if (bus == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "No bus is assigned to route " + selectedRoute.getName() + ".", 
+                "No Bus Assigned", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // confirm unassignment
+        int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+            "Are you sure you want to unassign bus " + bus.getMake() + " " + bus.getModel() + " (ID: " + bus.getBusId() + ") from route " + selectedRoute.getName() + "?",
+            "Confirm Unassignment",
+            javax.swing.JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+            // check if the bus has a driver assigned
+            employees.Driver driver = database.getDispatcher().getDriverForBus(bus);
+            if (driver != null) {
+                // ask if the driver should also be unassigned
+                int confirmDriver = javax.swing.JOptionPane.showConfirmDialog(this,
+                    "This bus has driver " + driver.getName() + " assigned to it. Unassign the driver as well?",
+                    "Driver Assigned",
+                    javax.swing.JOptionPane.YES_NO_OPTION);
+                
+                if (confirmDriver == javax.swing.JOptionPane.YES_OPTION) {
+                    // unassign the driver first
+                    database.getDispatcher().removeDriverFromBus(bus);
+                    
+                    // refresh the employee table
+                    populateEmployeeTable();
+                }
+            }
+            
+            // remove the bus from the route
+            boolean success = database.getDispatcher().removeBusFromRoute(selectedRoute);
+            
+            if (success) {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Bus unassigned from route successfully.", 
+                    "Unassign Bus", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                
+                // refresh the bus table
+                populateBusTable();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Failed to unassign bus from route.", 
+                    "Unassign Bus", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+    
+    /**
+     * unassigns a driver from the bus assigned to a route
+     * @param selectedRoute the route whose bus will have its driver unassigned
+     */
+    private void unassignDriverFromBus(Route selectedRoute) {
+        // get the bus assigned to this route
+        bus.Bus bus = database.getDispatcher().getBusForRoute(selectedRoute);
+        
+        if (bus == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "No bus is assigned to route " + selectedRoute.getName() + ".", 
+                "No Bus Assigned", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // check if the bus has a driver
+        employees.Driver driver = database.getDispatcher().getDriverForBus(bus);
+        if (driver == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "No driver is assigned to the bus for route " + selectedRoute.getName() + ".", 
+                "No Driver Assigned", 
+                javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        // confirm unassignment
+        int confirm = javax.swing.JOptionPane.showConfirmDialog(this,
+            "Are you sure you want to unassign driver " + driver.getName() + " from bus " + bus.getMake() + " " + bus.getModel() + " (ID: " + bus.getBusId() + ")?",
+            "Confirm Unassignment",
+            javax.swing.JOptionPane.YES_NO_OPTION);
+        
+        if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+            // remove the driver from the bus
+            boolean success = database.getDispatcher().removeDriverFromBus(bus);
+            
+            if (success) {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Driver unassigned from bus successfully.", 
+                    "Unassign Driver", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                
+                // refresh the employee table and route table
+                populateEmployeeTable();
+                populateRouteTable();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Failed to unassign driver from bus.", 
+                    "Unassign Driver", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
     private void btnDeleteBusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBusActionPerformed
         // get the selected bus from the table
@@ -1423,6 +1753,13 @@ public class AdminMenuGUI extends javax.swing.JFrame {
                 javax.swing.JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnDeletePassengerActionPerformed
+    
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {
+        // save data to CSV when window is closed
+        database.saveData();
+        // dispose the window
+        dispose();
+    }
 
     private void btnDeletePaymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePaymentActionPerformed
         // get the selected payment from the table
@@ -1597,9 +1934,26 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         
         // add each route to the table
         for (Route route: routes) {
+            // get the bus assigned to this route
+            bus.Bus assignedBus = database.getDispatcher().getBusForRoute(route);
+            String busInfo = "Not Assigned";
+            String driverInfo = "Not Assigned";
+            
+            if (assignedBus != null) {
+                busInfo = "ID: " + assignedBus.getBusId();
+                
+                // get the driver assigned to this bus
+                employees.Driver assignedDriver = database.getDispatcher().getDriverForBus(assignedBus);
+                if (assignedDriver != null) {
+                    driverInfo = "ID: " + assignedDriver.getEmployeeID();
+                }
+            }
+            
             model.addRow(new Object[]{
                 route.getRouteID(),
-                route.getName()
+                route.getName(),
+                busInfo,
+                driverInfo
             });
         }
         
@@ -1645,12 +1999,12 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         javax.swing.table.TableColumnModel columnModel = tableDepot.getColumnModel();
         
         // make the Depot ID column smaller
-        columnModel.getColumn(0).setPreferredWidth(60);  // Depot ID column
-        columnModel.getColumn(1).setPreferredWidth(200); // Address column
+        columnModel.getColumn(0).setPreferredWidth(60);  // depot ID column
+        columnModel.getColumn(1).setPreferredWidth(200); // address column
         
         // set minimum and maximum widths to control resizing
         columnModel.getColumn(0).setMinWidth(50);
-        columnModel.getColumn(0).setMaxWidth(80);  // Restrict maximum width for Depot ID
+        columnModel.getColumn(0).setMaxWidth(80);  // restrict maximum width for Depot ID
     }
     
     /**
@@ -1829,12 +2183,10 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }
 
-
-    
     private void customizeTabHeaders() {
     for (int i = 0; i < tabAdmin.getTabCount(); i++) {
         String title = tabAdmin.getTitleAt(i);
-        tabAdmin.setTitleAt(i, ""); // Remove default title
+        tabAdmin.setTitleAt(i, ""); // remove default title
 
         JLabel tabLabel = new JLabel(title, SwingConstants.CENTER);
         tabLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
@@ -1889,7 +2241,8 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         btnAddRoute, btnManageRoute, btnDeleteRoute, btnRouteAssignment,
         btnAddEmployee, btnDeleteEmployee, btnUpdateEmployee,
         btnExpenseReport, btnPaymentReport,
-        btnNewExpense,
+        btnNewExpense, btnAddPayment, btnManagePayment, btnDeletePayment,
+        btnAddPassenger, btnManagePassenger, btnDeletePassenger
     };
 
     for (JButton btn : buttons) {

@@ -383,7 +383,7 @@ public class Dispatcher {
         for (int i = startRow; i < data.size(); i++) {
             String[] row = data.get(i);
             
-            int driverId = Integer.parseInt(row[0]);
+            String driverId = row[0];
             int busId = Integer.parseInt(row[1]);
             
             // find the driver and bus
@@ -407,15 +407,12 @@ public class Dispatcher {
      * @param driverId the ID of the driver to find
      * @return the driver with the given ID, or null if not found
      */
-    private Driver findDriverById(int driverId) {
+    private Driver findDriverById(String driverId) {
         if (employeeManagement == null) {
             return null;
         }
         
-        // convert the numeric ID to the format used in the system (e.g., "D-123")
-        String driverIdStr = "D-" + driverId;
-        
         // use the employee management to find the driver
-        return employeeManagement.getDriverById(driverIdStr);
+        return employeeManagement.getDriverById(driverId);
     }
 }
