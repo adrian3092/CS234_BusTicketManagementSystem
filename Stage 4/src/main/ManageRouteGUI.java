@@ -34,9 +34,12 @@ public class ManageRouteGUI extends javax.swing.JFrame {
      * @param adminMenuGUI the parent AdminMenuGUI
      */
     public ManageRouteGUI(Database database, AdminMenuGUI adminMenuGUI) {
+        // initialize instance variables
         this.database = database;
         this.adminMenuGUI = adminMenuGUI;
         initComponents();
+        
+        // set focus setting on load
         setAutoRequestFocus(false);
         
         // initialize the list model for bus stops
@@ -46,14 +49,17 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         // populate the route combo box
         populateRouteComboBox();
         
+        // style text fields
         applyTextFieldEffects(routeNameTxt, "Route Name");
         applyTextFieldEffects(stopNameTxt, "Stop Name");
         applyTextFieldEffects(distanceTxt, "Distance to Next Stop(miles)");
 
+        // style buttons
         styleButton(addStopButton);
         styleButton(removeStopButton);
         styleButton(updateRouteButton);
         
+        // style combo box
         styleComboBox(routeComboBox);
 
     }
@@ -196,7 +202,11 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    /**
+     * Details the action to take when an option in the combo box is selected
+     * @param evt 
+     */
     private void routeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_routeComboBoxActionPerformed
         // get the selected route
         String selectedItem = (String) routeComboBox.getSelectedItem();
@@ -217,7 +227,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_routeComboBoxActionPerformed
-
+    /**
+     * Details the action to take when the add stop button is clicked
+     * @param evt 
+     */
     private void addStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addStopButtonActionPerformed
         if (selectedRoute == null) {
             JOptionPane.showMessageDialog(this, 
@@ -252,7 +265,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         distanceTxt.setText("");
             
     }//GEN-LAST:event_addStopButtonActionPerformed
-
+/**
+ * Details the action to take when the remove button is clicked
+ * @param evt 
+ */
     private void removeStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStopButtonActionPerformed
         if (selectedRoute == null) {
             JOptionPane.showMessageDialog(this, 
@@ -284,6 +300,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_removeStopButtonActionPerformed
 
+    /**
+     * Details the action to take when the update button is clicked
+     * @param evt 
+     */
     private void updateRouteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateRouteButtonActionPerformed
         if (selectedRoute == null) {
             JOptionPane.showMessageDialog(this, 
@@ -323,6 +343,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_updateRouteButtonActionPerformed
     
+    /**
+     * Details the action to take when the delete button is clicked
+     * @param evt 
+     */
     private void deleteRouteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRouteButtonActionPerformed
         if (selectedRoute == null) {
             JOptionPane.showMessageDialog(this, 
@@ -391,40 +415,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
     }
     
     /**
-     * @param args the command line arguments
+     * Applies focus effects to text fields
+     * @param field
+     * @param placeholder 
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                // new ManageRouteGUI().setVisible(true);
-            }
-        });
-    }
-
     private void applyTextFieldEffects(JTextField field, String placeholder) {
         field.setForeground(Color.GRAY);
         field.setText(placeholder);
@@ -451,6 +445,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Styles any buttons passed as a parameter
+     * @param button 
+     */
     private void styleButton(JButton button) {
         button.setBackground(Color.WHITE);
         button.setForeground(Color.BLACK);
@@ -475,6 +473,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Styles the combo box it receives as a parameter
+     * @param comboBox 
+     */
     private void styleComboBox(JComboBox<?> comboBox) {
     comboBox.setBackground(Color.WHITE);
     comboBox.setForeground(Color.BLACK);
