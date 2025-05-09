@@ -1,0 +1,1 @@
+In this stage I did all the Frontend design and implemented the passenger section. 
