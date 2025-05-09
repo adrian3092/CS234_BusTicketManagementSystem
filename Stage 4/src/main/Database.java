@@ -10,7 +10,8 @@ import payment.PaymentManager;
 import ticket.TicketIssuer;
 
 /**
- *
+ * This class represents a database that holds an instance of all of the 
+ * manager classes
  * @author George Candal
  */
 public class Database {
@@ -27,6 +28,9 @@ public class Database {
     private Dispatcher dispatcher;
     private TicketIssuer ticketIssuer;
     
+    /**
+     * Constructor for the class loads all of the data from CSV files
+     */
     public Database() {
         // Create all manager objects
         this.loginManager = new LoginManager();
@@ -58,50 +62,97 @@ public class Database {
         
     }
 
+    /**
+     * Getter for LoginManager
+     * @return LoginManager
+     */
     public LoginManager getLoginManager() {
         return loginManager;
     }
 
+    /**
+     * Getter for RouteManager
+     * @return RouteManager
+     */
     public RouteManager getRouteManager() {
         return routeManager;
     }
 
+    /**
+     * Getter for EmployeeManagement
+     * @return EmployeeManagement
+     */
     public EmployeeManagement getEmployeeManagement() {
         return employeeManagement;
     }
 
+    /**
+     * Getter for PassengerManager
+     * @return PassengerManager
+     */
     public PassengerManager getPassengerManager() {
         return passengerManager;
     }
 
+    /**
+     * Getter for PaymentManager
+     * @return PaymentManager
+     */
     public PaymentManager getPaymentManager() {
         return paymentManager;
     }
 
+    /**
+     * Getter for DepotManager
+     * @return DepotManager
+     */
     public DepotManager getDepotManager() {
         return depotManager;
     }
 
+    /**
+     * Getter for BusManager
+     * @return BusManager
+     */
     public BusManager getBusManager() {
         return busManager;
     }
 
+    /**
+     * Getter for ScheduleManager
+     * @return ScheduleManager
+     */
     public ScheduleManager getScheduleManager() {
         return scheduleManager;
     }
 
+    /**
+     * Getter for Accounting
+     * @return Accounting
+     */
     public Accounting getAccounting() {
         return accounting;
     }
 
+    /**
+     * Getter for Dispatcher
+     * @return Dispatcher
+     */
     public Dispatcher getDispatcher() {
         return dispatcher;
     }
 
+    /**
+     * Getter for TicketIssuer
+     * @return TicketIssuer
+     */
     public TicketIssuer getTicketIssuer() {
         return ticketIssuer;
     }
     
+    /**
+     * Saves the data from all of the manager classes to csv files
+     */
     public void saveData() {
         busManager.saveBusesToCSV();
         depotManager.saveDepotsToCSV();

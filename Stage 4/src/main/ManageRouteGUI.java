@@ -286,10 +286,10 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         distanceTxt.setText("");
             
     }//GEN-LAST:event_addStopButtonActionPerformed
-/**
- * Details the action to take when the remove button is clicked
- * @param evt 
- */
+    /**
+     * Details the action to take when the remove button is clicked
+     * @param evt 
+     */
     private void removeStopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeStopButtonActionPerformed
         if (selectedRoute == null) {
             JOptionPane.showMessageDialog(this, 
