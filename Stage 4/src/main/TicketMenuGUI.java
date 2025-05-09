@@ -7,8 +7,6 @@ package main;
 import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
-import payment.Payment;
-import ticket.*;
 
 /**
  * GUI for the ticket menu
@@ -95,7 +93,6 @@ public class TicketMenuGUI extends javax.swing.JFrame {
         }
     });
 }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -224,8 +221,6 @@ public class TicketMenuGUI extends javax.swing.JFrame {
         javax.swing.JOptionPane.showMessageDialog(this, "Payment Successful!");
         this.dispose();
     }//GEN-LAST:event_payBtnActionPerformed
-
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cardNumberField;

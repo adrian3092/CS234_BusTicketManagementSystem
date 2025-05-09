@@ -3,7 +3,6 @@ package main;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import csv.CSVHandler;
 
 /**
@@ -13,7 +12,7 @@ import csv.CSVHandler;
  */
 public class RouteManager {
     
-    private ArrayList<Route> routes;// List of routes
+    private ArrayList<Route> routes;// list of routes
     private static final String ROUTES_CSV_FILE_PATH = "data/routes.csv";
     private static final String BUS_STOPS_CSV_FILE_PATH = "data/bus_stops.csv";
     

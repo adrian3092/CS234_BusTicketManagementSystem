@@ -149,6 +149,4 @@ public class PassengerManager {
         }
         CSVHandler.writeCSV(PASSENGERS_CSV_FILE_PATH, data);
     }
-    
-
 }
