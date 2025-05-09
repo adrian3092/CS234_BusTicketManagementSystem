@@ -2301,6 +2301,7 @@ public class AdminMenuGUI extends javax.swing.JFrame {
         }
     }
 
+
     /**
      * Styling for the tab headers
      */
