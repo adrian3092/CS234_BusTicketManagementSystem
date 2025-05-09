@@ -105,12 +105,22 @@ public class Ticket {
     );
     }
     
+    /**
+     * Formats the time correctly
+     * @param time
+     * @return 
+     */
     private String formatTime(double time) {
         int hours = (int) time;
         int minutes = (int) (((time - hours) * 100) + 0.5);
         return String.format("%02d:%02d", hours, minutes);
 }
 
+    /**
+     * Formats the bus stops 
+     * @param route
+     * @return 
+     */
     private String formatStops(Route route) {
         List<BusStop> stops = route.getStops();
         String formattedStops = "N/A";

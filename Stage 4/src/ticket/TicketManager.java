@@ -54,6 +54,11 @@ public class TicketManager {
         saveTicketsToCSV();
     }
     
+    /**
+     * Gets ticket history for a passenger
+     * @param passenger 
+     * @return 
+     */
     public String getTicketHistory(Passenger passenger) {
         StringBuilder report = new StringBuilder();
         report.append(String.format("%-20s %-20s %-20s %-20s%n", "Ticket Number", "Passenger Name", "Schedule", "Status"));

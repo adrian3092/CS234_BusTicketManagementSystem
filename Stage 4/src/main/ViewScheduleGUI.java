@@ -58,6 +58,10 @@ public class ViewScheduleGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
+    /**
+     * Styling for the table
+     * @param table 
+     */
     private void styleTable(JTable table) {
     // Header styling
     JTableHeader header = table.getTableHeader();

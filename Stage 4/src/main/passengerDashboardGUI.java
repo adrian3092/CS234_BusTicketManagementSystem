@@ -14,8 +14,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.JTableHeader;
 
 /**
- *
- * @author Owner
+ * GUI for the passenger dashboard
+ * @author Handsome Onojerame
  */
 public class passengerDashboardGUI extends javax.swing.JFrame {
     private ScheduleManager scheduleManager;
@@ -24,6 +24,7 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
     private Passenger passenger;
     private PassengerManager passengerManager;
     private Database db;
+    
     /**
      * Creates new form passengerDashboardGUI
      */
@@ -31,6 +32,11 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
         initComponents();
     }
 
+    /**
+     * Constructor with parameters
+     * @param database
+     * @param passengerID 
+     */
     public passengerDashboardGUI(Database database, String passengerID) {
         initComponents();
         this.db = database;
@@ -224,18 +230,36 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bookTicketBtnActionPerformed
 
+    /**
+     * Closes the window when log out button is clicked
+     * @param evt 
+     */
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
+    /**
+     * Creates PassengerProfileGUI when update profile is clicked
+     * @param evt 
+     */
     private void updateProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProfileBtnActionPerformed
         new UpdatePassengerProfileGUI(this.passenger, this.passengerManager, this).setVisible(true);
     }//GEN-LAST:event_updateProfileBtnActionPerformed
 
+    /**
+     * Creates TicketHistoryGUI when ticket history button is clicked
+     * @param evt 
+     */
     private void ticketHistoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ticketHistoryBtnActionPerformed
         new TicketHistoryGUI(db, passenger).setVisible(true);
     }//GEN-LAST:event_ticketHistoryBtnActionPerformed
 
+    /**
+     * Adds hover effect to buttons
+     * @param button
+     * @param normal
+     * @param hover 
+     */
     private void addHoverEffect(final JButton button, final Color normal, final Color hover) {
     button.setOpaque(true);
     button.setBackground(normal);
@@ -253,10 +277,17 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
     });
     }   
     
+    /**
+     * Sets the welcome label to have the passengers name
+     */
     void updateWelcomelbl() {
         welcomelbl.setText("Welcome " + this.passenger.getPassengerName());
     }
     
+    /**
+     * Styling for the table
+     * @param table 
+     */
     private void styleTable(JTable table) {
     // Header styling
     JTableHeader header = table.getTableHeader();
@@ -288,6 +319,9 @@ public class passengerDashboardGUI extends javax.swing.JFrame {
     });
 }
 
+    /**
+     * populates the schedule table
+     */
     private void populateScheduleTable() {
         DefaultTableModel model = (DefaultTableModel) passengerScheduleTable.getModel();
         
