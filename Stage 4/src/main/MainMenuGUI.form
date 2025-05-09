@@ -49,15 +49,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="welcomeHeader1" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
                       <Component id="welcomeHeader2" alignment="0" min="-2" pref="204" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                           <Component id="EmployeeLoginMainMenuBtn" alignment="0" pref="160" max="32767" attributes="0"/>
                           <Component id="ViewSchedulesMainMenuBtn" alignment="0" max="32767" attributes="0"/>
                           <Component id="bookTicketMainMenuBtn" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="welcomeHeader1" alignment="0" min="-2" pref="390" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="384" max="32767" attributes="0"/>
+                  <EmptySpace pref="274" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
