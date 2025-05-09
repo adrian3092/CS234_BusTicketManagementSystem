@@ -11,7 +11,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -26,7 +25,7 @@ public class ManageRouteGUI extends javax.swing.JFrame {
     private Database database;
     private AdminMenuGUI adminMenuGUI;
     private Route selectedRoute;
-    private DefaultListModel<String> stopsListModel;
+    private ArrayList<String> stopsListData;
     
     /**
      * Creates new form ManageRouteGUI
@@ -39,9 +38,8 @@ public class ManageRouteGUI extends javax.swing.JFrame {
         initComponents();
         setAutoRequestFocus(false);
         
-        // initialize the list model for bus stops
-        stopsListModel = new DefaultListModel<>();
-        stopsList.setModel(stopsListModel);
+        // initialize the list data for bus stops
+        stopsListData = new ArrayList<>();
         
         // populate the route combo box
         populateRouteComboBox();
@@ -348,45 +346,6 @@ public class ManageRouteGUI extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_updateRouteButtonActionPerformed
     
-    private void deleteRouteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRouteButtonActionPerformed
-        if (selectedRoute == null) {
-            JOptionPane.showMessageDialog(this, 
-                    "Please select a route first.", 
-                    "No Route Selected", 
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        
-        // confirm deletion
-        int confirm = JOptionPane.showConfirmDialog(this,
-                "Are you sure you want to delete route '" + selectedRoute.getName() + "'?",
-                "Confirm Deletion",
-                JOptionPane.YES_NO_OPTION);
-        
-        if (confirm == JOptionPane.YES_OPTION) {
-            // remove the route
-            database.getRouteManager().removeRoute(selectedRoute);
-            
-            // refresh the route table in AdminMenuGUI
-            if (adminMenuGUI != null) {
-                adminMenuGUI.populateRouteTable();
-            }
-            
-            // refresh the route combo box
-            populateRouteComboBox();
-            
-            // clear the form
-            routeNameTxt.setText("");
-            stopsListModel.clear();
-            selectedRoute = null;
-            
-            JOptionPane.showMessageDialog(this, 
-                    "Route deleted successfully!", 
-                    "Success", 
-                    JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_deleteRouteButtonActionPerformed
-    
     /**
      * handles the assign driver button click event
      * assigns a driver to the bus assigned to the selected route
@@ -562,52 +521,20 @@ public class ManageRouteGUI extends javax.swing.JFrame {
      * updates the stops list with the current stops of the selected route
      */
     private void updateStopsList() {
-        stopsListModel.clear();
+        stopsListData.clear();
         
         if (selectedRoute != null) {
             ArrayList<BusStop> stops = selectedRoute.getStops();
             
             for (BusStop stop : stops) {
-                stopsListModel.addElement(stop.getName() + " (Distance: " + stop.getDistanceToNext() + " miles)");
+                stopsListData.add(stop.getName() + " (Distance: " + stop.getDistanceToNext() + " miles)");
             }
         }
+        
+        // update list
+        stopsList.setListData(stopsListData.toArray(new String[0]));
     }
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManageRouteGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                // new ManageRouteGUI().setVisible(true);
-            }
-        });
-    }
-
     /**
      * applies placeholder text and styling effects to a text field
      * @param field the text field to apply effects to
